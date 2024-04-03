@@ -18,12 +18,53 @@
             android:layout_weight="20"
             android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="00h 00m 00s"
-                android:textSize="52dp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TimerFragment__Timer_1"
+                    android:text="00"
+                    android:textSize="56dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:id="@+id/TimerFragment__Timer_H"
+                    android:text="h"
+                    android:textSize="28dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TimerFragment__Timer_2"
+                    android:text="00"
+                    android:textSize="56dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:id="@+id/TimerFragment__Timer_M"
+                    android:text="m"
+                    android:textSize="28dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TimerFragment__Timer_3"
+                    android:text="00"
+                    android:textSize="56dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TimerFragment__Timer_S"
+                    android:text="s"
+                    android:textSize="28dp" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -41,6 +82,7 @@
                         android:layout_height="96dp"
                         android:gravity="center"
                         android:layout_margin="4dp"
+                        android:id="@+id/TimerFragment__Num_1"
                         android:background="@drawable/btn_timer_circle_reverse"
                         android:backgroundTint="@color/secondaryBackgroundColor"
                         android:clickable="true"
@@ -57,6 +99,7 @@
                         android:layout_height="96dp"
                         android:gravity="center"
                         android:layout_margin="4dp"
+                        android:id="@+id/TimerFragment__Num_2"
                         android:background="@drawable/btn_timer_circle_reverse"
                         android:backgroundTint="@color/secondaryBackgroundColor"
                         android:clickable="true"
@@ -73,6 +116,7 @@
                         android:layout_height="96dp"
                         android:gravity="center"
                         android:layout_margin="4dp"
+                        android:id="@+id/TimerFragment__Num_3"
                         android:background="@drawable/btn_timer_circle_reverse"
                         android:backgroundTint="@color/secondaryBackgroundColor"
                         android:clickable="true"
@@ -97,6 +141,7 @@
                         android:layout_height="96dp"
                         android:gravity="center"
                         android:layout_margin="4dp"
+                        android:id="@+id/TimerFragment__Num_4"
                         android:background="@drawable/btn_timer_circle_reverse"
                         android:backgroundTint="@color/secondaryBackgroundColor"
                         android:clickable="true"
@@ -113,6 +158,7 @@
                         android:layout_height="96dp"
                         android:gravity="center"
                         android:layout_margin="4dp"
+                        android:id="@+id/TimerFragment__Num_5"
                         android:background="@drawable/btn_timer_circle_reverse"
                         android:backgroundTint="@color/secondaryBackgroundColor"
                         android:clickable="true"
@@ -129,6 +175,7 @@
                         android:layout_height="96dp"
                         android:gravity="center"
                         android:layout_margin="4dp"
+                        android:id="@+id/TimerFragment__Num_6"
                         android:background="@drawable/btn_timer_circle_reverse"
                         android:backgroundTint="@color/secondaryBackgroundColor"
                         android:clickable="true"
@@ -153,6 +200,7 @@
                         android:layout_height="96dp"
                         android:gravity="center"
                         android:layout_margin="4dp"
+                        android:id="@+id/TimerFragment__Num_7"
                         android:background="@drawable/btn_timer_circle_reverse"
                         android:backgroundTint="@color/secondaryBackgroundColor"
                         android:clickable="true"
@@ -169,6 +217,7 @@
                         android:layout_height="96dp"
                         android:gravity="center"
                         android:layout_margin="4dp"
+                        android:id="@+id/TimerFragment__Num_8"
                         android:background="@drawable/btn_timer_circle_reverse"
                         android:backgroundTint="@color/secondaryBackgroundColor"
                         android:clickable="true"
@@ -185,6 +234,7 @@
                         android:layout_height="96dp"
                         android:gravity="center"
                         android:layout_margin="4dp"
+                        android:id="@+id/TimerFragment__Num_9"
                         android:background="@drawable/btn_timer_circle_reverse"
                         android:backgroundTint="@color/secondaryBackgroundColor"
                         android:clickable="true"
@@ -209,6 +259,7 @@
                         android:layout_height="96dp"
                         android:gravity="center"
                         android:layout_margin="4dp"
+                        android:id="@+id/TimerFragment__Num_00"
                         android:background="@drawable/btn_timer_circle_reverse"
                         android:backgroundTint="@color/secondaryBackgroundColor"
                         android:clickable="true"
@@ -225,6 +276,7 @@
                         android:layout_height="96dp"
                         android:gravity="center"
                         android:layout_margin="4dp"
+                        android:id="@+id/TimerFragment__Num_0"
                         android:background="@drawable/btn_timer_circle_reverse"
                         android:backgroundTint="@color/secondaryBackgroundColor"
                         android:clickable="true"
@@ -241,6 +293,7 @@
                         android:layout_height="96dp"
                         android:gravity="center"
                         android:layout_margin="4dp"
+                        android:id="@+id/TimerFragment__Num_BS"
                         android:background="@drawable/btn_timer_circle_reverse"
                         android:backgroundTint="@color/tertiaryBackgroundColor"
                         android:clickable="true"
@@ -260,7 +313,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:id="@+id/TimerFragment__ControlPanel"
             android:layout_gravity="bottom|center_horizontal"
             android:gravity="center"

@@ -48,7 +48,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:id="@+id/StopwatchFragment__ControlPanel"
             android:layout_gravity="bottom|center_horizontal"
             android:gravity="center"
