@@ -2,6 +2,7 @@ package com.x_viria.app.vita.somnificus.fragment.alarm;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,7 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.x_viria.app.vita.somnificus.MainActivity;
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.SetAlarmActivity;
 
 public class AlarmFragment extends Fragment {
 
@@ -25,7 +29,15 @@ public class AlarmFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_alarm, container, false);
+        View root = inflater.inflate(R.layout.fragment_main_alarm, container, false);
+
+        FloatingActionButton fab = root.findViewById(R.id.AlarmFragment__FloatingActionButton);
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), SetAlarmActivity.class);
+            startActivity(intent);
+        });
+
+        return root;
     }
 
     @Override

@@ -25,7 +25,7 @@ public class EtcFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_etc, container, false);
+        return inflater.inflate(R.layout.fragment_main_etc, container, false);
     }
 
     @Override

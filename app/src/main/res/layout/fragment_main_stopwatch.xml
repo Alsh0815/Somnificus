@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.stopwatch.StopwatchFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="20"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/StopwatchFragment__TShow_S"
+                    android:text="00"
+                    android:textSize="64dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/StopwatchFragment__TShow_MS"
+                    android:layout_gravity="right"
+                    android:text="00"
+                    android:textSize="48dp" />
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/StopwatchFragment__ControlPanel"
+            android:layout_gravity="bottom|center_horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_timer_circle"
+                android:backgroundTint="@color/secondaryInactiveColor"
+                android:id="@+id/StopwatchFragment__CP_Btn_Reset"
+                android:layout_marginRight="16dp"
+                android:padding="@dimen/btn_timer_icon_size"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:visibility="invisible">
+                <ImageView
+                    android:layout_width="@dimen/btn_timer_icon_size"
+                    android:layout_height="@dimen/btn_timer_icon_size"
+                    android:src="@drawable/ic_timer_reset"
+                    app:tint="@color/primaryBackgroundColor" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_timer_circle"
+                android:backgroundTint="@color/secondaryActiveColor"
+                android:id="@+id/StopwatchFragment__CP_Btn_StartPause"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:padding="32dp"
+                android:clickable="true"
+                android:elevation="5dp">
+                <ImageView
+                    android:layout_width="@dimen/btn_timer_icon_size"
+                    android:layout_height="@dimen/btn_timer_icon_size"
+                    android:id="@+id/StopwatchFragment__CP_Btn_StartPause_Icon"
+                    android:src="@drawable/ic_timer_start"
+                    app:tint="@color/primaryBackgroundColor" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_timer_circle"
+                android:backgroundTint="@color/secondaryInactiveColor"
+                android:id="@+id/StopwatchFragment__CP_Btn_Lap"
+                android:layout_marginLeft="16dp"
+                android:padding="@dimen/btn_timer_icon_size"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:visibility="invisible">
+                <ImageView
+                    android:layout_width="@dimen/btn_timer_icon_size"
+                    android:layout_height="@dimen/btn_timer_icon_size"
+                    android:src="@drawable/ic_menu_stopwatch"
+                    app:tint="@color/primaryBackgroundColor" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

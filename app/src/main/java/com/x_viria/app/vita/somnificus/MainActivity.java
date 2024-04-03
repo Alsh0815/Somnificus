@@ -1,12 +1,16 @@
 package com.x_viria.app.vita.somnificus;
 
-import androidx.annotation.NonNull;
+import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.os.Handler;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -23,9 +27,18 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
 
     private void setFragment(Fragment fragment) {
+        // Set a fragment.
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
         transaction.commit();
+
+        // Fix the bottom margin of the fragment.
+        int bnv_height = bottomNavigationView.getHeight();
+        View fragment_container = findViewById(R.id.fragment_container);
+        ViewGroup.LayoutParams lp = fragment_container.getLayoutParams();
+        ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams)lp;
+        mlp.setMargins(mlp.leftMargin, mlp.topMargin, mlp.rightMargin, bnv_height);
+        fragment_container.setLayoutParams(mlp);
     }
 
     @Override
@@ -36,11 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        setFragment(new AlarmFragment());
-
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // 各メニュー項目のクリックイベント処理
+        Handler handle = new Handler();
+        handle.postDelayed(() -> setFragment(new AlarmFragment()), 100);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menu_alarm:

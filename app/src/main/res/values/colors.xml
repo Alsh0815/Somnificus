@@ -8,8 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primaryActiveColor">#FF9530CA</color>
-    <color name="primaryInactiveColor">#FF45207A</color>
-    <color name="primaryBackgroundColor">#FF010101</color>
-    <color name="secondaryBackgroundColor">#FF151515</color>
+    <color name="primaryActiveColor">#FFDDDDDD</color>
+    <color name="secondaryActiveColor">#FFF0E2F2</color>
+    <color name="primaryInactiveColor">#FF909090</color>
+    <color name="secondaryInactiveColor">#FFD5C9D8</color>
+    <color name="primaryBackgroundColor">#FF0F1010</color>
+    <color name="secondaryBackgroundColor">#FF181818</color>
+    <color name="tertiaryBackgroundColor">#FF282828</color>
+    <color name="primaryTextColor">#FFB0B0B0</color>
+    <color name="secondaryTextColor">#FF909090</color>
 </resources>

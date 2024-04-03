@@ -4,26 +4,26 @@
     <item
         android:id="@+id/menu_alarm"
         android:icon="@drawable/ic_menu_alarm"
-        android:title="アラーム" />
+        android:title="@string/activity_main__bnv_item_alarm" />
 
     <item
         android:id="@+id/menu_timer"
         android:icon="@drawable/ic_menu_timer"
-        android:title="タイマー" />
+        android:title="@string/activity_main__bnv_item_timer" />
 
     <item
         android:id="@+id/menu_stopwatch"
         android:icon="@drawable/ic_menu_stopwatch"
-        android:title="ストップウォッチ" />
+        android:title="@string/activity_main__bnv_item_stopwatch" />
 
     <item
         android:id="@+id/menu_sleep"
         android:icon="@drawable/ic_menu_bed"
-        android:title="睡眠" />
+        android:title="@string/activity_main__bnv_item_sleep" />
 
     <item
         android:id="@+id/menu_etc"
         android:icon="@drawable/ic_menu_etc"
-        android:title="詳細" />
+        android:title="@string/activity_main__bnv_item_etc" />
 
 </menu>

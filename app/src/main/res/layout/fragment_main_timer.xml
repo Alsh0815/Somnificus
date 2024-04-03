@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.timer.TimerFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="20"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="00h 00m 00s"
+                android:textSize="52dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:gravity="center"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/btn_timer_circle_reverse"
+                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:clickable="true"
+                        android:elevation="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textColor="@color/primaryActiveColor"
+                            android:textSize="24dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:gravity="center"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/btn_timer_circle_reverse"
+                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:clickable="true"
+                        android:elevation="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2"
+                            android:textColor="@color/primaryActiveColor"
+                            android:textSize="24dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:gravity="center"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/btn_timer_circle_reverse"
+                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:clickable="true"
+                        android:elevation="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3"
+                            android:textColor="@color/primaryActiveColor"
+                            android:textSize="24dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:gravity="center"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/btn_timer_circle_reverse"
+                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:clickable="true"
+                        android:elevation="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4"
+                            android:textColor="@color/primaryActiveColor"
+                            android:textSize="24dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:gravity="center"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/btn_timer_circle_reverse"
+                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:clickable="true"
+                        android:elevation="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5"
+                            android:textColor="@color/primaryActiveColor"
+                            android:textSize="24dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:gravity="center"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/btn_timer_circle_reverse"
+                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:clickable="true"
+                        android:elevation="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="6"
+                            android:textColor="@color/primaryActiveColor"
+                            android:textSize="24dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:gravity="center"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/btn_timer_circle_reverse"
+                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:clickable="true"
+                        android:elevation="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="7"
+                            android:textColor="@color/primaryActiveColor"
+                            android:textSize="24dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:gravity="center"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/btn_timer_circle_reverse"
+                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:clickable="true"
+                        android:elevation="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8"
+                            android:textColor="@color/primaryActiveColor"
+                            android:textSize="24dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:gravity="center"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/btn_timer_circle_reverse"
+                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:clickable="true"
+                        android:elevation="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="9"
+                            android:textColor="@color/primaryActiveColor"
+                            android:textSize="24dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:gravity="center"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/btn_timer_circle_reverse"
+                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:clickable="true"
+                        android:elevation="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00"
+                            android:textColor="@color/primaryActiveColor"
+                            android:textSize="24dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:gravity="center"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/btn_timer_circle_reverse"
+                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:clickable="true"
+                        android:elevation="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/primaryActiveColor"
+                            android:textSize="24dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:gravity="center"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/btn_timer_circle_reverse"
+                        android:backgroundTint="@color/tertiaryBackgroundColor"
+                        android:clickable="true"
+                        android:elevation="5dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_backspace"
+                            app:tint="@color/primaryActiveColor" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/TimerFragment__ControlPanel"
+            android:layout_gravity="bottom|center_horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_timer_circle"
+                android:backgroundTint="@color/secondaryActiveColor"
+                android:id="@+id/TimerFragment__CP_Btn_StartPause"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:padding="32dp"
+                android:clickable="true"
+                android:elevation="5dp">
+                <ImageView
+                    android:layout_width="@dimen/btn_timer_icon_size"
+                    android:layout_height="@dimen/btn_timer_icon_size"
+                    android:id="@+id/TimerFragment__CP_Btn_Start_Icon"
+                    android:src="@drawable/ic_timer_start"
+                    app:tint="@color/primaryBackgroundColor" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
