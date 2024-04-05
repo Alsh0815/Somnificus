@@ -1,4 +1,4 @@
-package com.x_viria.app.vita.somnificus;
+package com.x_viria.app.vita.somnificus.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
+
+import com.x_viria.app.vita.somnificus.R;
 
 public class SetAlarmActivity extends AppCompatActivity {
 

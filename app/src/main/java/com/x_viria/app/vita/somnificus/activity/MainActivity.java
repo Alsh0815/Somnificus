@@ -1,19 +1,29 @@
-package com.x_viria.app.vita.somnificus;
+package com.x_viria.app.vita.somnificus.activity;
 
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.core.Alarm;
 import com.x_viria.app.vita.somnificus.fragment.alarm.AlarmFragment;
 import com.x_viria.app.vita.somnificus.fragment.etc.EtcFragment;
 import com.x_viria.app.vita.somnificus.fragment.sleep.SleepFragment;
@@ -74,5 +84,8 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+
+
     }
+
 }

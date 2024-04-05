@@ -38,6 +38,8 @@ public class StopwatchFragment extends Fragment {
     private long beginMS = 0;
     private long elapsedMS = 0;
     private long nowMS = 0;
+    private long last_lapMS = 0;
+    private long lapNum = 0;
 
     private void updateWatch(View root) {
         long ms = (nowMS - beginMS) % 1000 / 10;
@@ -65,6 +67,7 @@ public class StopwatchFragment extends Fragment {
         LinearLayout lapBtn = root.findViewById(R.id.StopwatchFragment__CP_Btn_Lap);
         lapBtn.setVisibility(View.VISIBLE);
         beginMS = System.currentTimeMillis() - elapsedMS;
+        last_lapMS = elapsedMS;
         RUNNABLE = new Runnable() {
             @Override
             public void run() {
@@ -97,6 +100,9 @@ public class StopwatchFragment extends Fragment {
         beginMS = 0;
         elapsedMS = 0;
         nowMS = 0;
+        lapNum = 0;
+        LinearLayout lapList = root.findViewById(R.id.StopwatchFragment__Lap_List);
+        lapList.removeAllViews();
         updateWatch(root);
     }
 
@@ -106,6 +112,34 @@ public class StopwatchFragment extends Fragment {
         } else {
             pauseWatch(root);
         }
+    }
+
+    private void addLap(View root) {
+        lapNum++;
+        long lap_ms = nowMS - beginMS;
+        long diff_ms = lap_ms - last_lapMS;
+        last_lapMS = lap_ms;
+        int rsec_l = (int) lap_ms / 1000;
+        int sec_l = rsec_l % 60;
+        int min_l = (rsec_l % 3600) / 60;
+        int hour_l = rsec_l / 3600;
+        int rsec_d = (int) diff_ms / 1000;
+        int sec_d = rsec_d % 60;
+        int min_d = (rsec_d % 3600) / 60;
+        int hour_d = rsec_d / 3600;
+        LinearLayout lapList = root.findViewById(R.id.StopwatchFragment__Lap_List);
+        LinearLayout child = new LinearLayout(getContext());
+        child.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        TextView tv_no = new TextView(getContext());
+        tv_no.setText(String.format("#%d   -   ", lapNum));
+        child.addView(tv_no);
+        TextView tv_lap = new TextView(getContext());
+        tv_lap.setText(String.format("%d %02d %02d.%02d   -   ", hour_d, min_d, sec_d, diff_ms % 1000 / 10));
+        child.addView(tv_lap);
+        TextView tv_total = new TextView(getContext());
+        tv_total.setText(String.format("%d %02d %02d.%02d", hour_l, min_l, sec_l, lap_ms % 1000 / 10));
+        child.addView(tv_total);
+        lapList.addView(child, 0);
     }
 
     @Override
@@ -120,6 +154,9 @@ public class StopwatchFragment extends Fragment {
 
         LinearLayout CP_Reset_Btn = root.findViewById(R.id.StopwatchFragment__CP_Btn_Reset);
         CP_Reset_Btn.setOnClickListener(v -> resetWatch(root));
+
+        LinearLayout CP_Lap_Btn = root.findViewById(R.id.StopwatchFragment__CP_Btn_Lap);
+        CP_Lap_Btn.setOnClickListener(v -> addLap(root));
 
         return root;
     }

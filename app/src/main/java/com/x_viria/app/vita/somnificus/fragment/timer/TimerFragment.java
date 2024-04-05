@@ -109,6 +109,7 @@ public class TimerFragment extends Fragment {
         LinearLayout Num_0 = root.findViewById(R.id.TimerFragment__Num_0);
         LinearLayout Num_00 = root.findViewById(R.id.TimerFragment__Num_00);
         LinearLayout Num_BS = root.findViewById(R.id.TimerFragment__Num_BS);
+        LinearLayout CP_StartPause = root.findViewById(R.id.TimerFragment__CP_Btn_StartPause);
 
         Num_1.setOnClickListener(v -> addNum(1, root));
         Num_2.setOnClickListener(v -> addNum(2, root));
@@ -125,6 +126,10 @@ public class TimerFragment extends Fragment {
             addNum(0, root);
         });
         Num_BS.setOnClickListener(v -> removeNum(root));
+
+        CP_StartPause.setOnClickListener(v -> {
+
+        });
 
         return root;
     }

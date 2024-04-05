@@ -1,8 +1,10 @@
-package com.x_viria.app.vita.somnificus;
+package com.x_viria.app.vita.somnificus.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.x_viria.app.vita.somnificus.R;
 
 public class TutorialActivity extends AppCompatActivity {
 
