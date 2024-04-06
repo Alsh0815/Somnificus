@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Somnificus"
         tools:targetApi="31" >
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6133161179615824~4591600015" />
 
         <activity
             android:name=".activity.WakeupActivity"
@@ -45,12 +49,8 @@
         </activity>
 
         <receiver
-            android:name=".core.AlarmBroadcastReciever"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="SomnificusAlarm"></action>
-            </intent-filter>
-        </receiver>
+            android:name=".core.AlarmBroadcastReceiver"
+            android:exported="true" />
 
     </application>
 

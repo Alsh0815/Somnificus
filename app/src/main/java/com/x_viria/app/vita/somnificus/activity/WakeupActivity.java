@@ -20,6 +20,5 @@ public class WakeupActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        Toast.makeText(this, "Wake Up", Toast.LENGTH_SHORT).show();
     }
 }
