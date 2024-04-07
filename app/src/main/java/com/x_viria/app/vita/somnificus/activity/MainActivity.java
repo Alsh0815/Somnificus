@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.x_viria.app.vita.somnificus.R;
-import com.x_viria.app.vita.somnificus.fragment.main.alarm.alarm.AlarmFragment;
+import com.x_viria.app.vita.somnificus.fragment.main.alarm.AlarmFragment;
 import com.x_viria.app.vita.somnificus.fragment.main.etc.EtcFragment;
 import com.x_viria.app.vita.somnificus.fragment.main.sleep.SleepFragment;
 import com.x_viria.app.vita.somnificus.fragment.main.stopwatch.StopwatchFragment;

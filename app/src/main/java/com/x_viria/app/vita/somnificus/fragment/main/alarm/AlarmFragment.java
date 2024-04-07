@@ -1,4 +1,4 @@
-package com.x_viria.app.vita.somnificus.fragment.main.alarm.alarm;
+package com.x_viria.app.vita.somnificus.fragment.main.alarm;
 
 import androidx.lifecycle.ViewModelProvider;
 
