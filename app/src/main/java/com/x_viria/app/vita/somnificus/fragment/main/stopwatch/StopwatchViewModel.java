@@ -1,4 +1,4 @@
-package com.x_viria.app.vita.somnificus.fragment.stopwatch;
+package com.x_viria.app.vita.somnificus.fragment.main.stopwatch;
 
 import androidx.lifecycle.ViewModel;
 

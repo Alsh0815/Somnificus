@@ -1,4 +1,4 @@
-package com.x_viria.app.vita.somnificus.fragment.timer;
+package com.x_viria.app.vita.somnificus.fragment.main.timer;
 
 import androidx.lifecycle.ViewModelProvider;
 

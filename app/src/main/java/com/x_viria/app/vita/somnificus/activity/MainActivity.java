@@ -1,19 +1,16 @@
 package com.x_viria.app.vita.somnificus.activity;
 
-import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
-import android.app.AlarmManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -24,18 +21,19 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.x_viria.app.vita.somnificus.R;
-import com.x_viria.app.vita.somnificus.core.Alarm;
-import com.x_viria.app.vita.somnificus.fragment.alarm.AlarmFragment;
-import com.x_viria.app.vita.somnificus.fragment.etc.EtcFragment;
-import com.x_viria.app.vita.somnificus.fragment.sleep.SleepFragment;
-import com.x_viria.app.vita.somnificus.fragment.stopwatch.StopwatchFragment;
-import com.x_viria.app.vita.somnificus.fragment.timer.TimerFragment;
+import com.x_viria.app.vita.somnificus.fragment.main.alarm.alarm.AlarmFragment;
+import com.x_viria.app.vita.somnificus.fragment.main.etc.EtcFragment;
+import com.x_viria.app.vita.somnificus.fragment.main.sleep.SleepFragment;
+import com.x_viria.app.vita.somnificus.fragment.main.stopwatch.StopwatchFragment;
+import com.x_viria.app.vita.somnificus.fragment.main.timer.TimerFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
     private BottomNavigationView bottomNavigationView;
+
+    public static Context APP_CONTEXT;
 
     private void setFragment(Fragment fragment) {
         // Set a fragment.
@@ -55,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        APP_CONTEXT = getApplicationContext();
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
@@ -86,9 +86,35 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            Alarm.setAlarm(this);
+        if (!Settings.canDrawOverlays(this)) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
+            startActivityForResult(intent, 0xfff);
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            String[] permissions = {
+                    Manifest.permission.POST_NOTIFICATIONS
+            };
+            ActivityCompat.requestPermissions(this, permissions, 0xF00);
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 0xF00:
+                for (int i = 0; i < permissions.length; i++) {
+                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                        Toast.makeText(this, "Added Permission: " + permissions[i], Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Rejected Permission: " + permissions[i], Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+            default:
+                break;
         }
     }
 

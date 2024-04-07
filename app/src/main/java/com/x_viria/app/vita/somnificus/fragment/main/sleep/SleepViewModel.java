@@ -1,4 +1,4 @@
-package com.x_viria.app.vita.somnificus.fragment.sleep;
+package com.x_viria.app.vita.somnificus.fragment.main.sleep;
 
 import androidx.lifecycle.ViewModel;
 

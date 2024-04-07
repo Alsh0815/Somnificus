@@ -1,4 +1,4 @@
-package com.x_viria.app.vita.somnificus.fragment.etc;
+package com.x_viria.app.vita.somnificus.fragment.main.etc;
 
 import androidx.lifecycle.ViewModel;
 

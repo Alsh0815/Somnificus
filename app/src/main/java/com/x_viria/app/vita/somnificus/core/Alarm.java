@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 
-import com.x_viria.app.vita.somnificus.activity.WakeupActivity;
-
 public class Alarm {
 
     private static AlarmManager getAM(Context context) {
@@ -24,17 +22,15 @@ public class Alarm {
         }
     }
 
-    public static void setAlarm(Context context) {
+    public static void setAlarm(Context context, AlarmInfo info) {
         int id = 0;
-        Calendar calender = Calendar.getInstance();
-        calender.set(2024, 3, 7, 6, 23, 0);
         AlarmManager alarmManager = getAM(context);
         Intent intent = new Intent(context.getApplicationContext(), AlarmBroadcastReceiver.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("id", id);
         intent.putExtra("title", "Test Alarm");
         PendingIntent pending = PendingIntent.getBroadcast(context.getApplicationContext(), id, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager.AlarmClockInfo acInfo = new AlarmManager.AlarmClockInfo(calender.getTimeInMillis(), null);
+        AlarmManager.AlarmClockInfo acInfo = new AlarmManager.AlarmClockInfo(info.getCalendar().getTimeInMillis(), null);
         alarmManager.setAlarmClock(acInfo, pending);
     }
 

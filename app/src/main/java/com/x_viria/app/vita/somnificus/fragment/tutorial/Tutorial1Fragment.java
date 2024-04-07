@@ -1,4 +1,4 @@
-package com.x_viria.app.vita.somnificus.fragment.sleep;
+package com.x_viria.app.vita.somnificus.fragment.tutorial;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,24 +14,24 @@ import android.view.ViewGroup;
 
 import com.x_viria.app.vita.somnificus.R;
 
-public class SleepFragment extends Fragment {
+public class Tutorial1Fragment extends Fragment {
 
-    private SleepViewModel mViewModel;
+    private Tutorial1ViewModel mViewModel;
 
-    public static SleepFragment newInstance() {
-        return new SleepFragment();
+    public static Tutorial1Fragment newInstance() {
+        return new Tutorial1Fragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main_sleep, container, false);
+        return inflater.inflate(R.layout.fragment_tutorial_1, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(SleepViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(Tutorial1ViewModel.class);
         // TODO: Use the ViewModel
     }
 

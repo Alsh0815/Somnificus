@@ -1,4 +1,4 @@
-package com.x_viria.app.vita.somnificus.fragment.alarm;
+package com.x_viria.app.vita.somnificus.fragment.main.alarm.alarm;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.SetAlarmActivity;
-import com.x_viria.app.vita.somnificus.core.Alarm;
 
 public class AlarmFragment extends Fragment {
 

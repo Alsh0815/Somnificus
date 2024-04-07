@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.sleep.SleepFragment">
+    tools:context=".fragment.main.sleep.SleepFragment">
 
     <ScrollView
         android:layout_width="match_parent"
