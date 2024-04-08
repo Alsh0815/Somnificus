@@ -19,6 +19,10 @@ import java.io.IOException;
 
 public class PlaySoundService extends Service {
 
+    public static final String PUT_EXTRA__SOUND_TYPE = "sound_type";
+
+    public static final int SOUND_TYPE__ALARM = 0x0001;
+
     private MediaPlayer MEDIA_PLAYER = null;
 
     @Nullable
@@ -52,6 +56,8 @@ public class PlaySoundService extends Service {
                 startForeground(ServiceId.SERVICE_ID__PLAY_SOUND_SERVICE, notification);
             }
         }
+
+        int sound_type = intent.getIntExtra(PUT_EXTRA__SOUND_TYPE, SOUND_TYPE__ALARM);
 
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         try {

@@ -6,11 +6,16 @@
     <string name="activity_main__bnv_item_stopwatch">Stopwatch</string>
     <string name="activity_main__bnv_item_sleep">Sleep</string>
     <string name="activity_main__bnv_item_etc">Menu</string>
-    <string name="title_activity_main2">MainActivity2</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+
+    <!-- SetAlarmActivity -->
+    <string name="activity_set_alarm__btn_save">Save</string>
+    <string name="activity_set_alarm__checkbox_text_sun">S</string>
+    <string name="activity_set_alarm__checkbox_text_mon">M</string>
+    <string name="activity_set_alarm__checkbox_text_tue">T</string>
+    <string name="activity_set_alarm__checkbox_text_wed">W</string>
+    <string name="activity_set_alarm__checkbox_text_thu">T</string>
+    <string name="activity_set_alarm__checkbox_text_fri">F</string>
+    <string name="activity_set_alarm__checkbox_text_sat">S</string>
+    <string name="activity_set_alarm__text_alarm">Alarm</string>
 
 </resources>
