@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.tutorial.Tutorial1Fragment">
+    tools:context=".fragment.tutorial.Tutorial2Fragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,8 +15,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_tutorial_1__text_1"
+            android:text="@string/fragment_tutorial_2__text_1"
             android:textSize="@dimen/text_tutorial_msg_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Tutorial2Fragment__Btn_Allow_Notifications"
+            android:text="@string/fragment_tutorial_2__btn_allow_notifications" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Tutorial2Fragment__Btn_Allow_Overlays"
+            android:text="@string/fragment_tutorial_2__btn_allow_overlays" />
 
     </LinearLayout>
 

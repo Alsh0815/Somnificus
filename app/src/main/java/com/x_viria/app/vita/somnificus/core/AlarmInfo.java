@@ -18,8 +18,10 @@ public class AlarmInfo {
     public static final int WEEK__ALL = WEEK__SUN | WEEK__MON | WEEK__TUE | WEEK__WED | WEEK__THU | WEEK__FRI | WEEK__SAT;
 
     private final boolean ENABLE;
-    private final AlarmTime TIME;
+    private AlarmTime TIME;
     private final int WEEK;
+
+    private String LABEL = "";
 
     public AlarmInfo(
             AlarmTime time,
@@ -60,8 +62,20 @@ public class AlarmInfo {
         return ENABLE;
     }
 
+    public String getLabel() {
+        return LABEL;
+    }
+
     public int getWeek() {
         return WEEK;
+    }
+
+    public void setLabel(String label) {
+        this.LABEL = label;
+    }
+
+    public void setTime(AlarmTime time) {
+        this.TIME = time;
     }
 
 }

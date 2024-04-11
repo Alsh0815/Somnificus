@@ -46,12 +46,26 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:text="@string/activity_set_alarm__text_alarm"
-            android:textSize="24dp" />
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_label"
+                app:tint="@color/primaryTextColor" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/SetAlarmActivity__EditText_Label"
+                android:layout_marginRight="8dp"
+                android:hint="@string/activity_set_alarm__text_add_a_label" />
+
+        </LinearLayout>
 
         <View
             android:id="@+id/divider1"
@@ -211,6 +225,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/SetAlarmActivity__TextView_Nearest_Alarm"
                         android:text="" />
                 </LinearLayout>
 

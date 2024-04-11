@@ -22,6 +22,7 @@ public class PlaySoundService extends Service {
     public static final String PUT_EXTRA__SOUND_TYPE = "sound_type";
 
     public static final int SOUND_TYPE__ALARM = 0x0001;
+    public static final int SOUND_TYPE__TIMER = 0x0002;
 
     private MediaPlayer MEDIA_PLAYER = null;
 

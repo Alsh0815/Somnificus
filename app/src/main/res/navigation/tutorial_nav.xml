@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tutorial_nav"
+    app:startDestination="@id/TutorialNav__FirstFragment">
+
+    <fragment
+        android:id="@+id/TutorialNav__FirstFragment"
+        android:name="com.x_viria.app.vita.somnificus.fragment.tutorial.Tutorial1Fragment"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_tutorial_1">
+        <action
+            android:id="@+id/TutorialNav__action_first_to_second"
+            app:destination="@id/TutorialNav__SecondFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/TutorialNav__SecondFragment"
+        android:name="com.x_viria.app.vita.somnificus.fragment.tutorial.Tutorial2Fragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_tutorial_2">
+        <action
+            android:id="@+id/TutorialNav__action_second_to_third"
+            app:destination="@id/TutorialNav__LastFragment" />
+        <action
+            android:id="@+id/TutorialNav__action_second_to_first"
+            app:destination="@id/TutorialNav__FirstFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/TutorialNav__LastFragment"
+        android:name="com.x_viria.app.vita.somnificus.fragment.tutorial.TutorialLastFragment"
+        android:label="last_fragment"
+        tools:layout="@layout/fragment_tutorial_last">
+        <action
+            android:id="@+id/TutorialNav__action_third_to_last"
+            app:destination="@id/TutorialNav__SecondFragment" />
+    </fragment>
+
+</navigation>

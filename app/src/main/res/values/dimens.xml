@@ -2,4 +2,5 @@
 <resources>
     <dimen name="btn_timer_icon_size">20dp</dimen>
     <dimen name="btn_tutorial_icon_size">20dp</dimen>
+    <dimen name="text_tutorial_msg_size">16dp</dimen>
 </resources>

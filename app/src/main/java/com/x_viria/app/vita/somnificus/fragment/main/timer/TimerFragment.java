@@ -2,22 +2,34 @@ package com.x_viria.app.vita.somnificus.fragment.main.timer;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.service.TimerService;
+import com.x_viria.app.vita.somnificus.util.storage.SPKey;
+import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TimerFragment extends Fragment {
 
@@ -27,7 +39,74 @@ public class TimerFragment extends Fragment {
         return new TimerFragment();
     }
 
+    private Handler HANDLE;
+    private Intent TIMER_INTENT;
     private List<Integer> TIMER_DISP;
+    private Runnable RUNNABLE;
+
+    private boolean isRunning = false;
+
+    private boolean isRunning() {
+        ActivityManager manager = (ActivityManager) requireActivity().getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo serviceInfo : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (TimerService.class.getName().equals(serviceInfo.service.getClassName())) {
+                isRunning = true;
+                return true;
+            }
+        }
+        isRunning = false;
+        return false;
+    }
+
+    private void updateCP(View root) {
+        LinearLayout NumPanel = root.findViewById(R.id.TimerFragment__NumPanel);
+        LinearLayout CP_StartPause = root.findViewById(R.id.TimerFragment__CP_Btn_StartPause);
+        ImageView CP_StartPause_Icon = root.findViewById(R.id.TimerFragment__CP_Btn_Start_Icon);
+        if (!isRunning()) {
+            CP_StartPause.setOnClickListener(v -> {
+                int[] disp = new int[6];
+                for (int i = 0; i < TIMER_DISP.size(); i++) {
+                    disp[6 - TIMER_DISP.size() + i] = TIMER_DISP.get(i);
+                }
+                long time_ms = ((disp[0] * 10 + disp[1]) * 3600 + (disp[2] * 10 + disp[3]) * 60 + (disp[4] * 10 + disp[5])) * 1000;
+                TIMER_INTENT = new Intent(getContext(), TimerService.class);
+                TIMER_INTENT.putExtra(TimerService.PUT_EXTRA__TIME_MS, time_ms);
+                requireActivity().startForegroundService(TIMER_INTENT);
+                RUNNABLE = new Runnable() {
+                    @Override
+                    public void run() {
+                        updateTimer(root);
+                        if (isRunning) HANDLE.postDelayed(this, 100);
+                    }
+                };
+                HANDLE = new Handler();
+                HANDLE.postDelayed(RUNNABLE, 100);
+                NumPanel.setVisibility(View.INVISIBLE);
+                updateCP(root);
+            });
+            CP_StartPause_Icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_timer_start));
+        } else {
+            CP_StartPause.setOnClickListener(v -> {
+                requireActivity().stopService(TIMER_INTENT);
+                long target_ms = (new SPStorage(requireContext()).getLong(SPKey.TMP__TIMER_VAL, 0));
+                long now_ms = System.currentTimeMillis();
+                long rem_ms = (target_ms - now_ms) > 0 ? target_ms - now_ms : 0;
+                long sec = (rem_ms / 1000) % 60;
+                long min = (rem_ms / (1000 * 60)) % 60;
+                long hour = (rem_ms / (1000 * 60 * 60)) % 24;
+                for (int i = 0; i < 6; i++) removeNum(root);
+                addNum((int) hour / 10, root);
+                addNum((int) hour % 10, root);
+                addNum((int) min / 10, root);
+                addNum((int) min % 10, root);
+                addNum((int) sec / 10, root);
+                addNum((int) sec % 10, root);
+                NumPanel.setVisibility(View.VISIBLE);
+                updateCP(root);
+            });
+            CP_StartPause_Icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_timer_pause));
+        }
+    }
 
     private void updateTimer(View root) {
         int[] disp = new int[6];
@@ -56,17 +135,35 @@ public class TimerFragment extends Fragment {
         timer_3.setTextColor(getResources().getColor(R.color.secondaryTextColor));
         timer_s.setTextColor(getResources().getColor(R.color.secondaryTextColor));
 
-        timer_1.setText(String.format("%d%d", disp[0], disp[1]));
-        timer_2.setText(String.format("%d%d", disp[2], disp[3]));
-        timer_3.setText(String.format("%d%d", disp[4], disp[5]));
+        if (!isRunning()) {
+            timer_1.setText(String.format("%d%d", disp[0], disp[1]));
+            timer_2.setText(String.format("%d%d", disp[2], disp[3]));
+            timer_3.setText(String.format("%d%d", disp[4], disp[5]));
 
-        if (TIMER_DISP.size() > 0) {
+            if (TIMER_DISP.size() > 0) {
+                timer_3.setTextColor(getResources().getColor(R.color.primaryActiveColor));
+                timer_s.setTextColor(getResources().getColor(R.color.primaryActiveColor));
+            } if (TIMER_DISP.size() > 2) {
+                timer_2.setTextColor(getResources().getColor(R.color.primaryActiveColor));
+                timer_m.setTextColor(getResources().getColor(R.color.primaryActiveColor));
+            } if (TIMER_DISP.size() > 4) {
+                timer_1.setTextColor(getResources().getColor(R.color.primaryActiveColor));
+                timer_h.setTextColor(getResources().getColor(R.color.primaryActiveColor));
+            }
+        } else {
+            long target_ms = (new SPStorage(requireContext()).getLong(SPKey.TMP__TIMER_VAL, 0));
+            long now_ms = System.currentTimeMillis();
+            long rem_ms = (target_ms - now_ms) > 0 ? target_ms - now_ms : 0;
+            long sec = (rem_ms / 1000) % 60;
+            long min = (rem_ms / (1000 * 60)) % 60;
+            long hour = (rem_ms / (1000 * 60 * 60)) % 24;
+            timer_1.setText(String.format("%02d", hour));
+            timer_2.setText(String.format("%02d", min));
+            timer_3.setText(String.format("%02d", sec));
             timer_3.setTextColor(getResources().getColor(R.color.primaryActiveColor));
             timer_s.setTextColor(getResources().getColor(R.color.primaryActiveColor));
-        } if (TIMER_DISP.size() > 2) {
             timer_2.setTextColor(getResources().getColor(R.color.primaryActiveColor));
             timer_m.setTextColor(getResources().getColor(R.color.primaryActiveColor));
-        } if (TIMER_DISP.size() > 4) {
             timer_1.setTextColor(getResources().getColor(R.color.primaryActiveColor));
             timer_h.setTextColor(getResources().getColor(R.color.primaryActiveColor));
         }
@@ -127,9 +224,7 @@ public class TimerFragment extends Fragment {
         });
         Num_BS.setOnClickListener(v -> removeNum(root));
 
-        CP_StartPause.setOnClickListener(v -> {
-
-        });
+        updateCP(root);
 
         return root;
     }

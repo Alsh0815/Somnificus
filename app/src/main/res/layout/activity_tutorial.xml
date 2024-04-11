@@ -12,7 +12,7 @@
         android:background="@color/primaryBackgroundColor">
 
         <FrameLayout
-            android:id="@+id/tutorial_fragment_container"
+            android:id="@+id/TutorialActivity__FragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/TutorialActivity__ControlPanel" />
@@ -46,6 +46,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/TutorialActivity__CP_Text_Page"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="0 / 0"
@@ -65,6 +66,7 @@
                 <ImageView
                     android:layout_width="@dimen/btn_tutorial_icon_size"
                     android:layout_height="@dimen/btn_tutorial_icon_size"
+                    android:id="@+id/TutorialActivity__CP_Btn_Next_Icon"
                     android:src="@drawable/ic_arrow_right"
                     app:tint="@color/primaryBackgroundColor" />
             </LinearLayout>

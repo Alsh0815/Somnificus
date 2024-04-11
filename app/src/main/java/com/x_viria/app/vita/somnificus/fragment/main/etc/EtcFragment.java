@@ -8,11 +8,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.x_viria.app.vita.somnificus.R;
+
+import java.util.Objects;
 
 public class EtcFragment extends Fragment {
 
@@ -22,10 +31,17 @@ public class EtcFragment extends Fragment {
         return new EtcFragment();
     }
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main_etc, container, false);
+        View root = inflater.inflate(R.layout.fragment_main_etc, container, false);
+
+        AdView AdView_LLIB1 = root.findViewById(R.id.EtcFragment__AdView_LLItemBanner_1);
+        AdRequest AdRequest_LLIB1 = new AdRequest.Builder().build();
+        AdView_LLIB1.loadAd(AdRequest_LLIB1);
+
+        return root;
     }
 
     @Override

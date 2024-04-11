@@ -3,6 +3,7 @@ package com.x_viria.app.vita.somnificus.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
@@ -89,6 +90,30 @@ public class SetAlarmActivity extends AppCompatActivity {
             check_DofW_Sat.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week));
             textView7.setTextColor(getColor(R.color.primaryTextColor));
         }
+
+        refreshNearest();
+    }
+
+    private void refreshNearest() {
+        NumberPicker np_h = findViewById(R.id.SetAlarmActivity__NumPicker_H);
+        NumberPicker np_m = findViewById(R.id.SetAlarmActivity__NumPicker_M);
+        int week = 0;
+        for (int i = 0; i < OPTION__D_OF_W.length; i++) {
+            if (OPTION__D_OF_W[i]) week = week | VAL__D_OF_W[i];
+        }
+        if (week == 0) week = AlarmInfo.WEEK__ALL;
+        AlarmInfo alarmInfo = new AlarmInfo(
+                new AlarmTime(np_h.getValue(), np_m.getValue(), 0),
+                week,
+                true
+        );
+        try {
+            AlarmSchedule alarmSchedule = new AlarmSchedule(this);
+            TextView tv_nearest = findViewById(R.id.SetAlarmActivity__TextView_Nearest_Alarm);
+            tv_nearest.setText(alarmSchedule.getNextDate(alarmInfo));
+        } catch (JSONException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -102,14 +127,18 @@ public class SetAlarmActivity extends AppCompatActivity {
         ImageView back_btn = findViewById(R.id.SetAlarmActivity__Btn_Back);
         back_btn.setOnClickListener(v -> finish());
 
+        EditText et_label = findViewById(R.id.SetAlarmActivity__EditText_Label);
+
         NumberPicker np_h = findViewById(R.id.SetAlarmActivity__NumPicker_H);
         np_h.setMaxValue(23);
         np_h.setMinValue(0);
         np_h.setValue(8);
+        np_h.setOnScrollListener((view, scrollState) -> refreshNearest());
         NumberPicker np_m = findViewById(R.id.SetAlarmActivity__NumPicker_M);
         np_m.setMaxValue(59);
         np_m.setMinValue(0);
         np_m.setValue(0);
+        np_m.setOnScrollListener((view, scrollState) -> refreshNearest());
 
         boolean enable = true;
 
@@ -118,6 +147,7 @@ public class SetAlarmActivity extends AppCompatActivity {
                 AlarmSchedule alarmSchedule = new AlarmSchedule(this);
                 JSONObject object = alarmSchedule.getSchedule(id);
                 JSONArray time = object.getJSONArray("time");
+                et_label.setText(object.getString("label"));
                 np_h.setValue(time.getInt(0));
                 np_m.setValue(time.getInt(1));
                 enable = object.getBoolean("enable");
@@ -145,6 +175,7 @@ public class SetAlarmActivity extends AppCompatActivity {
                     week,
                     finalEnable
             );
+            alarmInfo.setLabel(et_label.getText().toString());
             try {
                 AlarmSchedule alarmSchedule = new AlarmSchedule(this);
                 if (id != -1) {

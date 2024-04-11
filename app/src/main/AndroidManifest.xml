@@ -67,6 +67,10 @@
             android:name=".service.PlaySoundService"
             android:foregroundServiceType="mediaPlayback" />
 
+        <service
+            android:name=".service.TimerService"
+            android:foregroundServiceType="specialUse" />
+
     </application>
 
 </manifest>

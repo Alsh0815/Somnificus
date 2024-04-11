@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Somnificus</string>
 
+    <!-- MainActivity -->
     <string name="activity_main__bnv_item_alarm">Alarm</string>
     <string name="activity_main__bnv_item_timer">Timer</string>
     <string name="activity_main__bnv_item_stopwatch">Stopwatch</string>
@@ -17,5 +18,28 @@
     <string name="activity_set_alarm__checkbox_text_fri">F</string>
     <string name="activity_set_alarm__checkbox_text_sat">S</string>
     <string name="activity_set_alarm__text_alarm">Alarm</string>
+    <string name="activity_set_alarm__text_add_a_label">Add a label.</string>
+
+    <!-- AlarmFragment -->
+    <string name="fragment_main_alarm__msg_failed_to_del_alarm">Failed to delete alarm.</string>
+    <string name="fragment_main_alarm__text_dofw_sun">Sun</string>
+    <string name="fragment_main_alarm__text_dofw_mon">Mon</string>
+    <string name="fragment_main_alarm__text_dofw_tue">Tue</string>
+    <string name="fragment_main_alarm__text_dofw_wed">Wed</string>
+    <string name="fragment_main_alarm__text_dofw_thu">Thu</string>
+    <string name="fragment_main_alarm__text_dofw_fri">Fri</string>
+    <string name="fragment_main_alarm__text_dofw_sat">Sat</string>
+    <string name="fragment_main_alarm__text_today">Today</string>
+    <string name="fragment_main_alarm__text_tomorrow">Tomorrow</string>
+
+    <!-- TutorialFragment 1 -->
+    <string name="fragment_tutorial_1__text_1">Welcome to Somnificus.\nThank you for downloading this application.\nWe provide sleep advice to help you get a good night\'s sleep.</string>
+    <!-- TutorialFragment 2 -->
+    <string name="fragment_tutorial_2__text_1">Please grant the necessary permissions for Somnificus to work properly.</string>
+    <string name="fragment_tutorial_2__btn_allow_notifications">Allow notifications</string>
+    <string name="fragment_tutorial_2__btn_allow_overlays">Allow overlays</string>
+    <!-- TutorialFragment Last -->
+    <string name="fragment_tutorial_last__text_1">Somnificus is now ready to use.</string>
+    <string name="fragment_tutorial_last__btn_start_mainactivity">Start</string>
 
 </resources>
