@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
-import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.service.PlaySoundService;
@@ -23,11 +23,11 @@ public class WakeupActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         Intent intent = new Intent(this, PlaySoundService.class);
-        intent.putExtra(PlaySoundService.PUT_EXTRA__SOUND_TYPE, PlaySoundService.SOUND_TYPE__ALARM);
-        startForegroundService(intent);
-
-        Button stopSound = (Button) findViewById(R.id.WakeupActivity__Stop_Sound_Btn);
-        stopSound.setOnClickListener(v -> stopService(intent));
-
+        LinearLayout stopSound = findViewById(R.id.WakeupActivity__Stop_Sound_Btn);
+        stopSound.setOnClickListener(v -> {
+            stopService(intent);
+            finish();
+        });
     }
+
 }

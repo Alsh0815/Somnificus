@@ -13,11 +13,23 @@
         android:background="@drawable/bg_wakeup_grad"
         android:orientation="vertical">
 
-        <Button
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/WakeupActivity__Stop_Sound_Btn"
-            android:text="Stop" />
+            android:background="@drawable/btn_wakeup_action"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:padding="16dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-thin"
+                android:text="Stop"
+                android:textColor="@color/primaryBackgroundColor"
+                android:textSize="24dp" />
+        </LinearLayout>
 
     </LinearLayout>
 

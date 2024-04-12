@@ -1,21 +1,17 @@
 package com.x_viria.app.vita.somnificus.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -30,15 +26,26 @@ import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String PUT_EXTRA__SET_FRAGMENT = "setFragment";
+    public static final int SET_FRAGMENT__TIMER = 1;
+
     private FirebaseAnalytics mFirebaseAnalytics;
 
     private BottomNavigationView bottomNavigationView;
+    private int fragmentNowPage = 1;
 
-    private void setFragment(Fragment fragment) {
+    private void setFragment(Fragment fragment, int page) {
         // Set a fragment.
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (fragmentNowPage < page) {
+            transaction.setCustomAnimations(R.anim.fragment_enter_to_right, R.anim.fragment_exit_to_left);
+        } else if (page < fragmentNowPage) {
+            transaction.setCustomAnimations(R.anim.fragment_enter_to_left, R.anim.fragment_exit_to_right);
+        }
         transaction.replace(R.id.fragment_container, fragment);
         transaction.commit();
+
+        fragmentNowPage = page;
 
         // Fix the bottom margin of the fragment.
         int bnv_height = bottomNavigationView.getHeight();
@@ -57,27 +64,29 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        int iA_fragment = getIntent().getIntExtra(PUT_EXTRA__SET_FRAGMENT, 0);
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         Handler handle = new Handler();
-        handle.postDelayed(() -> setFragment(new AlarmFragment()), 100);
+        handle.postDelayed(() -> setFragment(new AlarmFragment(), 1), 100);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menu_alarm:
-                    setFragment(new AlarmFragment());
+                    setFragment(new AlarmFragment(), 1);
                     return true;
                 case R.id.menu_timer:
-                    setFragment(new TimerFragment());
+                    setFragment(new TimerFragment(), 2);
                     return true;
                 case R.id.menu_stopwatch:
-                    setFragment(new StopwatchFragment());
+                    setFragment(new StopwatchFragment(), 3);
                     return true;
                 case R.id.menu_sleep:
-                    setFragment(new SleepFragment());
+                    setFragment(new SleepFragment(), 4);
                     return true;
                 case R.id.menu_etc:
-                    setFragment(new EtcFragment());
+                    setFragment(new EtcFragment(), 5);
                     return true;
             }
             return false;
@@ -87,6 +96,17 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, TutorialActivity.class);
             startActivity(intent);
         }
+
+        (new Handler()).postDelayed(() -> {
+            if (iA_fragment == 1) {
+                setFragment(new TimerFragment(), 2);
+                Menu menu = bottomNavigationView.getMenu();
+                for (int i = 0, size = menu.size(); i < size; i++) {
+                    MenuItem item = menu.getItem(i);
+                    if (item.getItemId() == R.id.menu_timer) item.setChecked(true);
+                }
+            }
+        }, 500);
 
     }
 

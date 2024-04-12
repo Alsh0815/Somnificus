@@ -2,6 +2,7 @@ package com.x_viria.app.vita.somnificus.fragment.main.etc;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.activity.SettingActivity;
 
 import java.util.Objects;
 
@@ -40,6 +42,12 @@ public class EtcFragment extends Fragment {
         AdView AdView_LLIB1 = root.findViewById(R.id.EtcFragment__AdView_LLItemBanner_1);
         AdRequest AdRequest_LLIB1 = new AdRequest.Builder().build();
         AdView_LLIB1.loadAd(AdRequest_LLIB1);
+
+        LinearLayout settings_btn = root.findViewById(R.id.EtcFragment__Btn_Settings);
+        settings_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), SettingActivity.class);
+            startActivity(intent);
+        });
 
         return root;
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
@@ -21,7 +22,10 @@
         android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Somnificus"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".activity.SettingActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -32,11 +36,9 @@
             android:exported="false"
             android:showWhenLocked="true"
             android:turnScreenOn="true" />
-
         <activity
             android:name=".activity.SetAlarmActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.TutorialActivity"
             android:exported="false" />
@@ -47,7 +49,7 @@
 
         <activity
             android:name=".activity.MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -62,15 +64,12 @@
         <service
             android:name=".service.AlarmService"
             android:foregroundServiceType="specialUse" />
-
         <service
             android:name=".service.PlaySoundService"
             android:foregroundServiceType="mediaPlayback" />
-
         <service
             android:name=".service.TimerService"
             android:foregroundServiceType="specialUse" />
-
     </application>
 
 </manifest>

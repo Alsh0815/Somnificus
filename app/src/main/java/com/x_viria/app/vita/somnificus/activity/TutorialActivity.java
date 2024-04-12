@@ -66,6 +66,7 @@ public class TutorialActivity extends AppCompatActivity {
         // Set a fragment.
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.addToBackStack(null);
+        transaction.setCustomAnimations(R.anim.fragment_enter_to_right, R.anim.fragment_exit_to_left);
         transaction.replace(R.id.TutorialActivity__FragmentContainer, fragment);
         transaction.commit();
 
