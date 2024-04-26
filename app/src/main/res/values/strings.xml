@@ -20,6 +20,19 @@
     <string name="activity_set_alarm__text_alarm">Alarm</string>
     <string name="activity_set_alarm__text_add_a_label">Add a label.</string>
 
+    <string name="activity_set_alarm__dialog_backkeydown_title">Do you want to return to the alarm list?</string>
+    <string name="activity_set_alarm__dialog_backkeydown_msg">Changes not saved. Do you want to return without saving changes?</string>
+    <string name="activity_set_alarm__dialog_backkeydown_btn_neg">Cancel</string>
+    <string name="activity_set_alarm__dialog_backkeydown_btn_pos">Don\'t save</string>
+
+    <!-- SettingActivity -->
+    <string name="activity_setting__title">Settings</string>
+    <string name="activity_setting__text_alarm_vibrate">Alarm vibrate</string>
+    <string name="activity_setting__text_timer_vibrate">Timer vibrate</string>
+
+    <!-- WhatsNewActivity -->
+    <string name="activity_whats_new__title">What\'s new</string>
+
     <!-- AlarmFragment -->
     <string name="fragment_main_alarm__msg_failed_to_del_alarm">Failed to delete alarm.</string>
     <string name="fragment_main_alarm__text_dofw_sun">Sun</string>
@@ -29,6 +42,7 @@
     <string name="fragment_main_alarm__text_dofw_thu">Thu</string>
     <string name="fragment_main_alarm__text_dofw_fri">Fri</string>
     <string name="fragment_main_alarm__text_dofw_sat">Sat</string>
+    <string name="fragment_main_alarm__text_not_scheduled">Not scheduled</string>
     <string name="fragment_main_alarm__text_today">Today</string>
     <string name="fragment_main_alarm__text_tomorrow">Tomorrow</string>
 

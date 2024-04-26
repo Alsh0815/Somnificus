@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.MainActivity;
+import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
 import com.x_viria.app.vita.somnificus.util.storage.SPKey;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
@@ -38,13 +39,15 @@ public class TimerService extends Service {
 
     private void onFinished() {
         IS_FINISHED = true;
-        VibrationEffect effect = VibrationEffect.createWaveform(
-                new long[] {70, 200, 70, 1200},
-                new int[] {200, 0, 255, 0},
-                0
-        );
-        VIBRATOR = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        VIBRATOR.vibrate(effect);
+        if (new SPStorage(this).getBool(SPKey.KEY__SETTINGS_TIMER_VIBRATE, SPDefault.SETTINGS_TIMER_VIBRATE)) {
+            VibrationEffect effect = VibrationEffect.createWaveform(
+                    new long[] {70, 200, 70, 1200},
+                    new int[] {200, 0, 255, 0},
+                    0
+            );
+            VIBRATOR = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+            VIBRATOR.vibrate(effect);
+        }
     }
 
     @Override

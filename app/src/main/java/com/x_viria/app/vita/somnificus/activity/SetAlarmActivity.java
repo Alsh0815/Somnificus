@@ -2,14 +2,17 @@ package com.x_viria.app.vita.somnificus.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.core.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.AlarmSchedule;
@@ -25,6 +28,30 @@ public class SetAlarmActivity extends AppCompatActivity {
 
     private final boolean[] OPTION__D_OF_W = {false, false, false, false, false, false, false};
     private final int[] VAL__D_OF_W = {AlarmInfo.WEEK__SUN, AlarmInfo.WEEK__MON, AlarmInfo.WEEK__TUE, AlarmInfo.WEEK__WED, AlarmInfo.WEEK__THU, AlarmInfo.WEEK__FRI, AlarmInfo.WEEK__SAT};
+
+    private AlarmInfo alarmInfo_after;
+    private AlarmInfo alarmInfo_before;
+    private boolean enable;
+
+    private AlarmInfo getAlarmInfo(boolean enable) {
+        NumberPicker np_h = findViewById(R.id.SetAlarmActivity__NumPicker_H);
+        NumberPicker np_m = findViewById(R.id.SetAlarmActivity__NumPicker_M);
+        EditText et_label = findViewById(R.id.SetAlarmActivity__EditText_Label);
+        SwitchMaterial opt_GIV_SW = findViewById(R.id.SetAlarmActivity__Switch_Opt_GIV);
+        int week = 0;
+        for (int i = 0; i < OPTION__D_OF_W.length; i++) {
+            if (OPTION__D_OF_W[i]) week = week | VAL__D_OF_W[i];
+        }
+        if (week == 0) week = AlarmInfo.WEEK__ALL;
+        AlarmInfo alarmInfo = new AlarmInfo(
+                new AlarmTime(np_h.getValue(), np_m.getValue(), 0),
+                week,
+                enable
+        );
+        alarmInfo.setLabel(et_label.getText().toString());
+        alarmInfo.setOption(AlarmInfo.OPT__GRA_INCREASE_VOL, opt_GIV_SW.isChecked());
+        return alarmInfo;
+    }
 
     private void refreshDofWView() {
         LinearLayout check_DofW_Sun = findViewById(R.id.SetAlarmActivity__Check_DofW_Sun);
@@ -122,7 +149,8 @@ public class SetAlarmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_set_alarm);
 
         int id = getIntent().getIntExtra("id", -1);
-        Toast.makeText(this, "Schedule ID: " + id, Toast.LENGTH_SHORT).show();
+
+        SwitchMaterial opt_GIV_SW = findViewById(R.id.SetAlarmActivity__Switch_Opt_GIV);
 
         ImageView back_btn = findViewById(R.id.SetAlarmActivity__Btn_Back);
         back_btn.setOnClickListener(v -> finish());
@@ -140,7 +168,7 @@ public class SetAlarmActivity extends AppCompatActivity {
         np_m.setValue(0);
         np_m.setOnScrollListener((view, scrollState) -> refreshNearest());
 
-        boolean enable = true;
+        enable = true;
 
         if (id != -1) {
             try {
@@ -152,31 +180,28 @@ public class SetAlarmActivity extends AppCompatActivity {
                 np_m.setValue(time.getInt(1));
                 enable = object.getBoolean("enable");
                 int week = object.getInt("week");
+                JSONObject option = object.getJSONObject("option");
+                boolean opt_giv = option.getBoolean("gra_increase_vol");
 
                 for (int i = 0; i < OPTION__D_OF_W.length; i++) {
                     if ((week & VAL__D_OF_W[i]) == VAL__D_OF_W[i]) OPTION__D_OF_W[i] = true;
                 }
+
+                opt_GIV_SW.setChecked(opt_giv);
+
                 refreshDofWView();
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);
             }
         }
 
+        alarmInfo_before = getAlarmInfo(enable);
+
         TextView save_btn = findViewById(R.id.SetAlarmActivity__Btn_Save);
         boolean finalEnable = enable;
         save_btn.setOnClickListener(v -> {
-            int week = 0;
-            for (int i = 0; i < OPTION__D_OF_W.length; i++) {
-                if (OPTION__D_OF_W[i]) week = week | VAL__D_OF_W[i];
-            }
-            if (week == 0) week = AlarmInfo.WEEK__ALL;
-            AlarmInfo alarmInfo = new AlarmInfo(
-                    new AlarmTime(np_h.getValue(), np_m.getValue(), 0),
-                    week,
-                    finalEnable
-            );
-            alarmInfo.setLabel(et_label.getText().toString());
             try {
+                AlarmInfo alarmInfo = getAlarmInfo(finalEnable);
                 AlarmSchedule alarmSchedule = new AlarmSchedule(this);
                 if (id != -1) {
                     alarmSchedule.setSchedule(alarmInfo, id);
@@ -225,6 +250,9 @@ public class SetAlarmActivity extends AppCompatActivity {
             OPTION__D_OF_W[6] = !OPTION__D_OF_W[6];
             refreshDofWView();
         });
+
+        LinearLayout opt_GIV = findViewById(R.id.SetAlarmActivity__View_Opt_GIV);
+        opt_GIV.setOnClickListener(v -> opt_GIV_SW.setChecked(!opt_GIV_SW.isChecked()));
     }
 
 }

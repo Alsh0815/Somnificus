@@ -8,7 +8,13 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.core.AlarmSchedule;
+import com.x_viria.app.vita.somnificus.service.AlarmService;
 import com.x_viria.app.vita.somnificus.service.PlaySoundService;
+
+import org.json.JSONException;
+
+import java.io.IOException;
 
 public class WakeupActivity extends AppCompatActivity {
 
@@ -23,9 +29,17 @@ public class WakeupActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         Intent intent = new Intent(this, PlaySoundService.class);
+        Intent intent2 = new Intent(this, AlarmService.class);
         LinearLayout stopSound = findViewById(R.id.WakeupActivity__Stop_Sound_Btn);
         stopSound.setOnClickListener(v -> {
             stopService(intent);
+            stopService(intent2);
+            try {
+                AlarmSchedule alarmSchedule = new AlarmSchedule(WakeupActivity.this);
+                alarmSchedule.sync();
+            } catch (JSONException | IOException e) {
+                throw new RuntimeException(e);
+            }
             finish();
         });
     }

@@ -1,0 +1,10 @@
+<resources>
+    <string name="whats_new_changes">Changes</string>
+    <string name="whats_new_features">New Features</string>
+    <string name="whats_new_fixed">Fixed</string>
+
+    <string name="whats_new_text_ft1">Added \"Gradually increase the volume.\" option to the alarm editing screen.</string>
+    <string name="whats_new_text_ft2">Added \"What\'s new\" item to the menu.</string>
+
+    <string name="whats_new_text_fx1">Fixed a bug where the next alarm was not automatically set after the alarm went off.</string>
+</resources>

@@ -51,9 +51,11 @@ public class AlarmFragment extends Fragment {
 
     private LinearLayout createAlarmView(JSONObject object) throws JSONException, IOException {
         int iconTintColor = ContextCompat.getColor(requireContext(), R.color.primaryTextColor);
+        int iconTintColorWhite = ContextCompat.getColor(requireContext(), R.color.white);
 
         AlarmSchedule alarmSchedule = new AlarmSchedule(getContext());
         JSONArray time = object.getJSONArray("time");
+        boolean enable = object.getBoolean("enable");
         int id = object.getInt("schedule_id");
 
         TypedValue rippleEffect = new TypedValue();
@@ -84,14 +86,9 @@ public class AlarmFragment extends Fragment {
         if (object.getBoolean("enable")) sw.setChecked(true);
         sw.setOnCheckedChangeListener((buttonView, isChecked) -> {
             try {
-                AlarmInfo alarmInfo = new AlarmInfo(
-                        new AlarmTime(time.getInt(0), time.getInt(1), time.getInt(2)),
-                        object.getInt("week"),
-                        isChecked
-                );
-                alarmInfo.setLabel(object.getString("label"));
-                alarmSchedule.setSchedule(alarmInfo, id);
+                alarmSchedule.setEnable(id, isChecked);
                 alarmSchedule.sync();
+                refreshAlarmList();
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
@@ -130,10 +127,12 @@ public class AlarmFragment extends Fragment {
             ImageView labelIcon = new ImageView(getContext());
             labelIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_label));
             labelIcon.setImageTintList(ColorStateList.valueOf(iconTintColor));
+            if (enable) labelIcon.setImageTintList(ColorStateList.valueOf(iconTintColorWhite));
             labelIcon.setLayoutParams(labelIconMLP);
             labelView.addView(labelIcon);
             TextView labelText = new TextView(getContext());
             labelText.setText(object.getString("label"));
+            if (enable) labelText.setTextColor(getResources().getColor(R.color.white));
             labelText.setTextSize(10);
             labelView.addView(labelText);
             mainView.addView(labelView);
@@ -141,18 +140,20 @@ public class AlarmFragment extends Fragment {
 
         TextView timeView = new TextView(getContext());
         timeView.setText(String.format("%02d:%02d", time.getInt(0), time.getInt(1)));
+        if (enable) timeView.setTextColor(getResources().getColor(R.color.white));
         timeView.setTextSize(28);
         mainView.addView(timeView);
 
         AlarmInfo alarmInfo = new AlarmInfo(
                 new AlarmTime(time.getInt(0), time.getInt(1), time.getInt(2)),
                 object.getInt("week"),
-                true
+                object.getBoolean("enable")
         );
         String targetDay = alarmSchedule.getNextDate(alarmInfo);
 
         TextView dayView = new TextView(getContext());
         dayView.setText(targetDay);
+        if (enable) dayView.setTextColor(getResources().getColor(R.color.white));
         mainView.addView(dayView);
 
         parent.addView(mainView);
@@ -172,6 +173,7 @@ public class AlarmFragment extends Fragment {
         ));
         deleteBtn.setOnClickListener(v -> {
             try {
+                alarmSchedule.setEnable(id, false);
                 if (alarmSchedule.removeSchedule(id)) {
                     refreshAlarmList();
                 } else {

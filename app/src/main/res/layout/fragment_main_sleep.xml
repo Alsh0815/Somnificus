@@ -3,82 +3,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.main.sleep.SleepFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_sleep_fragment_item_card"
-            android:layout_margin="16dp"
-            android:padding="16dp"
-            android:elevation="5dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Schedule"
-                android:textColor="@color/primaryActiveColor"
-                android:textSize="16dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:background="@drawable/bg_sleep_fragment_item_card"
+                android:layout_margin="16dp"
+                android:padding="16dp"
+                android:elevation="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Schedule"
+                    android:textColor="@color/primaryActiveColor"
+                    android:textSize="16dp"/>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:id="@+id/SleepFragment__Bed_Time"
-                    android:padding="8dp"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:orientation="vertical">
-                    <TextView
+                    android:orientation="horizontal">
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Bed Time"
-                        android:textColor="@color/primaryInactiveColor" />
-                    <TextView
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:id="@+id/SleepFragment__Bed_Time"
+                        android:padding="8dp"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bed Time"
+                            android:textColor="@color/primaryInactiveColor" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="22:00"
+                            android:textColor="@color/primaryInactiveColor"
+                            android:textSize="32dp" />
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="22:00"
-                        android:textColor="@color/primaryInactiveColor"
-                        android:textSize="32dp" />
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:id="@+id/SleepFragment__WakeUp_Time"
+                        android:padding="8dp"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wake Up Time"
+                            android:textColor="@color/primaryInactiveColor" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="7:00"
+                            android:textColor="@color/primaryInactiveColor"
+                            android:textSize="32dp" />
+                    </LinearLayout>
+
                 </LinearLayout>
-                <LinearLayout
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_sleep_fragment_item_card"
+                android:layout_margin="16dp"
+                android:padding="16dp"
+                android:elevation="5dp"
+                android:orientation="vertical">
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:id="@+id/SleepFragment__WakeUp_Time"
-                    android:padding="8dp"
+                    android:text="Activity"
+                    android:textColor="@color/primaryActiveColor"
+                    android:textSize="16dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:id="@+id/SleepFragment__Activity_No_Permission"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:text="Grant a permissions." />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/SleepFragment__Activity"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Wake Up Time"
-                        android:textColor="@color/primaryInactiveColor" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="7:00"
-                        android:textColor="@color/primaryInactiveColor"
-                        android:textSize="32dp" />
+
                 </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
-
     </ScrollView>
 
 </FrameLayout>

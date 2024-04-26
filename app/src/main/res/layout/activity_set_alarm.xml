@@ -77,160 +77,196 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="16dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:background="@drawable/bg_sleep_fragment_item_card"
-                android:backgroundTint="@color/secondaryBackgroundColor"
-                android:padding="16dp"
-                android:elevation="5dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-                    <NumberPicker
-                        android:layout_width="wrap_content"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:background="@drawable/bg_set_alarm_card"
+                    android:backgroundTint="@color/secondaryBackgroundColor"
+                    android:layout_margin="8dp"
+                    android:padding="16dp"
+                    android:elevation="5dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/SetAlarmActivity__NumPicker_H" />
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <NumberPicker
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/SetAlarmActivity__NumPicker_H" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:textSize="24dp" />
+                        <NumberPicker
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/SetAlarmActivity__NumPicker_M" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=":"
-                        android:textSize="24dp" />
-                    <NumberPicker
-                        android:layout_width="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="4dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:id="@+id/SetAlarmActivity__Check_DofW_Sun"
+                            android:gravity="center"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/bg_set_alarm_day_of_week">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/SetAlarmActivity__Check_DofW_Sun_Text"
+                                android:text="@string/activity_set_alarm__checkbox_text_sun"
+                                android:textColor="@color/primaryTextColor" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:id="@+id/SetAlarmActivity__Check_DofW_Mon"
+                            android:gravity="center"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/bg_set_alarm_day_of_week">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/SetAlarmActivity__Check_DofW_Mon_Text"
+                                android:text="@string/activity_set_alarm__checkbox_text_mon"
+                                android:textColor="@color/primaryTextColor" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:id="@+id/SetAlarmActivity__Check_DofW_Tue"
+                            android:gravity="center"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/bg_set_alarm_day_of_week">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/SetAlarmActivity__Check_DofW_Tue_Text"
+                                android:text="@string/activity_set_alarm__checkbox_text_tue"
+                                android:textColor="@color/primaryTextColor" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:id="@+id/SetAlarmActivity__Check_DofW_Wed"
+                            android:gravity="center"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/bg_set_alarm_day_of_week">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/SetAlarmActivity__Check_DofW_Wed_Text"
+                                android:text="@string/activity_set_alarm__checkbox_text_wed"
+                                android:textColor="@color/primaryTextColor" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:id="@+id/SetAlarmActivity__Check_DofW_Thu"
+                            android:gravity="center"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/bg_set_alarm_day_of_week">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/SetAlarmActivity__Check_DofW_Thu_Text"
+                                android:text="@string/activity_set_alarm__checkbox_text_thu"
+                                android:textColor="@color/primaryTextColor" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:id="@+id/SetAlarmActivity__Check_DofW_Fri"
+                            android:gravity="center"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/bg_set_alarm_day_of_week">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/SetAlarmActivity__Check_DofW_Fri_Text"
+                                android:text="@string/activity_set_alarm__checkbox_text_fri"
+                                android:textColor="@color/primaryTextColor" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:id="@+id/SetAlarmActivity__Check_DofW_Sat"
+                            android:gravity="center"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/bg_set_alarm_day_of_week">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/SetAlarmActivity__Check_DofW_Sat_Text"
+                                android:text="@string/activity_set_alarm__checkbox_text_sat"
+                                android:textColor="@color/primaryTextColor" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/SetAlarmActivity__NumPicker_M" />
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/SetAlarmActivity__TextView_Nearest_Alarm"
+                            android:text="" />
+                    </LinearLayout>
+
                 </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/SetAlarmActivity__View_Opt_GIV"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_set_alarm_card"
+                android:backgroundTint="@color/secondaryBackgroundColor"
+                android:clickable="true"
+                android:layout_margin="8dp"
+                android:padding="16dp"
+                android:elevation="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gradually increase the volume." />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:padding="4dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:id="@+id/SetAlarmActivity__Check_DofW_Sun"
-                        android:gravity="center"
-                        android:layout_margin="4dp"
-                        android:background="@drawable/bg_set_alarm_day_of_week">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/SetAlarmActivity__Check_DofW_Sun_Text"
-                            android:text="@string/activity_set_alarm__checkbox_text_sun"
-                            android:textColor="@color/primaryTextColor" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:id="@+id/SetAlarmActivity__Check_DofW_Mon"
-                        android:gravity="center"
-                        android:layout_margin="4dp"
-                        android:background="@drawable/bg_set_alarm_day_of_week">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/SetAlarmActivity__Check_DofW_Mon_Text"
-                            android:text="@string/activity_set_alarm__checkbox_text_mon"
-                            android:textColor="@color/primaryTextColor" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:id="@+id/SetAlarmActivity__Check_DofW_Tue"
-                        android:gravity="center"
-                        android:layout_margin="4dp"
-                        android:background="@drawable/bg_set_alarm_day_of_week">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/SetAlarmActivity__Check_DofW_Tue_Text"
-                            android:text="@string/activity_set_alarm__checkbox_text_tue"
-                            android:textColor="@color/primaryTextColor" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:id="@+id/SetAlarmActivity__Check_DofW_Wed"
-                        android:gravity="center"
-                        android:layout_margin="4dp"
-                        android:background="@drawable/bg_set_alarm_day_of_week">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/SetAlarmActivity__Check_DofW_Wed_Text"
-                            android:text="@string/activity_set_alarm__checkbox_text_wed"
-                            android:textColor="@color/primaryTextColor" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:id="@+id/SetAlarmActivity__Check_DofW_Thu"
-                        android:gravity="center"
-                        android:layout_margin="4dp"
-                        android:background="@drawable/bg_set_alarm_day_of_week">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/SetAlarmActivity__Check_DofW_Thu_Text"
-                            android:text="@string/activity_set_alarm__checkbox_text_thu"
-                            android:textColor="@color/primaryTextColor" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:id="@+id/SetAlarmActivity__Check_DofW_Fri"
-                        android:gravity="center"
-                        android:layout_margin="4dp"
-                        android:background="@drawable/bg_set_alarm_day_of_week">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/SetAlarmActivity__Check_DofW_Fri_Text"
-                            android:text="@string/activity_set_alarm__checkbox_text_fri"
-                            android:textColor="@color/primaryTextColor" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:id="@+id/SetAlarmActivity__Check_DofW_Sat"
-                        android:gravity="center"
-                        android:layout_margin="4dp"
-                        android:background="@drawable/bg_set_alarm_day_of_week">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/SetAlarmActivity__Check_DofW_Sat_Text"
-                            android:text="@string/activity_set_alarm__checkbox_text_sat"
-                            android:textColor="@color/primaryTextColor" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="4dp"
-                    android:orientation="horizontal">
-                    <TextView
+                    android:gravity="right">
+                    <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/SetAlarmActivity__TextView_Nearest_Alarm"
-                        android:text="" />
+                        android:id="@+id/SetAlarmActivity__Switch_Opt_GIV" />
                 </LinearLayout>
 
             </LinearLayout>
 
+            </LinearLayout>
         </ScrollView>
 
     </LinearLayout>

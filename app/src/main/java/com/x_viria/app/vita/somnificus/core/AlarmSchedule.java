@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.icu.util.Calendar;
-import android.util.Log;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.util.storage.SPKey;
@@ -62,13 +61,25 @@ public class AlarmSchedule {
         json.put("week", info.getWeek());
         json.put("enable", info.getEnable());
         json.put("schedule_id", schedule_id);
+        JSONObject option = new JSONObject();
+        option.put("gra_increase_vol", info.getOption(AlarmInfo.OPT__GRA_INCREASE_VOL));
+        json.put("option", option);
         return json;
     }
 
     private void save() {
         String json = OBJECT.toString();
-        Log.d("AlarmSchedule", "JSON -> " + json);
         new SPStorage(CONTEXT).setString(SPKey.KEY__ALARM_SCHEDULE, json);
+    }
+
+    public boolean equals(AlarmInfo info1, AlarmInfo info2) {
+        try {
+            String j1 = makeObject(info1, 0).toString();
+            String j2 = makeObject(info2, 0).toString();
+            return j1.equals(j2);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String getNextDate(AlarmInfo alarmInfo) {
@@ -85,7 +96,9 @@ public class AlarmSchedule {
                 CONTEXT.getString(R.string.fragment_main_alarm__text_dofw_sat)
         };
         String targetDay = null;
-        if (
+        if (!alarmInfo.getEnable()) {
+            targetDay = CONTEXT.getString(R.string.fragment_main_alarm__text_not_scheduled);
+        } else if (
                 alarmInfo.getCalendar().get(Calendar.YEAR) == calendarToday.get(Calendar.YEAR)
                         && alarmInfo.getCalendar().get(Calendar.MONTH) == calendarToday.get(Calendar.MONTH)
                         && alarmInfo.getCalendar().get(Calendar.DATE) == calendarToday.get(Calendar.DATE)
@@ -134,6 +147,17 @@ public class AlarmSchedule {
         }
         save();
         return tf;
+    }
+
+    public void setEnable(int id, boolean enable) throws JSONException {
+        JSONArray list = getSchedule();
+        for (int i = 0; i < list.length(); i++) {
+            JSONObject object = list.getJSONObject(i);
+            if (object.getInt("schedule_id") != id) continue;
+            object.put("enable", enable);
+            OBJECT.getJSONArray("schedule").put(i, object);
+            save();
+        }
     }
 
     public boolean setSchedule(AlarmInfo info) throws JSONException, IOException {

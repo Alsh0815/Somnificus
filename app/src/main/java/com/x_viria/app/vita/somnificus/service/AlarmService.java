@@ -9,13 +9,27 @@ import android.content.Intent;
 import android.content.pm.ServiceInfo;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 
 import androidx.annotation.Nullable;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.WakeupActivity;
+import com.x_viria.app.vita.somnificus.core.AlarmSchedule;
+import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
+import com.x_viria.app.vita.somnificus.util.storage.SPKey;
+import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 public class AlarmService extends Service {
+
+    private Vibrator VIBRATOR = null;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -46,6 +60,8 @@ public class AlarmService extends Service {
         builder.setSmallIcon(R.drawable.ic_menu_alarm);
         Notification notification = builder.build();
 
+        int id = intent.getIntExtra("id", -1);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             if (Build.VERSION.SDK_INT >= 34) {
                 startForeground(ServiceId.SERVICE_ID__ALARM_SERVICE, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
@@ -54,8 +70,26 @@ public class AlarmService extends Service {
             }
         }
 
+        if (new SPStorage(this).getBool(SPKey.KEY__SETTINGS_ALARM_VIBRATE, SPDefault.SETTINGS_ALARM_VIBRATE)) {
+            VibrationEffect effect = VibrationEffect.createWaveform(
+                    new long[] {1000, 1000},
+                    new int[] {255, 0},
+                    0
+            );
+            VIBRATOR = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+            VIBRATOR.vibrate(effect);
+        }
+
         Intent intent3 = new Intent(this, PlaySoundService.class);
         intent3.putExtra(PlaySoundService.PUT_EXTRA__SOUND_TYPE, PlaySoundService.SOUND_TYPE__ALARM);
+        try {
+            AlarmSchedule alarmSchedule = new AlarmSchedule(getApplicationContext());
+            JSONObject object = alarmSchedule.getSchedule(id);
+            boolean opt_giv = object.getJSONObject("option").getBoolean("gra_increase_vol");
+            if (opt_giv) intent3.putExtra(PlaySoundService.PUT_EXTRA__SOUND_OPT__FADEIN, true);
+        } catch (JSONException | IOException e) {
+            throw new RuntimeException(e);
+        }
         startForegroundService(intent3);
 
         startActivity(intent2);
@@ -68,6 +102,7 @@ public class AlarmService extends Service {
         super.onDestroy();
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.cancel(ServiceId.SERVICE_ID__ALARM_SERVICE);
+        if (VIBRATOR != null) VIBRATOR.cancel();
     }
 
 }

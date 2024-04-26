@@ -21,8 +21,12 @@ public class PlaySoundService extends Service {
 
     public static final String PUT_EXTRA__SOUND_TYPE = "sound_type";
 
+    public static final String PUT_EXTRA__SOUND_OPT__FADEIN = "sound_opt__fadein";
+
     public static final int SOUND_TYPE__ALARM = 0x0001;
     public static final int SOUND_TYPE__TIMER = 0x0002;
+
+    public static final int SOUND_OPT__FADEIN =0x0101;
 
     private MediaPlayer MEDIA_PLAYER = null;
 
@@ -60,14 +64,36 @@ public class PlaySoundService extends Service {
 
         int sound_type = intent.getIntExtra(PUT_EXTRA__SOUND_TYPE, SOUND_TYPE__ALARM);
 
+        boolean opt_fadein = intent.getBooleanExtra(PUT_EXTRA__SOUND_OPT__FADEIN, false);
+
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         try {
             MEDIA_PLAYER = new MediaPlayer();
             MEDIA_PLAYER.setDataSource(this, uri);
             MEDIA_PLAYER.setAudioStreamType(AudioManager.STREAM_ALARM);
             MEDIA_PLAYER.setLooping(true);
+            if (opt_fadein) MEDIA_PLAYER.setVolume(0.0f, 0.0f);
             MEDIA_PLAYER.prepare();
             MEDIA_PLAYER.start();
+            if (opt_fadein) {
+                long fade_res = 50;
+                new Thread(() -> {
+                    try {
+                        AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
+                        float limitVol = ((float) am.getStreamVolume(AudioManager.STREAM_ALARM)) / ((float) am.getStreamMaxVolume(AudioManager.STREAM_ALARM));
+                        long millisec = 20000;
+                        float vol = 0.0f;
+                        long n = millisec / fade_res;
+                        for (int i = 0; i < n; i++) {
+                            vol += limitVol / n;
+                            Thread.sleep(fade_res);
+                            MEDIA_PLAYER.setVolume(vol, vol);
+                        }
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }).start();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

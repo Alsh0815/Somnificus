@@ -5,6 +5,8 @@ import android.icu.util.Calendar;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AlarmInfo {
 
@@ -17,11 +19,15 @@ public class AlarmInfo {
     public static final int WEEK__SAT = 0b10000001;
     public static final int WEEK__ALL = WEEK__SUN | WEEK__MON | WEEK__TUE | WEEK__WED | WEEK__THU | WEEK__FRI | WEEK__SAT;
 
+    public static final String OPT__GRA_INCREASE_VOL = "option__gradually_increase_volume";
+
     private final boolean ENABLE;
     private AlarmTime TIME;
     private final int WEEK;
 
     private String LABEL = "";
+
+    private final Map<String, Boolean> OPTION;
 
     public AlarmInfo(
             AlarmTime time,
@@ -31,6 +37,8 @@ public class AlarmInfo {
         this.ENABLE = enable;
         this.TIME = time;
         this.WEEK = week;
+        this.OPTION = new HashMap<>();
+        OPTION.put(OPT__GRA_INCREASE_VOL, false);
     }
 
     public Calendar getCalendar() {
@@ -66,12 +74,20 @@ public class AlarmInfo {
         return LABEL;
     }
 
+    public boolean getOption(String key) {
+        return Boolean.TRUE.equals(OPTION.get(key));
+    }
+
     public int getWeek() {
         return WEEK;
     }
 
     public void setLabel(String label) {
         this.LABEL = label;
+    }
+
+    public void setOption(String key, boolean val) {
+        OPTION.put(key, val);
     }
 
     public void setTime(AlarmTime time) {
