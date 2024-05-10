@@ -107,15 +107,13 @@
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:gravity="center"
-                    android:text="Grant a permissions." />
+                    android:text="Grant a permissions."
+                    android:visibility="gone" />
 
-                <LinearLayout
+                <com.x_viria.app.vita.somnificus.core.ui.StatsGraphView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/SleepFragment__Activity"
-                    android:orientation="vertical">
-
-                </LinearLayout>
+                    android:layout_height="240dp"
+                    android:id="@+id/SleepFragment__StatsGraph" />
 
             </LinearLayout>
 

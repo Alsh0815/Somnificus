@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Somnificus</string>
+    <string name="app_name" translatable="false">Somnificus</string>
 
     <!-- MainActivity -->
     <string name="activity_main__bnv_item_alarm">Alarm</string>
@@ -20,10 +20,12 @@
     <string name="activity_set_alarm__text_alarm">Alarm</string>
     <string name="activity_set_alarm__text_add_a_label">Add a label.</string>
 
-    <string name="activity_set_alarm__dialog_backkeydown_title">Do you want to return to the alarm list?</string>
-    <string name="activity_set_alarm__dialog_backkeydown_msg">Changes not saved. Do you want to return without saving changes?</string>
-    <string name="activity_set_alarm__dialog_backkeydown_btn_neg">Cancel</string>
-    <string name="activity_set_alarm__dialog_backkeydown_btn_pos">Don\'t save</string>
+    <string name="activity_set_alarm__text_option_giv">Gradually increase the volume.</string>
+
+    <string name="activity_set_alarm__dialog_backkeydown_title" translatable="false">Do you want to return to the alarm list?</string>
+    <string name="activity_set_alarm__dialog_backkeydown_msg" translatable="false">Changes not saved. Do you want to return without saving changes?</string>
+    <string name="activity_set_alarm__dialog_backkeydown_btn_neg" translatable="false">Cancel</string>
+    <string name="activity_set_alarm__dialog_backkeydown_btn_pos" translatable="false">Don\'t save</string>
 
     <!-- SettingActivity -->
     <string name="activity_setting__title">Settings</string>
@@ -35,6 +37,8 @@
 
     <!-- AlarmFragment -->
     <string name="fragment_main_alarm__msg_failed_to_del_alarm">Failed to delete alarm.</string>
+    <string name="fragment_main_alarm__text_no_alarm_set">No alarm set.</string>
+
     <string name="fragment_main_alarm__text_dofw_sun">Sun</string>
     <string name="fragment_main_alarm__text_dofw_mon">Mon</string>
     <string name="fragment_main_alarm__text_dofw_tue">Tue</string>
@@ -45,6 +49,10 @@
     <string name="fragment_main_alarm__text_not_scheduled">Not scheduled</string>
     <string name="fragment_main_alarm__text_today">Today</string>
     <string name="fragment_main_alarm__text_tomorrow">Tomorrow</string>
+
+    <!-- EtcFragment -->
+    <string name="fragment_main_etc__text_whats_new">What\'s new</string>
+    <string name="fragment_main_etc__text_settings">Settings</string>
 
     <!-- TutorialFragment 1 -->
     <string name="fragment_tutorial_1__text_1">Welcome to Somnificus.\nThank you for downloading this application.\nWe provide sleep advice to help you get a good night\'s sleep.</string>

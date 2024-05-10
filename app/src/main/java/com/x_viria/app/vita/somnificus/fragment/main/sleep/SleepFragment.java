@@ -3,9 +3,11 @@ package com.x_viria.app.vita.somnificus.fragment.main.sleep;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AppOpsManager;
-import android.app.usage.UsageStats;
+import android.app.usage.UsageEvents;
+import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Paint;
 import android.icu.text.DateFormat;
@@ -20,14 +22,17 @@ import androidx.fragment.app.Fragment;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.core.ui.StatsGraphView;
+import com.x_viria.app.vita.somnificus.util.usm.USM;
+import com.x_viria.app.vita.somnificus.util.usm.USMFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -56,48 +61,19 @@ public class SleepFragment extends Fragment {
         Handler handler = new Handler(Looper.getMainLooper());
         new Thread(() -> {
             PackageManager pm = requireActivity().getPackageManager();
-            LinearLayout parent = ROOT.findViewById(R.id.SleepFragment__Activity);
-            handler.post(parent::removeAllViews);
+            StatsGraphView statsView = (StatsGraphView) ROOT.findViewById(R.id.SleepFragment__StatsGraph);
             Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.DAY_OF_WEEK, 1);
+            calendar.add(Calendar.DATE, -7);
             calendar.set(Calendar.HOUR_OF_DAY, 0);
-            List<UsageStats> usageStats = new com.x_viria.app.vita.somnificus.util.UsageStats(getContext()).getUsageStatsObject(calendar.getTimeInMillis());
-            for (int i = 0; i < usageStats.size(); i++) {
-                long mills = usageStats.get(i).getTotalTimeInForeground();
-                if (mills == 0) continue;
-                long sec = (mills / 1000) % 60;
-                long min = (mills / (1000 * 60)) % 60;
-                long hour = (mills / (1000 * 60 * 60)) % 24;
-                String appName = "";
-                try {
-                    appName = pm.getApplicationLabel(
-                            pm.getApplicationInfo(usageStats.get(i).getPackageName(), PackageManager.GET_META_DATA)
-                    ).toString();
-                } catch (PackageManager.NameNotFoundException e) {
-                    appName = usageStats.get(i).getPackageName();
-                }
-                final DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE);
-                final Date date = new Date(usageStats.get(i).getFirstTimeStamp());
-                TextView view = new TextView(getContext());
-                String finalAppName = appName;
-                handler.post(() -> {
-                    view.setText(
-                            String.format(
-                                    "[%s] %s %02d:%02d:%02d",
-                                    finalAppName,
-                                    df.format(date),
-                                    hour,
-                                    min,
-                                    sec
-                            )
-                    );
-                    parent.addView(view);
-                });
-            }
+
+            USM cusm = new USM(requireContext());
+            List<USMFormat> usmlist = cusm.getUsageStatsEvent(calendar.getTimeInMillis(), System.currentTimeMillis());
+
         }).start();
     }
 
     private void refreshUI() {
+        StatsGraphView statsGraphView = ROOT.findViewById(R.id.SleepFragment__StatsGraph);
         TextView TextView_NoPermission = ROOT.findViewById(R.id.SleepFragment__Activity_No_Permission);
         TextView_NoPermission.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         TextView_NoPermission.setOnClickListener(v -> {
@@ -106,8 +82,10 @@ public class SleepFragment extends Fragment {
         });
 
         if (!checkReadStatsPermission()) {
+            statsGraphView.setVisibility(View.GONE);
             TextView_NoPermission.setVisibility(View.VISIBLE);
         } else {
+            statsGraphView.setVisibility(View.VISIBLE);
             TextView_NoPermission.setVisibility(View.GONE);
             refreshActivityList();
         }

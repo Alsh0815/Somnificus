@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No alarm set." />
+            android:text="@string/fragment_main_alarm__text_no_alarm_set" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

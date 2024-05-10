@@ -252,7 +252,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gradually increase the volume." />
+                    android:text="@string/activity_set_alarm__text_option_giv" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
