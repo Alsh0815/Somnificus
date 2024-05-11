@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name" translatable="false">Somnificus</string>
 
+    <string name="common__text_yes">Yes</string>
+    <string name="common__text_no">No</string>
+
     <!-- MainActivity -->
     <string name="activity_main__bnv_item_alarm">Alarm</string>
     <string name="activity_main__bnv_item_timer">Timer</string>
@@ -27,17 +30,29 @@
     <string name="activity_set_alarm__dialog_backkeydown_btn_neg" translatable="false">Cancel</string>
     <string name="activity_set_alarm__dialog_backkeydown_btn_pos" translatable="false">Don\'t save</string>
 
+    <!-- SetNapActivity -->
+    <string name="activity_set_nap__text_min">min</string>
+
     <!-- SettingActivity -->
     <string name="activity_setting__title">Settings</string>
     <string name="activity_setting__text_alarm_vibrate">Alarm vibrate</string>
     <string name="activity_setting__text_timer_vibrate">Timer vibrate</string>
 
+    <!-- WakeupActivity -->
+    <string name="activity_wakeup__text_stop">Stop</string>
+
     <!-- WhatsNewActivity -->
     <string name="activity_whats_new__title">What\'s new</string>
 
     <!-- AlarmFragment -->
+    <string name="fragment_main_alarm__fab_dtext_alarm">Alarm</string>
+    <string name="fragment_main_alarm__fab_dtext_nap">Nap</string>
+
     <string name="fragment_main_alarm__msg_failed_to_del_alarm">Failed to delete alarm.</string>
     <string name="fragment_main_alarm__text_no_alarm_set">No alarm set.</string>
+
+    <string name="fragment_main_alarm__dialog_del_alarm_title">Delete</string>
+    <string name="fragment_main_alarm__dialog_del_alarm_msg">Do you want to delete this alarm?</string>
 
     <string name="fragment_main_alarm__text_dofw_sun">Sun</string>
     <string name="fragment_main_alarm__text_dofw_mon">Mon</string>
@@ -49,6 +64,13 @@
     <string name="fragment_main_alarm__text_not_scheduled">Not scheduled</string>
     <string name="fragment_main_alarm__text_today">Today</string>
     <string name="fragment_main_alarm__text_tomorrow">Tomorrow</string>
+
+    <!-- SleepFragment -->
+    <string name="fragment_main_sleep__text_schedule">Schedule</string>
+    <string name="fragment_main_sleep__text_bed_time">Bed Time</string>
+    <string name="fragment_main_sleep__text_wakeup_time">Wake Up Time</string>
+    <string name="fragment_main_sleep__text_activity">Activity</string>
+    <string name="fragment_main_sleep__text_grant_a_permission">Grant a permissions.</string>
 
     <!-- EtcFragment -->
     <string name="fragment_main_etc__text_whats_new">What\'s new</string>

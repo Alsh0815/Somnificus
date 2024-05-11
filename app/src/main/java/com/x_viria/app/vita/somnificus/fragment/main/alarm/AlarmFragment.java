@@ -3,6 +3,8 @@ package com.x_viria.app.vita.somnificus.fragment.main.alarm;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -27,6 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.SetAlarmActivity;
+import com.x_viria.app.vita.somnificus.activity.SetNapActivity;
 import com.x_viria.app.vita.somnificus.core.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.AlarmSchedule;
 import com.x_viria.app.vita.somnificus.core.AlarmTime;
@@ -45,6 +48,8 @@ public class AlarmFragment extends Fragment {
     private AlarmViewModel mViewModel;
     private View ROOT;
 
+    private boolean IS_FAB_CLICKED = false;
+
     public static AlarmFragment newInstance() {
         return new AlarmFragment();
     }
@@ -53,9 +58,11 @@ public class AlarmFragment extends Fragment {
         int iconTintColor = ContextCompat.getColor(requireContext(), R.color.primaryTextColor);
         int iconTintColorWhite = ContextCompat.getColor(requireContext(), R.color.white);
 
+        JSONObject objdata = object.getJSONObject("data");
+
         AlarmSchedule alarmSchedule = new AlarmSchedule(getContext());
         JSONArray time = object.getJSONArray("time");
-        boolean enable = object.getBoolean("enable");
+        boolean enable = objdata.getBoolean("enable");
         int id = object.getInt("schedule_id");
 
         TypedValue rippleEffect = new TypedValue();
@@ -83,7 +90,7 @@ public class AlarmFragment extends Fragment {
         );
 
         SwitchMaterial sw = new SwitchMaterial(requireContext());
-        if (object.getBoolean("enable")) sw.setChecked(true);
+        if (objdata.getBoolean("enable")) sw.setChecked(true);
         sw.setOnCheckedChangeListener((buttonView, isChecked) -> {
             try {
                 alarmSchedule.setEnable(id, isChecked);
@@ -114,7 +121,7 @@ public class AlarmFragment extends Fragment {
                 Unit.dp2px(requireContext(), 8)
         );
 
-        if (!object.getString("label").equals("")) {
+        if (!objdata.getString("label").equals("")) {
             LinearLayout labelView = new LinearLayout(getContext());
             labelView.setGravity(Gravity.CENTER_VERTICAL);
             labelView.setOrientation(LinearLayout.HORIZONTAL);
@@ -131,7 +138,7 @@ public class AlarmFragment extends Fragment {
             labelIcon.setLayoutParams(labelIconMLP);
             labelView.addView(labelIcon);
             TextView labelText = new TextView(getContext());
-            labelText.setText(object.getString("label"));
+            labelText.setText(objdata.getString("label"));
             if (enable) labelText.setTextColor(getResources().getColor(R.color.white));
             labelText.setTextSize(10);
             labelView.addView(labelText);
@@ -146,8 +153,8 @@ public class AlarmFragment extends Fragment {
 
         AlarmInfo alarmInfo = new AlarmInfo(
                 new AlarmTime(time.getInt(0), time.getInt(1), time.getInt(2)),
-                object.getInt("week"),
-                object.getBoolean("enable")
+                objdata.getInt("week"),
+                objdata.getBoolean("enable")
         );
         String targetDay = alarmSchedule.getNextDate(alarmInfo);
 
@@ -172,16 +179,23 @@ public class AlarmFragment extends Fragment {
                 Unit.dp2px(requireContext(), 48)
         ));
         deleteBtn.setOnClickListener(v -> {
-            try {
-                alarmSchedule.setEnable(id, false);
-                if (alarmSchedule.removeSchedule(id)) {
-                    refreshAlarmList();
-                } else {
-                    Toast.makeText(getContext(), getString(R.string.fragment_main_alarm__msg_failed_to_del_alarm), Toast.LENGTH_SHORT).show();
-                }
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
+            new AlertDialog.Builder(requireContext())
+                    .setCancelable(false)
+                    .setTitle(R.string.fragment_main_alarm__dialog_del_alarm_title)
+                    .setMessage(R.string.fragment_main_alarm__dialog_del_alarm_msg)
+                    .setNegativeButton(R.string.common__text_no, null)
+                    .setPositiveButton(R.string.common__text_yes, (dialog, which) -> {
+                        try {
+                            if (alarmSchedule.removeSchedule(id)) {
+                                refreshAlarmList();
+                            } else {
+                                Toast.makeText(getContext(), getString(R.string.fragment_main_alarm__msg_failed_to_del_alarm), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    })
+                    .show();
         });
         deleteBtn.setPadding(
                 Unit.dp2px(requireContext(), 8),
@@ -192,6 +206,108 @@ public class AlarmFragment extends Fragment {
         rightView.addView(deleteBtn);
 
         parent.addView(rightView);
+
+        return parent;
+    }
+
+    private LinearLayout createNapView(JSONObject object) throws JSONException, IOException {
+        int iconTintColor = ContextCompat.getColor(requireContext(), R.color.primaryTextColor);
+        TypedValue rippleEffect = new TypedValue();
+        requireContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, rippleEffect, true);
+
+        JSONObject objdata = object.getJSONObject("data");
+
+        AlarmSchedule alarmSchedule = new AlarmSchedule(getContext());
+        JSONArray time = object.getJSONArray("time");
+        int id = object.getInt("schedule_id");
+
+        Runnable delNap = () -> {
+            try {
+                if (alarmSchedule.removeSchedule(id)) {
+                    refreshAlarmList();
+                } else {
+                    Toast.makeText(getContext(), getString(R.string.fragment_main_alarm__msg_failed_to_del_alarm), Toast.LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+        };
+
+        LinearLayout parent = new LinearLayout(getContext());
+        parent.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_set_alarm_card));
+        parent.setClickable(true);
+        parent.setGravity(Gravity.CENTER_VERTICAL);
+        parent.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+        parent.setOnClickListener(v -> {
+            new AlertDialog.Builder(requireContext())
+                    .setCancelable(false)
+                    .setTitle(R.string.fragment_main_alarm__dialog_del_alarm_title)
+                    .setMessage(R.string.fragment_main_alarm__dialog_del_alarm_msg)
+                    .setNegativeButton(R.string.common__text_no, null)
+                    .setPositiveButton(R.string.common__text_yes, (DialogInterface.OnClickListener) (dialog, which) -> delNap.run())
+                    .show();
+        });
+        parent.setOrientation(LinearLayout.VERTICAL);
+        parent.setPadding(
+                Unit.dp2px(requireContext(), 8),
+                Unit.dp2px(requireContext(), 8),
+                Unit.dp2px(requireContext(), 8),
+                Unit.dp2px(requireContext(), 8)
+        );
+        ViewGroup.LayoutParams lp = parent.getLayoutParams();
+        ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams)lp;
+        mlp.setMargins(mlp.leftMargin, Unit.dp2px(requireContext(), 8), mlp.rightMargin, Unit.dp2px(requireContext(), 8));
+        parent.setLayoutParams(mlp);
+
+        TextView text_time = new TextView(requireContext());
+        text_time.setText(String.format("%02d:%02d", time.getInt(0), time.getInt(1)));
+        text_time.setTextSize(28);
+        text_time.setTextColor(getResources().getColor(R.color.white));
+
+        TextView text_date = new TextView(requireContext());
+        text_date.setText(String.format("%s - %s", getString(R.string.fragment_main_alarm__text_today), getString(R.string.fragment_main_alarm__fab_dtext_nap)));
+        text_date.setTextColor(getResources().getColor(R.color.white));
+
+        LinearLayout child_mainpanel = new LinearLayout(requireContext());
+        child_mainpanel.setOrientation(LinearLayout.HORIZONTAL);
+        child_mainpanel.setPadding(
+                Unit.dp2px(requireContext(), 8),
+                Unit.dp2px(requireContext(), 8),
+                Unit.dp2px(requireContext(), 8),
+                Unit.dp2px(requireContext(), 8)
+        );
+
+        LinearLayout child_schedule = new LinearLayout(requireContext());
+        child_schedule.setOrientation(LinearLayout.VERTICAL);
+        child_schedule.addView(text_time);
+        child_schedule.addView(text_date);
+
+        LinearLayout rightView = new LinearLayout(getContext());
+        rightView.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+        rightView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        ImageView deleteBtn = new ImageView(getContext());
+        deleteBtn.setBackgroundResource(rippleEffect.resourceId);
+        deleteBtn.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
+        deleteBtn.setImageTintList(ColorStateList.valueOf(iconTintColor));
+        deleteBtn.setLayoutParams(new LinearLayout.LayoutParams(
+                Unit.dp2px(requireContext(), 48),
+                Unit.dp2px(requireContext(), 48)
+        ));
+        deleteBtn.setPadding(
+                Unit.dp2px(requireContext(), 8),
+                Unit.dp2px(requireContext(), 8),
+                Unit.dp2px(requireContext(), 8),
+                Unit.dp2px(requireContext(), 8)
+        );
+        rightView.addView(deleteBtn);
+
+        child_mainpanel.addView(child_schedule);
+        child_mainpanel.addView(rightView);
+        parent.addView(child_mainpanel);
 
         return parent;
     }
@@ -230,11 +346,19 @@ public class AlarmFragment extends Fragment {
                     throw new RuntimeException(e);
                 }
             });
-
             for (int j = 0; j < alarmList.size(); j++) {
                 JSONObject object = alarmList.get(j);
-                LinearLayout view = createAlarmView(object);
-                scheduleView.addView(view);
+                if (object.getInt("type") == AlarmSchedule.TYPE__NAP) {
+                    LinearLayout view = createNapView(object);
+                    scheduleView.addView(view);
+                }
+            }
+            for (int k = 0; k < alarmList.size(); k++) {
+                JSONObject object = alarmList.get(k);
+                if (object.getInt("type") == AlarmSchedule.TYPE__ALARM) {
+                    LinearLayout view = createAlarmView(object);
+                    scheduleView.addView(view);
+                }
             }
             alarmSchedule.sync();
         } catch (JSONException | IOException e) {
@@ -242,20 +366,49 @@ public class AlarmFragment extends Fragment {
         }
     }
 
+    private void initUI() {
+        IS_FAB_CLICKED = false;
+
+        FloatingActionButton fab = ROOT.findViewById(R.id.AlarmFragment__FloatingActionButton);
+        FloatingActionButton subfab_alarm = ROOT.findViewById(R.id.AlarmFragment__SubFAB_Alarm);
+        FloatingActionButton subfab_nap = ROOT.findViewById(R.id.AlarmFragment__SubFAB_Nap);
+        LinearLayout l_subfab_alarm = ROOT.findViewById(R.id.AlarmFragment__L_SubFAB_Alarm);
+        LinearLayout l_subfab_nap = ROOT.findViewById(R.id.AlarmFragment__L_SubFAB_Nap);
+
+        fab.animate().rotation(0).setDuration(0);
+        l_subfab_alarm.animate().alpha(0).setDuration(0);
+        l_subfab_nap.animate().alpha(0).setDuration(0);
+
+        fab.setOnClickListener(v -> {
+            IS_FAB_CLICKED = !IS_FAB_CLICKED;
+            if (IS_FAB_CLICKED) {
+                fab.animate().rotationBy(0).rotation(45).setDuration(250);
+                l_subfab_alarm.animate().alphaBy(0).alpha(1).setDuration(250).withStartAction(() -> l_subfab_alarm.setVisibility(View.VISIBLE));
+                l_subfab_nap.animate().alphaBy(0).alpha(1).setDuration(250).withStartAction(() -> l_subfab_nap.setVisibility(View.VISIBLE));
+            } else {
+                fab.animate().rotationBy(45).rotation(0).setDuration(250);
+                l_subfab_alarm.animate().alphaBy(1).alpha(0).setDuration(250).withEndAction(() -> l_subfab_alarm.setVisibility(View.INVISIBLE));
+                l_subfab_nap.animate().alphaBy(1).alpha(0).setDuration(250).withEndAction(() -> l_subfab_nap.setVisibility(View.INVISIBLE));
+            }
+        });
+        subfab_alarm.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), SetAlarmActivity.class);
+            intent.putExtra("id", -1);
+            startActivity(intent);
+        });
+        subfab_nap.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), SetNapActivity.class);
+            intent.putExtra("id", -1);
+            startActivity(intent);
+        });
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         ROOT = inflater.inflate(R.layout.fragment_main_alarm, container, false);
 
-        FloatingActionButton fab = ROOT.findViewById(R.id.AlarmFragment__FloatingActionButton);
-        fab.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), SetAlarmActivity.class);
-            intent.putExtra("id", -1);
-            startActivity(intent);
-        });
-
-        Log.d("AlarmFragment", "onCreateView()");
-
+        initUI();
         refreshAlarmList();
 
         return ROOT;
@@ -264,6 +417,7 @@ public class AlarmFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        initUI();
         refreshAlarmList();
     }
 

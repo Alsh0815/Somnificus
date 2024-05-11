@@ -13,6 +13,7 @@ import com.x_viria.app.vita.somnificus.service.AlarmService;
 import com.x_viria.app.vita.somnificus.service.PlaySoundService;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -28,6 +29,9 @@ public class WakeupActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+        Intent tIntent = getIntent();
+        int id = tIntent.getIntExtra("id", -1);
+
         Intent intent = new Intent(this, PlaySoundService.class);
         Intent intent2 = new Intent(this, AlarmService.class);
         LinearLayout stopSound = findViewById(R.id.WakeupActivity__Stop_Sound_Btn);
@@ -36,6 +40,11 @@ public class WakeupActivity extends AppCompatActivity {
             stopService(intent2);
             try {
                 AlarmSchedule alarmSchedule = new AlarmSchedule(WakeupActivity.this);
+                alarmSchedule.sync();
+                JSONObject object = alarmSchedule.getSchedule(id);
+                if (object.getInt("type") == AlarmSchedule.TYPE__NAP) {
+                    alarmSchedule.removeSchedule(id);
+                }
                 alarmSchedule.sync();
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);

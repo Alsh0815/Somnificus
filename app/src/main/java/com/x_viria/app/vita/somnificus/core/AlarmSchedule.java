@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.icu.util.Calendar;
+import android.util.Log;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.util.storage.SPKey;
@@ -21,6 +22,9 @@ public class AlarmSchedule {
 
     private final Context CONTEXT;
     private JSONObject OBJECT;
+
+    public static final int TYPE__ALARM = 0x01;
+    public static final int TYPE__NAP = 0x02;
 
     public AlarmSchedule(Context context) throws JSONException, IOException {
         this.CONTEXT = context;
@@ -50,32 +54,52 @@ public class AlarmSchedule {
         }
     }
 
-    private JSONObject makeObject(AlarmInfo info, int schedule_id) throws JSONException {
+    private JSONObject makeObject(AlarmInfo info, int schedule_id, int type) throws JSONException {
         JSONObject json = new JSONObject();
         JSONArray time = new JSONArray();
         time.put(info.getAlarmTime().getH());
         time.put(info.getAlarmTime().getM());
         time.put(info.getAlarmTime().getS());
-        json.put("label", info.getLabel());
+        json.put("type", type);
         json.put("time", time);
-        json.put("week", info.getWeek());
-        json.put("enable", info.getEnable());
         json.put("schedule_id", schedule_id);
-        JSONObject option = new JSONObject();
-        option.put("gra_increase_vol", info.getOption(AlarmInfo.OPT__GRA_INCREASE_VOL));
-        json.put("option", option);
+        json.put("data", new JSONObject());
         return json;
     }
 
-    private void save() {
+    private JSONObject makeAlarmObject(AlarmInfo info, int schedule_id) throws JSONException {
+        JSONObject object = makeObject(info, schedule_id, TYPE__ALARM);
+        JSONObject json = new JSONObject();
+        json.put("label", info.getLabel());
+        json.put("week", info.getWeek());
+        json.put("enable", info.getEnable());
+        JSONObject option = new JSONObject();
+        option.put("gra_increase_vol", info.getOption(AlarmInfo.OPT__GRA_INCREASE_VOL));
+        json.put("option", option);
+        object.put("data", json);
+        return object;
+    }
+
+    private JSONObject makeNapObject(AlarmInfo info, int schedule_id) throws JSONException {
+        JSONObject object = makeObject(info, schedule_id, TYPE__NAP);
+        JSONObject json = new JSONObject();
+        JSONObject option = new JSONObject();
+        option.put("gra_increase_vol", info.getOption(AlarmInfo.OPT__GRA_INCREASE_VOL));
+        json.put("option", option);
+        object.put("data", json);
+        return object;
+    }
+
+    private void save() throws JSONException {
         String json = OBJECT.toString();
         new SPStorage(CONTEXT).setString(SPKey.KEY__ALARM_SCHEDULE, json);
+        sync();
     }
 
     public boolean equals(AlarmInfo info1, AlarmInfo info2) {
         try {
-            String j1 = makeObject(info1, 0).toString();
-            String j2 = makeObject(info2, 0).toString();
+            String j1 = makeAlarmObject(info1, 0).toString();
+            String j2 = makeAlarmObject(info2, 0).toString();
             return j1.equals(j2);
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -137,15 +161,31 @@ public class AlarmSchedule {
 
     public boolean removeSchedule(int id) throws JSONException {
         sync();
+        setEnable(id, false);
         boolean tf = false;
         JSONArray list = getSchedule();
         for (int i = 0; i < list.length(); i++) {
             JSONObject object = list.getJSONObject(i);
             if (object.getInt("schedule_id") != id) continue;
-            list.remove(i);
-            tf = true;
+            if (object.getInt("type") == TYPE__ALARM) {
+                list.remove(i);
+                save();
+                tf = true;
+            } else if (object.getInt("type") == TYPE__NAP) {
+                AlarmManager alarmManager = (AlarmManager) CONTEXT.getSystemService(Context.ALARM_SERVICE);
+                Intent intent = new Intent(CONTEXT.getApplicationContext(), AlarmBroadcastReceiver.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("id", id);
+                intent.putExtra("title", "Test Alarm");
+                PendingIntent pending = PendingIntent.getBroadcast(CONTEXT.getApplicationContext(), id, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+                pending.cancel();
+                alarmManager.cancel(pending);
+                list.remove(i);
+                save();
+                tf = true;
+            }
         }
-        save();
+        OBJECT.put("schedule", list);
         return tf;
     }
 
@@ -153,41 +193,58 @@ public class AlarmSchedule {
         JSONArray list = getSchedule();
         for (int i = 0; i < list.length(); i++) {
             JSONObject object = list.getJSONObject(i);
+            if (object.getInt("type") != TYPE__ALARM) continue;
             if (object.getInt("schedule_id") != id) continue;
-            object.put("enable", enable);
+            JSONObject objdata = object.getJSONObject("data");
+            objdata.put("enable", enable);
+            object.put("data", objdata);
             OBJECT.getJSONArray("schedule").put(i, object);
             save();
         }
     }
 
-    public boolean setSchedule(AlarmInfo info) throws JSONException, IOException {
+    public void setAlarmSchedule(AlarmInfo info) throws JSONException {
         Random rand = new Random();
         int schedule_id = rand.nextInt(Integer.MAX_VALUE);
         int cnt = 0;
         while (!canRegisterId(schedule_id)) {
-            if (255 < cnt) return false;
+            if (255 < cnt) return;
             schedule_id = rand.nextInt(Integer.MAX_VALUE);
             cnt++;
         }
-        JSONObject object = makeObject(info, schedule_id);
+        JSONObject object = makeAlarmObject(info, schedule_id);
         OBJECT.getJSONArray("schedule").put(object);
         save();
-        return true;
     }
 
-    public void setSchedule(AlarmInfo info, int id) throws JSONException {
+    public void setAlarmSchedule(AlarmInfo info, int id) throws JSONException {
         JSONArray list = getSchedule();
         for (int i = 0; i < list.length(); i++) {
             JSONObject object = list.getJSONObject(i);
             if (object.getInt("schedule_id") != id) continue;
-            object = makeObject(info, id);
+            object = makeAlarmObject(info, id);
             OBJECT.getJSONArray("schedule").put(i, object);
             save();
         }
     }
 
+    public void setNapSchedule(AlarmInfo info) throws JSONException {
+        Random rand = new Random();
+        int schedule_id = rand.nextInt(Integer.MAX_VALUE);
+        int cnt = 0;
+        while (!canRegisterId(schedule_id)) {
+            if (255 < cnt) return;
+            schedule_id = rand.nextInt(Integer.MAX_VALUE);
+            cnt++;
+        }
+        JSONObject object = makeNapObject(info, schedule_id);
+        OBJECT.getJSONArray("schedule").put(object);
+        save();
+    }
+
     public void sync() throws JSONException {
         JSONArray list = getSchedule();
+        Log.d("AlarmSchedule", list.toString(4));
         for (int i = 0; i < list.length(); i++) {
             JSONObject object = list.getJSONObject(i);
             int schedule_id = object.getInt("schedule_id");
@@ -197,23 +254,37 @@ public class AlarmSchedule {
             intent.putExtra("id", schedule_id);
             intent.putExtra("title", "Test Alarm");
             PendingIntent pending = PendingIntent.getBroadcast(CONTEXT.getApplicationContext(), schedule_id, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+            int schedule_type = object.getInt("type");
             AlarmTime alarmTime = new AlarmTime(
                     object.getJSONArray("time").getInt(0),
                     object.getJSONArray("time").getInt(1),
                     object.getJSONArray("time").getInt(2)
             );
-            AlarmInfo alarmInfo = new AlarmInfo(
-                    alarmTime,
-                    object.getInt("week"),
-                    object.getBoolean("enable")
-            );
-            AlarmManager.AlarmClockInfo acInfo = new AlarmManager.AlarmClockInfo(alarmInfo.getCalendar().getTimeInMillis(), null);
+            JSONObject objdata = object.getJSONObject("data");
 
-            if (object.getBoolean("enable")) {
+            if (schedule_type == TYPE__ALARM) {
+                AlarmInfo alarmInfo = new AlarmInfo(
+                        alarmTime,
+                        objdata.getInt("week"),
+                        objdata.getBoolean("enable")
+                );
+                AlarmManager.AlarmClockInfo acInfo = new AlarmManager.AlarmClockInfo(alarmInfo.getCalendar().getTimeInMillis(), null);
+
+                if (objdata.getBoolean("enable")) {
+                    alarmManager.setAlarmClock(acInfo, pending);
+                } else {
+                    pending.cancel();
+                    alarmManager.cancel(pending);
+                }
+            } else if (schedule_type == TYPE__NAP) {
+                AlarmInfo alarmInfo = new AlarmInfo(
+                        alarmTime,
+                        AlarmInfo.WEEK__ALL,
+                        true
+                );
+                AlarmManager.AlarmClockInfo acInfo = new AlarmManager.AlarmClockInfo(alarmInfo.getCalendar().getTimeInMillis(), null);
                 alarmManager.setAlarmClock(acInfo, pending);
             } else {
-                pending.cancel();
-                alarmManager.cancel(pending);
             }
         }
     }

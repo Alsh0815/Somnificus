@@ -49,8 +49,11 @@ public class AlarmService extends Service {
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.createNotificationChannel(channel);
 
+        int id = intent.getIntExtra("id", -1);
+
         Intent intent2 = new Intent(this, WakeupActivity.class);
         intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent2.putExtra("id", id);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0xFF, intent2, PendingIntent.FLAG_IMMUTABLE);
 
         Notification.Builder builder = new Notification.Builder(this, channel_id);
@@ -59,8 +62,6 @@ public class AlarmService extends Service {
         builder.setContentIntent(pendingIntent);
         builder.setSmallIcon(R.drawable.ic_menu_alarm);
         Notification notification = builder.build();
-
-        int id = intent.getIntExtra("id", -1);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             if (Build.VERSION.SDK_INT >= 34) {
@@ -85,7 +86,8 @@ public class AlarmService extends Service {
         try {
             AlarmSchedule alarmSchedule = new AlarmSchedule(getApplicationContext());
             JSONObject object = alarmSchedule.getSchedule(id);
-            boolean opt_giv = object.getJSONObject("option").getBoolean("gra_increase_vol");
+            JSONObject objdata = object.getJSONObject("data");
+            boolean opt_giv = objdata.getJSONObject("option").getBoolean("gra_increase_vol");
             if (opt_giv) intent3.putExtra(PlaySoundService.PUT_EXTRA__SOUND_OPT__FADEIN, true);
         } catch (JSONException | IOException e) {
             throw new RuntimeException(e);

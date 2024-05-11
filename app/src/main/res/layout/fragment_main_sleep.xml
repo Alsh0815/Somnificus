@@ -26,7 +26,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Schedule"
+                    android:text="@string/fragment_main_sleep__text_schedule"
                     android:textColor="@color/primaryActiveColor"
                     android:textSize="16dp"/>
 
@@ -48,7 +48,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Bed Time"
+                            android:text="@string/fragment_main_sleep__text_bed_time"
                             android:textColor="@color/primaryInactiveColor" />
                         <TextView
                             android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Wake Up Time"
+                            android:text="@string/fragment_main_sleep__text_wakeup_time"
                             android:textColor="@color/primaryInactiveColor" />
                         <TextView
                             android:layout_width="wrap_content"
@@ -96,7 +96,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Activity"
+                    android:text="@string/fragment_main_sleep__text_activity"
                     android:textColor="@color/primaryActiveColor"
                     android:textSize="16dp"/>
 
@@ -107,7 +107,7 @@
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:gravity="center"
-                    android:text="Grant a permissions."
+                    android:text="@string/fragment_main_sleep__text_grant_a_permission"
                     android:visibility="gone" />
 
                 <com.x_viria.app.vita.somnificus.core.ui.StatsGraphView

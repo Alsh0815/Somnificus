@@ -33,12 +33,65 @@
             android:text="@string/fragment_main_alarm__text_no_alarm_set" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:id="@+id/AlarmFragment__L_SubFAB_Alarm"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="168dp"
+        android:layout_gravity="bottom|end"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="16dp"
+            android:text="@string/fragment_main_alarm__fab_dtext_alarm" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/AlarmFragment__SubFAB_Alarm"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="8dp"
+            app:fabCustomSize="48dp"
+            app:srcCompat="@drawable/ic_menu_alarm"
+            app:backgroundTint="@color/secondaryActiveColor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:id="@+id/AlarmFragment__L_SubFAB_Nap"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="96dp"
+        android:layout_gravity="bottom|end"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="16dp"
+            android:text="@string/fragment_main_alarm__fab_dtext_nap" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/AlarmFragment__SubFAB_Nap"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="8dp"
+            app:fabCustomSize="48dp"
+            app:srcCompat="@drawable/ic_menu_bed"
+            app:backgroundTint="@color/secondaryActiveColor" />
+    </LinearLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/AlarmFragment__FloatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_margin="24dp"
         android:layout_gravity="bottom|end"
+        app:fabCustomSize="56dp"
         app:srcCompat="@drawable/ic_add"
         app:backgroundTint="@color/secondaryActiveColor" />
 

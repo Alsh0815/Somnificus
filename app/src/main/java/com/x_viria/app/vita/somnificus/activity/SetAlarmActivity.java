@@ -2,10 +2,7 @@ package com.x_viria.app.vita.somnificus.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -174,13 +171,14 @@ public class SetAlarmActivity extends AppCompatActivity {
             try {
                 AlarmSchedule alarmSchedule = new AlarmSchedule(this);
                 JSONObject object = alarmSchedule.getSchedule(id);
+                JSONObject objdata = object.getJSONObject("data");
                 JSONArray time = object.getJSONArray("time");
-                et_label.setText(object.getString("label"));
+                et_label.setText(objdata.getString("label"));
                 np_h.setValue(time.getInt(0));
                 np_m.setValue(time.getInt(1));
-                enable = object.getBoolean("enable");
-                int week = object.getInt("week");
-                JSONObject option = object.getJSONObject("option");
+                enable = objdata.getBoolean("enable");
+                int week = objdata.getInt("week");
+                JSONObject option = objdata.getJSONObject("option");
                 boolean opt_giv = option.getBoolean("gra_increase_vol");
 
                 for (int i = 0; i < OPTION__D_OF_W.length; i++) {
@@ -204,9 +202,9 @@ public class SetAlarmActivity extends AppCompatActivity {
                 AlarmInfo alarmInfo = getAlarmInfo(finalEnable);
                 AlarmSchedule alarmSchedule = new AlarmSchedule(this);
                 if (id != -1) {
-                    alarmSchedule.setSchedule(alarmInfo, id);
+                    alarmSchedule.setAlarmSchedule(alarmInfo, id);
                 } else {
-                    alarmSchedule.setSchedule(alarmInfo);
+                    alarmSchedule.setAlarmSchedule(alarmInfo);
                 }
                 alarmSchedule.sync();
                 finish();
