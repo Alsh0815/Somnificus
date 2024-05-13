@@ -30,6 +30,8 @@
     <string name="activity_setting__title">設定</string>
     <string name="activity_setting__text_alarm_vibrate">アラームのバイブレーション</string>
     <string name="activity_setting__text_timer_vibrate">タイマーのバイブレーション</string>
+    <string name="activity_setting__item_others">その他</string>
+    <string name="activity_setting__text_version">バージョン</string>
 
     <!-- WakeupActivity -->
     <string name="activity_wakeup__text_stop">ストップ</string>

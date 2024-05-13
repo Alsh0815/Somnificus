@@ -37,6 +37,8 @@
     <string name="activity_setting__title">Settings</string>
     <string name="activity_setting__text_alarm_vibrate">Alarm vibrate</string>
     <string name="activity_setting__text_timer_vibrate">Timer vibrate</string>
+    <string name="activity_setting__item_others">Others</string>
+    <string name="activity_setting__text_version">Version</string>
 
     <!-- WakeupActivity -->
     <string name="activity_wakeup__text_stop">Stop</string>
