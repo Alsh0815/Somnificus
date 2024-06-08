@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.icu.util.Calendar;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,6 +21,8 @@ import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.util.BitmapUtils;
 import com.x_viria.app.vita.somnificus.util.Unit;
 
+import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 
 public class StatsGraphView extends View {
@@ -29,6 +32,7 @@ public class StatsGraphView extends View {
     private int GRAPH_AREA_LEFT_LIMIT = 100;
     private int GRAPH_AREA_RIGHT_LIMIT = 0;
     private int GRAPH_AREA_X = 0;
+    private int GRAPH_WIDTH = 24;
     private int SC_LIMIT_LINE_TOP = 100;
     private int SC_LIMIT_LINE_BOTTOM = -100;
 
@@ -42,6 +46,45 @@ public class StatsGraphView extends View {
     public StatsGraphView(Context context, AttributeSet attr) {
         super(context, attr);
         this.CONTEXT = context;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        super.onTouchEvent(event);
+
+        BiFunction<Float, Float, Integer> isGraphClicked = (x, y) -> {
+            float x1 = _get_graph_bar_x_pos(1) + _get_graph_bar_left_padding();
+            float x2 = _get_graph_bar_x_pos(2) + _get_graph_bar_left_padding();
+            float x3 = _get_graph_bar_x_pos(3) + _get_graph_bar_left_padding();
+            float x4 = _get_graph_bar_x_pos(4) + _get_graph_bar_left_padding();
+            float x5 = _get_graph_bar_x_pos(5) + _get_graph_bar_left_padding();
+            float x6 = _get_graph_bar_x_pos(6) + _get_graph_bar_left_padding();
+            float x7 = _get_graph_bar_x_pos(7) + _get_graph_bar_left_padding();
+            int halfWidth = GRAPH_WIDTH / 2;
+
+            if (SC_LIMIT_LINE_TOP <= y && y <= (getHeight() + SC_LIMIT_LINE_BOTTOM)) {
+                if (x1 - halfWidth < x && x < x1 + halfWidth) {
+                    return 1;
+                } if (x2 - halfWidth < x && x < x2 + halfWidth) {
+                    return 2;
+                } if (x3 - halfWidth < x && x < x3 + halfWidth) {
+                    return 3;
+                } if (x4 - halfWidth < x && x < x4 + halfWidth) {
+                    return 4;
+                } if (x5 - halfWidth < x && x < x5 + halfWidth) {
+                    return 5;
+                } if (x6 - halfWidth < x && x < x6 + halfWidth) {
+                    return 6;
+                } if (x7 - halfWidth < x && x < x7 + halfWidth) {
+                    return 7;
+                }
+            }
+            return -1;
+        };
+
+        Log.d("StatsGraphView", "graph ID -> " + isGraphClicked.apply(event.getX(), event.getY()));
+
+        return false;
     }
 
     @Override
@@ -90,9 +133,9 @@ public class StatsGraphView extends View {
         Paint paint = new Paint();
         paint.setColor(CONTEXT.getColor(color));
         canvas.drawRect(
-                x - 12,
+                x - (GRAPH_WIDTH / 2),
                 SC_LIMIT_LINE_TOP + top,
-                x + 12,
+                x + (GRAPH_WIDTH / 2),
                 getHeight() + SC_LIMIT_LINE_BOTTOM - bottom,
                 paint
         );

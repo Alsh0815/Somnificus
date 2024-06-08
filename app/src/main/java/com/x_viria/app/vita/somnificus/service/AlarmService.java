@@ -18,7 +18,7 @@ import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.WakeupActivity;
 import com.x_viria.app.vita.somnificus.core.AlarmSchedule;
 import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
-import com.x_viria.app.vita.somnificus.util.storage.SPKey;
+import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
 import org.json.JSONException;
@@ -71,7 +71,7 @@ public class AlarmService extends Service {
             }
         }
 
-        if (new SPStorage(this).getBool(SPKey.KEY__SETTINGS_ALARM_VIBRATE, SPDefault.SETTINGS_ALARM_VIBRATE)) {
+        if (new SPStorage(this).getBool(Config.KEY__SETTINGS_ALARM_VIBRATE, SPDefault.SETTINGS_ALARM_VIBRATE)) {
             VibrationEffect effect = VibrationEffect.createWaveform(
                     new long[] {1000, 1000},
                     new int[] {255, 0},

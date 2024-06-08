@@ -28,12 +28,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.core.AlarmInfo;
+import com.x_viria.app.vita.somnificus.core.AlarmSchedule;
 import com.x_viria.app.vita.somnificus.core.ui.StatsGraphView;
 import com.x_viria.app.vita.somnificus.util.usm.USM;
 import com.x_viria.app.vita.somnificus.util.usm.USMFormat;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -88,6 +94,25 @@ public class SleepFragment extends Fragment {
             statsGraphView.setVisibility(View.VISIBLE);
             TextView_NoPermission.setVisibility(View.GONE);
             refreshActivityList();
+        }
+
+        try {
+            AlarmSchedule alarmSchedule = new AlarmSchedule(requireContext());
+            AlarmInfo nextAlarm = alarmSchedule.getNextAlarm();
+            if (nextAlarm != null) {
+                if (nextAlarm.getNextTime() - System.currentTimeMillis() < 24 * 60 * 60 * 1000) {
+                    Date d = new Date();
+                    d.setTime(nextAlarm.getNextTime());
+                    SimpleDateFormat f = new SimpleDateFormat("HH:mm");
+                    TextView T1 = ROOT.findViewById(R.id.SleepFragment__Schedule_WakeUp_Time_T1);
+                    T1.setTextColor(getResources().getColor(R.color.white));
+                    TextView T2 = ROOT.findViewById(R.id.SleepFragment__Schedule_WakeUp_Time_T2);
+                    T2.setText(f.format(d));
+                    T2.setTextColor(getResources().getColor(R.color.white));
+                }
+            }
+        } catch (JSONException | IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

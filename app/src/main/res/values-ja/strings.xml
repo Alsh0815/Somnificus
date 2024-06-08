@@ -23,6 +23,11 @@
 
     <string name="activity_set_alarm__text_option_giv">徐々に音量を上げる</string>
 
+    <string name="activity_set_alarm__toast_alarm_was_set_for_1day">1日と%d時間%d分後にアラームをセットしました</string>
+    <string name="activity_set_alarm__toast_alarm_was_set_for_2day_more">%d日と%d時間%d分後にアラームをセットしました</string>
+    <string name="activity_set_alarm__toast_alarm_was_set_for_today_h">%d時間%d分後にアラームをセットしました</string>
+    <string name="activity_set_alarm__toast_alarm_was_set_for_today_m">%d分後にアラームをセットしました</string>
+
     <!-- SetNapActivity -->
     <string name="activity_set_nap__text_min">分</string>
 

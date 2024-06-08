@@ -65,6 +65,12 @@ public class AlarmFragment extends Fragment {
         boolean enable = objdata.getBoolean("enable");
         int id = object.getInt("schedule_id");
 
+        AlarmInfo alarmInfo = new AlarmInfo(
+                new AlarmTime(time.getInt(0), time.getInt(1), time.getInt(2)),
+                objdata.getInt("week"),
+                objdata.getBoolean("enable")
+        );
+
         TypedValue rippleEffect = new TypedValue();
         requireContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, rippleEffect, true);
 
@@ -93,7 +99,9 @@ public class AlarmFragment extends Fragment {
         if (objdata.getBoolean("enable")) sw.setChecked(true);
         sw.setOnCheckedChangeListener((buttonView, isChecked) -> {
             try {
-                alarmSchedule.setEnable(id, isChecked);
+                if (alarmSchedule.setEnable(id, isChecked) && isChecked) {
+                    alarmInfo.showNextTime(getContext());
+                }
                 alarmSchedule.sync();
                 refreshAlarmList();
             } catch (JSONException e) {
@@ -151,11 +159,6 @@ public class AlarmFragment extends Fragment {
         timeView.setTextSize(28);
         mainView.addView(timeView);
 
-        AlarmInfo alarmInfo = new AlarmInfo(
-                new AlarmTime(time.getInt(0), time.getInt(1), time.getInt(2)),
-                objdata.getInt("week"),
-                objdata.getBoolean("enable")
-        );
         String targetDay = alarmSchedule.getNextDate(alarmInfo);
 
         TextView dayView = new TextView(getContext());

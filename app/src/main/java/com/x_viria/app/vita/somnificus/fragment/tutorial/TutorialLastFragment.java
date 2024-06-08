@@ -16,10 +16,8 @@ import android.widget.Button;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.MainActivity;
-import com.x_viria.app.vita.somnificus.util.storage.SPKey;
+import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
-
-import java.util.Objects;
 
 public class TutorialLastFragment extends Fragment {
 
@@ -36,7 +34,7 @@ public class TutorialLastFragment extends Fragment {
 
         Button start_btn = root.findViewById(R.id.TutorialLastFragment__Btn_Start_MainActivity);
         start_btn.setOnClickListener(v -> {
-            (new SPStorage(requireContext())).setBool(SPKey.KEY__TUTORIAL_COMPLETED, true);
+            (new SPStorage(requireContext())).setBool(Config.KEY__TUTORIAL_COMPLETED, true);
             Intent intent = new Intent(getContext(), MainActivity.class);
             startActivity(intent);
         });

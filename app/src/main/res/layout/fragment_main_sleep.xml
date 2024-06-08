@@ -48,11 +48,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/SleepFragment__Schedule_Bed_Time_T1"
                             android:text="@string/fragment_main_sleep__text_bed_time"
                             android:textColor="@color/primaryInactiveColor" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/SleepFragment__Schedule_Bed_Time_T2"
                             android:text="22:00"
                             android:textColor="@color/primaryInactiveColor"
                             android:textSize="32dp" />
@@ -70,12 +72,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/SleepFragment__Schedule_WakeUp_Time_T1"
                             android:text="@string/fragment_main_sleep__text_wakeup_time"
                             android:textColor="@color/primaryInactiveColor" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="7:00"
+                            android:id="@+id/SleepFragment__Schedule_WakeUp_Time_T2"
+                            android:text="--:--"
                             android:textColor="@color/primaryInactiveColor"
                             android:textSize="32dp" />
                     </LinearLayout>

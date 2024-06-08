@@ -1,6 +1,6 @@
 package com.x_viria.app.vita.somnificus.util.storage;
 
-public class SPKey {
+public class Config {
 
     public static final String KEY__ALARM_SCHEDULE = "SOMNIFICUS_SHAREDP_KEY__ALARM_SCHEDULE";
     public static final String KEY__TUTORIAL_COMPLETED = "SOMNIFICUS_SHAREDP_KEY__TUTORIAL_COMPLETED";

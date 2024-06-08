@@ -1,6 +1,10 @@
 package com.x_viria.app.vita.somnificus.core;
 
+import android.content.Context;
 import android.icu.util.Calendar;
+import android.widget.Toast;
+
+import com.x_viria.app.vita.somnificus.R;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -74,6 +78,10 @@ public class AlarmInfo {
         return LABEL;
     }
 
+    public long getNextTime() {
+        return getCalendar().getTimeInMillis();
+    }
+
     public boolean getOption(String key) {
         return Boolean.TRUE.equals(OPTION.get(key));
     }
@@ -92,6 +100,55 @@ public class AlarmInfo {
 
     public void setTime(AlarmTime time) {
         this.TIME = time;
+    }
+
+    public void showNextTime(Context context) {
+        long rem = this.getNextTime() - System.currentTimeMillis();
+        int sec = (int) rem / 1000;
+        int day = sec / 3600 / 24;
+        int hour = sec / 3600 % 24;
+        int min = (sec % 3600) / 60;
+        if (1 < day) {
+            Toast.makeText(
+                    context,
+                    String.format(
+                            context.getString(R.string.activity_set_alarm__toast_alarm_was_set_for_2day_more),
+                            day,
+                            hour,
+                            min
+                    ),
+                    Toast.LENGTH_SHORT
+            ).show();
+        } else if (day == 1) {
+            Toast.makeText(
+                    context,
+                    String.format(
+                            context.getString(R.string.activity_set_alarm__toast_alarm_was_set_for_1day),
+                            hour,
+                            min
+                    ),
+                    Toast.LENGTH_SHORT
+            ).show();
+        } else if (day == 0 && 0 < hour) {
+            Toast.makeText(
+                    context,
+                    String.format(
+                            context.getString(R.string.activity_set_alarm__toast_alarm_was_set_for_today_h),
+                            hour,
+                            min
+                    ),
+                    Toast.LENGTH_SHORT
+            ).show();
+        } else {
+            Toast.makeText(
+                    context,
+                    String.format(
+                            context.getString(R.string.activity_set_alarm__toast_alarm_was_set_for_today_m),
+                            min
+                    ),
+                    Toast.LENGTH_SHORT
+            ).show();
+        }
     }
 
 }

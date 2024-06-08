@@ -17,7 +17,7 @@ import androidx.annotation.Nullable;
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.MainActivity;
 import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
-import com.x_viria.app.vita.somnificus.util.storage.SPKey;
+import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
 import java.util.Timer;
@@ -39,7 +39,7 @@ public class TimerService extends Service {
 
     private void onFinished() {
         IS_FINISHED = true;
-        if (new SPStorage(this).getBool(SPKey.KEY__SETTINGS_TIMER_VIBRATE, SPDefault.SETTINGS_TIMER_VIBRATE)) {
+        if (new SPStorage(this).getBool(Config.KEY__SETTINGS_TIMER_VIBRATE, SPDefault.SETTINGS_TIMER_VIBRATE)) {
             VibrationEffect effect = VibrationEffect.createWaveform(
                     new long[] {70, 200, 70, 1200},
                     new int[] {200, 0, 255, 0},
@@ -112,7 +112,7 @@ public class TimerService extends Service {
         };
         TIMER.scheduleAtFixedRate(timerTask, 0, 100);
 
-        new SPStorage(getApplicationContext()).setLong(SPKey.TMP__TIMER_VAL, target_time);
+        new SPStorage(getApplicationContext()).setLong(Config.TMP__TIMER_VAL, target_time);
 
         return START_STICKY;
     }

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.x_viria.app.vita.somnificus.R;
@@ -207,6 +208,7 @@ public class SetAlarmActivity extends AppCompatActivity {
                     alarmSchedule.setAlarmSchedule(alarmInfo);
                 }
                 alarmSchedule.sync();
+                alarmInfo.showNextTime(getBaseContext());
                 finish();
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);

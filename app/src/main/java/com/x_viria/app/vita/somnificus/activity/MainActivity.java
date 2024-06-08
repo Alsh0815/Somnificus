@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +21,8 @@ import com.x_viria.app.vita.somnificus.fragment.main.etc.EtcFragment;
 import com.x_viria.app.vita.somnificus.fragment.main.sleep.SleepFragment;
 import com.x_viria.app.vita.somnificus.fragment.main.stopwatch.StopwatchFragment;
 import com.x_viria.app.vita.somnificus.fragment.main.timer.TimerFragment;
-import com.x_viria.app.vita.somnificus.util.storage.SPKey;
+import com.x_viria.app.vita.somnificus.receiver.StartupReceiver;
+import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        getApplicationContext().registerReceiver(new StartupReceiver(), new IntentFilter(Intent.ACTION_LOCKED_BOOT_COMPLETED));
+
         int iA_fragment = getIntent().getIntExtra(PUT_EXTRA__SET_FRAGMENT, 0);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -92,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        if (!new SPStorage(this).getBool(SPKey.KEY__TUTORIAL_COMPLETED, false)) {
+        if (!new SPStorage(this).getBool(Config.KEY__TUTORIAL_COMPLETED, false)) {
             Intent intent = new Intent(this, TutorialActivity.class);
             startActivity(intent);
         }

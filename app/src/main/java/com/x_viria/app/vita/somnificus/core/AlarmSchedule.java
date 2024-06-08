@@ -8,7 +8,7 @@ import android.icu.util.Calendar;
 import android.util.Log;
 
 import com.x_viria.app.vita.somnificus.R;
-import com.x_viria.app.vita.somnificus.util.storage.SPKey;
+import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
 import org.json.JSONArray;
@@ -29,7 +29,7 @@ public class AlarmSchedule {
     public AlarmSchedule(Context context) throws JSONException, IOException {
         this.CONTEXT = context;
 
-        String data = new SPStorage(context).getString(SPKey.KEY__ALARM_SCHEDULE, "");
+        String data = new SPStorage(context).getString(Config.KEY__ALARM_SCHEDULE, "");
 
         if (data.equals("")) {
             data = "{'format_version': 0, 'schedule': []}";
@@ -92,7 +92,7 @@ public class AlarmSchedule {
 
     private void save() throws JSONException {
         String json = OBJECT.toString();
-        new SPStorage(CONTEXT).setString(SPKey.KEY__ALARM_SCHEDULE, json);
+        new SPStorage(CONTEXT).setString(Config.KEY__ALARM_SCHEDULE, json);
         sync();
     }
 
@@ -104,6 +104,37 @@ public class AlarmSchedule {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public AlarmInfo getNextAlarm() throws JSONException {
+        JSONArray list = getSchedule();
+        long m_ms = Long.MAX_VALUE;
+        AlarmInfo info = null;
+        for (int i = 0; i < list.length(); i++) {
+            JSONObject obj = list.getJSONObject(i);
+            JSONArray time = obj.getJSONArray("time");
+            AlarmInfo aInfo = null;
+            if (obj.getInt("type") == TYPE__ALARM) {
+                JSONObject objdata = obj.getJSONObject("data");
+                aInfo = new AlarmInfo(
+                        new AlarmTime(time.getInt(0), time.getInt(1), time.getInt(2)),
+                        objdata.getInt("week"),
+                        objdata.getBoolean("enable")
+                );
+            } else if (obj.getInt("type") == TYPE__NAP) {
+                aInfo = new AlarmInfo(
+                        new AlarmTime(time.getInt(0), time.getInt(1), time.getInt(2)),
+                        AlarmInfo.WEEK__ALL,
+                        true
+                );
+            }
+            long ms = aInfo.getNextTime();
+            if (ms < m_ms) {
+                m_ms = ms;
+                info = aInfo;
+            }
+        }
+        return info;
     }
 
     public String getNextDate(AlarmInfo alarmInfo) {
@@ -141,7 +172,8 @@ public class AlarmSchedule {
     }
 
     public JSONArray getSchedule() throws JSONException {
-        String data = new SPStorage(CONTEXT).getString(SPKey.KEY__ALARM_SCHEDULE, "");
+        String data = new SPStorage(CONTEXT).getString(Config.KEY__ALARM_SCHEDULE, "");
+        Log.d("AlarmSchedule", data);
         OBJECT = new JSONObject(data);
         return OBJECT.getJSONArray("schedule");
     }
@@ -189,7 +221,7 @@ public class AlarmSchedule {
         return tf;
     }
 
-    public void setEnable(int id, boolean enable) throws JSONException {
+    public boolean setEnable(int id, boolean enable) throws JSONException {
         JSONArray list = getSchedule();
         for (int i = 0; i < list.length(); i++) {
             JSONObject object = list.getJSONObject(i);
@@ -200,7 +232,9 @@ public class AlarmSchedule {
             object.put("data", objdata);
             OBJECT.getJSONArray("schedule").put(i, object);
             save();
+            return true;
         }
+        return false;
     }
 
     public void setAlarmSchedule(AlarmInfo info) throws JSONException {

@@ -62,6 +62,7 @@ public class SetNapActivity extends AppCompatActivity {
                 AlarmSchedule alarmSchedule = new AlarmSchedule(this);
                 alarmSchedule.setNapSchedule(alarmInfo);
                 alarmSchedule.sync();
+                alarmInfo.showNextTime(getBaseContext());
                 finish();
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);

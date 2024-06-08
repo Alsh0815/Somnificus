@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,14 +21,11 @@ import android.widget.TextView;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.service.TimerService;
-import com.x_viria.app.vita.somnificus.util.storage.SPKey;
+import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class TimerFragment extends Fragment {
 
@@ -65,7 +61,7 @@ public class TimerFragment extends Fragment {
         return v -> {
             LinearLayout NumPanel = ROOT.findViewById(R.id.TimerFragment__NumPanel);
             requireActivity().stopService(TIMER_INTENT);
-            long target_ms = (new SPStorage(requireContext()).getLong(SPKey.TMP__TIMER_VAL, 0));
+            long target_ms = (new SPStorage(requireContext()).getLong(Config.TMP__TIMER_VAL, 0));
             long now_ms = System.currentTimeMillis();
             long rem_ms = (target_ms - now_ms) > 0 ? target_ms - now_ms : 0;
             long sec = (rem_ms / 1000) % 60;
@@ -160,7 +156,7 @@ public class TimerFragment extends Fragment {
                 timer_h.setTextColor(getResources().getColor(R.color.primaryActiveColor));
             }
         } else {
-            long target_ms = (new SPStorage(requireContext()).getLong(SPKey.TMP__TIMER_VAL, 0));
+            long target_ms = (new SPStorage(requireContext()).getLong(Config.TMP__TIMER_VAL, 0));
             long now_ms = System.currentTimeMillis();
             long rem_ms = (target_ms - now_ms) > 0 ? target_ms - now_ms : 0;
             long sec = (rem_ms / 1000) % 60;

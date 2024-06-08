@@ -30,6 +30,11 @@
     <string name="activity_set_alarm__dialog_backkeydown_btn_neg" translatable="false">Cancel</string>
     <string name="activity_set_alarm__dialog_backkeydown_btn_pos" translatable="false">Don\'t save</string>
 
+    <string name="activity_set_alarm__toast_alarm_was_set_for_1day">Alarm set for 1 day %d hours and %d minutes later.</string>
+    <string name="activity_set_alarm__toast_alarm_was_set_for_2day_more">Alarm set for %d days %d hours and %d minutes later.</string>
+    <string name="activity_set_alarm__toast_alarm_was_set_for_today_h">Alarm set for %d hours and %d minutes later.</string>
+    <string name="activity_set_alarm__toast_alarm_was_set_for_today_m">Alarm set for %d minutes later.</string>
+
     <!-- SetNapActivity -->
     <string name="activity_set_nap__text_min">min</string>
 
