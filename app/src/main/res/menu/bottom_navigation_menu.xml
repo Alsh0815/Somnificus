@@ -16,10 +16,12 @@
         android:icon="@drawable/ic_menu_stopwatch"
         android:title="@string/activity_main__bnv_item_stopwatch" />
 
+    <!--
     <item
         android:id="@+id/menu_sleep"
         android:icon="@drawable/ic_menu_bed"
         android:title="@string/activity_main__bnv_item_sleep" />
+    -->
 
     <item
         android:id="@+id/menu_etc"

@@ -79,6 +79,9 @@
     <string name="fragment_main_sleep__text_activity">Activity</string>
     <string name="fragment_main_sleep__text_grant_a_permission">Grant a permissions.</string>
 
+    <string name="fragment_main_sleep__toast_no_alarm_24hours">There are no alarms scheduled to sound within 24 hours.</string>
+    <string name="fragment_main_sleep__toast_wakeup_time">Alarm is set for %s.</string>
+
     <!-- EtcFragment -->
     <string name="fragment_main_etc__text_whats_new">What\'s new</string>
     <string name="fragment_main_etc__text_settings">Settings</string>

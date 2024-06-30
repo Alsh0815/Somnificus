@@ -72,6 +72,9 @@
     <string name="fragment_main_sleep__text_activity">アクティビティー</string>
     <string name="fragment_main_sleep__text_grant_a_permission">権限を付与する</string>
 
+    <string name="fragment_main_sleep__toast_no_alarm_24hours">24時間以内に鳴るアラームはありません</string>
+    <string name="fragment_main_sleep__toast_wakeup_time">アラームは%sにセットされています</string>
+
     <!-- EtcFragment -->
     <string name="fragment_main_etc__text_whats_new">新機能</string>
     <string name="fragment_main_etc__text_settings">設定</string>

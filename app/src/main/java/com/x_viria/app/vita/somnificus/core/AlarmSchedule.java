@@ -106,7 +106,7 @@ public class AlarmSchedule {
         }
     }
 
-    public AlarmInfo getNextAlarm() throws JSONException {
+    public AlarmInfo getNextAlarm(boolean exclude_disable_alarms) throws JSONException {
         JSONArray list = getSchedule();
         long m_ms = Long.MAX_VALUE;
         AlarmInfo info = null;
@@ -116,6 +116,12 @@ public class AlarmSchedule {
             AlarmInfo aInfo = null;
             if (obj.getInt("type") == TYPE__ALARM) {
                 JSONObject objdata = obj.getJSONObject("data");
+                if (
+                        exclude_disable_alarms
+                        && !objdata.getBoolean("enable")
+                ) {
+                    continue;
+                }
                 aInfo = new AlarmInfo(
                         new AlarmTime(time.getInt(0), time.getInt(1), time.getInt(2)),
                         objdata.getInt("week"),

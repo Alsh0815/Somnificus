@@ -87,6 +87,7 @@ public class PlaySoundService extends Service {
                         for (int i = 0; i < n; i++) {
                             vol += limitVol / n;
                             Thread.sleep(fade_res);
+                            if (MEDIA_PLAYER == null) break;
                             MEDIA_PLAYER.setVolume(vol, vol);
                         }
                     } catch (InterruptedException e) {

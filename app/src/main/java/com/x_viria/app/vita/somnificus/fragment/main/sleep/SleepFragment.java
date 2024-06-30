@@ -50,6 +50,8 @@ public class SleepFragment extends Fragment {
 
     private View ROOT;
 
+    private long SET_WAKEUP_TIME = -1;
+
     public static SleepFragment newInstance() {
         return new SleepFragment();
     }
@@ -74,6 +76,9 @@ public class SleepFragment extends Fragment {
 
             USM cusm = new USM(requireContext());
             List<USMFormat> usmlist = cusm.getUsageStatsEvent(calendar.getTimeInMillis(), System.currentTimeMillis());
+            for (int i = 0; i < usmlist.size(); i++) {
+                Log.d("SleepFragment", usmlist.get(i).packageName + " - " + usmlist.get(i).timestamp + " - " + usmlist.get(i).eventType);
+            }
 
         }).start();
     }
@@ -96,9 +101,30 @@ public class SleepFragment extends Fragment {
             refreshActivityList();
         }
 
+        LinearLayout LL_BedTime = ROOT.findViewById(R.id.SleepFragment__Bed_Time);
+        LL_BedTime.setOnClickListener(v -> {
+            // P
+        });
+
+        LinearLayout LL_WakeUpTime = ROOT.findViewById(R.id.SleepFragment__WakeUp_Time);
+        LL_WakeUpTime.setOnClickListener(v -> {
+            if (SET_WAKEUP_TIME == -1) {
+                Toast.makeText(getContext(), getString(R.string.fragment_main_sleep__toast_no_alarm_24hours), Toast.LENGTH_SHORT).show();
+            } else {
+                Date d = new Date();
+                d.setTime(SET_WAKEUP_TIME);
+                SimpleDateFormat f = new SimpleDateFormat("HH:mm");
+                Toast.makeText(
+                        getContext(),
+                        String.format(getString(R.string.fragment_main_sleep__toast_wakeup_time), f.format(d)),
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
+        });
+
         try {
             AlarmSchedule alarmSchedule = new AlarmSchedule(requireContext());
-            AlarmInfo nextAlarm = alarmSchedule.getNextAlarm();
+            AlarmInfo nextAlarm = alarmSchedule.getNextAlarm(true);
             if (nextAlarm != null) {
                 if (nextAlarm.getNextTime() - System.currentTimeMillis() < 24 * 60 * 60 * 1000) {
                     Date d = new Date();
@@ -109,6 +135,7 @@ public class SleepFragment extends Fragment {
                     TextView T2 = ROOT.findViewById(R.id.SleepFragment__Schedule_WakeUp_Time_T2);
                     T2.setText(f.format(d));
                     T2.setTextColor(getResources().getColor(R.color.white));
+                    SET_WAKEUP_TIME = nextAlarm.getNextTime();
                 }
             }
         } catch (JSONException | IOException e) {
