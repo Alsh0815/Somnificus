@@ -85,11 +85,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.menu_stopwatch:
                     setFragment(new StopwatchFragment(), 3);
                     return true;
-                /*
                 case R.id.menu_sleep:
                     setFragment(new SleepFragment(), 4);
                     return true;
-                */
                 case R.id.menu_etc:
                     setFragment(new EtcFragment(), 5);
                     return true;

@@ -1,4 +1,4 @@
-package com.x_viria.app.vita.somnificus.core;
+package com.x_viria.app.vita.somnificus.core.alarm;
 
 public class AlarmTime {
 

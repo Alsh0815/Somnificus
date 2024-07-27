@@ -1,4 +1,4 @@
-package com.x_viria.app.vita.somnificus.core;
+package com.x_viria.app.vita.somnificus.core.alarm;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -8,6 +8,7 @@ import android.icu.util.Calendar;
 import android.util.Log;
 
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.receiver.AlarmBroadcastReceiver;
 import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 

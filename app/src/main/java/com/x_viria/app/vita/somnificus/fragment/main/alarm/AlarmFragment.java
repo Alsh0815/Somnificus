@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -30,9 +29,9 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.SetAlarmActivity;
 import com.x_viria.app.vita.somnificus.activity.SetNapActivity;
-import com.x_viria.app.vita.somnificus.core.AlarmInfo;
-import com.x_viria.app.vita.somnificus.core.AlarmSchedule;
-import com.x_viria.app.vita.somnificus.core.AlarmTime;
+import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
+import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
+import com.x_viria.app.vita.somnificus.core.alarm.AlarmTime;
 import com.x_viria.app.vita.somnificus.util.Unit;
 
 import org.json.JSONArray;

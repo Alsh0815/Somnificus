@@ -1,6 +1,11 @@
 <resources>
     <string name="common__text_yes">はい</string>
     <string name="common__text_no">いいえ</string>
+    <string name="common__text_save">保存</string>
+
+    <string name="common__text_yesterday">昨日</string>
+
+    <string name="common__text_date_format">yyyy/MM/dd</string>
 
     <!-- MainActivity -->
     <string name="activity_main__bnv_item_alarm">アラーム</string>
@@ -30,6 +35,15 @@
 
     <!-- SetNapActivity -->
     <string name="activity_set_nap__text_min">分</string>
+
+    <!-- SetSleepDurationActivity -->
+    <string name="activity_set_sleep_duration__title">睡眠データの追加</string>
+    <string name="activity_set_sleep_duration__text_how_was_wakeup">目覚めはいかがでしたか?</string>
+    <string name="activity_set_sleep_duration__text_good">良い</string>
+    <string name="activity_set_sleep_duration__text_bad">悪い</string>
+
+    <string name="activity_set_sleep_duration__dialog_invalid_time_title">無効な値</string>
+    <string name="activity_set_sleep_duration__dialog_invalid_time_msg">時間は1分～24時間の間で指定してください</string>
 
     <!-- SettingActivity -->
     <string name="activity_setting__title">設定</string>
@@ -69,8 +83,9 @@
     <string name="fragment_main_sleep__text_schedule">スケジュール</string>
     <string name="fragment_main_sleep__text_bed_time">就寝時間</string>
     <string name="fragment_main_sleep__text_wakeup_time">起床時間</string>
-    <string name="fragment_main_sleep__text_activity">アクティビティー</string>
-    <string name="fragment_main_sleep__text_grant_a_permission">権限を付与する</string>
+    <string name="fragment_main_sleep__text_activity">眠っていた時間</string>
+    <string name="fragment_main_sleep__text_sd_avg">平均</string>
+    <string name="fragment_main_sleep__text_sd_time">%d時間 %d分</string>
 
     <string name="fragment_main_sleep__toast_no_alarm_24hours">24時間以内に鳴るアラームはありません</string>
     <string name="fragment_main_sleep__toast_wakeup_time">アラームは%sにセットされています</string>

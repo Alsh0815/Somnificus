@@ -3,6 +3,9 @@
     <dimen name="activity_title_margin">16dp</dimen>
     <dimen name="activity_title_margin_left">8dp</dimen>
     <dimen name="activity_title_size">32dp</dimen>
+    <dimen name="activity_header_close_btn">36dp</dimen>
+    <dimen name="activity_header_close_btn_padding">4dp</dimen>
+    <dimen name="activity_header_text_btn">16dp</dimen>
     <dimen name="btn_timer_icon_size">20dp</dimen>
     <dimen name="btn_tutorial_icon_size">20dp</dimen>
     <dimen name="text_setting_item_msg">16dp</dimen>

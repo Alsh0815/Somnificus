@@ -8,13 +8,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.x_viria.app.vita.somnificus.R;
-import com.x_viria.app.vita.somnificus.core.AlarmInfo;
-import com.x_viria.app.vita.somnificus.core.AlarmSchedule;
-import com.x_viria.app.vita.somnificus.core.AlarmTime;
+import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
+import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
+import com.x_viria.app.vita.somnificus.core.alarm.AlarmTime;
 
 import org.json.JSONArray;
 import org.json.JSONException;

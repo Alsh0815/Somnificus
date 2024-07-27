@@ -3,6 +3,11 @@
 
     <string name="common__text_yes">Yes</string>
     <string name="common__text_no">No</string>
+    <string name="common__text_save">Save</string>
+
+    <string name="common__text_yesterday">Yesterday</string>
+
+    <string name="common__text_date_format">MM/dd/yyyy</string>
 
     <!-- MainActivity -->
     <string name="activity_main__bnv_item_alarm">Alarm</string>
@@ -37,6 +42,15 @@
 
     <!-- SetNapActivity -->
     <string name="activity_set_nap__text_min">min</string>
+
+    <!-- SetSleepDurationActivity -->
+    <string name="activity_set_sleep_duration__title">Add sleep data</string>
+    <string name="activity_set_sleep_duration__text_how_was_wakeup">How was your wake-up?</string>
+    <string name="activity_set_sleep_duration__text_good">Good</string>
+    <string name="activity_set_sleep_duration__text_bad">Bad</string>
+    
+    <string name="activity_set_sleep_duration__dialog_invalid_time_title">Invalid value</string>
+    <string name="activity_set_sleep_duration__dialog_invalid_time_msg">Duration must be between 1 minute and 24 hours</string>
 
     <!-- SettingActivity -->
     <string name="activity_setting__title">Settings</string>
@@ -76,8 +90,9 @@
     <string name="fragment_main_sleep__text_schedule">Schedule</string>
     <string name="fragment_main_sleep__text_bed_time">Bed Time</string>
     <string name="fragment_main_sleep__text_wakeup_time">Wake Up Time</string>
-    <string name="fragment_main_sleep__text_activity">Activity</string>
-    <string name="fragment_main_sleep__text_grant_a_permission">Grant a permissions.</string>
+    <string name="fragment_main_sleep__text_activity">Sleep duration</string>
+    <string name="fragment_main_sleep__text_sd_avg">Avg.</string>
+    <string name="fragment_main_sleep__text_sd_time">%dh %dmin</string>
 
     <string name="fragment_main_sleep__toast_no_alarm_24hours">There are no alarms scheduled to sound within 24 hours.</string>
     <string name="fragment_main_sleep__toast_wakeup_time">Alarm is set for %s.</string>
