@@ -157,10 +157,10 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
-                    <com.x_viria.app.vita.somnificus.core.ui.StatsGraphView
+                    <com.x_viria.app.vita.somnificus.core.ui.sdview.SDL7DGraphView
                         android:layout_width="match_parent"
                         android:layout_height="160dp"
-                        android:id="@+id/SleepFragment__StatsGraph" />
+                        android:id="@+id/SleepFragment__SDL7Graph" />
 
                 </LinearLayout>
 

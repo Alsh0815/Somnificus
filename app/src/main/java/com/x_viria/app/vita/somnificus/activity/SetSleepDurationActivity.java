@@ -22,13 +22,17 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.core.sda.SleepDurationInfo;
 import com.x_viria.app.vita.somnificus.core.sda.SleepDurationManager;
 
+import org.json.JSONException;
+
 import java.util.Calendar;
+import java.util.List;
 
 public class SetSleepDurationActivity extends AppCompatActivity {
 
-    private int EVAL_GOOD_OR_BAD = SleepDurationManager.Eval.NONE;
+    private int EVAL_GOOD_OR_BAD = SleepDurationInfo.Eval.NONE;
 
     private int[] SD_BT_DATE = new int[] {0, 0, 0};
     private int[] SD_BT_TIME = new int[] {23, 0};
@@ -53,15 +57,16 @@ public class SetSleepDurationActivity extends AppCompatActivity {
         TVBtn_Save_Btn.setOnClickListener(v -> {
             ProgressDialog dialog = new ProgressDialog(SetSleepDurationActivity.this);
             dialog.setCancelable(false);
+            dialog.setMessage(getString(R.string.common__text_saving));
             dialog.setIndeterminate(true);
             dialog.show();
 
             Handler handler = new Handler();
             handler.post(() -> {
                 Calendar C_BedTime = Calendar.getInstance();
-                C_BedTime.set(SD_BT_DATE[0], SD_BT_DATE[1], SD_BT_DATE[2], SD_BT_TIME[0], SD_BT_TIME[1]);
+                C_BedTime.set(SD_BT_DATE[0], SD_BT_DATE[1], SD_BT_DATE[2], SD_BT_TIME[0], SD_BT_TIME[1], 0);
                 Calendar C_WakeupTime = Calendar.getInstance();
-                C_WakeupTime.set(SD_WT_DATE[0], SD_WT_DATE[1], SD_WT_DATE[2], SD_WT_TIME[0], SD_WT_TIME[1]);
+                C_WakeupTime.set(SD_WT_DATE[0], SD_WT_DATE[1], SD_WT_DATE[2], SD_WT_TIME[0], SD_WT_TIME[1], 0);
 
                 if (
                         24 * 60 * 60 * 1000 < C_WakeupTime.getTimeInMillis() - C_BedTime.getTimeInMillis()
@@ -77,8 +82,26 @@ public class SetSleepDurationActivity extends AppCompatActivity {
                     return;
                 }
 
-                dialog.dismiss();
-                finish();
+                try {
+                    SleepDurationInfo sdi = new SleepDurationInfo(C_BedTime.getTimeInMillis(), C_WakeupTime.getTimeInMillis());
+                    sdi.EVAL__GOOD_OR_BAD = EVAL_GOOD_OR_BAD;
+                    SleepDurationManager sdm = new SleepDurationManager(SetSleepDurationActivity.this);
+                    if (sdm.add(sdi)) {
+                        dialog.dismiss();
+                        finish();
+                    } else {
+                        dialog.dismiss();
+                        new AlertDialog.Builder(SetSleepDurationActivity.this)
+                                .setCancelable(false)
+                                .setTitle(R.string.activity_set_sleep_duration__dialog_failed_save_title)
+                                .setMessage(R.string.activity_set_sleep_duration__dialog_failed_save_msg)
+                                .setPositiveButton("OK", null)
+                                .show();
+                        return;
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
             });
         });
 
@@ -117,14 +140,14 @@ public class SetSleepDurationActivity extends AppCompatActivity {
             TV_Good_Text.setTextColor(getColor(R.color.selectedColorOrange));
             IV_Bad_Icon.setImageTintList(ColorStateList.valueOf(getColor(R.color.primaryInactiveColor)));
             TV_Bad_Text.setTextColor(getColor(R.color.primaryInactiveColor));
-            EVAL_GOOD_OR_BAD = SleepDurationManager.Eval.GOOD;
+            EVAL_GOOD_OR_BAD = SleepDurationInfo.Eval.GOOD;
         });
         LLBtn_Bad.setOnClickListener(v -> {
             IV_Good_Icon.setImageTintList(ColorStateList.valueOf(getColor(R.color.primaryInactiveColor)));
             TV_Good_Text.setTextColor(getColor(R.color.primaryInactiveColor));
             IV_Bad_Icon.setImageTintList(ColorStateList.valueOf(getColor(R.color.selectedColorAqua)));
             TV_Bad_Text.setTextColor(getColor(R.color.selectedColorAqua));
-            EVAL_GOOD_OR_BAD = SleepDurationManager.Eval.BAD;
+            EVAL_GOOD_OR_BAD = SleepDurationInfo.Eval.BAD;
         });
     }
 

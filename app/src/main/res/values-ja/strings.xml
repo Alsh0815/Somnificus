@@ -2,6 +2,7 @@
     <string name="common__text_yes">はい</string>
     <string name="common__text_no">いいえ</string>
     <string name="common__text_save">保存</string>
+    <string name="common__text_saving">保存中</string>
 
     <string name="common__text_yesterday">昨日</string>
 
@@ -44,6 +45,8 @@
 
     <string name="activity_set_sleep_duration__dialog_invalid_time_title">無効な値</string>
     <string name="activity_set_sleep_duration__dialog_invalid_time_msg">時間は1分～24時間の間で指定してください</string>
+    <string name="activity_set_sleep_duration__dialog_failed_save_title">エラー</string>
+    <string name="activity_set_sleep_duration__dialog_failed_save_msg">睡眠データの保存に失敗しました</string>
 
     <!-- SettingActivity -->
     <string name="activity_setting__title">設定</string>

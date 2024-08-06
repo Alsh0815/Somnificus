@@ -4,6 +4,7 @@
     <string name="common__text_yes">Yes</string>
     <string name="common__text_no">No</string>
     <string name="common__text_save">Save</string>
+    <string name="common__text_saving">Saving...</string>
 
     <string name="common__text_yesterday">Yesterday</string>
 
@@ -51,6 +52,8 @@
     
     <string name="activity_set_sleep_duration__dialog_invalid_time_title">Invalid value</string>
     <string name="activity_set_sleep_duration__dialog_invalid_time_msg">Duration must be between 1 minute and 24 hours</string>
+    <string name="activity_set_sleep_duration__dialog_failed_save_title">Error</string>
+    <string name="activity_set_sleep_duration__dialog_failed_save_msg">Failed to save sleep data.</string>
 
     <!-- SettingActivity -->
     <string name="activity_setting__title">Settings</string>

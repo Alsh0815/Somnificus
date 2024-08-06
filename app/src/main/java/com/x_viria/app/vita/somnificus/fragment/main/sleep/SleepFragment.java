@@ -22,7 +22,7 @@ import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.SetSleepDurationActivity;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
-import com.x_viria.app.vita.somnificus.core.ui.StatsGraphView;
+import com.x_viria.app.vita.somnificus.core.ui.sdview.SDL7DGraphView;
 
 import org.json.JSONException;
 
@@ -42,7 +42,7 @@ public class SleepFragment extends Fragment {
     }
 
     private void refreshUI() {
-        StatsGraphView statsGraphView = ROOT.findViewById(R.id.SleepFragment__StatsGraph);
+        SDL7DGraphView statsGraphView = ROOT.findViewById(R.id.SleepFragment__SDL7Graph);
         statsGraphView.setVisibility(View.VISIBLE);
 
         LinearLayout LL_BedTime = ROOT.findViewById(R.id.SleepFragment__Bed_Time);
