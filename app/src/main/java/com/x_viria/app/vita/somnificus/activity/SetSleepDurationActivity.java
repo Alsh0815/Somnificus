@@ -86,19 +86,9 @@ public class SetSleepDurationActivity extends AppCompatActivity {
                     SleepDurationInfo sdi = new SleepDurationInfo(C_BedTime.getTimeInMillis(), C_WakeupTime.getTimeInMillis());
                     sdi.EVAL__GOOD_OR_BAD = EVAL_GOOD_OR_BAD;
                     SleepDurationManager sdm = new SleepDurationManager(SetSleepDurationActivity.this);
-                    if (sdm.add(sdi)) {
-                        dialog.dismiss();
-                        finish();
-                    } else {
-                        dialog.dismiss();
-                        new AlertDialog.Builder(SetSleepDurationActivity.this)
-                                .setCancelable(false)
-                                .setTitle(R.string.activity_set_sleep_duration__dialog_failed_save_title)
-                                .setMessage(R.string.activity_set_sleep_duration__dialog_failed_save_msg)
-                                .setPositiveButton("OK", null)
-                                .show();
-                        return;
-                    }
+                    sdm.add(sdi);
+                    dialog.dismiss();
+                    finish();
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }

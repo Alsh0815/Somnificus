@@ -87,6 +87,7 @@
     <string name="fragment_main_sleep__text_bed_time">就寝時間</string>
     <string name="fragment_main_sleep__text_wakeup_time">起床時間</string>
     <string name="fragment_main_sleep__text_activity">眠っていた時間</string>
+    <string name="fragment_main_sleep__text_sd_last_7days">過去7日間</string>
     <string name="fragment_main_sleep__text_sd_avg">平均</string>
     <string name="fragment_main_sleep__text_sd_time">%d時間 %d分</string>
 

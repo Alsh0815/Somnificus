@@ -28,7 +28,7 @@ public class SleepDurationManager {
         Log.d("SleepDurationManager", DATA.toString());
     }
 
-    public boolean add(SleepDurationInfo sdInfo) throws JSONException {
+    public void add(SleepDurationInfo sdInfo) throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("id", UUIDv7.randomUUID().toString());
         JSONObject time = new JSONObject();
@@ -41,7 +41,6 @@ public class SleepDurationManager {
         DATA.getJSONArray("data").put(obj);
         save();
         sync();
-        return false;
     }
 
     private List<SleepDurationInfo> _get(Calendar begin, Calendar end) throws JSONException {

@@ -94,6 +94,7 @@
     <string name="fragment_main_sleep__text_bed_time">Bed Time</string>
     <string name="fragment_main_sleep__text_wakeup_time">Wake Up Time</string>
     <string name="fragment_main_sleep__text_activity">Sleep duration</string>
+    <string name="fragment_main_sleep__text_sd_last_7days">Last 7 days</string>
     <string name="fragment_main_sleep__text_sd_avg">Avg.</string>
     <string name="fragment_main_sleep__text_sd_time">%dh %dmin</string>
 

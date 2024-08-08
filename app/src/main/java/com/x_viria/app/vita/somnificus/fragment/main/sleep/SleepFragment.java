@@ -4,12 +4,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +24,16 @@ import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.SetSleepDurationActivity;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
+import com.x_viria.app.vita.somnificus.core.sda.SleepDurationInfo;
+import com.x_viria.app.vita.somnificus.core.sda.SleepDurationManager;
 import com.x_viria.app.vita.somnificus.core.ui.sdview.SDL7DGraphView;
 
 import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SleepFragment extends Fragment {
 
@@ -41,10 +47,13 @@ public class SleepFragment extends Fragment {
         return new SleepFragment();
     }
 
-    private void refreshUI() {
-        SDL7DGraphView statsGraphView = ROOT.findViewById(R.id.SleepFragment__SDL7Graph);
-        statsGraphView.setVisibility(View.VISIBLE);
+    private long getDaysDiff(Calendar targetDate) {
+        Calendar today = Calendar.getInstance();
+        long diffInMillis = today.getTimeInMillis() - targetDate.getTimeInMillis();
+        return TimeUnit.MILLISECONDS.toDays(diffInMillis);
+    }
 
+    private void refreshUI() {
         LinearLayout LL_BedTime = ROOT.findViewById(R.id.SleepFragment__Bed_Time);
         LL_BedTime.setOnClickListener(v -> {
             // P
@@ -85,6 +94,45 @@ public class SleepFragment extends Fragment {
         } catch (JSONException | IOException e) {
             throw new RuntimeException(e);
         }
+
+        try {
+            TextView TV__SD_Avg_Time = ROOT.findViewById(R.id.SleepFragment__SD_Avg_Time);
+            SleepDurationManager sdm = new SleepDurationManager(getContext());
+            List<SleepDurationInfo> sdlist = sdm.get(SleepDurationManager.Period.LAST_7DAYS);
+
+            long[] duration = new long[7];
+            for (SleepDurationInfo sdi : sdlist) {
+                Calendar c = Calendar.getInstance();
+                c.setTimeInMillis(sdi.getWakeupTime());
+                long d = sdi.getWakeupTime() - sdi.getBedTime();
+                int diff = (int) getDaysDiff(c);
+                duration[6 - diff] += d;
+            }
+
+            int n = 0;
+            for (long d : duration) {
+                if (0 < d) n++;
+            }
+
+            long totalTime = 0;
+            for (SleepDurationInfo sdi : sdlist) {
+                totalTime += sdi.getWakeupTime() - sdi.getBedTime();
+            }
+
+            if (n == 0) n = 1;
+            long avgTime = totalTime / n;
+            long sec = avgTime / 1000;
+            long hour = sec / 3600;
+            long min = (sec % 3600) / 60;
+
+            TV__SD_Avg_Time.setText(String.format(getString(R.string.fragment_main_sleep__text_sd_time), hour, min));
+
+            SDL7DGraphView graph = ROOT.findViewById(R.id.SleepFragment__SDL7Graph);
+            graph.set(duration);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
