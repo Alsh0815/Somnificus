@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.SetSleepDurationActivity;
+import com.x_viria.app.vita.somnificus.activity.SleepDurationActivity;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
 import com.x_viria.app.vita.somnificus.core.sda.SleepDurationInfo;
@@ -139,6 +140,14 @@ public class SleepFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         ROOT = inflater.inflate(R.layout.fragment_main_sleep, container, false);
+
+        /*
+        LinearLayout LLBtn_SD = ROOT.findViewById(R.id.SleepFragment__SD_Card);
+        LLBtn_SD.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), SleepDurationActivity.class);
+            startActivity(intent);
+        });
+         */
 
         ImageView IVBtn_Add_SD = ROOT.findViewById(R.id.SleepFragment__SD_Add);
         IVBtn_Add_SD.setOnClickListener(v -> {

@@ -92,8 +92,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/SleepFragment__SD_Card"
                 android:background="@drawable/bg_sleep_fragment_item_card"
-                android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_margin="16dp"
                 android:padding="16dp"

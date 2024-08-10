@@ -3,9 +3,5 @@
     <string name="whats_new_features">新機能</string>
     <string name="whats_new_fixed">修正</string>
 
-    <string name="whats_new_text_ft1">アラーム設定画面に「徐々に音量を上げる」オプションを追加しました。</string>
-    <string name="whats_new_text_ft2">メニューに「新機能」を追加しました。</string>
-    <string name="whats_new_text_ft3">日本語でご利用いただけるようになりました。</string>
-
-    <string name="whats_new_text_fx1">アラームを停止した際、次のアラームが自動で設定されないことがある問題を修正しました。</string>
+    <string name="whats_new_text_ft1">睡眠時間を記録できる機能を追加しました</string>
 </resources>

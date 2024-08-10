@@ -49,7 +49,7 @@
     <string name="activity_set_sleep_duration__text_how_was_wakeup">How was your wake-up?</string>
     <string name="activity_set_sleep_duration__text_good">Good</string>
     <string name="activity_set_sleep_duration__text_bad">Bad</string>
-    
+
     <string name="activity_set_sleep_duration__dialog_invalid_time_title">Invalid value</string>
     <string name="activity_set_sleep_duration__dialog_invalid_time_msg">Duration must be between 1 minute and 24 hours</string>
     <string name="activity_set_sleep_duration__dialog_failed_save_title">Error</string>
