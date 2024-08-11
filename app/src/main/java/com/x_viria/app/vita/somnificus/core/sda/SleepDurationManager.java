@@ -87,6 +87,9 @@ public class SleepDurationManager {
         Calendar begin = Calendar.getInstance();
         Calendar end = Calendar.getInstance();
         switch (period) {
+            case Period.ALL:
+                begin.setTimeInMillis(0);
+                break;
             case Period.LAST_7DAYS:
                 begin.add(Calendar.DAY_OF_MONTH, -7);
                 break;
@@ -142,6 +145,7 @@ public class SleepDurationManager {
         public static final int MONTH = 0x0002;
         public static final int YEAR = 0x0003;
 
+        public static final int ALL = 0x001F;
         public static final int LAST_7DAYS = 0x0010;
         public static final int LAST_30DAYS = 0x0011;
 

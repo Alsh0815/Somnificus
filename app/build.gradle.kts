@@ -13,15 +13,16 @@ android {
         applicationId = "com.x_viria.app.vita.somnificus"
         minSdk = 27
         targetSdk = 34
-        versionCode = 2
-        versionName = "1.1.0.15.R"
+        versionCode = 4
+        versionName = "1.1.1.9.R"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }

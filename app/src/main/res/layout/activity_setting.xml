@@ -40,7 +40,7 @@
                 android:id="@+id/SettingActivity__AlarmVibrate_L"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -75,10 +75,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:id="@+id/SettingActivity__TimerSound_L"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="4dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_setting__text_timer_sound"
+                    android:textSize="@dimen/text_setting_item_msg"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end">
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/SettingActivity__TimerSound_SW" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:id="@+id/SettingActivity__TimerVibrate_L"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -116,7 +141,10 @@
                 android:id="@+id/SettingActivity__Version_L"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
-                android:padding="8dp"
+                android:paddingTop="12dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="12dp"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"

@@ -36,6 +36,12 @@ public class SettingActivity extends AppCompatActivity {
         AlarmVibrate_SW.setChecked(sps.getBool(Config.KEY__SETTINGS_ALARM_VIBRATE, SPDefault.SETTINGS_ALARM_VIBRATE));
         AlarmVibrate_SW.setOnCheckedChangeListener((buttonView, isChecked) -> sps.setBool(Config.KEY__SETTINGS_ALARM_VIBRATE, isChecked));
 
+        LinearLayout TimerSound_L = findViewById(R.id.SettingActivity__TimerSound_L);
+        SwitchMaterial TimerSound_SW = findViewById(R.id.SettingActivity__TimerSound_SW);
+        TimerSound_L.setOnClickListener(v -> TimerSound_SW.setChecked(!TimerSound_SW.isChecked()));
+        TimerSound_SW.setChecked(sps.getBool(Config.KEY__SETTINGS_TIMER_SOUND, SPDefault.SETTINGS_TIMER_SOUND));
+        TimerSound_SW.setOnCheckedChangeListener((buttonView, isChecked) -> sps.setBool(Config.KEY__SETTINGS_TIMER_SOUND, isChecked));
+
         LinearLayout TimerVibrate_L = findViewById(R.id.SettingActivity__TimerVibrate_L);
         SwitchMaterial TimerVibrate_SW = findViewById(R.id.SettingActivity__TimerVibrate_SW);
         TimerVibrate_L.setOnClickListener(v -> TimerVibrate_SW.setChecked(!TimerVibrate_SW.isChecked()));

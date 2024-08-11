@@ -29,6 +29,9 @@
         android:theme="@style/Theme.Somnificus"
         tools:targetApi="31">
         <activity
+            android:name=".activity.LicenseActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.SleepDurationActivity"
             android:exported="false" />
         <activity

@@ -7,6 +7,10 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.pm.ServiceInfo;
+import android.content.res.AssetFileDescriptor;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.VibrationEffect;
@@ -20,6 +24,7 @@ import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
 import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -28,6 +33,7 @@ public class TimerService extends Service {
     public static final String PUT_EXTRA__TIME_MS = "time_ms";
 
     private boolean IS_FINISHED = false;
+    private MediaPlayer MEDIA_PLAYER = null;
     private Timer TIMER = new Timer();
     private Vibrator VIBRATOR = null;
 
@@ -47,6 +53,20 @@ public class TimerService extends Service {
             );
             VIBRATOR = (Vibrator) getSystemService(VIBRATOR_SERVICE);
             VIBRATOR.vibrate(effect);
+        }
+        if (new SPStorage(this).getBool(Config.KEY__SETTINGS_TIMER_SOUND, SPDefault.SETTINGS_TIMER_SOUND)) {
+            try {
+                MEDIA_PLAYER = new MediaPlayer();
+                AssetFileDescriptor afd = getAssets().openFd("sounds/timer_01.mp3");
+                MEDIA_PLAYER.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                MEDIA_PLAYER.setAudioStreamType(AudioManager.STREAM_ALARM);
+                MEDIA_PLAYER.setLooping(true);
+                afd.close();
+                MEDIA_PLAYER.prepare();
+                MEDIA_PLAYER.start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -121,7 +141,14 @@ public class TimerService extends Service {
     public void onDestroy() {
         super.onDestroy();
         TIMER.cancel();
-        if (VIBRATOR != null) VIBRATOR.cancel();
+        if (MEDIA_PLAYER != null) {
+            MEDIA_PLAYER.stop();
+            MEDIA_PLAYER = null;
+        }
+        if (VIBRATOR != null) {
+            VIBRATOR.cancel();
+            VIBRATOR = null;
+        }
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.cancel(ServiceId.SERVICE_ID__TIMER_SERVICE);
     }

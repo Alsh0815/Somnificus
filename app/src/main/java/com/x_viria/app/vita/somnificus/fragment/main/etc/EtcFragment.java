@@ -21,6 +21,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.activity.LicenseActivity;
 import com.x_viria.app.vita.somnificus.activity.SettingActivity;
 import com.x_viria.app.vita.somnificus.activity.WhatsNewActivity;
 
@@ -53,6 +54,12 @@ public class EtcFragment extends Fragment {
         LinearLayout settings_btn = root.findViewById(R.id.EtcFragment__Btn_Settings);
         settings_btn.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), SettingActivity.class);
+            startActivity(intent);
+        });
+
+        LinearLayout license_btn = root.findViewById(R.id.EtcFragment__Btn_License);
+        license_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), LicenseActivity.class);
             startActivity(intent);
         });
 

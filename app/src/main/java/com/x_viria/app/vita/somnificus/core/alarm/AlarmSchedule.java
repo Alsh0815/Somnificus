@@ -325,7 +325,6 @@ public class AlarmSchedule {
                 );
                 AlarmManager.AlarmClockInfo acInfo = new AlarmManager.AlarmClockInfo(alarmInfo.getCalendar().getTimeInMillis(), null);
                 alarmManager.setAlarmClock(acInfo, pending);
-            } else {
             }
         }
     }

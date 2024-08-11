@@ -3,5 +3,12 @@
     <string name="whats_new_features">New Features</string>
     <string name="whats_new_fixed">Fixed</string>
 
-    <string name="whats_new_text_ft1">Added a function to record sleep time.</string>
+    <string name="whats_new_text_ver_1_1_1" translatable="false">ver.1.1.1.x</string>
+    <string name="whats_new_text_ft_1_1_1_a">You can now check the list of recorded sleep times.</string>
+    <string name="whats_new_text_ch_1_1_1_a">Optimized resources</string>
+    <string name="whats_new_text_fx_1_1_1_a">Fixed the timer sound to play correctly.</string>
+    <string name="whats_new_text_fx_1_1_1_b">Fixed minor bugs.</string>
+
+    <string name="whats_new_text_ver_1_1_0" translatable="false">ver.1.1.0.x</string>
+    <string name="whats_new_text_ft_1_1_0_a">Added a function to record sleep time.</string>
 </resources>

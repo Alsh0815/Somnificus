@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -39,6 +40,8 @@ public class AlarmService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
+
+        Log.d("onStartCommand", "called");
 
         String channel_id = "somnificus_notification__alarm";
         NotificationChannel channel = new NotificationChannel(

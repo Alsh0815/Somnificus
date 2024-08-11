@@ -141,13 +141,11 @@ public class SleepFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         ROOT = inflater.inflate(R.layout.fragment_main_sleep, container, false);
 
-        /*
         LinearLayout LLBtn_SD = ROOT.findViewById(R.id.SleepFragment__SD_Card);
         LLBtn_SD.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), SleepDurationActivity.class);
             startActivity(intent);
         });
-         */
 
         ImageView IVBtn_Add_SD = ROOT.findViewById(R.id.SleepFragment__SD_Add);
         IVBtn_Add_SD.setOnClickListener(v -> {

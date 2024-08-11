@@ -8,6 +8,9 @@
 
     <string name="common__text_date_format">yyyy/MM/dd</string>
 
+    <!-- LicenseActivity -->
+    <string name="activity_license__title">ライセンス</string>
+
     <!-- MainActivity -->
     <string name="activity_main__bnv_item_alarm">アラーム</string>
     <string name="activity_main__bnv_item_timer">タイマー</string>
@@ -51,15 +54,20 @@
     <!-- SettingActivity -->
     <string name="activity_setting__title">設定</string>
     <string name="activity_setting__text_alarm_vibrate">アラームのバイブレーション</string>
+    <string name="activity_setting__text_timer_sound">タイマー音</string>
     <string name="activity_setting__text_timer_vibrate">タイマーのバイブレーション</string>
     <string name="activity_setting__item_others">その他</string>
     <string name="activity_setting__text_version">バージョン</string>
+
+    <!-- SleepDurationActivity -->
+    <string name="activity_sleep_duration__date_format">yyyy年MM月dd日 EEEE</string>
 
     <!-- WakeupActivity -->
     <string name="activity_wakeup__text_stop">ストップ</string>
 
     <!-- WhatsNewActivity -->
     <string name="activity_whats_new__title">新機能</string>
+    <string name="activity_whats_new__pre_versions">過去のバージョン</string>
 
     <!-- AlarmFragment -->
     <string name="fragment_main_alarm__fab_dtext_alarm">アラーム</string>
@@ -97,6 +105,7 @@
     <!-- EtcFragment -->
     <string name="fragment_main_etc__text_whats_new">新機能</string>
     <string name="fragment_main_etc__text_settings">設定</string>
+    <string name="fragment_main_etc__text_license">ライセンス</string>
 
     <!-- TutorialFragment 1 -->
     <string name="fragment_tutorial_1__text_1">ダウンロードしていただきありがとうございます。\nSomnificusはあなたの睡眠の質を向上させるためのサポートをいたします。</string>
