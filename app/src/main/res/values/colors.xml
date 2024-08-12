@@ -22,6 +22,8 @@
     <color name="primaryTextColor">#FFB0B0B0</color>
     <color name="secondaryTextColor">#FF909090</color>
 
+    <color name="primaryHorizontalBar">@color/tertiaryBackgroundColor</color>
+
     <color name="textButtonColor">#8BB5FF</color>
 
     <color name="selectedColorOrange">#FFFF9030</color>

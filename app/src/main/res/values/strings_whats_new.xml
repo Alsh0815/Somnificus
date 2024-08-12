@@ -3,6 +3,10 @@
     <string name="whats_new_features">New Features</string>
     <string name="whats_new_fixed">Fixed</string>
 
+    <string name="whats_new_text_ver_1_1_2" translatable="false">ver.1.1.2.x</string>
+    <string name="whats_new_text_fx_1_1_2_a">Fixed an issue where the app was not working properly on some devices.</string>
+    <string name="whats_new_text_fx_1_1_2_b">Fixed some designs.</string>
+
     <string name="whats_new_text_ver_1_1_1" translatable="false">ver.1.1.1.x</string>
     <string name="whats_new_text_ft_1_1_1_a">You can now check the list of recorded sleep times.</string>
     <string name="whats_new_text_ch_1_1_1_a">Optimized resources</string>

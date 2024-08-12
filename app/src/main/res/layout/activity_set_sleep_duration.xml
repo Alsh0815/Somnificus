@@ -58,7 +58,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="?android:attr/listDivider"
+            android:background="@color/primaryHorizontalBar"
             android:layout_marginBottom="8dp"/>
 
         <LinearLayout
@@ -138,7 +138,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="?android:attr/listDivider"
+            android:background="@color/primaryHorizontalBar"
             android:layout_marginTop="8dp"/>
 
         <TextView

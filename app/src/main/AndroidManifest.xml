@@ -24,6 +24,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
+        android:name=".Somnificus"
         android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Somnificus"
@@ -85,7 +86,12 @@
 
         <receiver
             android:name=".receiver.AlarmBroadcastReceiver"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android:intent.action.SCHEDULE_EXACT_ALARM" />
+            </intent-filter>
+        </receiver>
+
         <receiver
             android:name=".receiver.StartupReceiver"
             android:enabled="true"

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primaryBackgroundColor"
     tools:context=".activity.SettingActivity">
 
     <ScrollView
@@ -61,7 +62,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="?android:attr/listDivider" />
+                android:background="@color/primaryHorizontalBar" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,7 +125,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="?android:attr/listDivider" />
+                android:background="@color/primaryHorizontalBar" />
 
             <TextView
                 android:layout_width="wrap_content"
