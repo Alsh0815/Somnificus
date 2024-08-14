@@ -1,13 +1,19 @@
 package com.x_viria.app.vita.somnificus.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -102,6 +109,20 @@ public class MainActivity extends AppCompatActivity {
         if (!new SPStorage(this).getBool(Config.KEY__TUTORIAL_COMPLETED, false)) {
             Intent intent = new Intent(this, TutorialActivity.class);
             startActivity(intent);
+        } else {
+            if (
+                    android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU
+                            && ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+            ) {
+                String[] permissions = {
+                        Manifest.permission.POST_NOTIFICATIONS
+                };
+                ActivityCompat.requestPermissions(this, permissions, 0xF00);
+            }
+            if (!Settings.canDrawOverlays(this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, 0xfff);
+            }
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -123,6 +144,19 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 500);
 
+    }
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0xF00) {
+            for (int i = 0; i < permissions.length; i++) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Granted Permission: " + permissions[i], Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Rejected Permission: " + permissions[i], Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 
 }

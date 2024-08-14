@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.x_viria.app.vita.somnificus.R;
@@ -181,7 +185,7 @@ public class AlarmFragment extends Fragment {
                 Unit.dp2px(requireContext(), 48)
         ));
         deleteBtn.setOnClickListener(v -> {
-            new AlertDialog.Builder(requireContext())
+            new AlertDialog.Builder(requireContext(), R.style.SomnificusAlertDialogTheme)
                     .setCancelable(false)
                     .setTitle(R.string.fragment_main_alarm__dialog_del_alarm_title)
                     .setMessage(R.string.fragment_main_alarm__dialog_del_alarm_msg)
@@ -244,12 +248,12 @@ public class AlarmFragment extends Fragment {
                 ViewGroup.LayoutParams.WRAP_CONTENT
         ));
         parent.setOnClickListener(v -> {
-            new AlertDialog.Builder(requireContext())
+            new AlertDialog.Builder(requireContext(), R.style.SomnificusAlertDialogTheme)
                     .setCancelable(false)
                     .setTitle(R.string.fragment_main_alarm__dialog_del_alarm_title)
                     .setMessage(R.string.fragment_main_alarm__dialog_del_alarm_msg)
                     .setNegativeButton(R.string.common__text_no, null)
-                    .setPositiveButton(R.string.common__text_yes, (DialogInterface.OnClickListener) (dialog, which) -> delNap.run())
+                    .setPositiveButton(R.string.common__text_yes, (dialog, which) -> delNap.run())
                     .show();
         });
         parent.setOrientation(LinearLayout.VERTICAL);
@@ -355,11 +359,21 @@ public class AlarmFragment extends Fragment {
                     scheduleView.addView(view);
                 }
             }
+            int num_of_alarm = 0;
             for (int k = 0; k < alarmList.size(); k++) {
                 JSONObject object = alarmList.get(k);
                 if (object.getInt("type") == AlarmSchedule.TYPE__ALARM) {
+                    num_of_alarm++;
                     LinearLayout view = createAlarmView(object);
                     scheduleView.addView(view);
+                }
+                if (num_of_alarm % 5 == 1) {
+                    AdRequest adRequest = new AdRequest.Builder().build();
+                    AdView adView = new AdView(requireContext());
+                    adView.setAdSize(AdSize.BANNER);
+                    adView.setAdUnitId("ca-app-pub-6133161179615824/4921675029");
+                    adView.loadAd(adRequest);
+                    scheduleView.addView(adView);
                 }
             }
             alarmSchedule.sync();

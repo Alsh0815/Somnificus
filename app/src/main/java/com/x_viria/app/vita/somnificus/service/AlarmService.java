@@ -1,7 +1,6 @@
 package com.x_viria.app.vita.somnificus.service;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -18,6 +17,7 @@ import androidx.annotation.Nullable;
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.WakeupActivity;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
+import com.x_viria.app.vita.somnificus.util.notification.Channel;
 import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
 import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
@@ -43,15 +43,6 @@ public class AlarmService extends Service {
 
         Log.d("onStartCommand", "called");
 
-        String channel_id = "somnificus_notification__alarm";
-        NotificationChannel channel = new NotificationChannel(
-                channel_id,
-                "Alarm",
-                NotificationManager.IMPORTANCE_HIGH
-        );
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.createNotificationChannel(channel);
-
         int id = intent.getIntExtra("id", -1);
 
         Intent intent2 = new Intent(this, WakeupActivity.class);
@@ -59,9 +50,9 @@ public class AlarmService extends Service {
         intent2.putExtra("id", id);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0xFF, intent2, PendingIntent.FLAG_IMMUTABLE);
 
-        Notification.Builder builder = new Notification.Builder(this, channel_id);
+        Notification.Builder builder = new Notification.Builder(this, Channel.ID.Alarm);
         builder.setContentTitle("Somnificus");
-        builder.setContentText("Alarm");
+        builder.setContentText(getString(R.string.notification_channel_name__alarm));
         builder.setContentIntent(pendingIntent);
         builder.setSmallIcon(R.drawable.ic_menu_alarm);
         Notification notification = builder.build();

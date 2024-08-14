@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.core.Remind;
+import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
 import com.x_viria.app.vita.somnificus.service.AlarmService;
 import com.x_viria.app.vita.somnificus.service.PlaySoundService;
@@ -45,10 +48,17 @@ public class WakeupActivity extends AppCompatActivity {
                 AlarmSchedule alarmSchedule = new AlarmSchedule(WakeupActivity.this);
                 alarmSchedule.sync();
                 JSONObject object = alarmSchedule.getSchedule(id);
-                if (object.getInt("type") == AlarmSchedule.TYPE__NAP) {
+                if (object.getInt("type") == AlarmSchedule.TYPE__ALARM) {
+                    alarmSchedule.setEnable(id, false);
+                } else if (object.getInt("type") == AlarmSchedule.TYPE__NAP) {
                     alarmSchedule.removeSchedule(id);
                 }
                 alarmSchedule.sync();
+
+                long untilNext = alarmSchedule.getTimeUntilNext();
+                if (30 * 60 * 1000 <= untilNext) {
+                    Remind.SaveSleepDataNotification(this);
+                }
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);
             }

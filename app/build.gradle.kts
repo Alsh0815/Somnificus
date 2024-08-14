@@ -13,8 +13,8 @@ android {
         applicationId = "com.x_viria.app.vita.somnificus"
         minSdk = 27
         targetSdk = 34
-        versionCode = 4
-        versionName = "1.1.2.6.R"
+        versionCode = 5
+        versionName = "1.1.2.16.R"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }

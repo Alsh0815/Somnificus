@@ -8,6 +8,13 @@
 
     <string name="common__text_date_format">yyyy/MM/dd</string>
 
+    <!-- Notification -->
+    <string name="notification_channel_name__alarm">アラーム</string>
+    <string name="notification_channel_name__remind">リマインド</string>
+
+    <string name="notification_remind__save_sd_title">睡眠時間を記録しましょう</string>
+    <string name="notification_remind__save_sd_msg">よく眠れましたか?\n睡眠時間を記録して睡眠の質をチェックしましょう</string>
+
     <!-- LicenseActivity -->
     <string name="activity_license__title">ライセンス</string>
 

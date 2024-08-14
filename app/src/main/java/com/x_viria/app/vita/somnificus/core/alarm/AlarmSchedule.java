@@ -198,6 +198,17 @@ public class AlarmSchedule {
         return getSchedule().length();
     }
 
+    /**
+     *
+     * @return The time (in milliseconds) until the next alarm.
+     */
+    public long getTimeUntilNext() throws JSONException {
+        AlarmInfo alarmInfo = getNextAlarm(true);
+        if (alarmInfo == null) return Long.MAX_VALUE;
+        Calendar calendarNow = Calendar.getInstance();
+        return alarmInfo.getCalendar().getTimeInMillis() - calendarNow.getTimeInMillis();
+    }
+
     public boolean removeSchedule(int id) throws JSONException {
         sync();
         setEnable(id, false);

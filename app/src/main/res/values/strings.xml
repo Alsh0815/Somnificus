@@ -10,6 +10,13 @@
 
     <string name="common__text_date_format">MM/dd/yyyy</string>
 
+    <!-- Notification -->
+    <string name="notification_channel_name__alarm">Alarm</string>
+    <string name="notification_channel_name__remind">Remind</string>
+
+    <string name="notification_remind__save_sd_title">Let\'s log your sleep time</string>
+    <string name="notification_remind__save_sd_msg">Did you sleep well? Let\'s record your sleep time and check the quality of your sleep.</string>
+
     <!-- LicenseActivity -->
     <string name="activity_license__title">License</string>
     <string name="activity_license__content__timer_sound" translatable="false">Timer sound</string>

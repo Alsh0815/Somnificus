@@ -41,10 +41,6 @@ public class EtcFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main_etc, container, false);
 
-        AdView AdView_LLIB1 = root.findViewById(R.id.EtcFragment__AdView_LLItemBanner_1);
-        AdRequest AdRequest_LLIB1 = new AdRequest.Builder().build();
-        AdView_LLIB1.loadAd(AdRequest_LLIB1);
-
         LinearLayout whatsnew_btn = root.findViewById(R.id.EtcFragment__Btn_WhatsNew);
         whatsnew_btn.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), WhatsNewActivity.class);
