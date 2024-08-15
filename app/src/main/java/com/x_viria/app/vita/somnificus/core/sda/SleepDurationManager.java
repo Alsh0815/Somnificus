@@ -43,6 +43,20 @@ public class SleepDurationManager {
         sync();
     }
 
+    public JSONArray add(JSONArray jsonArray, SleepDurationInfo sdInfo) throws JSONException {
+        JSONObject obj = new JSONObject();
+        obj.put("id", UUIDv7.randomUUID().toString());
+        JSONObject time = new JSONObject();
+        time.put("bed", sdInfo.getBedTime());
+        time.put("wakeup", sdInfo.getWakeupTime());
+        obj.put("time", time);
+        JSONObject eval = new JSONObject();
+        eval.put("g_or_b", sdInfo.EVAL__GOOD_OR_BAD);
+        obj.put("eval", eval);
+        jsonArray.put(obj);
+        return jsonArray;
+    }
+
     private List<SleepDurationInfo> _get(Calendar begin, Calendar end) throws JSONException {
         List<SleepDurationInfo> list = new ArrayList<>();
         JSONArray objs = DATA.getJSONArray("data");
@@ -53,6 +67,7 @@ public class SleepDurationManager {
                     time.getLong("bed"),
                     time.getLong("wakeup")
             );
+            sdinfo.ID = obj.getString("id");
             JSONObject eval = obj.getJSONObject("eval");
             sdinfo.EVAL__GOOD_OR_BAD = eval.getInt("g_or_b");
             list.add(sdinfo);
@@ -126,6 +141,23 @@ public class SleepDurationManager {
                 throw new InvalidParameterException("");
         }
         return _get(begin, end);
+    }
+
+    public void remove(String id) throws JSONException {
+        sync();
+        List<SleepDurationInfo> sdlist = get(Period.ALL);
+        List<SleepDurationInfo> copy = new ArrayList<>();
+        for (int i = 0; i < sdlist.size(); i++) {
+            if (sdlist.get(i).ID.equals(id)) continue;
+            copy.add(sdlist.get(i));
+        }
+        JSONArray jsonArray = new JSONArray();
+        for (SleepDurationInfo info : copy) {
+            jsonArray = add(jsonArray, info);
+        }
+        DATA.put("data", jsonArray);
+        save();
+        sync();
     }
 
     private void save() {

@@ -76,6 +76,7 @@ public class AlarmSchedule {
         json.put("enable", info.getEnable());
         JSONObject option = new JSONObject();
         option.put("gra_increase_vol", info.getOption(AlarmInfo.OPT__GRA_INCREASE_VOL));
+        option.put("mute", info.getOption(AlarmInfo.OPT__MUTE_VOL));
         json.put("option", option);
         object.put("data", json);
         return object;
@@ -86,6 +87,7 @@ public class AlarmSchedule {
         JSONObject json = new JSONObject();
         JSONObject option = new JSONObject();
         option.put("gra_increase_vol", info.getOption(AlarmInfo.OPT__GRA_INCREASE_VOL));
+        option.put("mute", info.getOption(AlarmInfo.OPT__MUTE_VOL));
         json.put("option", option);
         object.put("data", json);
         return object;

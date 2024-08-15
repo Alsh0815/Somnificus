@@ -75,18 +75,25 @@ public class AlarmService extends Service {
             VIBRATOR.vibrate(effect);
         }
 
-        Intent intent3 = new Intent(this, PlaySoundService.class);
-        intent3.putExtra(PlaySoundService.PUT_EXTRA__SOUND_TYPE, PlaySoundService.SOUND_TYPE__ALARM);
         try {
+            Intent intent3 = new Intent(this, PlaySoundService.class);
+            intent3.putExtra(PlaySoundService.PUT_EXTRA__SOUND_TYPE, PlaySoundService.SOUND_TYPE__ALARM);
             AlarmSchedule alarmSchedule = new AlarmSchedule(getApplicationContext());
             JSONObject object = alarmSchedule.getSchedule(id);
             JSONObject objdata = object.getJSONObject("data");
             boolean opt_giv = objdata.getJSONObject("option").getBoolean("gra_increase_vol");
+            if (objdata.getJSONObject("option").has("mute")) {
+                boolean opt_mute = objdata.getJSONObject("option").getBoolean("mute");
+                if (!opt_mute) {
+                    startForegroundService(intent3);
+                }
+            } else {
+                startForegroundService(intent3);
+            }
             if (opt_giv) intent3.putExtra(PlaySoundService.PUT_EXTRA__SOUND_OPT__FADEIN, true);
         } catch (JSONException | IOException e) {
             throw new RuntimeException(e);
         }
-        startForegroundService(intent3);
 
         startActivity(intent2);
 

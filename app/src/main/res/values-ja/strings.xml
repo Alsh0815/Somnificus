@@ -38,6 +38,7 @@
     <string name="activity_set_alarm__text_add_a_label">ラベルを追加</string>
 
     <string name="activity_set_alarm__text_option_giv">徐々に音量を上げる</string>
+    <string name="activity_set_alarm__text_option_mute">バイブレーションのみ (ミュート)</string>
 
     <string name="activity_set_alarm__toast_alarm_was_set_for_1day">1日と%d時間%d分後にアラームをセットしました</string>
     <string name="activity_set_alarm__toast_alarm_was_set_for_2day_more">%d日と%d時間%d分後にアラームをセットしました</string>
@@ -67,7 +68,9 @@
     <string name="activity_setting__text_version">バージョン</string>
 
     <!-- SleepDurationActivity -->
-    <string name="activity_sleep_duration__date_format">yyyy年MM月dd日 EEEE</string>
+    <string name="activity_sleep_duration__date_format_from">yyyy年M月d日 H:mm</string>
+    <string name="activity_sleep_duration__date_format_to">M月d日 H:mm</string>
+    <string name="activity_sleep_duration__dialog_del_sd_msg">このデータを削除しますか?</string>
 
     <!-- WakeupActivity -->
     <string name="activity_wakeup__text_stop">ストップ</string>

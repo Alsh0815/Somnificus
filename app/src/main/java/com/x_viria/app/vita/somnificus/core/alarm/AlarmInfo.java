@@ -24,6 +24,7 @@ public class AlarmInfo {
     public static final int WEEK__ALL = WEEK__SUN | WEEK__MON | WEEK__TUE | WEEK__WED | WEEK__THU | WEEK__FRI | WEEK__SAT;
 
     public static final String OPT__GRA_INCREASE_VOL = "option__gradually_increase_volume";
+    public static final String OPT__MUTE_VOL = "option__mute_volume";
 
     private final boolean ENABLE;
     private AlarmTime TIME;

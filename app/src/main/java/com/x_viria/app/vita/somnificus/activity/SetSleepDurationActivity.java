@@ -14,7 +14,6 @@ import android.content.res.ColorStateList;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,7 +27,6 @@ import com.x_viria.app.vita.somnificus.core.sda.SleepDurationManager;
 import org.json.JSONException;
 
 import java.util.Calendar;
-import java.util.List;
 
 public class SetSleepDurationActivity extends AppCompatActivity {
 
@@ -183,7 +181,7 @@ public class SetSleepDurationActivity extends AppCompatActivity {
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog dialog = new DatePickerDialog(requireActivity(), this, year, month, day);
+            DatePickerDialog dialog = new DatePickerDialog(requireActivity(), R.style.SomnificusDatePickerDialogTheme, this, year, month, day);
             dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
             return dialog;
         }
@@ -224,7 +222,7 @@ public class SetSleepDurationActivity extends AppCompatActivity {
             final Calendar c = Calendar.getInstance();
             int hour = c.get(Calendar.HOUR_OF_DAY);
             int min = c.get(Calendar.MINUTE);
-            return new TimePickerDialog(requireActivity(), this, hour, min, true);
+            return new TimePickerDialog(requireActivity(), R.style.SomnificusTimePickerDialogTheme, this, hour, min, true);
         }
 
         @Override

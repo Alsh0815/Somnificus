@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -129,6 +128,7 @@ public class SleepFragment extends Fragment {
             TV__SD_Avg_Time.setText(String.format(getString(R.string.fragment_main_sleep__text_sd_time), hour, min));
 
             SDL7DGraphView graph = ROOT.findViewById(R.id.SleepFragment__SDL7Graph);
+            graph.max(9 * 60 * 60 * 1000);
             graph.set(duration);
         } catch (JSONException e) {
             throw new RuntimeException(e);

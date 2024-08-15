@@ -3,6 +3,7 @@ package com.x_viria.app.vita.somnificus.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,6 +36,7 @@ public class SetAlarmActivity extends AppCompatActivity {
         NumberPicker np_m = findViewById(R.id.SetAlarmActivity__NumPicker_M);
         EditText et_label = findViewById(R.id.SetAlarmActivity__EditText_Label);
         SwitchMaterial opt_GIV_SW = findViewById(R.id.SetAlarmActivity__Switch_Opt_GIV);
+        SwitchMaterial opt_Mute_SW = findViewById(R.id.SetAlarmActivity__Switch_Opt_Mute);
         int week = 0;
         for (int i = 0; i < OPTION__D_OF_W.length; i++) {
             if (OPTION__D_OF_W[i]) week = week | VAL__D_OF_W[i];
@@ -47,6 +49,7 @@ public class SetAlarmActivity extends AppCompatActivity {
         );
         alarmInfo.setLabel(et_label.getText().toString());
         alarmInfo.setOption(AlarmInfo.OPT__GRA_INCREASE_VOL, opt_GIV_SW.isChecked());
+        alarmInfo.setOption(AlarmInfo.OPT__MUTE_VOL, opt_Mute_SW.isChecked());
         return alarmInfo;
     }
 
@@ -148,6 +151,10 @@ public class SetAlarmActivity extends AppCompatActivity {
         int id = getIntent().getIntExtra("id", -1);
 
         SwitchMaterial opt_GIV_SW = findViewById(R.id.SetAlarmActivity__Switch_Opt_GIV);
+        SwitchMaterial opt_Mute_SW = findViewById(R.id.SetAlarmActivity__Switch_Opt_Mute);
+        opt_Mute_SW.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            opt_GIV_SW.setEnabled(!isChecked);
+        });
 
         ImageView back_btn = findViewById(R.id.SetAlarmActivity__Btn_Back);
         back_btn.setOnClickListener(v -> finish());
@@ -180,12 +187,17 @@ public class SetAlarmActivity extends AppCompatActivity {
                 int week = objdata.getInt("week");
                 JSONObject option = objdata.getJSONObject("option");
                 boolean opt_giv = option.getBoolean("gra_increase_vol");
+                boolean opt_mute = false;
+                if (option.has("mute")) {
+                    opt_mute = option.getBoolean("mute");
+                }
 
                 for (int i = 0; i < OPTION__D_OF_W.length; i++) {
                     if ((week & VAL__D_OF_W[i]) == VAL__D_OF_W[i]) OPTION__D_OF_W[i] = true;
                 }
 
                 opt_GIV_SW.setChecked(opt_giv);
+                opt_Mute_SW.setChecked(opt_mute);
 
                 refreshDofWView();
             } catch (JSONException | IOException e) {
@@ -252,6 +264,11 @@ public class SetAlarmActivity extends AppCompatActivity {
 
         LinearLayout opt_GIV = findViewById(R.id.SetAlarmActivity__View_Opt_GIV);
         opt_GIV.setOnClickListener(v -> opt_GIV_SW.setChecked(!opt_GIV_SW.isChecked()));
+
+        LinearLayout opt_Mute = findViewById(R.id.SetAlarmActivity__View_Opt_Mute);
+        opt_Mute.setOnClickListener(v -> {
+            opt_Mute_SW.setChecked(!opt_Mute_SW.isChecked());
+        });
     }
 
 }

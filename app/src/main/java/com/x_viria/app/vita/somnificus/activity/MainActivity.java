@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             transaction.setCustomAnimations(R.anim.fragment_enter_to_left, R.anim.fragment_exit_to_right);
         }
         transaction.replace(R.id.fragment_container, fragment);
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
 
         fragmentNowPage = page;
 

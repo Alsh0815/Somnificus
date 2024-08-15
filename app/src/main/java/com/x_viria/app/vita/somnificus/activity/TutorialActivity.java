@@ -68,7 +68,7 @@ public class TutorialActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.setCustomAnimations(R.anim.fragment_enter_to_right, R.anim.fragment_exit_to_left);
         transaction.replace(R.id.TutorialActivity__FragmentContainer, fragment);
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
 
         // Fix the bottom margin of the fragment.
         int bnv_height = findViewById(R.id.TutorialActivity__ControlPanel).getHeight();

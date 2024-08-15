@@ -62,12 +62,12 @@ public class SDL7DGraphView extends View {
         return (CANVAS_WIDTH / 7) * index + (CANVAS_WIDTH / 14);
     }
 
-    private void max(long value) {
+    public void max(long value) {
         this.Y_VAL_MAX = value;
     }
 
     public void set(long[] data) {
-        long _max = 0;
+        long _max = Y_VAL_MAX;
         for (long l : data) {
             if (_max < l) _max = l;
         }

@@ -236,37 +236,68 @@
 
                 </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/SetAlarmActivity__View_Opt_GIV"
-                android:gravity="center_vertical"
-                android:background="@drawable/bg_set_alarm_card"
-                android:backgroundTint="@color/secondaryBackgroundColor"
-                android:clickable="true"
-                android:layout_margin="8dp"
-                android:padding="16dp"
-                android:elevation="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/activity_set_alarm__text_option_giv" />
+                    android:id="@+id/SetAlarmActivity__View_Opt_GIV"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/bg_set_alarm_card"
+                    android:backgroundTint="@color/secondaryBackgroundColor"
+                    android:clickable="true"
+                    android:layout_margin="8dp"
+                    android:padding="16dp"
+                    android:elevation="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_set_alarm__text_option_giv" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/SetAlarmActivity__Switch_Opt_GIV" />
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right">
-                    <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/SetAlarmActivity__View_Opt_Mute"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/bg_set_alarm_card"
+                    android:backgroundTint="@color/secondaryBackgroundColor"
+                    android:clickable="true"
+                    android:layout_margin="8dp"
+                    android:padding="16dp"
+                    android:elevation="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/SetAlarmActivity__Switch_Opt_GIV" />
+                        android:text="@string/activity_set_alarm__text_option_mute" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/SetAlarmActivity__Switch_Opt_Mute" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
 
-            </LinearLayout>
         </ScrollView>
 
     </LinearLayout>

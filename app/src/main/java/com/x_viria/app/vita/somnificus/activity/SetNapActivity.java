@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
@@ -24,6 +25,7 @@ public class SetNapActivity extends AppCompatActivity {
     private AlarmInfo getAlarmInfo() {
         NumberPicker np_m = findViewById(R.id.SetNapActivity__NumPicker_M);
         SwitchMaterial opt_GIV_SW = findViewById(R.id.SetNapActivity__Switch_Opt_GIV);
+        SwitchMaterial opt_Mute_SW = findViewById(R.id.SetNapActivity__Switch_Opt_Mute);
         int min = np_m.getValue() % 60;
         int hour = np_m.getValue() / 60;
         Calendar calendar = Calendar.getInstance();
@@ -35,6 +37,7 @@ public class SetNapActivity extends AppCompatActivity {
                 true
         );
         alarmInfo.setOption(AlarmInfo.OPT__GRA_INCREASE_VOL, opt_GIV_SW.isChecked());
+        alarmInfo.setOption(AlarmInfo.OPT__MUTE_VOL, opt_Mute_SW.isChecked());
         return alarmInfo;
     }
 
@@ -54,6 +57,11 @@ public class SetNapActivity extends AppCompatActivity {
         SwitchMaterial opt_GIV_SW = findViewById(R.id.SetNapActivity__Switch_Opt_GIV);
         LinearLayout opt_GIV = findViewById(R.id.SetNapActivity__View_Opt_GIV);
         opt_GIV.setOnClickListener(v -> opt_GIV_SW.setChecked(!opt_GIV_SW.isChecked()));
+
+        SwitchMaterial opt_Mute_SW = findViewById(R.id.SetNapActivity__Switch_Opt_Mute);
+        opt_Mute_SW.setOnCheckedChangeListener((buttonView, isChecked) -> opt_GIV_SW.setEnabled(!isChecked));
+        LinearLayout opt_Mute = findViewById(R.id.SetNapActivity__View_Opt_Mute);
+        opt_Mute.setOnClickListener(v -> opt_Mute_SW.setChecked(!opt_Mute_SW.isChecked()));
 
         TextView save_btn = findViewById(R.id.SetNapActivity__Btn_Save);
         save_btn.setOnClickListener(v -> {

@@ -65,6 +65,7 @@ public class AlarmFragment extends Fragment {
 
         AlarmSchedule alarmSchedule = new AlarmSchedule(getContext());
         JSONArray time = object.getJSONArray("time");
+        JSONObject option = objdata.getJSONObject("option");
         boolean enable = objdata.getBoolean("enable");
         int id = object.getInt("schedule_id");
 
@@ -73,6 +74,11 @@ public class AlarmFragment extends Fragment {
                 objdata.getInt("week"),
                 objdata.getBoolean("enable")
         );
+        if (option.has("mute")) {
+            alarmInfo.setOption(AlarmInfo.OPT__MUTE_VOL, option.getBoolean("mute"));
+        } else {
+            alarmInfo.setOption(AlarmInfo.OPT__MUTE_VOL, false);
+        }
 
         TypedValue rippleEffect = new TypedValue();
         requireContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, rippleEffect, true);
@@ -175,6 +181,23 @@ public class AlarmFragment extends Fragment {
         rightView.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
         rightView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
+        if (alarmInfo.getOption(AlarmInfo.OPT__MUTE_VOL)) {
+            ImageView icon_mute = new ImageView(getContext());
+            icon_mute.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_off));
+            icon_mute.setImageTintList(ColorStateList.valueOf(iconTintColor));
+            icon_mute.setLayoutParams(new LinearLayout.LayoutParams(
+                    Unit.dp2px(requireContext(), 24),
+                    Unit.dp2px(requireContext(), 24)
+            ));
+            icon_mute.setPadding(
+                    Unit.dp2px(requireContext(), 2),
+                    Unit.dp2px(requireContext(), 2),
+                    Unit.dp2px(requireContext(), 2),
+                    Unit.dp2px(requireContext(), 2)
+            );
+            rightView.addView(icon_mute);
+        }
+
         ImageView deleteBtn = new ImageView(getContext());
         deleteBtn.setBackgroundResource(rippleEffect.resourceId);
         deleteBtn.setClickable(true);
@@ -225,7 +248,13 @@ public class AlarmFragment extends Fragment {
 
         AlarmSchedule alarmSchedule = new AlarmSchedule(getContext());
         JSONArray time = object.getJSONArray("time");
+        JSONObject option = objdata.getJSONObject("option");
         int id = object.getInt("schedule_id");
+
+        boolean opt_mute = false;
+        if (option.has("mute")) {
+            opt_mute = option.getBoolean("mute");
+        }
 
         Runnable delNap = () -> {
             try {
@@ -294,6 +323,23 @@ public class AlarmFragment extends Fragment {
         LinearLayout rightView = new LinearLayout(getContext());
         rightView.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
         rightView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        if (opt_mute) {
+            ImageView icon_mute = new ImageView(getContext());
+            icon_mute.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_off));
+            icon_mute.setImageTintList(ColorStateList.valueOf(iconTintColor));
+            icon_mute.setLayoutParams(new LinearLayout.LayoutParams(
+                    Unit.dp2px(requireContext(), 24),
+                    Unit.dp2px(requireContext(), 24)
+            ));
+            icon_mute.setPadding(
+                    Unit.dp2px(requireContext(), 2),
+                    Unit.dp2px(requireContext(), 2),
+                    Unit.dp2px(requireContext(), 2),
+                    Unit.dp2px(requireContext(), 2)
+            );
+            rightView.addView(icon_mute);
+        }
 
         ImageView deleteBtn = new ImageView(getContext());
         deleteBtn.setBackgroundResource(rippleEffect.resourceId);
@@ -366,14 +412,14 @@ public class AlarmFragment extends Fragment {
                     num_of_alarm++;
                     LinearLayout view = createAlarmView(object);
                     scheduleView.addView(view);
-                }
-                if (num_of_alarm % 5 == 1) {
-                    AdRequest adRequest = new AdRequest.Builder().build();
-                    AdView adView = new AdView(requireContext());
-                    adView.setAdSize(AdSize.BANNER);
-                    adView.setAdUnitId("ca-app-pub-6133161179615824/4921675029");
-                    adView.loadAd(adRequest);
-                    scheduleView.addView(adView);
+                    if (num_of_alarm % 5 == 1) {
+                        AdRequest adRequest = new AdRequest.Builder().build();
+                        AdView adView = new AdView(requireContext());
+                        adView.setAdSize(AdSize.BANNER);
+                        adView.setAdUnitId("ca-app-pub-6133161179615824/4921675029");
+                        adView.loadAd(adRequest);
+                        scheduleView.addView(adView);
+                    }
                 }
             }
             alarmSchedule.sync();
