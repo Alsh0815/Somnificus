@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.activity.BackupActivity;
 import com.x_viria.app.vita.somnificus.activity.LicenseActivity;
 import com.x_viria.app.vita.somnificus.activity.SettingActivity;
 import com.x_viria.app.vita.somnificus.activity.WhatsNewActivity;
@@ -42,6 +43,12 @@ public class EtcFragment extends Fragment {
         LinearLayout settings_btn = root.findViewById(R.id.EtcFragment__Btn_Settings);
         settings_btn.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), SettingActivity.class);
+            startActivity(intent);
+        });
+
+        LinearLayout backup_btn = root.findViewById(R.id.EtcFragment__Btn_Backup);
+        backup_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), BackupActivity.class);
             startActivity(intent);
         });
 

@@ -10,6 +10,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.app.backup.BackupManager;
 import android.content.res.ColorStateList;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
@@ -86,6 +87,8 @@ public class SetSleepDurationActivity extends AppCompatActivity {
                     SleepDurationManager sdm = new SleepDurationManager(SetSleepDurationActivity.this);
                     sdm.add(sdi);
                     dialog.dismiss();
+                    BackupManager backupManager = new BackupManager(this);
+                    backupManager.dataChanged();
                     finish();
                 } catch (JSONException e) {
                     throw new RuntimeException(e);

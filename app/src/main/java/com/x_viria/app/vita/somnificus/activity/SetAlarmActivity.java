@@ -2,6 +2,7 @@ package com.x_viria.app.vita.somnificus.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.backup.BackupManager;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -220,6 +221,8 @@ public class SetAlarmActivity extends AppCompatActivity {
                 }
                 alarmSchedule.sync();
                 alarmInfo.showNextTime(getBaseContext());
+                BackupManager backupManager = new BackupManager(this);
+                backupManager.dataChanged();
                 finish();
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);

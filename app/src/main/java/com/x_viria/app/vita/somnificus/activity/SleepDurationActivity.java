@@ -5,6 +5,7 @@ import static android.util.TypedValue.COMPLEX_UNIT_DIP;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.backup.BackupManager;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.icu.text.SimpleDateFormat;
@@ -71,6 +72,8 @@ public class SleepDurationActivity extends AppCompatActivity {
                             try {
                                 sdm.remove(info.ID);
                                 loadSD();
+                                BackupManager backupManager = new BackupManager(this);
+                                backupManager.dataChanged();
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);
                             }

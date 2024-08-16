@@ -19,40 +19,60 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
+        android:name=".Somnificus"
         android:allowBackup="true"
+        android:backupAgent=".core.SomnificusBackupAgent"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
-        android:name=".Somnificus"
+        android:restoreAnyVersion="true"
         android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Somnificus"
         tools:targetApi="31">
-        <activity
-            android:name=".activity.LicenseActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.SleepDurationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.SetSleepDurationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.SetNapActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.WhatsNewActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="false" />
-        <activity
-            android:name=".activity.SettingActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.backup.api_key"
+            android:value="unused" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-6133161179615824~4591600015" />
+
+        <meta-data
+            android:name="firebase_performance_logcat_enabled"
+            android:value="true" />
+
+        <activity
+            android:name=".activity.BackupActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.LicenseActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.SleepDurationActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.SetSleepDurationActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.SetNapActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.WhatsNewActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.SettingActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
 
         <activity
             android:name=".activity.WakeupActivity"
@@ -60,18 +80,16 @@
             android:exported="false"
             android:showWhenLocked="true"
             android:turnScreenOn="true" />
+
         <activity
             android:name=".activity.SetAlarmActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
+
         <activity
             android:name=".activity.TutorialActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
-
-        <meta-data
-            android:name="firebase_performance_logcat_enabled"
-            android:value="true" />
 
         <activity
             android:name=".activity.MainActivity"
@@ -107,12 +125,15 @@
         <service
             android:name=".service.AlarmService"
             android:foregroundServiceType="specialUse" />
+
         <service
             android:name=".service.PlaySoundService"
             android:foregroundServiceType="mediaPlayback" />
+
         <service
             android:name=".service.TimerService"
             android:foregroundServiceType="specialUse" />
+
     </application>
 
 </manifest>

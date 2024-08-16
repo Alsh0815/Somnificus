@@ -15,6 +15,11 @@
     <string name="notification_remind__save_sd_title">睡眠時間を記録しましょう</string>
     <string name="notification_remind__save_sd_msg">よく眠れましたか?\n睡眠時間を記録して睡眠の質をチェックしましょう</string>
 
+    <!-- BackupActivity -->
+    <string name="activity_backup__title">バックアップ</string>
+    <string name="activity_backup__last_backup">最終バックアップ</string>
+    <string name="activity_backup__last_backup_failed">----/--/-- --- --:--</string>
+
     <!-- LicenseActivity -->
     <string name="activity_license__title">ライセンス</string>
 
@@ -115,6 +120,7 @@
     <!-- EtcFragment -->
     <string name="fragment_main_etc__text_whats_new">新機能</string>
     <string name="fragment_main_etc__text_settings">設定</string>
+    <string name="fragment_main_etc__text_backup">バックアップ</string>
     <string name="fragment_main_etc__text_license">ライセンス</string>
 
     <!-- TutorialFragment 1 -->
