@@ -38,7 +38,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:id="@+id/SettingActivity__AlarmVibrate_L"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:padding="4dp"
@@ -50,9 +49,31 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/BackupActivity__Last_Backup"
+                        android:id="@+id/BackupActivity__Last_Backup_Date"
                         android:layout_margin="8dp"
-                        android:text="1900/01/01 0:00"
+                        android:text="@string/activity_backup__last_backup_failed_date"
+                        android:textSize="16dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="4dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/BackupActivity__Last_Backup_Size"
+                        android:layout_margin="8dp"
+                        android:text="@string/activity_backup__last_backup_failed_size"
                         android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>

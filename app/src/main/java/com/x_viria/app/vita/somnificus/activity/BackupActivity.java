@@ -20,15 +20,27 @@ public class BackupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_backup);
 
-        long lastBackupDate = new SPStorage(this).getLong(Config.KEY__LAST_BACKUP_DATE, SPDefault.LAST_BACKUP_DATE);
-        TextView tv_last_backup = findViewById(R.id.BackupActivity__Last_Backup);
-        if (lastBackupDate < 0) {
-            tv_last_backup.setText(getString(R.string.activity_backup__last_backup_failed));
-        } else {
+        SPStorage sps = new SPStorage(this);
+
+        long lastBackupDate = sps.getLong(Config.KEY__LAST_BACKUP_DATE, SPDefault.LAST_BACKUP_DATE);
+        if (0 < lastBackupDate) {
+            TextView tv_last_backup = findViewById(R.id.BackupActivity__Last_Backup_Date);
             Date date = new Date();
             date.setTime(lastBackupDate);
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(getString(R.string.common__text_date_format) + " E H:mm");
             tv_last_backup.setText(simpleDateFormat.format(date));
+        }
+
+        long lastBackupSize = sps.getLong(Config.KEY__LAST_BACKUP_SIZE, SPDefault.LAST_BACKUP_SIZE);
+        if (0 < lastBackupSize) {
+            TextView tv_last_backup_size = findViewById(R.id.BackupActivity__Last_Backup_Size);
+            double lastBackupSizeFloat = ((double) lastBackupSize) / 1024.0f;
+            if (lastBackupSizeFloat < 1024.0f) {
+                tv_last_backup_size.setText(String.format("%.2f KB", lastBackupSizeFloat));
+            } else {
+                lastBackupSizeFloat = lastBackupSizeFloat / 1024.0f;
+                tv_last_backup_size.setText(String.format("%.2f MB", lastBackupSizeFloat));
+            }
         }
     }
 }

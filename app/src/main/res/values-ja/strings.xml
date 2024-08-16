@@ -18,7 +18,7 @@
     <!-- BackupActivity -->
     <string name="activity_backup__title">バックアップ</string>
     <string name="activity_backup__last_backup">最終バックアップ</string>
-    <string name="activity_backup__last_backup_failed">----/--/-- --- --:--</string>
+    <string name="activity_backup__last_backup_failed_date">----/--/-- --- --:--</string>
 
     <!-- LicenseActivity -->
     <string name="activity_license__title">ライセンス</string>

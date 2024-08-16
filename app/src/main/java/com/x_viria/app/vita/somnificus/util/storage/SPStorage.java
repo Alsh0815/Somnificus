@@ -3,6 +3,8 @@ package com.x_viria.app.vita.somnificus.util.storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.annotation.Nullable;
+
 public class SPStorage {
 
     private final android.content.SharedPreferences SHARED_PREF;

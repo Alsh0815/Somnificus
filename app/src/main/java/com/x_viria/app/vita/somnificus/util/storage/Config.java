@@ -11,6 +11,7 @@ public class Config {
     public static final String KEY__SETTINGS_TIMER_VIBRATE = "SOMNIFICUS_SHAREDP_KEY__SETTINGS_TIMER_VIBRATE";
 
     public static final String KEY__LAST_BACKUP_DATE = "SOMNIFICUS_SHAREDP_KEY__LAST_BACKUP_DATE";
+    public static final String KEY__LAST_BACKUP_SIZE = "SOMNIFICUS_SHAREDP_KEY__LAST_BACKUP_SIZE";
 
     public static final String KEY__UD_BED_TIME = "SOMNIFICUS_SHAREDP_KEY__UD_BED_TIME";
 
