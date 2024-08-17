@@ -5,6 +5,8 @@
 
     <string name="whats_new_text_ver_1_1_3" translatable="false">ver.1.1.3.x</string>
     <string name="whats_new_text_ft_1_1_3_a">Added a function to backup.</string>
+    <string name="whats_new_text_ch_1_1_3_a">Changed the notification so that it automatically disappears when the user taps the sleep time recording reminder notification.</string>
+    <string name="whats_new_text_ch_1_1_3_b">Changed the alarm to stop automatically if the user does not stop it after 5 minutes.</string>
 
     <string name="whats_new_text_ver_1_1_2" translatable="false">ver.1.1.2.x</string>
     <string name="whats_new_text_ft_1_1_2_a">Added a function to delete sleep time data.</string>

@@ -9,11 +9,14 @@
     <string name="common__text_yesterday">Yesterday</string>
 
     <string name="common__text_date_format">MM/dd/yyyy</string>
+    <string name="common__text_date_format__full">MM/dd/yyyy EEEE</string>
 
     <!-- Notification -->
     <string name="notification_channel_name__alarm">Alarm</string>
     <string name="notification_channel_name__remind">Remind</string>
 
+    <string name="notification_remind__missed_alarm_title">There’s an alarm you didn’t hear.</string>
+    <string name="notification_remind__missed_alarm_msg">Missed alarm: %02d:%02d</string>
     <string name="notification_remind__save_sd_title">Let\'s log your sleep time</string>
     <string name="notification_remind__save_sd_msg">Did you sleep well? Let\'s record your sleep time and check the quality of your sleep.</string>
 
@@ -22,6 +25,8 @@
     <string name="activity_backup__last_backup">Last backup</string>
     <string name="activity_backup__last_backup_failed_date">--/--/---- --- --:--.</string>
     <string name="activity_backup__last_backup_failed_size" translatable="false">---.-- KB</string>
+    <string name="activity_backup__description_1">The device will automatically backup when it is idle and connected to the network.</string>
+    <string name="activity_backup__description_2">Backups may not be completed if your Google account runs out of storage.</string>
 
     <!-- LicenseActivity -->
     <string name="activity_license__title">License</string>
@@ -88,7 +93,11 @@
     <string name="activity_sleep_duration__dialog_del_sd_msg">Do you want to delete this data?</string>
 
     <!-- WakeupActivity -->
-    <string name="activity_wakeup__text_stop">Stop</string>
+    <string name="activity_wakeup__btn_stop">Stop</string>
+    <string name="activity_wakeup__btn_close">Close</string>
+    <string name="activity_wakeup__text_good_morning">Good morning.</string>
+    <string name="activity_wakeup__text_good_afternoon">Good afternoon.</string>
+    <string name="activity_wakeup__text_good_evening">Good evening.</string>
 
     <!-- WhatsNewActivity -->
     <string name="activity_whats_new__title">What\'s new</string>

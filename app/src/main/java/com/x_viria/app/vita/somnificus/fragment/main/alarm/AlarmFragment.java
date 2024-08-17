@@ -4,7 +4,6 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.TypedValue;
-import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -412,7 +410,7 @@ public class AlarmFragment extends Fragment {
                     num_of_alarm++;
                     LinearLayout view = createAlarmView(object);
                     scheduleView.addView(view);
-                    if (num_of_alarm % 5 == 1) {
+                    if (num_of_alarm % 10 == 1) {
                         AdRequest adRequest = new AdRequest.Builder().build();
                         AdView adView = new AdView(requireContext());
                         adView.setAdSize(AdSize.BANNER);

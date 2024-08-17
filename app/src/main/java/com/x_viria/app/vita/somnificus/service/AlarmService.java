@@ -67,8 +67,8 @@ public class AlarmService extends Service {
 
         if (new SPStorage(this).getBool(Config.KEY__SETTINGS_ALARM_VIBRATE, SPDefault.SETTINGS_ALARM_VIBRATE)) {
             VibrationEffect effect = VibrationEffect.createWaveform(
-                    new long[] {1000, 1000},
-                    new int[] {255, 0},
+                    new long[] {400, 100, 400, 1100},
+                    new int[] {255, 0, 255, 0},
                     0
             );
             VIBRATOR = (Vibrator) getSystemService(VIBRATOR_SERVICE);

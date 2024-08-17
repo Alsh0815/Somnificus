@@ -14,7 +14,25 @@ import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.SetSleepDurationActivity;
 import com.x_viria.app.vita.somnificus.util.notification.Channel;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
 public class Remind {
+
+    public static void MissedAlarm(Context context, Date date) {
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) return;
+        Random rand = new Random();
+        int id = rand.nextInt(NotificationID.REMIND__MISSED_ALARM_MAX - NotificationID.REMIND__MISSED_ALARM_MIN + 1) + NotificationID.REMIND__MISSED_ALARM_MIN;
+        Notification.Builder builder = new Notification.Builder(context, Channel.ID.Remind);
+        builder.setAutoCancel(true);
+        builder.setContentTitle(context.getString(R.string.notification_remind__missed_alarm_title));
+        builder.setContentText(
+                String.format(context.getString(R.string.notification_remind__missed_alarm_msg), date.getHours(), date.getMinutes())
+        );
+        builder.setSmallIcon(R.drawable.ic_menu_alarm);
+        NotificationManagerCompat.from(context).notify(id, builder.build());
+    }
 
     public static void SaveSleepDataNotification(Context context) {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) return;
@@ -23,11 +41,12 @@ public class Remind {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0xA560, intent2, PendingIntent.FLAG_IMMUTABLE);
 
         Notification.Builder builder = new Notification.Builder(context, Channel.ID.Remind);
+        builder.setAutoCancel(true);
         builder.setContentTitle(context.getString(R.string.notification_remind__save_sd_title));
         builder.setContentText(context.getString(R.string.notification_remind__save_sd_msg));
         builder.setContentIntent(pendingIntent);
         builder.setSmallIcon(R.drawable.ic_menu_alarm);
-        NotificationManagerCompat.from(context).notify(0xA001, builder.build());
+        NotificationManagerCompat.from(context).notify(NotificationID.REMIND__SAVE_SD, builder.build());
     }
 
 }

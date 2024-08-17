@@ -83,6 +83,17 @@
                 android:layout_height="1dp"
                 android:background="@color/primaryHorizontalBar" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/activity_backup__description_1" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/activity_backup__description_2" />
+
         </LinearLayout>
     </ScrollView>
 
