@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class SleepFragment extends Fragment {
     private long getDaysDiff(Calendar targetDate) {
         Calendar today = Calendar.getInstance();
         long diffInMillis = today.getTimeInMillis() - targetDate.getTimeInMillis();
+        Log.d("SleepFragment", today.getTimeZone().getID() + " - " + targetDate.getTimeZone().getID());
         return TimeUnit.MILLISECONDS.toDays(diffInMillis);
     }
 
@@ -84,10 +86,10 @@ public class SleepFragment extends Fragment {
                     d.setTime(nextAlarm.getNextTime());
                     SimpleDateFormat f = new SimpleDateFormat("HH:mm");
                     TextView T1 = ROOT.findViewById(R.id.SleepFragment__Schedule_WakeUp_Time_T1);
-                    T1.setTextColor(getResources().getColor(R.color.white));
+                    T1.setTextColor(requireContext().getColor(R.color.white));
                     TextView T2 = ROOT.findViewById(R.id.SleepFragment__Schedule_WakeUp_Time_T2);
                     T2.setText(f.format(d));
-                    T2.setTextColor(getResources().getColor(R.color.white));
+                    T2.setTextColor(requireContext().getColor(R.color.white));
                     SET_WAKEUP_TIME = nextAlarm.getNextTime();
                 }
             }

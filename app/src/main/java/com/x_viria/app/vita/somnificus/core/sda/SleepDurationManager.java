@@ -1,6 +1,7 @@
 package com.x_viria.app.vita.somnificus.core.sda;
 
 import android.content.Context;
+import android.icu.util.Calendar;
 import android.util.Log;
 
 import com.x_viria.app.vita.somnificus.util.UUIDv7;
@@ -13,12 +14,11 @@ import org.json.JSONObject;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class SleepDurationManager {
 
-    private Context CONTEXT;
+    private final Context CONTEXT;
     private JSONObject DATA;
 
     public SleepDurationManager(Context context) throws JSONException {
@@ -28,7 +28,7 @@ public class SleepDurationManager {
         Log.d("SleepDurationManager", DATA.toString());
     }
 
-    public void add(SleepDurationInfo sdInfo) throws JSONException {
+    private JSONObject makeSDObject(SleepDurationInfo sdInfo) throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("id", UUIDv7.randomUUID().toString());
         JSONObject time = new JSONObject();
@@ -38,21 +38,18 @@ public class SleepDurationManager {
         JSONObject eval = new JSONObject();
         eval.put("g_or_b", sdInfo.EVAL__GOOD_OR_BAD);
         obj.put("eval", eval);
+        return obj;
+    }
+
+    public void add(SleepDurationInfo sdInfo) throws JSONException {
+        JSONObject obj = makeSDObject(sdInfo);
         DATA.getJSONArray("data").put(obj);
         save();
         sync();
     }
 
     public JSONArray add(JSONArray jsonArray, SleepDurationInfo sdInfo) throws JSONException {
-        JSONObject obj = new JSONObject();
-        obj.put("id", UUIDv7.randomUUID().toString());
-        JSONObject time = new JSONObject();
-        time.put("bed", sdInfo.getBedTime());
-        time.put("wakeup", sdInfo.getWakeupTime());
-        obj.put("time", time);
-        JSONObject eval = new JSONObject();
-        eval.put("g_or_b", sdInfo.EVAL__GOOD_OR_BAD);
-        obj.put("eval", eval);
+        JSONObject obj = makeSDObject(sdInfo);
         jsonArray.put(obj);
         return jsonArray;
     }
@@ -76,22 +73,16 @@ public class SleepDurationManager {
             if (o1.getBedTime() < o2.getBedTime()) {
                 return -1;
             } else if (o1.getBedTime() == o2.getBedTime()) {
-                if (o1.getWakeupTime() < o2.getWakeupTime()) {
-                    return -1;
-                } else {
-                    return 1;
-                }
+                return Long.compare(o1.getWakeupTime(), o2.getWakeupTime());
             } else {
                 return 1;
             }
         });
         List<SleepDurationInfo> target = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            Calendar cb = Calendar.getInstance();
-            cb.setTimeInMillis(list.get(i).getBedTime());
-            Calendar ce = Calendar.getInstance();
-            ce.setTimeInMillis(list.get(i).getWakeupTime());
-            if (0 <= cb.compareTo(begin) && ce.compareTo(end) <= 0) {
+            Calendar c = Calendar.getInstance();
+            c.setTimeInMillis(list.get(i).getWakeupTime());
+            if (0 <= c.compareTo(begin) && c.compareTo(end) <= 0) {
                 target.add(list.get(i));
             }
         }
@@ -106,10 +97,10 @@ public class SleepDurationManager {
                 begin.setTimeInMillis(0);
                 break;
             case Period.LAST_7DAYS:
-                begin.add(Calendar.DAY_OF_MONTH, -7);
+                begin.add(Calendar.DAY_OF_MONTH, -6);
                 break;
             case Period.LAST_30DAYS:
-                begin.add(Calendar.DAY_OF_MONTH, -30);
+                begin.add(Calendar.DAY_OF_MONTH, -29);
                 break;
             default:
                 throw new InvalidParameterException("");
@@ -119,23 +110,35 @@ public class SleepDurationManager {
 
     public List<SleepDurationInfo> get(int period, int index) throws JSONException {
         Calendar begin = Calendar.getInstance();
+        begin.set(Calendar.HOUR, 0);
+        begin.set(Calendar.MINUTE, 0);
+        begin.set(Calendar.SECOND, 0);
         Calendar end = Calendar.getInstance();
+        end.set(Calendar.HOUR, 23);
+        end.set(Calendar.MINUTE, 59);
+        end.set(Calendar.SECOND, 59);
         switch (period) {
             case Period.DAY:
                 begin.add(Calendar.DAY_OF_MONTH, -1 * index);
                 end.add(Calendar.DAY_OF_MONTH, -1 * index);
                 break;
             case Period.WEEK:
-                begin.add(Calendar.WEEK_OF_YEAR, -1 * (index + 1));
+                begin.add(Calendar.WEEK_OF_YEAR, -1 * index);
+                begin.set(Calendar.DAY_OF_WEEK, 1);
                 end.add(Calendar.WEEK_OF_YEAR, -1 * index);
+                end.set(Calendar.DAY_OF_WEEK, 7);
                 break;
             case Period.MONTH:
-                begin.add(Calendar.MONTH, -1 * (index + 1));
+                begin.add(Calendar.MONTH, -1 * index);
+                begin.set(Calendar.DAY_OF_MONTH, 1);
                 end.add(Calendar.MONTH, -1 * index);
+                end.set(Calendar.DAY_OF_MONTH, 30);
                 break;
             case Period.YEAR:
-                begin.add(Calendar.YEAR, -1 * (index + 1));
+                begin.add(Calendar.YEAR, -1 * index);
+                begin.set(Calendar.DAY_OF_YEAR, 1);
                 end.add(Calendar.YEAR, -1 * index);
+                end.set(Calendar.DAY_OF_YEAR, 365);
                 break;
             default:
                 throw new InvalidParameterException("");

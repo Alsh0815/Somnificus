@@ -16,7 +16,7 @@
 
     <color name="primaryActiveColor">#FFDDDDDD</color>
     <color name="secondaryActiveColor">#FFF0E2F2</color>
-    <color name="primaryInactiveColor">#FF909090</color>
+    <color name="primaryInactiveColor">#FF808080</color>
     <color name="secondaryInactiveColor">#FFD5C9D8</color>
     <color name="primaryBackgroundColor">#FF0F1010</color>
     <color name="secondaryBackgroundColor">#FF181818</color>

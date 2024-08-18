@@ -3,12 +3,15 @@ package com.x_viria.app.vita.somnificus.activity;
 import static android.util.TypedValue.COMPLEX_UNIT_DIP;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 
 import android.app.AlertDialog;
 import android.app.backup.BackupManager;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -29,7 +32,10 @@ import java.util.List;
 
 public class SleepDurationActivity extends AppCompatActivity {
 
-    private void loadSD() throws JSONException {
+    private int SD_INDEX = 0;
+    private int SD_PERIOD = SleepDurationManager.Period.WEEK;
+
+    private void loadSD(int period, int index) throws JSONException {
         LinearLayout LL__SDList = findViewById(R.id.SleepDurationActivity__SDList);
         LL__SDList.removeAllViews();
 
@@ -37,17 +43,13 @@ public class SleepDurationActivity extends AppCompatActivity {
         getTheme().resolveAttribute(android.R.attr.selectableItemBackground, rippleEffect, true);
 
         SleepDurationManager sdm = new SleepDurationManager(this);
-        List<SleepDurationInfo> list = sdm.get(SleepDurationManager.Period.ALL);
+        List<SleepDurationInfo> list = sdm.get(period, index);
 
         list.sort((o1, o2) -> {
             if (o1.getBedTime() < o2.getBedTime()) {
                 return 1;
             } else if (o1.getBedTime() == o2.getBedTime()) {
-                if (o1.getWakeupTime() < o2.getWakeupTime()) {
-                    return 1;
-                } else {
-                    return -1;
-                }
+                return Long.compare(o2.getWakeupTime(), o1.getWakeupTime());
             } else {
                 return -1;
             }
@@ -71,7 +73,7 @@ public class SleepDurationActivity extends AppCompatActivity {
                         .setPositiveButton(R.string.common__text_yes, (dialog, which) -> {
                             try {
                                 sdm.remove(info.ID);
-                                loadSD();
+                                loadSD(period, index);
                                 BackupManager backupManager = new BackupManager(this);
                                 backupManager.dataChanged();
                             } catch (JSONException e) {
@@ -86,7 +88,7 @@ public class SleepDurationActivity extends AppCompatActivity {
             head.setOrientation(LinearLayout.HORIZONTAL);
 
             ImageView icon = new ImageView(this);
-            icon.setImageDrawable(getDrawable(R.drawable.ic_sleep));
+            icon.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_sleep));
             icon.setImageTintList(ColorStateList.valueOf(getColor(R.color.secondaryTextColor)));
             icon.setLayoutParams(new LinearLayout.LayoutParams(
                     Unit.dp2px(this, 14),
@@ -126,6 +128,50 @@ public class SleepDurationActivity extends AppCompatActivity {
         }
     }
 
+    private void refreshUI() {
+        Calendar begin = Calendar.getInstance();
+        Calendar end = Calendar.getInstance();
+        if (SD_PERIOD == SleepDurationManager.Period.WEEK) {
+            begin.add(Calendar.WEEK_OF_YEAR, -1 * SD_INDEX);
+            begin.set(Calendar.DAY_OF_WEEK, 1);
+            end.add(Calendar.WEEK_OF_YEAR, -1 * SD_INDEX);
+            end.set(Calendar.DAY_OF_WEEK, 7);
+        }
+        int primaryTintColor = ContextCompat.getColor(this, R.color.primaryTextColor);
+        int secondaryTintColor = ContextCompat.getColor(this, R.color.primaryInactiveColor);
+        TextView TV_SD_Period = findViewById(R.id.SleepDurationActivity__SD_Period_Text);
+        ImageView IV_Btn__Next = findViewById(R.id.SleepDurationActivity__Next_Btn);
+        if (SD_INDEX == 0) {
+            IV_Btn__Next.setClickable(false);
+            IV_Btn__Next.setImageTintList(ColorStateList.valueOf(secondaryTintColor));
+        } else {
+            IV_Btn__Next.setClickable(true);
+            IV_Btn__Next.setImageTintList(ColorStateList.valueOf(primaryTintColor));
+        }
+        String f;
+        SimpleDateFormat sdf1 = new SimpleDateFormat(getString(R.string.activity_sleep_duration__sd_period_format_1));
+        SimpleDateFormat sdf2 = new SimpleDateFormat(getString(R.string.activity_sleep_duration__sd_period_format_2));
+        if (begin.get(Calendar.MONTH) == end.get(Calendar.MONTH)) {
+            f = String.format(
+                    getString(R.string.activity_sleep_duration__sd_period_text_format),
+                    sdf1.format(begin.getTime()),
+                    sdf2.format(end.getTime())
+            );
+        } else {
+            f = String.format(
+                    getString(R.string.activity_sleep_duration__sd_period_text_format),
+                    sdf1.format(begin.getTime()),
+                    sdf1.format(end.getTime())
+            );
+        }
+        TV_SD_Period.setText(f);
+        try {
+            loadSD(SD_PERIOD, SD_INDEX);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,11 +186,20 @@ public class SleepDurationActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        try {
-            loadSD();
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
+        ImageView IV_Btn__Pre = findViewById(R.id.SleepDurationActivity__Pre_Btn);
+        IV_Btn__Pre.setOnClickListener(v -> {
+            SD_INDEX++;
+            refreshUI();
+        });
+
+        ImageView IV_Btn__Next = findViewById(R.id.SleepDurationActivity__Next_Btn);
+        IV_Btn__Next.setOnClickListener(v -> {
+            SD_INDEX--;
+            refreshUI();
+        });
+
+        refreshUI();
+
     }
 
 }

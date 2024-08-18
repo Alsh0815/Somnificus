@@ -57,12 +57,56 @@
             android:id="@+id/SleepDurationActivity__ScrollView">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:id="@+id/SleepDurationActivity__SDList"
-                android:padding="8dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:id="@+id/SleepDurationActivity__Pre_Btn"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/ic_keyboard_arrow_left"
+                        app:tint="@color/primaryTextColor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/SleepDurationActivity__SD_Period_Text"
+                        android:layout_margin="4dp"
+                        android:text="@string/activity_sleep_duration__sd_period_text_default"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:id="@+id/SleepDurationActivity__Next_Btn"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/ic_keyboard_arrow_right"
+                        app:tint="@color/primaryTextColor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/SleepDurationActivity__SDList"
+                    android:padding="8dp">
 
 
+
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>

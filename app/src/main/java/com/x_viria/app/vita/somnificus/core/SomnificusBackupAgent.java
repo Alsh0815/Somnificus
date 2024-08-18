@@ -1,7 +1,6 @@
 package com.x_viria.app.vita.somnificus.core;
 
 import android.app.backup.BackupAgentHelper;
-import android.app.backup.BackupDataInput;
 import android.app.backup.BackupDataOutput;
 import android.app.backup.SharedPreferencesBackupHelper;
 import android.os.ParcelFileDescriptor;

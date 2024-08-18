@@ -14,7 +14,7 @@ android {
         minSdk = 27
         targetSdk = 34
         versionCode = 6
-        versionName = "1.1.3.19.R"
+        versionName = "1.1.3.23.R"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
@@ -49,7 +49,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment:2.7.7")
     implementation("androidx.navigation:navigation-ui:2.7.7")
     implementation("com.fasterxml.uuid:java-uuid-generator:4.3.0")
-    implementation("com.google.android.gms:play-services-ads:23.2.0")
+    implementation("com.google.android.gms:play-services-ads:23.3.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")

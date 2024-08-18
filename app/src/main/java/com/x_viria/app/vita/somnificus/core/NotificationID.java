@@ -5,6 +5,8 @@ public class NotificationID {
     public static final int REMIND__MISSED_ALARM_MIN = 0x9E00;
     public static final int REMIND__MISSED_ALARM_MAX = 0x9FFF;
 
-    public static final int REMIND__SAVE_SD = 0xA001;
+    public static final int REMIND__NO_ALARM_IS_SET = 0xA010;
+
+    public static final int REMIND__SAVE_SD = 0xA020;
 
 }

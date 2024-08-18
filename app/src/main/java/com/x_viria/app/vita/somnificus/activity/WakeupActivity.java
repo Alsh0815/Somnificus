@@ -3,7 +3,6 @@ package com.x_viria.app.vita.somnificus.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,14 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.core.Remind;
-import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
 import com.x_viria.app.vita.somnificus.core.ui.NativeAdBuilder;
 import com.x_viria.app.vita.somnificus.service.AlarmService;
@@ -30,7 +26,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class WakeupActivity extends AppCompatActivity {

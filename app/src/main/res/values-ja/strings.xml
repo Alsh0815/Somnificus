@@ -15,6 +15,8 @@
 
     <string name="notification_remind__missed_alarm_title">聞き逃したアラームがあります</string>
     <string name="notification_remind__missed_alarm_msg">アラーム: %02d:%02d</string>
+    <string name="notification_remind__no_alarm_is_set_title">アラームが設定されていません</string>
+    <string name="notification_remind__no_alarm_is_set_msg">通知をタップしてアラームを設定してください</string>
     <string name="notification_remind__save_sd_title">睡眠時間を記録しましょう</string>
     <string name="notification_remind__save_sd_msg">よく眠れましたか?\n睡眠時間を記録して睡眠の質をチェックしましょう</string>
 
@@ -78,6 +80,8 @@
     <string name="activity_setting__text_version">バージョン</string>
 
     <!-- SleepDurationActivity -->
+    <string name="activity_sleep_duration__sd_period_text_format">%s日  –  %s日</string>
+    <string name="activity_sleep_duration__sd_period_text_default">1月 1日  –  7日</string>
     <string name="activity_sleep_duration__date_format_from">yyyy年M月d日 H:mm</string>
     <string name="activity_sleep_duration__date_format_to">M月d日 H:mm</string>
     <string name="activity_sleep_duration__dialog_del_sd_msg">このデータを削除しますか?</string>
