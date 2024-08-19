@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/fragment_main_sleep__text_schedule"
                     android:textColor="@color/primaryActiveColor"
-                    android:textSize="16dp"/>
+                    android:textSize="16sp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                             android:id="@+id/SleepFragment__Schedule_Bed_Time_T2"
                             android:text="--:--"
                             android:textColor="@color/primaryInactiveColor"
-                            android:textSize="32dp" />
+                            android:textSize="32sp" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
                             android:id="@+id/SleepFragment__Schedule_WakeUp_Time_T2"
                             android:text="--:--"
                             android:textColor="@color/primaryInactiveColor"
-                            android:textSize="32dp" />
+                            android:textSize="32sp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_main_sleep__text_activity"
                         android:textColor="@color/primaryActiveColor"
-                        android:textSize="16dp"/>
+                        android:textSize="16sp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fragment_main_sleep__text_sd_last_7days"
-                    android:textSize="14dp" />
+                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -153,7 +153,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
                             android:text="@string/fragment_main_sleep__text_sd_avg"
-                            android:textSize="14dp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
                         <TextView
                             android:layout_width="wrap_content"
@@ -161,7 +161,7 @@
                             android:layout_margin="4dp"
                             android:id="@+id/SleepFragment__SD_Avg_Time"
                             android:text="@string/fragment_main_sleep__text_sd_time"
-                            android:textSize="15dp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 

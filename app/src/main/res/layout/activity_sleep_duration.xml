@@ -32,7 +32,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right">
+                android:gravity="end">
                 <ImageView
                     android:layout_width="@dimen/activity_header_close_btn"
                     android:layout_height="@dimen/activity_header_close_btn"

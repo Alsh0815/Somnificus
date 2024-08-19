@@ -78,11 +78,14 @@ public class SleepDurationManager {
                 return 1;
             }
         });
+        Log.d("SleepDurationManager", String.format("Begin: %s (%d)", begin.getTime().toString(), begin.getTimeInMillis()));
+        Log.d("SleepDurationManager", String.format("End: %s (%d)", end.getTime().toString(), end.getTimeInMillis()));
         List<SleepDurationInfo> target = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             Calendar c = Calendar.getInstance();
             c.setTimeInMillis(list.get(i).getWakeupTime());
-            if (0 <= c.compareTo(begin) && c.compareTo(end) <= 0) {
+            if (begin.getTimeInMillis() <= c.getTimeInMillis() && c.getTimeInMillis() <= end.getTimeInMillis()) {
+                Log.d("SleepDurationManager", String.format("Target: %s (%d)", c.getTime().toString(), c.getTimeInMillis()));
                 target.add(list.get(i));
             }
         }
@@ -91,7 +94,13 @@ public class SleepDurationManager {
 
     public List<SleepDurationInfo> get(int period) throws JSONException {
         Calendar begin = Calendar.getInstance();
+        begin.set(Calendar.HOUR_OF_DAY, 0);
+        begin.set(Calendar.MINUTE, 0);
+        begin.set(Calendar.SECOND, 0);
         Calendar end = Calendar.getInstance();
+        end.set(Calendar.HOUR_OF_DAY, 23);
+        end.set(Calendar.MINUTE, 59);
+        end.set(Calendar.SECOND, 59);
         switch (period) {
             case Period.ALL:
                 begin.setTimeInMillis(0);
@@ -110,11 +119,11 @@ public class SleepDurationManager {
 
     public List<SleepDurationInfo> get(int period, int index) throws JSONException {
         Calendar begin = Calendar.getInstance();
-        begin.set(Calendar.HOUR, 0);
+        begin.set(Calendar.HOUR_OF_DAY, 0);
         begin.set(Calendar.MINUTE, 0);
         begin.set(Calendar.SECOND, 0);
         Calendar end = Calendar.getInstance();
-        end.set(Calendar.HOUR, 23);
+        end.set(Calendar.HOUR_OF_DAY, 23);
         end.set(Calendar.MINUTE, 59);
         end.set(Calendar.SECOND, 59);
         switch (period) {
@@ -144,6 +153,14 @@ public class SleepDurationManager {
                 throw new InvalidParameterException("");
         }
         return _get(begin, end);
+    }
+
+    public SleepDurationInfo get(String id) throws JSONException {
+        List<SleepDurationInfo> sdlist = get(Period.ALL);
+        for (SleepDurationInfo info : sdlist) {
+            if (id.equals(info.ID)) return info;
+        }
+        return null;
     }
 
     public void remove(String id) throws JSONException {

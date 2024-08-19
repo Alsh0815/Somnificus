@@ -30,7 +30,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="end"
                 android:orientation="horizontal">
 
                 <TextView
@@ -40,7 +40,7 @@
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:text="@string/activity_set_alarm__btn_save"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/SetAlarmActivity__EditText_Label"
-                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:hint="@string/activity_set_alarm__text_add_a_label" />
 
         </LinearLayout>
@@ -106,7 +106,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
-                            android:textSize="24dp" />
+                            android:textSize="24sp" />
                         <NumberPicker
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -257,7 +257,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="right">
+                        android:gravity="end">
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -287,7 +287,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="right">
+                        android:gravity="end">
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

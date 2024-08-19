@@ -82,9 +82,23 @@
     <!-- SleepDurationActivity -->
     <string name="activity_sleep_duration__sd_period_text_format">%s日  –  %s日</string>
     <string name="activity_sleep_duration__sd_period_text_default">1月 1日  –  7日</string>
-    <string name="activity_sleep_duration__date_format_from">yyyy年M月d日 H:mm</string>
-    <string name="activity_sleep_duration__date_format_to">M月d日 H:mm</string>
-    <string name="activity_sleep_duration__dialog_del_sd_msg">このデータを削除しますか?</string>
+    <string name="activity_sleep_duration__date_format_from">yyyy年M月d日</string>
+
+    <!-- SleepDurationDetailsActivity -->
+    <string name="activity_sleep_duration_details__text_duration">期間</string>
+    <string name="activity_sleep_duration_details__text_asleep">睡眠時間</string>
+    <string name="activity_sleep_duration_details__text_sleep_duration_default">-時間</string>
+    <string name="activity_sleep_duration_details__text_sleep_duration_format_m">%d分</string>
+    <string name="activity_sleep_duration_details__text_sleep_duration_format_h">%d時間</string>
+    <string name="activity_sleep_duration_details__text_sleep_duration_format_hm">%d時間%d分</string>
+    <string name="activity_sleep_duration_details__text_schedule">スケジュール</string>
+    <string name="activity_sleep_duration_details__text_got_in_bed">就寝時間</string>
+    <string name="activity_sleep_duration_details__text_woke_up">起床時間</string>
+    <string name="activity_sleep_duration_details__text_schedule_default">--:--</string>
+    <string name="activity_sleep_duration_details__dialog_del_sd_title">睡眠データを削除</string>
+    <string name="activity_sleep_duration_details__dialog_del_sd_msg">このデータを削除しますか?</string>
+    <string name="activity_sleep_duration_details__msg_failed_to_del_data">データの削除に失敗しました</string>
+    <string name="activity_sleep_duration_details__msg_succeeded_to_del_data">睡眠データを削除しました</string>
 
     <!-- WakeupActivity -->
     <string name="activity_wakeup__btn_stop">ストップ</string>

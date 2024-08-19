@@ -94,9 +94,23 @@
     <string name="activity_sleep_duration__sd_period_format_2" translatable="false">d</string>
     <string name="activity_sleep_duration__sd_period_text_format">%s  –  %s</string>
     <string name="activity_sleep_duration__sd_period_text_default">Jan 1  –  7</string>
-    <string name="activity_sleep_duration__date_format_from">M-d-yyyy H:mm</string>
-    <string name="activity_sleep_duration__date_format_to">M-d H:mm</string>
-    <string name="activity_sleep_duration__dialog_del_sd_msg">Do you want to delete this data?</string>
+    <string name="activity_sleep_duration__date_format_from">M-d-yyyy</string>
+
+    <!-- SleepDurationDetailsActivity -->
+    <string name="activity_sleep_duration_details__text_duration">Duration</string>
+    <string name="activity_sleep_duration_details__text_asleep">Asleep</string>
+    <string name="activity_sleep_duration_details__text_sleep_duration_default">-h</string>
+    <string name="activity_sleep_duration_details__text_sleep_duration_format_m">%dm</string>
+    <string name="activity_sleep_duration_details__text_sleep_duration_format_h">%dh</string>
+    <string name="activity_sleep_duration_details__text_sleep_duration_format_hm">%dh %dm</string>
+    <string name="activity_sleep_duration_details__text_schedule">Schedule</string>
+    <string name="activity_sleep_duration_details__text_got_in_bed">Got in bed</string>
+    <string name="activity_sleep_duration_details__text_woke_up">Woke up</string>
+    <string name="activity_sleep_duration_details__text_schedule_default">--:--</string>
+    <string name="activity_sleep_duration_details__dialog_del_sd_title">Delete</string>
+    <string name="activity_sleep_duration_details__dialog_del_sd_msg">Do you want to delete this data?</string>
+    <string name="activity_sleep_duration_details__msg_failed_to_del_data">Failed to delete.</string>
+    <string name="activity_sleep_duration_details__msg_succeeded_to_del_data">The sleep data has been deleted successfully.</string>
 
     <!-- WakeupActivity -->
     <string name="activity_wakeup__btn_stop">Stop</string>

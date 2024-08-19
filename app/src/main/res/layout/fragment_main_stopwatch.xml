@@ -28,14 +28,14 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/StopwatchFragment__TShow_S"
                     android:text="00"
-                    android:textSize="72dp" />
+                    android:textSize="72sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/StopwatchFragment__TShow_MS"
-                    android:layout_gravity="right"
+                    android:layout_gravity="end"
                     android:text="00"
-                    android:textSize="56dp" />
+                    android:textSize="56sp" />
             </LinearLayout>
 
             <ScrollView
@@ -69,7 +69,7 @@
                 android:background="@drawable/btn_timer_circle"
                 android:backgroundTint="@color/secondaryInactiveColor"
                 android:id="@+id/StopwatchFragment__CP_Btn_Reset"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
                 android:padding="@dimen/btn_timer_icon_size"
                 android:clickable="true"
                 android:elevation="5dp"
@@ -106,7 +106,7 @@
                 android:background="@drawable/btn_timer_circle"
                 android:backgroundTint="@color/secondaryInactiveColor"
                 android:id="@+id/StopwatchFragment__CP_Btn_Lap"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:padding="@dimen/btn_timer_icon_size"
                 android:clickable="true"
                 android:elevation="5dp"

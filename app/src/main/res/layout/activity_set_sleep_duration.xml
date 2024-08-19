@@ -32,7 +32,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right">
+                android:gravity="end">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -75,17 +75,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="right">
+                android:gravity="end">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/SetSDActivity__SD_BT_Date"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
                     android:padding="8dp"
                     android:text="@string/common__text_yesterday"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     android:padding="8dp"
                     android:text="23:00"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -112,17 +112,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="right">
+                android:gravity="end">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/SetSDActivity__SD_WT_Date"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
                     android:padding="8dp"
                     android:text="@string/fragment_main_alarm__text_today"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     android:padding="8dp"
                     android:text="07:00"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -149,7 +149,7 @@
             android:paddingRight="12dp"
             android:paddingBottom="8dp"
             android:text="@string/activity_set_sleep_duration__text_how_was_wakeup"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -181,7 +181,7 @@
                     android:id="@+id/SetSDActivity__Bad_Text"
                     android:layout_marginTop="8dp"
                     android:text="@string/activity_set_sleep_duration__text_bad"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -206,7 +206,7 @@
                     android:id="@+id/SetSDActivity__Good_Text"
                     android:layout_marginTop="8dp"
                     android:text="@string/activity_set_sleep_duration__text_good"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
         </LinearLayout>

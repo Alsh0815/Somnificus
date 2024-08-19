@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +33,6 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class SleepFragment extends Fragment {
 
@@ -46,13 +44,6 @@ public class SleepFragment extends Fragment {
 
     public static SleepFragment newInstance() {
         return new SleepFragment();
-    }
-
-    private long getDaysDiff(Calendar targetDate) {
-        Calendar today = Calendar.getInstance();
-        long diffInMillis = today.getTimeInMillis() - targetDate.getTimeInMillis();
-        Log.d("SleepFragment", today.getTimeZone().getID() + " - " + targetDate.getTimeZone().getID());
-        return TimeUnit.MILLISECONDS.toDays(diffInMillis);
     }
 
     private void refreshUI() {
@@ -102,12 +93,13 @@ public class SleepFragment extends Fragment {
             SleepDurationManager sdm = new SleepDurationManager(getContext());
             List<SleepDurationInfo> sdlist = sdm.get(SleepDurationManager.Period.LAST_7DAYS);
 
+            Calendar now = Calendar.getInstance();
             long[] duration = new long[7];
             for (SleepDurationInfo sdi : sdlist) {
                 Calendar c = Calendar.getInstance();
                 c.setTimeInMillis(sdi.getWakeupTime());
                 long d = sdi.getWakeupTime() - sdi.getBedTime();
-                int diff = (int) getDaysDiff(c);
+                int diff = now.get(Calendar.DAY_OF_YEAR) - c.get(Calendar.DAY_OF_YEAR);
                 duration[6 - diff] += d;
             }
 
