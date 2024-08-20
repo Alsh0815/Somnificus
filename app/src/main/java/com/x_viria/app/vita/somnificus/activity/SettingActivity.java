@@ -48,6 +48,12 @@ public class SettingActivity extends AppCompatActivity {
         TimerVibrate_SW.setChecked(sps.getBool(Config.KEY__SETTINGS_TIMER_VIBRATE, SPDefault.SETTINGS_TIMER_VIBRATE));
         TimerVibrate_SW.setOnCheckedChangeListener((buttonView, isChecked) -> sps.setBool(Config.KEY__SETTINGS_TIMER_VIBRATE, isChecked));
 
+        LinearLayout RemindSaveSD_L = findViewById(R.id.SettingActivity__Remind_SaveSD_L);
+        SwitchMaterial RemindSaveSD_SW = findViewById(R.id.SettingActivity__Remind_SaveSD_SW);
+        RemindSaveSD_L.setOnClickListener(v -> RemindSaveSD_SW.setChecked(!RemindSaveSD_SW.isChecked()));
+        RemindSaveSD_SW.setChecked(sps.getBool(Config.KEY__SETTINGS_REMIND_SAVESD, SPDefault.SETTINGS_REMIND_SAVESD));
+        RemindSaveSD_SW.setOnCheckedChangeListener((buttonView, isChecked) -> sps.setBool(Config.KEY__SETTINGS_REMIND_SAVESD, isChecked));
+
         LinearLayout Version_L = findViewById(R.id.SettingActivity__Version_L);
         Version_L.setOnClickListener(v -> {
             try {

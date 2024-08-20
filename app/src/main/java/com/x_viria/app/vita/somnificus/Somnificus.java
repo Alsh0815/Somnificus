@@ -27,6 +27,12 @@ public class Somnificus extends Application {
                 NotificationManager.IMPORTANCE_HIGH
         );
         channelList.add(channel_alarm);
+        NotificationChannel channel_timer = new NotificationChannel(
+                Channel.ID.Timer,
+                getString(R.string.notification_channel_name__timer),
+                NotificationManager.IMPORTANCE_LOW
+        );
+        channelList.add(channel_timer);
         NotificationChannel channel_remind = new NotificationChannel(
                 Channel.ID.Remind,
                 getString(R.string.notification_channel_name__remind),
@@ -35,4 +41,5 @@ public class Somnificus extends Application {
         channelList.add(channel_remind);
         notificationManager.createNotificationChannels(channelList);
     }
+
 }

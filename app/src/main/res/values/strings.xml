@@ -13,6 +13,7 @@
 
     <!-- Notification -->
     <string name="notification_channel_name__alarm">Alarm</string>
+    <string name="notification_channel_name__timer">Timer</string>
     <string name="notification_channel_name__remind">Remind</string>
 
     <string name="notification_remind__missed_alarm_title">There’s an alarm you didn’t hear.</string>
@@ -30,10 +31,12 @@
     <string name="activity_backup__description_1">The device will automatically backup when it is idle and connected to the network.</string>
     <string name="activity_backup__description_2">Backups may not be completed if your Google account runs out of storage.</string>
 
-    <!-- LicenseActivity -->
-    <string name="activity_license__title">License</string>
-    <string name="activity_license__content__timer_sound" translatable="false">Timer sound</string>
-    <string name="activity_license__content__timer_sound_credits" translatable="false">OtoLogic (https://otologic.jp)</string>
+    <!-- CreditsActivity -->
+    <string name="activity_credits__title">Credits</string>
+    <string name="activity_credits__content__timer_sound" translatable="false">Timer sound</string>
+    <string name="activity_credits__content__timer_sound_credits" translatable="false">OtoLogic (https://otologic.jp)</string>
+    <string name="activity_credits__content__translate" translatable="false">Translated by Google</string>
+    <string name="activity_credits__content__translate_credits" translatable="false">(https://translate.google.com)</string>
 
     <!-- MainActivity -->
     <string name="activity_main__bnv_item_alarm">Alarm</string>
@@ -72,6 +75,7 @@
 
     <!-- SetSleepDurationActivity -->
     <string name="activity_set_sleep_duration__title">Add sleep data</string>
+    <string name="activity_set_sleep_duration__text_check_nap">This is a nap, not a long sleep.</string>
     <string name="activity_set_sleep_duration__text_how_was_wakeup">How was your wake-up?</string>
     <string name="activity_set_sleep_duration__text_good">Good</string>
     <string name="activity_set_sleep_duration__text_bad">Bad</string>
@@ -86,14 +90,19 @@
     <string name="activity_setting__text_alarm_vibrate">Alarm vibrate</string>
     <string name="activity_setting__text_timer_sound">Timer sound</string>
     <string name="activity_setting__text_timer_vibrate">Timer vibrate</string>
+    <string name="activity_setting__item_remind">Remind</string>
+    <string name="activity_setting__text_remind_savesd">Reminder to record sleep data</string>
+    <string name="activity_setting__text_remind_savesd_description">Reminds you to record your sleep when you wake up.</string>
     <string name="activity_setting__item_others">Others</string>
     <string name="activity_setting__text_version">Version</string>
 
     <!-- SleepDurationActivity -->
     <string name="activity_sleep_duration__sd_period_format_1" translatable="false">MMM d</string>
     <string name="activity_sleep_duration__sd_period_format_2" translatable="false">d</string>
-    <string name="activity_sleep_duration__sd_period_text_format">%s  –  %s</string>
-    <string name="activity_sleep_duration__sd_period_text_default">Jan 1  –  7</string>
+    <string name="activity_sleep_duration__sd_period_text_format">%s – %s</string>
+    <string name="activity_sleep_duration__sd_period_text_default">Jan 1 – 7</string>
+    <string name="activity_sleep_duration__sd_period_text_avg">Avg. %dh %dmin</string>
+    <string name="activity_sleep_duration__sd_period_text_avg_zero">There is no sleep data.</string>
     <string name="activity_sleep_duration__date_format_from">M-d-yyyy</string>
 
     <!-- SleepDurationDetailsActivity -->
@@ -160,7 +169,10 @@
     <string name="fragment_main_etc__text_whats_new">What\'s new</string>
     <string name="fragment_main_etc__text_settings">Settings</string>
     <string name="fragment_main_etc__text_backup">Backup</string>
-    <string name="fragment_main_etc__text_license">License</string>
+    <string name="fragment_main_etc__text_credits">Credits</string>
+    <string name="fragment_main_etc__text_watch_ad">Watch ad</string>
+    <string name="fragment_main_etc__dialog_watch_ad_title">Ad</string>
+    <string name="fragment_main_etc__dialog_watch_ad_msg">Would you like to watch an ad and try out the premium features?</string>
 
     <!-- TutorialFragment 1 -->
     <string name="fragment_tutorial_1__text_1">Welcome to Somnificus.\nThank you for downloading this application.\nWe provide sleep advice to help you get a good night\'s sleep.</string>

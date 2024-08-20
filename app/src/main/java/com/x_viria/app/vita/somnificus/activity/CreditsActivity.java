@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.x_viria.app.vita.somnificus.R;
 
-public class LicenseActivity extends AppCompatActivity {
+public class CreditsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_license);
+        setContentView(R.layout.activity_credits);
     }
 }

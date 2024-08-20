@@ -1,7 +1,6 @@
 package com.x_viria.app.vita.somnificus.service;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -10,7 +9,6 @@ import android.content.pm.ServiceInfo;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.VibrationEffect;
@@ -20,6 +18,7 @@ import androidx.annotation.Nullable;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.MainActivity;
+import com.x_viria.app.vita.somnificus.util.notification.Channel;
 import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
 import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
@@ -74,18 +73,11 @@ public class TimerService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
 
-        String channel_id = "somnificus_notification__timer";
-        NotificationChannel channel = new NotificationChannel(
-                channel_id,
-                "Timer",
-                NotificationManager.IMPORTANCE_LOW
-        );
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.createNotificationChannel(channel);
 
-        Notification.Builder builder = new Notification.Builder(this, channel_id);
+        Notification.Builder builder = new Notification.Builder(this, Channel.ID.Timer);
         builder.setContentTitle("Somnificus");
-        builder.setContentText("Timer");
+        builder.setContentText(getString(R.string.notification_channel_name__timer));
         Notification notification = builder.build();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -115,7 +107,7 @@ public class TimerService extends Service {
                 long sec = (rem_ms / 1000) % 60;
                 long min = (rem_ms / (1000 * 60)) % 60;
                 long hour = (rem_ms / (1000 * 60 * 60)) % 24;
-                builder.setContentTitle("Somnificus - Timer");
+                builder.setContentTitle(String.format("Somnificus - %s", getString(R.string.notification_channel_name__timer)));
                 if (rem_ms < 0) {
                     builder.setContentText("00:00");
                     if (!IS_FINISHED) onFinished();

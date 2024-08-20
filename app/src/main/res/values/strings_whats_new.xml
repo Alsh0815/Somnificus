@@ -3,11 +3,15 @@
     <string name="whats_new_features">New Features</string>
     <string name="whats_new_fixed">Fixed</string>
 
+    <string name="whats_new_text_ver_1_1_4" translatable="false">ver.1.1.4.x</string>
+    <string name="whats_new_text_ch_1_1_4_a">Changed so that the timer time can be reset by long pressing the delete button.</string>
+    <string name="whats_new_text_fx_1_1_4_a">Fixed some designs.</string>
+
     <string name="whats_new_text_ver_1_1_3" translatable="false">ver.1.1.3.x</string>
     <string name="whats_new_text_ft_1_1_3_a">Added a function to backup.</string>
     <string name="whats_new_text_ch_1_1_3_a">Changed the notification so that it automatically disappears when the user taps the sleep time recording reminder notification.</string>
     <string name="whats_new_text_ch_1_1_3_b">Changed the alarm to stop automatically if the user does not stop it after 5 minutes.</string>
-    <string name="whats_new_text_ch_1_1_3_c">Optimized resources</string>
+    <string name="whats_new_text_ch_1_1_3_c">Optimized resources.</string>
     <string name="whats_new_text_fx_1_1_3_a">Fixed an issue where the sleep data graph for the last 7 days was not displayed correctly in certain time zones and certain times.</string>
     <string name="whats_new_text_fx_1_1_3_b">Fixed an issue where some layouts were not displayed correctly in RTL mode.</string>
     <string name="whats_new_text_fx_1_1_3_c">Fixed some bugs.</string>

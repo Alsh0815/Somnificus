@@ -228,6 +228,10 @@ public class TimerFragment extends Fragment {
             addNum(0);
         });
         Num_BS.setOnClickListener(v -> removeNum());
+        Num_BS.setOnLongClickListener(v -> {
+            for (int i = 0; i < 6; i++) removeNum();
+            return false;
+        });
 
         return ROOT;
     }

@@ -15,6 +15,7 @@ import android.content.res.ColorStateList;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,10 +34,10 @@ public class SetSleepDurationActivity extends AppCompatActivity {
 
     private int EVAL_GOOD_OR_BAD = SleepDurationInfo.Eval.NONE;
 
-    private int[] SD_BT_DATE = new int[] {0, 0, 0};
-    private int[] SD_BT_TIME = new int[] {23, 0};
-    private int[] SD_WT_DATE = new int[] {0, 0, 0};
-    private int[] SD_WT_TIME = new int[] {7, 0};
+    private final int[] SD_BT_DATE = new int[] {0, 0, 0};
+    private final int[] SD_BT_TIME = new int[] {23, 0};
+    private final int[] SD_WT_DATE = new int[] {0, 0, 0};
+    private final int[] SD_WT_TIME = new int[] {7, 0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,8 @@ public class SetSleepDurationActivity extends AppCompatActivity {
         cy.add(Calendar.DAY_OF_MONTH, -1);
         setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH), R.id.SetSDActivity__SD_WT_Date);
         setDate(cy.get(Calendar.YEAR), cy.get(Calendar.MONTH), cy.get(Calendar.DAY_OF_MONTH), R.id.SetSDActivity__SD_BT_Date);
+
+        CheckBox CB_Nap = findViewById(R.id.SetSDActivity__Nap_CheckBox);
 
         ImageView IVBtn_Back_Btn = findViewById(R.id.SetSDActivity__Back_Btn);
         IVBtn_Back_Btn.setOnClickListener(v -> finish());
@@ -84,6 +87,7 @@ public class SetSleepDurationActivity extends AppCompatActivity {
                 try {
                     SleepDurationInfo sdi = new SleepDurationInfo(C_BedTime.getTimeInMillis(), C_WakeupTime.getTimeInMillis());
                     sdi.EVAL__GOOD_OR_BAD = EVAL_GOOD_OR_BAD;
+                    sdi.FLAG__NAP = CB_Nap.isChecked();
                     SleepDurationManager sdm = new SleepDurationManager(SetSleepDurationActivity.this);
                     sdm.add(sdi);
                     dialog.dismiss();
@@ -119,6 +123,9 @@ public class SetSleepDurationActivity extends AppCompatActivity {
             TimePickerDialogFragment dpdf = new TimePickerDialogFragment(R.id.SetSDActivity__SD_WT_Time);
             dpdf.show(getSupportFragmentManager(), "datePicker");
         });
+
+        LinearLayout LLBtn_Nap_CB = findViewById(R.id.SetSDActivity__Nap_CheckBox_L);
+        LLBtn_Nap_CB.setOnClickListener(v -> CB_Nap.setChecked(!CB_Nap.isChecked()));
 
         LinearLayout LLBtn_Good = findViewById(R.id.SetSDActivity__Good_Btn);
         ImageView IV_Good_Icon = findViewById(R.id.SetSDActivity__Good_Icon);

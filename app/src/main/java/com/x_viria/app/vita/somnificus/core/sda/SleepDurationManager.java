@@ -38,6 +38,9 @@ public class SleepDurationManager {
         JSONObject eval = new JSONObject();
         eval.put("g_or_b", sdInfo.EVAL__GOOD_OR_BAD);
         obj.put("eval", eval);
+        JSONObject flag = new JSONObject();
+        flag.put("isNap", sdInfo.FLAG__NAP);
+        obj.put("flag", flag);
         return obj;
     }
 
@@ -67,6 +70,10 @@ public class SleepDurationManager {
             sdinfo.ID = obj.getString("id");
             JSONObject eval = obj.getJSONObject("eval");
             sdinfo.EVAL__GOOD_OR_BAD = eval.getInt("g_or_b");
+            if (obj.has("flag")) {
+                JSONObject flag = obj.getJSONObject("flag");
+                sdinfo.FLAG__NAP = flag.getBoolean("isNap");
+            }
             list.add(sdinfo);
         }
         list.sort((o1, o2) -> {

@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.BackupActivity;
-import com.x_viria.app.vita.somnificus.activity.LicenseActivity;
+import com.x_viria.app.vita.somnificus.activity.CreditsActivity;
 import com.x_viria.app.vita.somnificus.activity.SettingActivity;
 import com.x_viria.app.vita.somnificus.activity.WhatsNewActivity;
 
@@ -52,9 +52,9 @@ public class EtcFragment extends Fragment {
             startActivity(intent);
         });
 
-        LinearLayout license_btn = root.findViewById(R.id.EtcFragment__Btn_License);
-        license_btn.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), LicenseActivity.class);
+        LinearLayout credits_btn = root.findViewById(R.id.EtcFragment__Btn_Credits);
+        credits_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), CreditsActivity.class);
             startActivity(intent);
         });
 

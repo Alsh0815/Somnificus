@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
@@ -61,7 +60,10 @@ public class SetNapActivity extends AppCompatActivity {
         SwitchMaterial opt_Mute_SW = findViewById(R.id.SetNapActivity__Switch_Opt_Mute);
         opt_Mute_SW.setOnCheckedChangeListener((buttonView, isChecked) -> opt_GIV_SW.setEnabled(!isChecked));
         LinearLayout opt_Mute = findViewById(R.id.SetNapActivity__View_Opt_Mute);
-        opt_Mute.setOnClickListener(v -> opt_Mute_SW.setChecked(!opt_Mute_SW.isChecked()));
+        opt_Mute.setOnClickListener(v -> {
+            opt_Mute_SW.setChecked(!opt_Mute_SW.isChecked());
+            opt_GIV.setClickable(!opt_Mute_SW.isChecked());
+        });
 
         TextView save_btn = findViewById(R.id.SetNapActivity__Btn_Save);
         save_btn.setOnClickListener(v -> {

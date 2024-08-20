@@ -9,5 +9,6 @@
     <dimen name="btn_timer_icon_size">20dp</dimen>
     <dimen name="btn_tutorial_icon_size">20dp</dimen>
     <dimen name="text_setting_item_msg">16sp</dimen>
+    <dimen name="text_setting_item_msg_small">12sp</dimen>
     <dimen name="text_tutorial_msg_size">16sp</dimen>
 </resources>

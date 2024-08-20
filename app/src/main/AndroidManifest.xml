@@ -49,7 +49,7 @@
             android:name=".activity.BackupActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.LicenseActivity"
+            android:name=".activity.CreditsActivity"
             android:exported="false" />
         <activity
             android:name=".activity.SleepDurationActivity"

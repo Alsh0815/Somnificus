@@ -63,7 +63,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/SetAlarmActivity__EditText_Label"
                 android:layout_marginEnd="8dp"
-                android:hint="@string/activity_set_alarm__text_add_a_label" />
+                android:hint="@string/activity_set_alarm__text_add_a_label"
+                android:textColor="@color/primaryTextColor"
+                android:textColorHint="@color/secondaryTextColor" />
 
         </LinearLayout>
 

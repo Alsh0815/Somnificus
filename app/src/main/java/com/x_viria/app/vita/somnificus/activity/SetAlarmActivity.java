@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.backup.BackupManager;
 import android.os.Bundle;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -153,9 +152,7 @@ public class SetAlarmActivity extends AppCompatActivity {
 
         SwitchMaterial opt_GIV_SW = findViewById(R.id.SetAlarmActivity__Switch_Opt_GIV);
         SwitchMaterial opt_Mute_SW = findViewById(R.id.SetAlarmActivity__Switch_Opt_Mute);
-        opt_Mute_SW.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            opt_GIV_SW.setEnabled(!isChecked);
-        });
+        opt_Mute_SW.setOnCheckedChangeListener((buttonView, isChecked) -> opt_GIV_SW.setEnabled(!isChecked));
 
         ImageView back_btn = findViewById(R.id.SetAlarmActivity__Btn_Back);
         back_btn.setOnClickListener(v -> finish());
@@ -271,6 +268,7 @@ public class SetAlarmActivity extends AppCompatActivity {
         LinearLayout opt_Mute = findViewById(R.id.SetAlarmActivity__View_Opt_Mute);
         opt_Mute.setOnClickListener(v -> {
             opt_Mute_SW.setChecked(!opt_Mute_SW.isChecked());
+            opt_GIV.setClickable(!opt_Mute_SW.isChecked());
         });
     }
 

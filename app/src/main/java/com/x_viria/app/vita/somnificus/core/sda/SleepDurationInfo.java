@@ -5,7 +5,9 @@ public class SleepDurationInfo {
     private final long INFO__BED_TIME;
     private final long INFO__WAKEUP_TIME;
 
-    public int EVAL__GOOD_OR_BAD;
+    public boolean FLAG__NAP = false;
+
+    public int EVAL__GOOD_OR_BAD = Eval.NONE;
     public String ID = null;
 
     public SleepDurationInfo(long bedTime, long wakeupTime) {

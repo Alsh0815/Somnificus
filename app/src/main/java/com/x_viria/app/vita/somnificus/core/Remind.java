@@ -14,6 +14,9 @@ import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.MainActivity;
 import com.x_viria.app.vita.somnificus.activity.SetSleepDurationActivity;
 import com.x_viria.app.vita.somnificus.util.notification.Channel;
+import com.x_viria.app.vita.somnificus.util.storage.Config;
+import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
+import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
 import java.util.Date;
 import java.util.Random;
@@ -50,6 +53,9 @@ public class Remind {
     }
 
     public static void SaveSleepDataNotification(Context context) {
+        SPStorage spStorage = new SPStorage(context);
+        boolean enable = spStorage.getBool(Config.KEY__SETTINGS_REMIND_SAVESD, SPDefault.SETTINGS_REMIND_SAVESD);
+        if (!enable) return;
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) return;
         Intent intent2 = new Intent(context, SetSleepDurationActivity.class);
         intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

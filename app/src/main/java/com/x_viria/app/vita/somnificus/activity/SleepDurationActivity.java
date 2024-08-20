@@ -53,6 +53,9 @@ public class SleepDurationActivity extends AppCompatActivity {
             }
         });
 
+        long totalTime = 0;
+
+        int cnt_day = 0;
         int pre_day = 0;
         LinearLayout pre_parent = null;
         for (SleepDurationInfo info : list) {
@@ -96,12 +99,16 @@ public class SleepDurationActivity extends AppCompatActivity {
                 head.addView(date);
 
                 pre_parent.addView(head);
+
+                cnt_day++;
             }
 
             long duration = info.getWakeupTime() - info.getBedTime();
             long sec = duration / 1000;
             long hour = sec / 3600;
             long min = (sec % 3600) / 60;
+
+            totalTime += duration;
 
             TextView duration_text = new TextView(this);
             duration_text.setBackgroundResource(rippleEffect.resourceId);
@@ -118,6 +125,23 @@ public class SleepDurationActivity extends AppCompatActivity {
 
             assert pre_parent != null;
             pre_parent.addView(duration_text);
+        }
+
+        TextView tv_period_avg = (TextView) findViewById(R.id.SleepDurationActivity__SD_Avg_Text);
+        if (cnt_day == 0) {
+            tv_period_avg.setText(getString(R.string.activity_sleep_duration__sd_period_text_avg_zero));
+        } else {
+            long avgTime = totalTime / cnt_day;
+            long sec = avgTime / 1000;
+            long hour = sec / 3600;
+            long min = (sec % 3600) / 60;
+            tv_period_avg.setText(
+                    String.format(
+                            getString(R.string.activity_sleep_duration__sd_period_text_avg),
+                            hour,
+                            min
+                    )
+            );
         }
     }
 

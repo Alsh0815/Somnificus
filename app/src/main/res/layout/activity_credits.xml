@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryBackgroundColor"
-    tools:context=".activity.LicenseActivity">
+    tools:context=".activity.CreditsActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_marginTop="@dimen/activity_title_margin"
                 android:layout_marginEnd="@dimen/activity_title_margin"
                 android:layout_marginBottom="@dimen/activity_title_margin"
-                android:text="@string/activity_license__title"
+                android:text="@string/activity_credits__title"
                 android:textSize="@dimen/activity_title_size" />
 
             <View
@@ -35,15 +35,38 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
                 android:gravity="center"
-                android:text="@string/activity_license__content__timer_sound"
+                android:text="@string/activity_credits__content__timer_sound"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
                 android:gravity="center"
-                android:text="@string/activity_license__content__timer_sound_credits"
+                android:text="@string/activity_credits__content__timer_sound_credits"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="@string/activity_credits__content__translate"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="@string/activity_credits__content__translate_credits"
                 android:textSize="16sp" />
 
         </LinearLayout>
