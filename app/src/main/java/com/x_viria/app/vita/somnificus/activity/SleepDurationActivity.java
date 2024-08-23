@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.icu.text.SimpleDateFormat;
@@ -13,6 +14,7 @@ import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +27,7 @@ import com.x_viria.app.vita.somnificus.util.Unit;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,12 +36,17 @@ public class SleepDurationActivity extends AppCompatActivity {
     private int SD_INDEX = 0;
     private int SD_PERIOD = SleepDurationManager.Period.WEEK;
 
+    private List<Long> DAY_OF_SLEEP_TIME;
+
     private void loadSD(int period, int index) throws JSONException {
+        DAY_OF_SLEEP_TIME = new ArrayList<>();
         LinearLayout LL__SDList = findViewById(R.id.SleepDurationActivity__SDList);
         LL__SDList.removeAllViews();
 
         TypedValue rippleEffect = new TypedValue();
         getTheme().resolveAttribute(android.R.attr.selectableItemBackground, rippleEffect, true);
+
+        int iconTintColor = ContextCompat.getColor(this, R.color.primaryTextColor);
 
         SleepDurationManager sdm = new SleepDurationManager(this);
         List<SleepDurationInfo> list = sdm.get(period, index);
@@ -58,12 +66,20 @@ public class SleepDurationActivity extends AppCompatActivity {
         int cnt_day = 0;
         int pre_day = 0;
         LinearLayout pre_parent = null;
+        TextView pre_header = null;
+        Date d_to = null;
         for (SleepDurationInfo info : list) {
             Calendar cal = Calendar.getInstance();
             cal.setTimeInMillis(info.getWakeupTime());
 
             int padding1 = Unit.dp2px(this, 12.0f);
             int padding2 = Unit.dp2px(this, 12.0f);
+
+            long duration = info.getWakeupTime() - info.getBedTime();
+            long sec = duration / 1000;
+            long hour = sec / 3600;
+            long min = (sec % 3600) / 60;
+            totalTime += duration;
 
             if (cal.get(Calendar.DAY_OF_YEAR) != pre_day) {
                 pre_day = cal.get(Calendar.DAY_OF_YEAR);
@@ -86,45 +102,87 @@ public class SleepDurationActivity extends AppCompatActivity {
                         Unit.dp2px(this, 14)
                 ));
 
-                Date d_to = new Date();
+                d_to = new Date();
                 d_to.setTime(info.getWakeupTime());
                 SimpleDateFormat f = new SimpleDateFormat(getString(R.string.activity_sleep_duration__date_format_from));
-                TextView date = new TextView(this);
-                date.setPadding(padding2, padding2, padding2, padding2);
-                date.setText(f.format(d_to));
-                date.setTextColor(getColor(R.color.secondaryTextColor));
-                date.setTextSize(COMPLEX_UNIT_DIP, 14);
+                pre_header = new TextView(this);
+                pre_header.setPadding(padding2, padding2, padding2, padding2);
+                pre_header.setText(String.format("%s - " + getString(R.string.activity_sleep_duration__time_format), f.format(d_to), hour, min));
+                pre_header.setTextColor(getColor(R.color.secondaryTextColor));
+                pre_header.setTextSize(COMPLEX_UNIT_DIP, 14);
 
                 head.addView(icon);
-                head.addView(date);
+                head.addView(pre_header);
 
                 pre_parent.addView(head);
 
+                DAY_OF_SLEEP_TIME.add(duration);
+
                 cnt_day++;
+            } else {
+                long day_of_sleep_time = DAY_OF_SLEEP_TIME.get(cnt_day - 1) + duration;
+                long t_sec = day_of_sleep_time / 1000;
+                long t_hour = t_sec / 3600;
+                long t_min = (t_sec % 3600) / 60;
+                SimpleDateFormat f = new SimpleDateFormat(getString(R.string.activity_sleep_duration__date_format_from));
+                assert pre_header != null;
+                pre_header.setText(String.format("%s - " + getString(R.string.activity_sleep_duration__time_format), f.format(d_to), t_hour, t_min));
+                DAY_OF_SLEEP_TIME.set(cnt_day - 1, day_of_sleep_time);
             }
 
-            long duration = info.getWakeupTime() - info.getBedTime();
-            long sec = duration / 1000;
-            long hour = sec / 3600;
-            long min = (sec % 3600) / 60;
-
-            totalTime += duration;
-
-            TextView duration_text = new TextView(this);
-            duration_text.setBackgroundResource(rippleEffect.resourceId);
-            duration_text.setClickable(true);
-            duration_text.setPadding(padding2, padding2, padding2, padding2);
-            duration_text.setText(String.format(getString(R.string.fragment_main_sleep__text_sd_time), hour, min));
-            duration_text.setTextColor(getColor(R.color.primaryTextColor));
-            duration_text.setTextSize(COMPLEX_UNIT_DIP, 18);
-            duration_text.setOnClickListener(v -> {
+            LinearLayout body = new LinearLayout(this);
+            body.setBackgroundResource(rippleEffect.resourceId);
+            body.setClickable(true);
+            body.setLayoutParams(new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            ));
+            body.setOnClickListener(v -> {
                 Intent intent = new Intent(this, SleepDurationDetailsActivity.class);
                 intent.putExtra("sdinfo_id", info.ID);
                 startActivity(intent);
             });
+            body.setOrientation(LinearLayout.HORIZONTAL);
 
-            assert pre_parent != null;
-            pre_parent.addView(duration_text);
+            TextView duration_text = new TextView(this);
+            duration_text.setPadding(padding2, padding2, padding2, padding2);
+            duration_text.setText(String.format(getString(R.string.fragment_main_sleep__text_sd_time), hour, min));
+            duration_text.setTextColor(getColor(R.color.primaryTextColor));
+            duration_text.setTextSize(COMPLEX_UNIT_DIP, 18);
+            body.addView(duration_text);
+
+            LinearLayout.LayoutParams body_right_lp = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+            body_right_lp.gravity = Gravity.CENTER_VERTICAL;
+            LinearLayout body_right = new LinearLayout(this);
+            body_right.setGravity(Gravity.END);
+            body_right.setLayoutParams(body_right_lp);
+            body_right.setOrientation(LinearLayout.HORIZONTAL);
+            body.addView(body_right);
+
+            if (duration < 3 * 60 * 60 * 1000 && !info.FLAG__NAP) {
+                int iv_padding = Unit.dp2px(this, 4);
+                ImageView warning_iv = new ImageView(this);
+                warning_iv.setBackgroundResource(rippleEffect.resourceId);
+                warning_iv.setClickable(true);
+                warning_iv.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_error));
+                warning_iv.setImageTintList(ColorStateList.valueOf(iconTintColor));
+                warning_iv.setLayoutParams(new LinearLayout.LayoutParams(
+                        Unit.dp2px(this, 28),
+                        Unit.dp2px(this, 28)
+                ));
+                warning_iv.setOnClickListener(v -> new AlertDialog.Builder(SleepDurationActivity.this, R.style.SomnificusAlertDialogTheme)
+                        .setTitle(R.string.activity_sleep_duration__dialog_advice_title)
+                        .setMessage(R.string.activity_sleep_duration__dialog_1_cycle_caution_msg)
+                        .setPositiveButton(R.string.common__text_ok, null)
+                        .show());
+                warning_iv.setPadding(iv_padding, iv_padding, iv_padding, iv_padding);
+                body_right.addView(warning_iv);
+            }
+
+            pre_parent.addView(body);
         }
 
         TextView tv_period_avg = (TextView) findViewById(R.id.SleepDurationActivity__SD_Avg_Text);
@@ -142,6 +200,30 @@ public class SleepDurationActivity extends AppCompatActivity {
                             min
                     )
             );
+        }
+
+        long minTime = Long.MAX_VALUE;
+        for (long time : DAY_OF_SLEEP_TIME) {
+            if (time < minTime) minTime = time;
+        }
+
+        LinearLayout AdviceView__ST_Too_Short = findViewById(R.id.SleepDurationActivity__Advice_ST_Too_Short);
+        if (minTime < 6 * 60 * 60 * 1000) {
+            AdviceView__ST_Too_Short.setVisibility(View.VISIBLE);
+        } else {
+            AdviceView__ST_Too_Short.setVisibility(View.GONE);
+        }
+
+        LinearLayout AdviceView__ST_Avg_Not_App = findViewById(R.id.SleepDurationActivity__Advice_ST_Avg_Not_App);
+        if (cnt_day != 0) {
+            long avgTime = totalTime / cnt_day;
+            if (7 * 60 * 60 * 1000 <= avgTime) {
+                AdviceView__ST_Avg_Not_App.setVisibility(View.GONE);
+            } else {
+                AdviceView__ST_Avg_Not_App.setVisibility(View.VISIBLE);
+            }
+        } else {
+            AdviceView__ST_Avg_Not_App.setVisibility(View.GONE);
         }
     }
 

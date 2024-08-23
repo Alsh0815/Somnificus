@@ -1,6 +1,7 @@
 <resources>
     <string name="common__text_yes">はい</string>
     <string name="common__text_no">いいえ</string>
+    <string name="common__text_ok">OK</string>
     <string name="common__text_save">保存</string>
     <string name="common__text_saving">保存中</string>
 
@@ -8,6 +9,11 @@
 
     <string name="common__text_date_format">yyyy/MM/dd</string>
     <string name="common__text_date_format__full">yyyy/MM/dd EEEE</string>
+
+    <!-- Subscription Plan Name -->
+    <string name="subs_plan__yearly">1年</string>
+    <string name="subs_plan__monthly">1ヶ月</string>
+    <string name="subs_plan__7days">1週間</string>
 
     <!-- Notification -->
     <string name="notification_channel_name__alarm">アラーム</string>
@@ -37,6 +43,21 @@
     <string name="activity_main__bnv_item_stopwatch">ストップウォッチ</string>
     <string name="activity_main__bnv_item_sleep">睡眠</string>
     <string name="activity_main__bnv_item_etc">メニュー</string>
+
+    <!-- PremiumActivity -->
+    <string name="activity_premium__title">プレミアム機能</string>
+    <string name="activity_premium__text_subscribe">定期購入</string>
+    <string name="activity_premium__text_purchased">購入済み</string>
+    <string name="activity_premium__text_product_id">プロダクトID</string>
+    <string name="activity_premium__text_order_id">注文ID</string>
+    <string name="activity_premium__text_time">購入日</string>
+    <string name="activity_premium__text_time_format">yyyy/MM/dd E HH:mm:ss</string>
+    <string name="activity_premium__text_status">ステータス</string>
+    <string name="activity_premium__text_status_ok">承認済み</string>
+    <string name="activity_premium__text_status_not_ack">未承認</string>
+    <string name="activity_premium__text_status_cancelled">解約済み</string>
+        <string name="activity_premium__toast_purchase_completed">ご購入いただきありがとうございます</string>
+    <string name="activity_premium__toast_purchase_pending">購入処理は保留中です。完了までしばらくお待ちください。</string>
 
     <!-- SetAlarmActivity -->
     <string name="activity_set_alarm__btn_save">保存</string>
@@ -89,7 +110,12 @@
     <string name="activity_sleep_duration__sd_period_text_default">1月 1日 – 7日</string>
     <string name="activity_sleep_duration__sd_period_text_avg">平均 %d時間%d分</string>
     <string name="activity_sleep_duration__sd_period_text_avg_zero">睡眠データがありません</string>
+    <string name="activity_sleep_duration__sd_advice__sleep_time_too_short">1日の合計睡眠時間が6時間より短い日があります</string>
+    <string name="activity_sleep_duration__sd_advice__sleep_time_avg_not_app">平均睡眠時間は7時間～9時間程度が望ましいです</string>
     <string name="activity_sleep_duration__date_format_from">yyyy年M月d日</string>
+    <string name="activity_sleep_duration__time_format">%d時間%d分</string>
+    <string name="activity_sleep_duration__dialog_advice_title">アドバイス</string>
+    <string name="activity_sleep_duration__dialog_1_cycle_caution_msg">1サイクル当たりの睡眠時間が短すぎます。ノンレム睡眠の時間を充分に確保できなかったり、目覚めが悪くなる可能性があります。</string>
 
     <!-- SleepDurationDetailsActivity -->
     <string name="activity_sleep_duration_details__text_duration">期間</string>

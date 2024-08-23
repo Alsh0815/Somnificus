@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.core.bill.BillingManager;
 import com.x_viria.app.vita.somnificus.fragment.main.alarm.AlarmFragment;
 import com.x_viria.app.vita.somnificus.fragment.main.etc.EtcFragment;
 import com.x_viria.app.vita.somnificus.fragment.main.sleep.SleepFragment;
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private int fragmentNowPage = 1;
+
+    private BillingManager BILLING_MANAGER;
 
     private void setFragment(Fragment fragment, int page) {
         // Set a fragment.
@@ -159,4 +162,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

@@ -7,17 +7,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.billingclient.api.BillingClient;
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.core.NativeAds;
 import com.x_viria.app.vita.somnificus.core.Remind;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
-import com.x_viria.app.vita.somnificus.core.ui.NativeAdBuilder;
+import com.x_viria.app.vita.somnificus.core.bill.BillingManager;
 import com.x_viria.app.vita.somnificus.service.AlarmService;
 import com.x_viria.app.vita.somnificus.service.PlaySoundService;
 
@@ -30,7 +31,9 @@ import java.util.Date;
 
 public class WakeupActivity extends AppCompatActivity {
 
+    private static boolean IS_PREMIUM = false;
     private boolean IS_ALARM_PROCESS_RUNNING = false;
+    private BillingManager billingManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,20 @@ public class WakeupActivity extends AppCompatActivity {
 
         this.IS_ALARM_PROCESS_RUNNING = true;
 
+        billingManager = new BillingManager(this);
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            billingManager.queryPurchaseAsync(
+                    BillingClient.ProductType.SUBS,
+                    BillingManager.ProductId.SUBS_PREMIUM,
+                    (billingResult, purchased) -> IS_PREMIUM = purchased
+            );
+        }).start();
+
         Intent tIntent = getIntent();
         int id = tIntent.getIntExtra("id", -1);
 
@@ -53,13 +70,6 @@ public class WakeupActivity extends AppCompatActivity {
         Intent intent2 = new Intent(this, AlarmService.class);
 
         LinearLayout helloView = findViewById(R.id.WakeupActivity__Hello_View);
-        NativeAdBuilder nativeAdBuilder = new NativeAdBuilder(this, this);
-        nativeAdBuilder.setLayout(R.id.WakeupActivity__NativeAd_Container);
-        nativeAdBuilder.create(
-                "ca-app-pub-6133161179615824/9422697167",
-                LayoutInflater.from(this).inflate(R.layout.nativead_view, null)
-        );
-        nativeAdBuilder.loadAd();
 
         Button closeBtn = findViewById(R.id.WakeupActivity__Close_Btn);
         closeBtn.setOnClickListener(v -> finish());
@@ -83,6 +93,11 @@ public class WakeupActivity extends AppCompatActivity {
             this.IS_ALARM_PROCESS_RUNNING = false;
             stopService(intent);
             stopService(intent2);
+
+            if (!IS_PREMIUM) {
+                NativeAds nativeAds = new NativeAds(this);
+                nativeAds.load(findViewById(R.id.WakeupActivity__NativeAd_Container), "ca-app-pub-6133161179615824/9422697167");
+            }
 
             stopSound.setVisibility(View.GONE);
             helloView.setVisibility(View.VISIBLE);

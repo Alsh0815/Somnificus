@@ -1,6 +1,7 @@
 package com.x_viria.app.vita.somnificus.core;
 
 import android.app.backup.BackupAgentHelper;
+import android.app.backup.BackupDataInput;
 import android.app.backup.BackupDataOutput;
 import android.app.backup.SharedPreferencesBackupHelper;
 import android.os.ParcelFileDescriptor;
@@ -34,4 +35,11 @@ public class SomnificusBackupAgent extends BackupAgentHelper {
         sps.setLong(Config.KEY__LAST_BACKUP_SIZE, sharedPrefsSize);
         super.onBackup(oldState, data, newState);
     }
+
+    @Override
+    public void onRestore(BackupDataInput data, int appVersionCode, ParcelFileDescriptor newState) throws IOException {
+        super.onRestore(data, appVersionCode, newState);
+        Log.d("SomnificusBackupAgent", String.valueOf(data.getDataSize()));
+    }
+
 }

@@ -13,8 +13,8 @@ android {
         applicationId = "com.x_viria.app.vita.somnificus"
         minSdk = 27
         targetSdk = 34
-        versionCode = 7
-        versionName = "1.1.4.10.R"
+        versionCode = 8
+        versionName = "1.1.4.28.R"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
@@ -48,6 +48,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.navigation:navigation-fragment:2.7.7")
     implementation("androidx.navigation:navigation-ui:2.7.7")
+    implementation("com.android.billingclient:billing:7.0.0")
     implementation("com.fasterxml.uuid:java-uuid-generator:4.3.0")
     implementation("com.google.android.gms:play-services-ads:23.3.0")
     testImplementation("junit:junit:4.13.2")

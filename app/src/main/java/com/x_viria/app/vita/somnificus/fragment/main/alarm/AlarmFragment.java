@@ -1,5 +1,6 @@
 package com.x_viria.app.vita.somnificus.fragment.main.alarm;
 
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.billingclient.api.BillingClient;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -34,6 +37,7 @@ import com.x_viria.app.vita.somnificus.activity.SetNapActivity;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmTime;
+import com.x_viria.app.vita.somnificus.core.bill.BillingManager;
 import com.x_viria.app.vita.somnificus.util.Unit;
 
 import org.json.JSONArray;
@@ -50,6 +54,9 @@ public class AlarmFragment extends Fragment {
     private View ROOT;
 
     private boolean IS_FAB_CLICKED = false;
+
+    private boolean IS_PREMIUM = false;
+    private BillingManager billingManager;
 
     public static AlarmFragment newInstance() {
         return new AlarmFragment();
@@ -140,17 +147,16 @@ public class AlarmFragment extends Fragment {
             LinearLayout labelView = new LinearLayout(getContext());
             labelView.setGravity(Gravity.CENTER_VERTICAL);
             labelView.setOrientation(LinearLayout.HORIZONTAL);
-            ViewGroup.LayoutParams labelIconLP = new LinearLayout.LayoutParams(
+            ViewGroup.MarginLayoutParams labelIconLP = new LinearLayout.LayoutParams(
                     Unit.dp2px(requireContext(), 10),
                     Unit.dp2px(requireContext(), 10)
             );
-            ViewGroup.MarginLayoutParams labelIconMLP = (ViewGroup.MarginLayoutParams) labelIconLP;
-            labelIconMLP.setMargins(0, 0, Unit.dp2px(requireContext(), 4), 0);
+            labelIconLP.setMargins(0, 0, Unit.dp2px(requireContext(), 4), 0);
             ImageView labelIcon = new ImageView(getContext());
-            labelIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_label));
+            labelIcon.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_label));
             labelIcon.setImageTintList(ColorStateList.valueOf(iconTintColor));
             if (enable) labelIcon.setImageTintList(ColorStateList.valueOf(iconTintColorWhite));
-            labelIcon.setLayoutParams(labelIconMLP);
+            labelIcon.setLayoutParams(labelIconLP);
             labelView.addView(labelIcon);
             TextView labelText = new TextView(getContext());
             labelText.setText(objdata.getString("label"));
@@ -181,7 +187,7 @@ public class AlarmFragment extends Fragment {
 
         if (alarmInfo.getOption(AlarmInfo.OPT__MUTE_VOL)) {
             ImageView icon_mute = new ImageView(getContext());
-            icon_mute.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_off));
+            icon_mute.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_volume_off));
             icon_mute.setImageTintList(ColorStateList.valueOf(iconTintColor));
             icon_mute.setLayoutParams(new LinearLayout.LayoutParams(
                     Unit.dp2px(requireContext(), 24),
@@ -199,7 +205,7 @@ public class AlarmFragment extends Fragment {
         ImageView deleteBtn = new ImageView(getContext());
         deleteBtn.setBackgroundResource(rippleEffect.resourceId);
         deleteBtn.setClickable(true);
-        deleteBtn.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
+        deleteBtn.setImageDrawable(AppCompatResources.getDrawable(requireContext(),R.drawable.ic_delete));
         deleteBtn.setImageTintList(ColorStateList.valueOf(iconTintColor));
         deleteBtn.setLayoutParams(new LinearLayout.LayoutParams(
                 Unit.dp2px(requireContext(), 48),
@@ -267,7 +273,7 @@ public class AlarmFragment extends Fragment {
         };
 
         LinearLayout parent = new LinearLayout(getContext());
-        parent.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_set_alarm_card));
+        parent.setBackgroundDrawable(AppCompatResources.getDrawable(requireContext(),R.drawable.bg_set_alarm_card));
         parent.setClickable(true);
         parent.setGravity(Gravity.CENTER_VERTICAL);
         parent.setLayoutParams(new LinearLayout.LayoutParams(
@@ -324,7 +330,7 @@ public class AlarmFragment extends Fragment {
 
         if (opt_mute) {
             ImageView icon_mute = new ImageView(getContext());
-            icon_mute.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_off));
+            icon_mute.setImageDrawable(AppCompatResources.getDrawable(requireContext(),R.drawable.ic_volume_off));
             icon_mute.setImageTintList(ColorStateList.valueOf(iconTintColor));
             icon_mute.setLayoutParams(new LinearLayout.LayoutParams(
                     Unit.dp2px(requireContext(), 24),
@@ -341,7 +347,7 @@ public class AlarmFragment extends Fragment {
 
         ImageView deleteBtn = new ImageView(getContext());
         deleteBtn.setBackgroundResource(rippleEffect.resourceId);
-        deleteBtn.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
+        deleteBtn.setImageDrawable(AppCompatResources.getDrawable(requireContext(),R.drawable.ic_delete));
         deleteBtn.setImageTintList(ColorStateList.valueOf(iconTintColor));
         deleteBtn.setLayoutParams(new LinearLayout.LayoutParams(
                 Unit.dp2px(requireContext(), 48),
@@ -410,7 +416,7 @@ public class AlarmFragment extends Fragment {
                     num_of_alarm++;
                     LinearLayout view = createAlarmView(object);
                     scheduleView.addView(view);
-                    if (num_of_alarm % 10 == 1) {
+                    if (!IS_PREMIUM && num_of_alarm % 10 == 1) {
                         AdRequest adRequest = new AdRequest.Builder().build();
                         AdView adView = new AdView(requireContext());
                         adView.setAdSize(AdSize.BANNER);
@@ -468,8 +474,22 @@ public class AlarmFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         ROOT = inflater.inflate(R.layout.fragment_main_alarm, container, false);
 
+        billingManager = new BillingManager(getActivity());
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            billingManager.queryPurchaseAsync(
+                    BillingClient.ProductType.SUBS,
+                    BillingManager.ProductId.SUBS_PREMIUM,
+                    (billingResult, purchased) -> IS_PREMIUM = purchased
+            );
+        }).start();
+
         initUI();
-        refreshAlarmList();
+        new Handler().postDelayed(this::refreshAlarmList, 1000);
 
         return ROOT;
     }

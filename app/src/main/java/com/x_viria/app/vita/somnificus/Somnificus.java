@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.google.android.gms.ads.MobileAds;
 import com.x_viria.app.vita.somnificus.util.notification.Channel;
 
 import java.util.ArrayList;
@@ -40,6 +41,8 @@ public class Somnificus extends Application {
         );
         channelList.add(channel_remind);
         notificationManager.createNotificationChannels(channelList);
+
+        MobileAds.initialize(this);
     }
 
 }

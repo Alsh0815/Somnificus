@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.BackupActivity;
 import com.x_viria.app.vita.somnificus.activity.CreditsActivity;
+import com.x_viria.app.vita.somnificus.activity.PremiumActivity;
 import com.x_viria.app.vita.somnificus.activity.SettingActivity;
 import com.x_viria.app.vita.somnificus.activity.WhatsNewActivity;
 
@@ -28,7 +29,6 @@ public class EtcFragment extends Fragment {
         return new EtcFragment();
     }
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -37,6 +37,12 @@ public class EtcFragment extends Fragment {
         LinearLayout whatsnew_btn = root.findViewById(R.id.EtcFragment__Btn_WhatsNew);
         whatsnew_btn.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), WhatsNewActivity.class);
+            startActivity(intent);
+        });
+
+        LinearLayout premium_btn = root.findViewById(R.id.EtcFragment__Btn_Premium);
+        premium_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), PremiumActivity.class);
             startActivity(intent);
         });
 

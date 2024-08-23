@@ -3,6 +3,7 @@
 
     <string name="common__text_yes">Yes</string>
     <string name="common__text_no">No</string>
+    <string name="common__text_ok">OK</string>
     <string name="common__text_save">Save</string>
     <string name="common__text_saving">Saving...</string>
 
@@ -10,6 +11,11 @@
 
     <string name="common__text_date_format">MM/dd/yyyy</string>
     <string name="common__text_date_format__full">MM/dd/yyyy EEEE</string>
+
+    <!-- Subscription Plan Name -->
+    <string name="subs_plan__yearly">Yearly</string>
+    <string name="subs_plan__monthly">Monthly</string>
+    <string name="subs_plan__7days">7 days</string>
 
     <!-- Notification -->
     <string name="notification_channel_name__alarm">Alarm</string>
@@ -44,6 +50,21 @@
     <string name="activity_main__bnv_item_stopwatch">Stopwatch</string>
     <string name="activity_main__bnv_item_sleep">Sleep</string>
     <string name="activity_main__bnv_item_etc">Menu</string>
+
+    <!-- PremiumActivity -->
+    <string name="activity_premium__title">Premium Features</string>
+    <string name="activity_premium__text_subscribe">Subscribe</string>
+    <string name="activity_premium__text_purchased">Purchased</string>
+    <string name="activity_premium__text_product_id">Product ID</string>
+    <string name="activity_premium__text_order_id">Order ID</string>
+    <string name="activity_premium__text_time">Time</string>
+    <string name="activity_premium__text_time_format">MM/dd/yyyy E HH:mm:ss</string>
+    <string name="activity_premium__text_status">Status</string>
+    <string name="activity_premium__text_status_ok">OK</string>
+    <string name="activity_premium__text_status_not_ack">Not acknowledged</string>
+    <string name="activity_premium__text_status_cancelled">Cancelled</string>
+    <string name="activity_premium__toast_purchase_completed">Thank you for your purchase.</string>
+    <string name="activity_premium__toast_purchase_pending">Your purchase is currently pending, please wait for it to complete.</string>
 
     <!-- SetAlarmActivity -->
     <string name="activity_set_alarm__btn_save">Save</string>
@@ -103,7 +124,12 @@
     <string name="activity_sleep_duration__sd_period_text_default">Jan 1 – 7</string>
     <string name="activity_sleep_duration__sd_period_text_avg">Avg. %dh %dmin</string>
     <string name="activity_sleep_duration__sd_period_text_avg_zero">There is no sleep data.</string>
+    <string name="activity_sleep_duration__sd_advice__sleep_time_too_short">Some days, the total sleep duration is shorter than 6 hours.</string>
+    <string name="activity_sleep_duration__sd_advice__sleep_time_avg_not_app">The recommended average sleeping duration is between 7 and 9 hours.</string>
     <string name="activity_sleep_duration__date_format_from">M-d-yyyy</string>
+    <string name="activity_sleep_duration__time_format">%dh %dmin</string>
+    <string name="activity_sleep_duration__dialog_advice_title">Advice</string>
+    <string name="activity_sleep_duration__dialog_1_cycle_caution_msg">The sleep duration per cycle is too short. If it is too short, you may not get enough non-REM sleep, which can lead to poor wakefulness.</string>
 
     <!-- SleepDurationDetailsActivity -->
     <string name="activity_sleep_duration_details__text_duration">Duration</string>
