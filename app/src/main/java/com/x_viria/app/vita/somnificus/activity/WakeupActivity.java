@@ -31,6 +31,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class WakeupActivity extends AppCompatActivity {
 
@@ -88,8 +89,7 @@ public class WakeupActivity extends AppCompatActivity {
             helloText.setText(getString(R.string.activity_wakeup__text_good_evening));
         }
 
-        SimpleDateFormat d_format = new SimpleDateFormat(getString(R.string.common__text_date_format__full));
-        ((TextView) findViewById(R.id.WakeupActivity__Hello_View__Date)).setText(d_format.format(nowDate));
+        ((TextView) findViewById(R.id.WakeupActivity__Hello_View__Date)).setText(nowDate.format(DateTimeFormatter.ofPattern(getString(R.string.common__text_date_format__full))));
 
         LinearLayout stopBtn = findViewById(R.id.WakeupActivity__Stop_Sound_Btn);
         stopBtn.setOnClickListener(v -> {
