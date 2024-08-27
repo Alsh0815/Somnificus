@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -17,7 +18,9 @@ import com.android.billingclient.api.BillingClient;
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.core.NativeAds;
 import com.x_viria.app.vita.somnificus.core.Remind;
+import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
+import com.x_viria.app.vita.somnificus.core.alarm.AlarmTime;
 import com.x_viria.app.vita.somnificus.core.bill.BillingManager;
 import com.x_viria.app.vita.somnificus.service.AlarmService;
 import com.x_viria.app.vita.somnificus.service.PlaySoundService;
@@ -27,7 +30,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class WakeupActivity extends AppCompatActivity {
 
@@ -74,12 +77,12 @@ public class WakeupActivity extends AppCompatActivity {
         Button closeBtn = findViewById(R.id.WakeupActivity__Close_Btn);
         closeBtn.setOnClickListener(v -> finish());
 
-        Date nowDate = new Date();
+        LocalDateTime nowDate = LocalDateTime.now();
 
         TextView helloText = findViewById(R.id.WakeupActivity__Hello_Text);
-        if (4 < nowDate.getHours() && nowDate.getHours() < 12) {
+        if (4 < nowDate.getHour() && nowDate.getHour() < 12) {
             helloText.setText(getString(R.string.activity_wakeup__text_good_morning));
-        } else if (11 < nowDate.getHours() && nowDate.getHours() < 19) {
+        } else if (11 < nowDate.getHour() && nowDate.getHour() < 19) {
             helloText.setText(getString(R.string.activity_wakeup__text_good_afternoon));
         } else {
             helloText.setText(getString(R.string.activity_wakeup__text_good_evening));
@@ -88,8 +91,8 @@ public class WakeupActivity extends AppCompatActivity {
         SimpleDateFormat d_format = new SimpleDateFormat(getString(R.string.common__text_date_format__full));
         ((TextView) findViewById(R.id.WakeupActivity__Hello_View__Date)).setText(d_format.format(nowDate));
 
-        LinearLayout stopSound = findViewById(R.id.WakeupActivity__Stop_Sound_Btn);
-        stopSound.setOnClickListener(v -> {
+        LinearLayout stopBtn = findViewById(R.id.WakeupActivity__Stop_Sound_Btn);
+        stopBtn.setOnClickListener(v -> {
             this.IS_ALARM_PROCESS_RUNNING = false;
             stopService(intent);
             stopService(intent2);
@@ -99,7 +102,7 @@ public class WakeupActivity extends AppCompatActivity {
                 nativeAds.load(findViewById(R.id.WakeupActivity__NativeAd_Container), "ca-app-pub-6133161179615824/9422697167");
             }
 
-            stopSound.setVisibility(View.GONE);
+            ((LinearLayout) findViewById(R.id.WakeupActivity__Wakeup_Action_View)).setVisibility(View.GONE);
             helloView.setVisibility(View.VISIBLE);
             helloView.setAlpha(0.0f);
             ObjectAnimator animation = ObjectAnimator.ofFloat(helloView, "alpha", 1.0f);
@@ -126,9 +129,52 @@ public class WakeupActivity extends AppCompatActivity {
             }
         });
 
+        LinearLayout snoozeBtn = findViewById(R.id.WakeupActivity__Snooze_Btn);
+        snoozeBtn.setOnClickListener(v -> {
+            stopService(intent);
+            stopService(intent2);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.MINUTE, 5);
+
+            AlarmInfo alarmInfo = new AlarmInfo(
+                    new AlarmTime(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), 0),
+                    AlarmInfo.WEEK__ALL,
+                    true
+            );
+
+            AlarmSchedule alarmSchedule;
+            try {
+                alarmSchedule = new AlarmSchedule(this);
+                JSONObject object = alarmSchedule.getSchedule(id);
+                JSONObject objdata = object.getJSONObject("data");
+                JSONObject option = objdata.getJSONObject("option");
+                boolean opt_giv = option.getBoolean("gra_increase_vol");
+                boolean opt_mute = false;
+                if (option.has("mute")) {
+                    opt_mute = option.getBoolean("mute");
+                }
+                alarmInfo.setOption(AlarmInfo.OPT__GRA_INCREASE_VOL, opt_giv);
+                alarmInfo.setOption(AlarmInfo.OPT__MUTE_VOL, opt_mute);
+                alarmSchedule.setNapSchedule(alarmInfo);
+                alarmSchedule.sync();
+                alarmInfo.showNextTime(getBaseContext());
+                JSONObject _object = alarmSchedule.getSchedule(id);
+                if (_object.getInt("type") == AlarmSchedule.TYPE__ALARM) {
+                    alarmSchedule.setEnable(id, false);
+                } else if (object.getInt("type") == AlarmSchedule.TYPE__NAP) {
+                    alarmSchedule.removeSchedule(id);
+                }
+                alarmSchedule.sync();
+            } catch (JSONException | IOException e) {
+                throw new RuntimeException(e);
+            }
+            finish();
+        });
+
         new Handler().postDelayed(() -> {
             if (IS_ALARM_PROCESS_RUNNING) {
-                stopSound.callOnClick();
+                stopBtn.callOnClick();
                 Remind.MissedAlarm(this, nowDate);
             }
         }, 5 * 60 * 1000);

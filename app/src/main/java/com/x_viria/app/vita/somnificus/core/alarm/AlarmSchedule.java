@@ -27,7 +27,7 @@ public class AlarmSchedule {
     public static final int TYPE__ALARM = 0x01;
     public static final int TYPE__NAP = 0x02;
 
-    public AlarmSchedule(Context context) throws JSONException, IOException {
+    public AlarmSchedule(Context context) throws JSONException, IOException, NullPointerException {
         this.CONTEXT = context;
 
         String data = new SPStorage(context).getString(Config.KEY__ALARM_SCHEDULE, "");
@@ -137,10 +137,13 @@ public class AlarmSchedule {
                         true
                 );
             }
-            long ms = aInfo.getNextTime();
-            if (ms < m_ms) {
-                m_ms = ms;
-                info = aInfo;
+            long ms = Long.MAX_VALUE;
+            if (aInfo != null) {
+                ms = aInfo.getNextTime();
+                if (ms < m_ms) {
+                    m_ms = ms;
+                    info = aInfo;
+                }
             }
         }
         return info;

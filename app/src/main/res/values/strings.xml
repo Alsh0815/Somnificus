@@ -149,6 +149,7 @@
 
     <!-- WakeupActivity -->
     <string name="activity_wakeup__btn_stop">Stop</string>
+    <string name="activity_wakeup__btn_snooze">Snooze</string>
     <string name="activity_wakeup__btn_close">Close</string>
     <string name="activity_wakeup__text_good_morning">Good morning.</string>
     <string name="activity_wakeup__text_good_afternoon">Good afternoon.</string>
@@ -178,6 +179,8 @@
     <string name="fragment_main_alarm__text_not_scheduled">Not scheduled</string>
     <string name="fragment_main_alarm__text_today">Today</string>
     <string name="fragment_main_alarm__text_tomorrow">Tomorrow</string>
+    
+    <string name="fragment_main_alarm__toast_failed_get_alarm">Failed to get alarm data.</string>
 
     <!-- SleepFragment -->
     <string name="fragment_main_sleep__text_schedule">Schedule</string>

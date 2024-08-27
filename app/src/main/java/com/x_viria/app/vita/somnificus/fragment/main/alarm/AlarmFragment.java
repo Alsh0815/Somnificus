@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -47,6 +48,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AlarmFragment extends Fragment {
 
@@ -160,7 +162,7 @@ public class AlarmFragment extends Fragment {
             labelView.addView(labelIcon);
             TextView labelText = new TextView(getContext());
             labelText.setText(objdata.getString("label"));
-            if (enable) labelText.setTextColor(getResources().getColor(R.color.white));
+            if (enable) labelText.setTextColor(requireContext().getColor(R.color.white));
             labelText.setTextSize(10);
             labelView.addView(labelText);
             mainView.addView(labelView);
@@ -168,7 +170,7 @@ public class AlarmFragment extends Fragment {
 
         TextView timeView = new TextView(getContext());
         timeView.setText(String.format("%02d:%02d", time.getInt(0), time.getInt(1)));
-        if (enable) timeView.setTextColor(getResources().getColor(R.color.white));
+        if (enable) timeView.setTextColor(requireContext().getColor(R.color.white));
         timeView.setTextSize(28);
         mainView.addView(timeView);
 
@@ -176,13 +178,13 @@ public class AlarmFragment extends Fragment {
 
         TextView dayView = new TextView(getContext());
         dayView.setText(targetDay);
-        if (enable) dayView.setTextColor(getResources().getColor(R.color.white));
+        if (enable) dayView.setTextColor(requireContext().getColor(R.color.white));
         mainView.addView(dayView);
 
         parent.addView(mainView);
 
         LinearLayout rightView = new LinearLayout(getContext());
-        rightView.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+        rightView.setGravity(Gravity.CENTER_VERTICAL | Gravity.END);
         rightView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         if (alarmInfo.getOption(AlarmInfo.OPT__MUTE_VOL)) {
@@ -304,11 +306,11 @@ public class AlarmFragment extends Fragment {
         TextView text_time = new TextView(requireContext());
         text_time.setText(String.format("%02d:%02d", time.getInt(0), time.getInt(1)));
         text_time.setTextSize(28);
-        text_time.setTextColor(getResources().getColor(R.color.white));
+        text_time.setTextColor(requireContext().getColor(R.color.white));
 
         TextView text_date = new TextView(requireContext());
         text_date.setText(String.format("%s - %s", getString(R.string.fragment_main_alarm__text_today), getString(R.string.fragment_main_alarm__fab_dtext_nap)));
-        text_date.setTextColor(getResources().getColor(R.color.white));
+        text_date.setTextColor(requireContext().getColor(R.color.white));
 
         LinearLayout child_mainpanel = new LinearLayout(requireContext());
         child_mainpanel.setOrientation(LinearLayout.HORIZONTAL);
@@ -325,7 +327,7 @@ public class AlarmFragment extends Fragment {
         child_schedule.addView(text_date);
 
         LinearLayout rightView = new LinearLayout(getContext());
-        rightView.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+        rightView.setGravity(Gravity.CENTER_VERTICAL | Gravity.END);
         rightView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         if (opt_mute) {
@@ -428,7 +430,9 @@ public class AlarmFragment extends Fragment {
             }
             alarmSchedule.sync();
         } catch (JSONException | IOException e) {
-            throw new RuntimeException(e);
+            Toast.makeText(requireContext(), R.string.fragment_main_alarm__toast_failed_get_alarm, Toast.LENGTH_SHORT).show();
+        } catch (NullPointerException e) {
+            Log.w("AlarmFragment", e.toString());
         }
     }
 

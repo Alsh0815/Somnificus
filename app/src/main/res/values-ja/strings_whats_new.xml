@@ -4,8 +4,10 @@
     <string name="whats_new_fixed">修正</string>
 
     <string name="whats_new_text_ft_1_1_4_a">睡眠データに基づくアドバイス機能を追加しました</string>
+    <string name="whats_new_text_ft_1_1_4_b">スヌーズ機能を追加しました</string>
     <string name="whats_new_text_ch_1_1_4_a">タイマーの時間をセットする際、取り消しボタンを長押しする事でタイマーの時間をリセットできるように変更しました</string>
     <string name="whats_new_text_fx_1_1_4_a">一部のデザインを修正しました</string>
+    <string name="whats_new_text_fx_1_1_4_b">フラグメントを切り替えた際にクラッシュすることがある問題を修正しました</string>
 
     <string name="whats_new_text_ft_1_1_3_a">バックアップ機能を追加しました</string>
     <string name="whats_new_text_ch_1_1_3_a">睡眠時間記録のリマインド通知をタップした際、通知が自動で消えるように変更しました</string>

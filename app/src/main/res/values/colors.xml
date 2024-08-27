@@ -27,6 +27,8 @@
 
     <color name="primaryHorizontalBar">@color/tertiaryBackgroundColor</color>
 
+    <color name="wakeupActionBtn">#D0F0E2F2</color>
+
     <color name="textButtonColor">#8BB5FF</color>
 
     <color name="selectedColorOrange">#FFFF9030</color>

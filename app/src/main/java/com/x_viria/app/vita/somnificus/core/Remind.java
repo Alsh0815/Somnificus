@@ -18,12 +18,12 @@ import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 public class Remind {
 
-    public static void MissedAlarm(Context context, Date date) {
+    public static void MissedAlarm(Context context, LocalDateTime date) {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) return;
         Random rand = new Random();
         int id = rand.nextInt(NotificationID.REMIND__MISSED_ALARM_MAX - NotificationID.REMIND__MISSED_ALARM_MIN + 1) + NotificationID.REMIND__MISSED_ALARM_MIN;
@@ -31,7 +31,7 @@ public class Remind {
         builder.setAutoCancel(true);
         builder.setContentTitle(context.getString(R.string.notification_remind__missed_alarm_title));
         builder.setContentText(
-                String.format(context.getString(R.string.notification_remind__missed_alarm_msg), date.getHours(), date.getMinutes())
+                String.format(context.getString(R.string.notification_remind__missed_alarm_msg), date.getHour(), date.getMinute())
         );
         builder.setSmallIcon(R.drawable.ic_menu_alarm);
         NotificationManagerCompat.from(context).notify(id, builder.build());

@@ -14,22 +14,54 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/WakeupActivity__Stop_Sound_Btn"
-            android:background="@drawable/btn_wakeup_action"
-            android:clickable="true"
-            android:elevation="4dp"
-            android:padding="32dp"
+            android:id="@+id/WakeupActivity__Wakeup_Action_View"
+            android:gravity="center"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-thin"
-                android:text="@string/activity_wakeup__btn_stop"
-                android:textColor="@color/primaryBackgroundColor"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_margin="16dp"
+                android:id="@+id/WakeupActivity__Stop_Sound_Btn"
+                android:background="@drawable/btn_wakeup_action"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:padding="32dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-thin"
+                    android:text="@string/activity_wakeup__btn_stop"
+                    android:textColor="@color/primaryBackgroundColor"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="16dp"
+                android:id="@+id/WakeupActivity__Snooze_Btn"
+                android:background="@drawable/btn_wakeup_action"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:padding="32dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-thin"
+                    android:text="@string/activity_wakeup__btn_snooze"
+                    android:textColor="@color/primaryBackgroundColor"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout

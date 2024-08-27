@@ -3,13 +3,11 @@ package com.x_viria.app.vita.somnificus.util.storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.annotation.Nullable;
-
 public class SPStorage {
 
     private final android.content.SharedPreferences SHARED_PREF;
 
-    public SPStorage(Context context) {
+    public SPStorage(Context context) throws NullPointerException {
         this.SHARED_PREF = context.getSharedPreferences("X-VIRIA_SOMNIFICUS_SHARED_PREF", Context.MODE_PRIVATE);
     }
 

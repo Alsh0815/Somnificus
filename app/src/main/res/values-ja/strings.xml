@@ -101,7 +101,7 @@
     <string name="activity_setting__text_timer_vibrate">タイマーのバイブレーション</string>
     <string name="activity_setting__item_remind">リマインド</string>
     <string name="activity_setting__text_remind_savesd">睡眠データの記録リマインド</string>
-    <string name="activity_setting__text_remind_savesd_description">起床時に睡眠時間の記録するようリマインドします</string>
+    <string name="activity_setting__text_remind_savesd_description">起床時に睡眠時間の記録をするようリマインドします</string>
     <string name="activity_setting__item_others">その他</string>
     <string name="activity_setting__text_version">バージョン</string>
 
@@ -135,6 +135,7 @@
 
     <!-- WakeupActivity -->
     <string name="activity_wakeup__btn_stop">ストップ</string>
+    <string name="activity_wakeup__btn_snooze">スヌーズ</string>
     <string name="activity_wakeup__btn_close">閉じる</string>
     <string name="activity_wakeup__text_good_morning">おはようございます</string>
     <string name="activity_wakeup__text_good_afternoon">こんにちは</string>
@@ -164,6 +165,8 @@
     <string name="fragment_main_alarm__text_not_scheduled">未設定</string>
     <string name="fragment_main_alarm__text_today">今日</string>
     <string name="fragment_main_alarm__text_tomorrow">明日</string>
+
+    <string name="fragment_main_alarm__toast_failed_get_alarm">アラームデータの取得に失敗しました</string>
 
     <!-- SleepFragment -->
     <string name="fragment_main_sleep__text_schedule">スケジュール</string>

@@ -5,8 +5,10 @@
 
     <string name="whats_new_text_ver_1_1_4" translatable="false">ver.1.1.4.x</string>
     <string name="whats_new_text_ft_1_1_4_a">Added a function to provide advice based on sleep data.</string>
+    <string name="whats_new_text_ft_1_1_4_b">Added a snooze function.</string>
     <string name="whats_new_text_ch_1_1_4_a">Changed so that the timer time can be reset by long pressing the delete button.</string>
     <string name="whats_new_text_fx_1_1_4_a">Fixed some designs.</string>
+    <string name="whats_new_text_fx_1_1_4_b">Fixed a crash that could occur when switching between fragments.</string>
 
     <string name="whats_new_text_ver_1_1_3" translatable="false">ver.1.1.3.x</string>
     <string name="whats_new_text_ft_1_1_3_a">Added a function to backup.</string>
