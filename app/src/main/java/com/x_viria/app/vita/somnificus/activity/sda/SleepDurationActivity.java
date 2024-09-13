@@ -1,4 +1,4 @@
-package com.x_viria.app.vita.somnificus.activity;
+package com.x_viria.app.vita.somnificus.activity.sda;
 
 import static android.util.TypedValue.COMPLEX_UNIT_DIP;
 
@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.activity.SetSleepDurationActivity;
 import com.x_viria.app.vita.somnificus.core.sda.SleepDurationInfo;
 import com.x_viria.app.vita.somnificus.core.sda.SleepDurationManager;
 import com.x_viria.app.vita.somnificus.util.Unit;

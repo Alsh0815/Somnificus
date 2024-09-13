@@ -4,231 +4,235 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.SetSleepDurationActivity">
+    tools:context=".activity.SetSleepDurationActivity"
+    android:background="@color/primaryBackgroundColor">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/primaryBackgroundColor">
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="8dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="@dimen/activity_header_close_btn"
-                android:layout_height="@dimen/activity_header_close_btn"
-                android:id="@+id/SetSDActivity__Back_Btn"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:padding="@dimen/activity_header_close_btn_padding"
-                android:src="@drawable/ic_close"
-                app:tint="@color/primaryTextColor" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/SetSDActivity__Save_Btn"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:padding="4dp"
-                    android:text="@string/common__text_save"
-                    android:textColor="@color/textButtonColor"
-                    android:textSize="@dimen/activity_header_text_btn" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:text="@string/activity_set_sleep_duration__title"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="@dimen/activity_title_size" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/primaryHorizontalBar"
-            android:layout_marginBottom="8dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="12dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fragment_main_sleep__text_bed_time" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="end">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/SetSDActivity__SD_BT_Date"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginEnd="8dp"
-                    android:padding="8dp"
-                    android:text="@string/common__text_yesterday"
-                    android:textSize="16sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/SetSDActivity__SD_BT_Time"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:padding="8dp"
-                    android:text="23:00"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </LinearLayout>
+                android:gravity="center_vertical"
+                android:padding="8dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="12dp">
+                <ImageView
+                    android:layout_width="@dimen/activity_header_close_btn"
+                    android:layout_height="@dimen/activity_header_close_btn"
+                    android:id="@+id/SetSDActivity__Back_Btn"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:padding="@dimen/activity_header_close_btn_padding"
+                    android:src="@drawable/ic_close"
+                    app:tint="@color/primaryTextColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/SetSDActivity__Save_Btn"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:padding="4dp"
+                        android:text="@string/common__text_save"
+                        android:textColor="@color/textButtonColor"
+                        android:textSize="@dimen/activity_header_text_btn" />
+                </LinearLayout>
+
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fragment_main_sleep__text_wakeup_time" />
+                android:padding="12dp"
+                android:text="@string/activity_set_sleep_duration__title"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/activity_title_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/primaryHorizontalBar"
+                android:layout_marginBottom="8dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="end">
+                android:gravity="center_vertical"
+                android:padding="12dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/SetSDActivity__SD_WT_Date"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginEnd="8dp"
-                    android:padding="8dp"
-                    android:text="@string/fragment_main_alarm__text_today"
-                    android:textSize="16sp" />
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:text="@string/fragment_main_sleep__text_bed_time" />
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/SetSDActivity__SD_WT_Time"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:padding="8dp"
-                    android:text="07:00"
-                    android:textSize="16sp" />
+                    android:orientation="horizontal"
+                    android:gravity="end">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/SetSDActivity__SD_BT_Date"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:layout_marginEnd="8dp"
+                        android:padding="8dp"
+                        android:text="@string/common__text_yesterday"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/SetSDActivity__SD_BT_Time"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="23:00"
+                        android:textSize="16sp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/SetSDActivity__Nap_CheckBox_L"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:orientation="horizontal">
-            <CheckBox
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/SetSDActivity__Nap_CheckBox" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_main_sleep__text_wakeup_time" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/SetSDActivity__SD_WT_Date"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:layout_marginEnd="8dp"
+                        android:padding="8dp"
+                        android:text="@string/fragment_main_alarm__text_today"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/SetSDActivity__SD_WT_Time"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="07:00"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/SetSDActivity__Nap_CheckBox_L"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/SetSDActivity__Nap_CheckBox" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_set_sleep_duration__text_check_nap"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/primaryHorizontalBar"
+                android:layout_marginTop="8dp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/activity_set_sleep_duration__text_check_nap"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/primaryHorizontalBar"
-            android:layout_marginTop="8dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="16dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:paddingBottom="8dp"
-            android:text="@string/activity_set_sleep_duration__text_how_was_wakeup"
-            android:textSize="16sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp">
+                android:paddingTop="16dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="8dp"
+                android:text="@string/activity_set_sleep_duration__text_how_was_wakeup"
+                android:textSize="16sp" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/SetSDActivity__Bad_Btn"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_margin="8dp"
-                android:padding="16dp">
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:id="@+id/SetSDActivity__Bad_Icon"
-                    android:src="@drawable/ic_bad"
-                    app:tint="@color/primaryInactiveColor" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/SetSDActivity__Bad_Text"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/activity_set_sleep_duration__text_bad"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/SetSDActivity__Good_Btn"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:gravity="center"
-                android:layout_margin="8dp"
-                android:padding="16dp">
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:id="@+id/SetSDActivity__Good_Icon"
-                    android:src="@drawable/ic_good"
-                    app:tint="@color/primaryInactiveColor" />
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/SetSDActivity__Good_Text"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/activity_set_sleep_duration__text_good"
-                    android:textSize="16sp" />
+                    android:orientation="vertical"
+                    android:id="@+id/SetSDActivity__Bad_Btn"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:layout_margin="8dp"
+                    android:padding="16dp">
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:id="@+id/SetSDActivity__Bad_Icon"
+                        android:src="@drawable/ic_bad"
+                        app:tint="@color/primaryInactiveColor" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/SetSDActivity__Bad_Text"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/activity_set_sleep_duration__text_bad"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/SetSDActivity__Good_Btn"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:layout_margin="8dp"
+                    android:padding="16dp">
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:id="@+id/SetSDActivity__Good_Icon"
+                        android:src="@drawable/ic_good"
+                        app:tint="@color/primaryInactiveColor" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/SetSDActivity__Good_Text"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/activity_set_sleep_duration__text_good"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

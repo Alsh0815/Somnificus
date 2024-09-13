@@ -21,7 +21,8 @@ import android.widget.Toast;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.SetSleepDurationActivity;
-import com.x_viria.app.vita.somnificus.activity.SleepDurationActivity;
+import com.x_viria.app.vita.somnificus.activity.sda.SleepDurationActivity;
+import com.x_viria.app.vita.somnificus.activity.sda.SleepDurationStatisticsActivity;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
 import com.x_viria.app.vita.somnificus.core.sda.SleepDurationInfo;
@@ -124,6 +125,14 @@ public class SleepFragment extends Fragment {
             SDL7DGraphView graph = ROOT.findViewById(R.id.SleepFragment__SDL7Graph);
             graph.max(9 * 60 * 60 * 1000);
             graph.set(duration);
+
+
+            ((TextView) ROOT.findViewById(R.id.SleepFragment__SDStat_Num)).setText(
+                    String.format(
+                            getString(R.string.fragment_main_sleep__text_sdstat_num_of_data),
+                            sdm.get(SleepDurationManager.Period.ALL).size()
+                    )
+            );
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -144,6 +153,12 @@ public class SleepFragment extends Fragment {
         ImageView IVBtn_Add_SD = ROOT.findViewById(R.id.SleepFragment__SD_Add);
         IVBtn_Add_SD.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), SetSleepDurationActivity.class);
+            startActivity(intent);
+        });
+
+        LinearLayout LLBtn_SDStat = ROOT.findViewById(R.id.SleepFragment__SDStat_Card);
+        LLBtn_SDStat.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), SleepDurationStatisticsActivity.class);
             startActivity(intent);
         });
 

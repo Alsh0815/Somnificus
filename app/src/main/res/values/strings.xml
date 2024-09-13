@@ -4,6 +4,7 @@
     <string name="common__text_yes">Yes</string>
     <string name="common__text_no">No</string>
     <string name="common__text_ok">OK</string>
+    <string name="common__text_cancel">Cancel</string>
     <string name="common__text_save">Save</string>
     <string name="common__text_saving">Saving...</string>
 
@@ -31,11 +32,24 @@
 
     <!-- BackupActivity -->
     <string name="activity_backup__title">Backup</string>
+    <string name="activity_backup__auto_backup">Auto Backup</string>
     <string name="activity_backup__last_backup">Last backup</string>
     <string name="activity_backup__last_backup_failed_date">--/--/---- --- --:--.</string>
     <string name="activity_backup__last_backup_failed_size" translatable="false">---.-- KB</string>
     <string name="activity_backup__description_1">The device will automatically backup when it is idle and connected to the network.</string>
     <string name="activity_backup__description_2">Backups may not be completed if your Google account runs out of storage.</string>
+    <string name="activity_backup__manual_backup">Manual Backup</string>
+    <string name="activity_backup__make_backup">Make a backup</string>
+    <string name="activity_backup__restore">Restore from a backup file</string>
+    <string name="activity_backup__m_description_1">Create a backup file on your device, which can be 25 MB or larger.</string>
+    <string name="activity_backup__m_description_2">Backups can be made in environments without a network connection, and data can be transferred to beta applications.</string>
+    <string name="activity_backup__dialog_restore_title">Restore</string>
+    <string name="activity_backup__dialog_restore_newer_msg">This backup file was created with a newer version than the current app. There is a possibility that some data may not be restored correctly, would you like to continue?</string>
+    <string name="activity_backup__dialog_restore_confirm_msg">Restoring data from a backup file will overwrite current data. Would you like to restore?</string>
+    <string name="activity_backup__toast_successfully_save">Successfully created backup file.</string>
+    <string name="activity_backup__toast_failed_save">Failed to create backup file.</string>
+    <string name="activity_backup__toast_successfully_restore">Successfully restored the data.</string>
+    <string name="activity_backup__toast_failed_restore">Failed to restore the data.</string>
 
     <!-- CreditsActivity -->
     <string name="activity_credits__title">Credits</string>
@@ -147,6 +161,10 @@
     <string name="activity_sleep_duration_details__msg_failed_to_del_data">Failed to delete.</string>
     <string name="activity_sleep_duration_details__msg_succeeded_to_del_data">The sleep data has been deleted successfully.</string>
 
+    <!-- SleepDurationStatisticsActivity -->
+    <string name="activity_sleep_duration_statistics__text_ost">Optimal Sleeping Time</string>
+    <string name="activity_sleep_duration_statistics__text_ost_format">At least %dh %dm.</string>
+
     <!-- WakeupActivity -->
     <string name="activity_wakeup__btn_stop">Stop</string>
     <string name="activity_wakeup__btn_snooze">Snooze</string>
@@ -179,7 +197,7 @@
     <string name="fragment_main_alarm__text_not_scheduled">Not scheduled</string>
     <string name="fragment_main_alarm__text_today">Today</string>
     <string name="fragment_main_alarm__text_tomorrow">Tomorrow</string>
-    
+
     <string name="fragment_main_alarm__toast_failed_get_alarm">Failed to get alarm data.</string>
 
     <!-- SleepFragment -->
@@ -190,6 +208,9 @@
     <string name="fragment_main_sleep__text_sd_last_7days">Last 7 days</string>
     <string name="fragment_main_sleep__text_sd_avg">Avg.</string>
     <string name="fragment_main_sleep__text_sd_time">%dh %dmin</string>
+    <string name="fragment_main_sleep__text_statistics">Statistics</string>
+    <string name="fragment_main_sleep__text_sdstat_no_data">There are no sleep data available.</string>
+    <string name="fragment_main_sleep__text_sdstat_num_of_data">There are %d data recorded.</string>
 
     <string name="fragment_main_sleep__toast_no_alarm_24hours">There are no alarms scheduled to sound within 24 hours.</string>
     <string name="fragment_main_sleep__toast_wakeup_time">Alarm is set for %s.</string>

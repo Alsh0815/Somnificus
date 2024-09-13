@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,8 +21,6 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -48,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private int fragmentNowPage = 1;
 
     private BillingManager BILLING_MANAGER;
+    private int selectedItemId;
 
     private void setFragment(Fragment fragment, int page) {
         // Set a fragment.
@@ -63,12 +63,14 @@ public class MainActivity extends AppCompatActivity {
         fragmentNowPage = page;
 
         // Fix the bottom margin of the fragment.
+        /*
         int bnv_height = bottomNavigationView.getHeight();
         View fragment_container = findViewById(R.id.fragment_container);
         ViewGroup.LayoutParams lp = fragment_container.getLayoutParams();
         ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams)lp;
         mlp.setMargins(mlp.leftMargin, mlp.topMargin, mlp.rightMargin, bnv_height);
         fragment_container.setLayoutParams(mlp);
+         */
     }
 
     @Override

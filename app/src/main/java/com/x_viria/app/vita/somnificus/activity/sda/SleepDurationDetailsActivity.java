@@ -1,10 +1,9 @@
-package com.x_viria.app.vita.somnificus.activity;
+package com.x_viria.app.vita.somnificus.activity.sda;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 

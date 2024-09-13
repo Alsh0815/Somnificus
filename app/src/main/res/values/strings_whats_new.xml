@@ -3,6 +3,11 @@
     <string name="whats_new_features">New Features</string>
     <string name="whats_new_fixed">Fixed</string>
 
+    <string name="whats_new_text_ver_1_1_5" translatable="false">ver.1.1.5.x</string>
+    <string name="whats_new_text_ft_1_1_5_a">Added a function to manual backup.</string>
+    <string name="whats_new_text_ft_1_1_5_b">Added a function to manual restore.</string>
+    <string name="whats_new_text_fx_1_1_5_a">Fixed some designs.</string>
+
     <string name="whats_new_text_ver_1_1_4" translatable="false">ver.1.1.4.x</string>
     <string name="whats_new_text_ft_1_1_4_a">Added a function to provide advice based on sleep data.</string>
     <string name="whats_new_text_ft_1_1_4_b">Added a snooze function.</string>

@@ -11,6 +11,10 @@ public class SPStorage {
         this.SHARED_PREF = context.getSharedPreferences("X-VIRIA_SOMNIFICUS_SHARED_PREF", Context.MODE_PRIVATE);
     }
 
+    public SharedPreferences get() {
+        return SHARED_PREF;
+    }
+
     public boolean getBool(String key, boolean defaultValue) {
         return SHARED_PREF.getBoolean(key, defaultValue);
     }

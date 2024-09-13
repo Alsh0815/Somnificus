@@ -3,6 +3,9 @@
     <dimen name="activity_title_margin">16dp</dimen>
     <dimen name="activity_title_margin_left">8dp</dimen>
     <dimen name="activity_title_size">32sp</dimen>
+    <dimen name="activity_sub_title_margin">8dp</dimen>
+    <dimen name="activity_sub_title_margin_left">4dp</dimen>
+    <dimen name="activity_sub_title_size">24sp</dimen>
     <dimen name="activity_header_close_btn">36dp</dimen>
     <dimen name="activity_header_close_btn_padding">4dp</dimen>
     <dimen name="activity_header_text_btn">16sp</dimen>
@@ -11,4 +14,7 @@
     <dimen name="text_setting_item_msg">16sp</dimen>
     <dimen name="text_setting_item_msg_small">12sp</dimen>
     <dimen name="text_tutorial_msg_size">16sp</dimen>
+
+    <!-- TimerFragment -->
+    <dimen name="fragment_main_timer__num_btn_size_land">56dp</dimen>
 </resources>

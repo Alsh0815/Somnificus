@@ -2,6 +2,7 @@
     <string name="common__text_yes">はい</string>
     <string name="common__text_no">いいえ</string>
     <string name="common__text_ok">OK</string>
+    <string name="common__text_cancel">キャンセル</string>
     <string name="common__text_save">保存</string>
     <string name="common__text_saving">保存中</string>
 
@@ -29,10 +30,23 @@
 
     <!-- BackupActivity -->
     <string name="activity_backup__title">バックアップ</string>
+    <string name="activity_backup__auto_backup">自動バックアップ</string>
     <string name="activity_backup__last_backup">最終バックアップ</string>
     <string name="activity_backup__last_backup_failed_date">----/--/-- --- --:--</string>
     <string name="activity_backup__description_1">デバイスがアイドル状態かつネットワークに接続されているときに自動的にバックアップされます</string>
     <string name="activity_backup__description_2">Googleアカウントの容量が不足している場合、バックアップに失敗する可能性があります</string>
+    <string name="activity_backup__manual_backup">手動バックアップ</string>
+    <string name="activity_backup__make_backup">バックアップを作成する</string>
+    <string name="activity_backup__restore">バックアップファイルから復元する</string>
+    <string name="activity_backup__m_description_1">お使いのデバイス上にバックアップファイルを作成します</string>
+    <string name="activity_backup__m_description_2">ネットワーク接続ができない環境でのバックアップや、ベータ版アプリへのデータ移行が可能です</string>
+    <string name="activity_backup__dialog_restore_title">復元</string>
+    <string name="activity_backup__dialog_restore_newer_msg">このバックアップファイルは現在のアプリより新しいバージョンで作成されています。一部のデータが正しく復元されない可能性があります。</string>
+    <string name="activity_backup__dialog_restore_confirm_msg">バックアップファイルからデータを復元すると、現在のデータが上書きされます。復元を行いますか?</string>
+    <string name="activity_backup__toast_successfully_save">バックアップファイルの作成に成功しました</string>
+    <string name="activity_backup__toast_failed_save">バックアップファイルの作成に失敗しました</string>
+    <string name="activity_backup__toast_successfully_restore">データの復元に成功しました</string>
+    <string name="activity_backup__toast_failed_restore">データの復元に失敗しました</string>
 
     <!-- CreditsActivity -->
     <string name="activity_credits__title">クレジット</string>
@@ -133,6 +147,10 @@
     <string name="activity_sleep_duration_details__msg_failed_to_del_data">データの削除に失敗しました</string>
     <string name="activity_sleep_duration_details__msg_succeeded_to_del_data">睡眠データを削除しました</string>
 
+    <!-- SleepDurationStatisticsActivity -->
+    <string name="activity_sleep_duration_statistics__text_ost">適切な睡眠時間</string>
+    <string name="activity_sleep_duration_statistics__text_ost_format">%d時間%d分 以上</string>
+
     <!-- WakeupActivity -->
     <string name="activity_wakeup__btn_stop">ストップ</string>
     <string name="activity_wakeup__btn_snooze">スヌーズ</string>
@@ -176,6 +194,9 @@
     <string name="fragment_main_sleep__text_sd_last_7days">過去7日間</string>
     <string name="fragment_main_sleep__text_sd_avg">平均</string>
     <string name="fragment_main_sleep__text_sd_time">%d時間 %d分</string>
+    <string name="fragment_main_sleep__text_statistics">統計</string>
+    <string name="fragment_main_sleep__text_sdstat_no_data">睡眠データがありません</string>
+    <string name="fragment_main_sleep__text_sdstat_num_of_data">%dのデータが記録されています</string>
 
     <string name="fragment_main_sleep__toast_no_alarm_24hours">24時間以内に鳴るアラームはありません</string>
     <string name="fragment_main_sleep__toast_wakeup_time">アラームは%sにセットされています</string>
