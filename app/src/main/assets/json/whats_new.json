@@ -1,0 +1,223 @@
+{
+  "whats_new": [
+    {
+      "version": [1, 2, 0],
+      "content": [
+        {
+          "type": "ft",
+          "text": {
+            "en": "Added a function to manual backup.",
+            "ja": "手動バックアップ機能を追加しました"
+          }
+        },
+        {
+          "type": "ft",
+          "text": {
+            "en": "Added a function to manual restore.",
+            "ja": "手動リストア機能を追加しました"
+          }
+        },
+        {
+          "type": "ft",
+          "text": {
+            "en": "Added \"Statistics\" card to Sleep Fragment.",
+            "ja": "睡眠フラグメントに「統計」カードを追加しました"
+          }
+        },
+        {
+          "type": "ch",
+          "text": {
+            "en": "Optimized resources.",
+            "ja": "リソースを最適化しました"
+          }
+        },
+        {
+          "type": "fx",
+          "text": {
+            "en": "Fixed some designs.",
+            "ja": "一部のデザインを修正しました"
+          }
+        },
+        {
+          "type": "fx",
+          "text": {
+            "en": "Fixed a bug where the alarm sound fade in was not performed even if the \"Gradually increase the volume\" option was enabled.",
+            "ja": "「徐々に音量を上げる」オプションを有効にしてもアラーム音がフェードイン処理されない問題を修正しました"
+          }
+        }
+      ]
+    },
+    {
+      "version": [1, 1, 4],
+      "content": [
+        {
+          "type": "ft",
+          "text": {
+            "en": "Added a function to provide advice based on sleep data.",
+            "ja": "睡眠データに基づくアドバイス機能を追加しました"
+          }
+        },
+        {
+          "type": "ft",
+          "text": {
+            "en": "Added a snooze function.",
+            "ja": "スヌーズ機能を追加しました"
+          }
+        },
+        {
+          "type": "ch",
+          "text": {
+            "en": "Changed so that the timer time can be reset by long pressing the delete button.",
+            "ja": "タイマーの時間をセットする際、取り消しボタンを長押しする事でタイマーの時間をリセットできるように変更しました"
+          }
+        },
+        {
+          "type": "fx",
+          "text": {
+            "en": "Fixed some designs.",
+            "ja": "一部のデザインを修正しました"
+          }
+        },
+        {
+          "type": "fx",
+          "text": {
+            "en": "Fixed a crash that could occur when switching between fragments.",
+            "ja": "フラグメントを切り替えた際にクラッシュすることがある問題を修正しました"
+          }
+        }
+      ]
+    },
+    {
+      "version": [1, 1, 3],
+      "content": [
+        {
+          "type": "ft",
+          "text": {
+            "en": "Added a function to backup.",
+            "ja": "バックアップ機能を追加しました"
+          }
+        },
+        {
+          "type": "ch",
+          "text": {
+            "en": "Changed the notification so that it automatically disappears when the user taps the sleep time recording reminder notification.",
+            "ja": "睡眠時間記録のリマインド通知をタップした際、通知が自動で消えるように変更しました"
+          }
+        },
+        {
+          "type": "ch",
+          "text": {
+            "en": "Changed the alarm to stop automatically if the user does not stop it after 5 minutes.",
+            "ja": "アラームが止められることなく5分経過した際、自動的にアラームを停止するように変更しました"
+          }
+        },
+        {
+          "type": "ch",
+          "text": {
+            "en": "Optimized resources.",
+            "ja": "リソースを最適化しました"
+          }
+        },
+        {
+          "type": "fx",
+          "text": {
+            "en": "Fixed an issue where the sleep data graph for the last 7 days was not displayed correctly in certain time zones and certain times.",
+            "ja": "特定のタイムゾーンかつ特定の時間帯において過去7日間の睡眠データグラフが正しく表示されない問題を修正しました"
+          }
+        },
+        {
+          "type": "fx",
+          "text": {
+            "en": "Fixed an issue where some layouts were not displayed correctly in RTL mode.",
+            "ja": "RTLモードで一部レイアウトが正しく表示されない問題を修正しました"
+          }
+        },
+        {
+          "type": "fx",
+          "text": {
+            "en": "Fixed some bugs.",
+            "ja": "いくつかの不具合を修正しました"
+          }
+        }
+      ]
+    },
+    {
+      "version": [1, 1, 2],
+      "content": [
+        {
+          "type": "ft",
+          "text": {
+            "en": "Added a function to delete sleep time data.",
+            "ja": "睡眠時間データの削除機能を追加しました"
+          }
+        },
+        {
+          "type": "fx",
+          "text": {
+            "en": "Fixed an issue where the app was not working properly on some devices.",
+            "ja": "一部のデバイスでアプリが正常に動作しない問題を修正しました"
+          }
+        },
+        {
+          "type": "fx",
+          "text": {
+            "en": "Fixed some designs.",
+            "ja": "一部のデザインを修正しました"
+          }
+        },
+        {
+          "type": "fx",
+          "text": {
+            "en": "Fixed some bugs.",
+            "ja": "いくつかの不具合を修正しました"
+          }
+        }
+      ]
+    },
+    {
+      "version": [1, 1, 1],
+      "content": [
+        {
+          "type": "ft",
+          "text": {
+            "en": "You can now check the list of recorded sleep times.",
+            "ja": "記録した睡眠時間のリストを確認できるようになりました"
+          }
+        },
+        {
+          "type": "ch",
+          "text": {
+            "en": "Optimized resources.",
+            "ja": "リソースを最適化しました"
+          }
+        },
+        {
+          "type": "fx",
+          "text": {
+            "en": "Fixed the timer sound to play correctly.",
+            "ja": "タイマー音が正しく鳴るように修正しました"
+          }
+        },
+        {
+          "type": "fx",
+          "text": {
+            "en": "Fixed minor bugs.",
+            "ja": "細かなバグを修正しました"
+          }
+        }
+      ]
+    },
+    {
+      "version": [1, 1, 0],
+      "content": [
+        {
+          "type": "ft",
+          "text": {
+            "en": "Added a function to record sleep time.",
+            "ja": "睡眠時間を記録できる機能を追加しました"
+          }
+        }
+      ]
+    }
+  ]
+}

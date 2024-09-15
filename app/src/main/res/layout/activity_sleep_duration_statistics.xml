@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -27,6 +27,7 @@
                     android:layout_height="@dimen/activity_header_close_btn"
                     android:id="@+id/SleepDurationStatisticsActivity__Back_Btn"
                     android:clickable="true"
+                    android:contentDescription="@string/common__text_back"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:padding="@dimen/activity_header_close_btn_padding"
                     android:src="@drawable/ic_close"
@@ -41,7 +42,33 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:id="@+id/SleepDurationStatisticsActivity__ERR"
+                android:background="@drawable/bg_sleep_advice_card_caution"
+                android:elevation="4dp"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_error"
+                    app:tint="@color/primaryTextColorRev" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/activity_sleep_duration_statistics__error"
+                    android:textColor="@color/primaryTextColorRev"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/SleepDurationStatisticsActivity__Stats"
                 android:padding="8dp"
                 android:orientation="vertical">
 
@@ -58,17 +85,145 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end">
+                        android:gravity="center_vertical|end">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/SleepDurationStatisticsActivity__Stat_OST_Text"
+                            android:padding="4dp"
                             android:text="" />
                         <ProgressBar
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/SleepDurationStatisticsActivity__Stat_OST_Progress"
                             style="@style/Widget.AppCompat.ProgressBar" />
+                        <ImageView
+                            android:layout_width="@dimen/activity_sleep_duration_statistics__icon_info_size"
+                            android:layout_height="@dimen/activity_sleep_duration_statistics__icon_info_size"
+                            android:id="@+id/SleepDurationStatisticsActivity__Stat_OST_Info"
+                            android:clickable="true"
+                            android:contentDescription="@string/common__text_tip"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:padding="@dimen/default_icon_padding"
+                            android:src="@drawable/ic_info"
+                            android:visibility="invisible"
+                            app:tint="@color/primaryTextColor" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="16dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_sleep_duration_statistics__text_mstr" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical|end">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/SleepDurationStatisticsActivity__Stat_MSTR_Text"
+                            android:padding="4dp"
+                            android:text="" />
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/SleepDurationStatisticsActivity__Stat_MSTR_Progress"
+                            style="@style/Widget.AppCompat.ProgressBar" />
+                        <ImageView
+                            android:layout_width="@dimen/activity_sleep_duration_statistics__icon_info_size"
+                            android:layout_height="@dimen/activity_sleep_duration_statistics__icon_info_size"
+                            android:id="@+id/SleepDurationStatisticsActivity__Stat_MSTR_Info"
+                            android:clickable="true"
+                            android:contentDescription="@string/common__text_tip"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:padding="@dimen/default_icon_padding"
+                            android:src="@drawable/ic_info"
+                            android:visibility="invisible"
+                            app:tint="@color/primaryTextColor" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="16dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_sleep_duration_statistics__text_ast" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical|end">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/SleepDurationStatisticsActivity__Stat_AST_Text"
+                            android:padding="4dp"
+                            android:text="" />
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/SleepDurationStatisticsActivity__Stat_AST_Progress"
+                            style="@style/Widget.AppCompat.ProgressBar" />
+                        <ImageView
+                            android:layout_width="@dimen/activity_sleep_duration_statistics__icon_info_size"
+                            android:layout_height="@dimen/activity_sleep_duration_statistics__icon_info_size"
+                            android:id="@+id/SleepDurationStatisticsActivity__Stat_AST_Info"
+                            android:clickable="true"
+                            android:contentDescription="@string/common__text_tip"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:padding="@dimen/default_icon_padding"
+                            android:src="@drawable/ic_info"
+                            android:visibility="invisible"
+                            app:tint="@color/primaryTextColor" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="16dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_sleep_duration_statistics__text_sr" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical|end">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/SleepDurationStatisticsActivity__Stat_SR_Text"
+                            android:padding="4dp"
+                            android:text="" />
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/SleepDurationStatisticsActivity__Stat_SR_Progress"
+                            style="@style/Widget.AppCompat.ProgressBar" />
+                        <ImageView
+                            android:layout_width="@dimen/activity_sleep_duration_statistics__icon_info_size"
+                            android:layout_height="@dimen/activity_sleep_duration_statistics__icon_info_size"
+                            android:id="@+id/SleepDurationStatisticsActivity__Stat_SR_Info"
+                            android:clickable="true"
+                            android:contentDescription="@string/common__text_tip"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:padding="@dimen/default_icon_padding"
+                            android:src="@drawable/ic_info"
+                            app:tint="@color/primaryTextColor" />
                     </LinearLayout>
                 </LinearLayout>
 

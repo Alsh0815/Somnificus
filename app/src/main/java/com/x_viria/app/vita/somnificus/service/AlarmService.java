@@ -82,6 +82,7 @@ public class AlarmService extends Service {
             JSONObject object = alarmSchedule.getSchedule(id);
             JSONObject objdata = object.getJSONObject("data");
             boolean opt_giv = objdata.getJSONObject("option").getBoolean("gra_increase_vol");
+            if (opt_giv) intent3.putExtra(PlaySoundService.PUT_EXTRA__SOUND_OPT__FADEIN, true);
             if (objdata.getJSONObject("option").has("mute")) {
                 boolean opt_mute = objdata.getJSONObject("option").getBoolean("mute");
                 if (!opt_mute) {
@@ -90,7 +91,6 @@ public class AlarmService extends Service {
             } else {
                 startForegroundService(intent3);
             }
-            if (opt_giv) intent3.putExtra(PlaySoundService.PUT_EXTRA__SOUND_OPT__FADEIN, true);
         } catch (JSONException | IOException e) {
             throw new RuntimeException(e);
         }

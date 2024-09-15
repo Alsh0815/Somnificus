@@ -7,6 +7,9 @@
     <string name="common__text_cancel">Cancel</string>
     <string name="common__text_save">Save</string>
     <string name="common__text_saving">Saving...</string>
+    <string name="common__text_back">Back</string>
+    <string name="common__text_close">Close</string>
+    <string name="common__text_tip">Tip</string>
 
     <string name="common__text_yesterday">Yesterday</string>
 
@@ -50,6 +53,7 @@
     <string name="activity_backup__toast_failed_save">Failed to create backup file.</string>
     <string name="activity_backup__toast_successfully_restore">Successfully restored the data.</string>
     <string name="activity_backup__toast_failed_restore">Failed to restore the data.</string>
+    <string name="activity_backup__toast_file_corrupted">The backup file is corrupted.</string>
 
     <!-- CreditsActivity -->
     <string name="activity_credits__title">Credits</string>
@@ -162,8 +166,22 @@
     <string name="activity_sleep_duration_details__msg_succeeded_to_del_data">The sleep data has been deleted successfully.</string>
 
     <!-- SleepDurationStatisticsActivity -->
-    <string name="activity_sleep_duration_statistics__text_ost">Optimal Sleeping Time</string>
-    <string name="activity_sleep_duration_statistics__text_ost_format">At least %dh %dm.</string>
+    <string name="activity_sleep_duration_statistics__text_ost">Optimal sleep time</string>
+    <string name="activity_sleep_duration_statistics__text_ost_format">At least %dh %02dm.</string>
+    <string name="activity_sleep_duration_statistics__text_mstr">Minimum sleep time required</string>
+    <string name="activity_sleep_duration_statistics__text_mstr_format">At least %dh %02dm.</string>
+    <string name="activity_sleep_duration_statistics__text_ast">Average sleep time</string>
+    <string name="activity_sleep_duration_statistics__text_ast_format">%dh %02dm</string>
+    <string name="activity_sleep_duration_statistics__text_sr">Sleep Rating</string>
+    <string name="activity_sleep_duration_statistics__text_sr_format">%,d pts</string>
+
+    <string name="activity_sleep_duration_statistics__tip_sr">
+        A higher score indicates better sleep.
+        This score is calculated based on average sleep duration and the user\'s sleep rating.
+        If the average sleep duration falls below the optimal or minimum required time, the score will decrease significantly.
+    </string>
+
+    <string name="activity_sleep_duration_statistics__error">This feature is not available due to the small amount of sleep data recorded.</string>
 
     <!-- WakeupActivity -->
     <string name="activity_wakeup__btn_stop">Stop</string>
@@ -176,6 +194,9 @@
     <!-- WhatsNewActivity -->
     <string name="activity_whats_new__title">What\'s new</string>
     <string name="activity_whats_new__pre_versions">Previous versions</string>
+    <string name="activity_whats_new__text_changes">Changes</string>
+    <string name="activity_whats_new__text_features">New Features</string>
+    <string name="activity_whats_new__text_fixed">Fixed</string>
 
     <!-- AlarmFragment -->
     <string name="fragment_main_alarm__fab_dtext_alarm">Alarm</string>

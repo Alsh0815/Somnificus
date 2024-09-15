@@ -74,7 +74,6 @@
             android:exported="false" />
         <activity
             android:name=".activity.SetNapActivity"
-            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
             android:name=".activity.WhatsNewActivity"
@@ -92,7 +91,6 @@
             android:turnScreenOn="true" />
         <activity
             android:name=".activity.SetAlarmActivity"
-            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
             android:name=".activity.TutorialActivity"

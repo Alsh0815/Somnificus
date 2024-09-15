@@ -3,20 +3,18 @@ package com.x_viria.app.vita.somnificus.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.core.SecureBackup;
 import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
@@ -26,12 +24,16 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BackupActivity extends AppCompatActivity {
+
+    private static final int BACKUP_FILE_FORMAT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +103,20 @@ public class BackupActivity extends AppCompatActivity {
                         Toast.makeText(this, R.string.activity_backup__toast_failed_restore, Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    long created_date = (long) backupData.get("CREATED_DATE");
+
+                    byte[] hash;
+                    try {
+                        hash = new SecureBackup(created_date, restoredData).sha512();
+                    } catch (NoSuchAlgorithmException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    if (!Arrays.equals(hash, (byte[]) backupData.get("HASH"))) {
+                        Toast.makeText(this, R.string.activity_backup__toast_file_corrupted, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     for (Map.Entry<String, ?> entry : restoredData.entrySet()) {
                         Object value = entry.getValue();
                         if (value instanceof String) {
@@ -162,17 +178,24 @@ public class BackupActivity extends AppCompatActivity {
                     Toast.makeText(this, R.string.activity_backup__toast_failed_save, Toast.LENGTH_SHORT).show();
                     return;
                 }
+                long create_date = System.currentTimeMillis();
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
                 Map<String, ?> allEntries = (new SPStorage(this).get()).getAll();
+
+                byte[] key_sha512 = new SecureBackup(create_date, allEntries).sha512();
+
                 Map<String, Object> data_map = new HashMap<>();
+                data_map.put("BACKUP_FILE_FORMAT", BACKUP_FILE_FORMAT);
                 data_map.put("APP_VERSION_NAME", versionName);
                 data_map.put("APP_VERSION_CODE", versionCode);
+                data_map.put("CREATED_DATE", create_date);
+                data_map.put("HASH", key_sha512);
                 data_map.put("DATA", allEntries);
                 objectOutputStream.writeObject(data_map);
                 objectOutputStream.close();
 
                 Toast.makeText(this, R.string.activity_backup__toast_successfully_save, Toast.LENGTH_SHORT).show();
-            } catch (IOException e) {
+            } catch (IOException | NoSuchAlgorithmException e) {
                 Toast.makeText(this, R.string.activity_backup__toast_failed_save, Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }

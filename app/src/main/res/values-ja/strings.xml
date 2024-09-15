@@ -5,6 +5,9 @@
     <string name="common__text_cancel">キャンセル</string>
     <string name="common__text_save">保存</string>
     <string name="common__text_saving">保存中</string>
+    <string name="common__text_back">戻る</string>
+    <string name="common__text_close">閉じる</string>
+    <string name="common__text_tip">ヒント</string>
 
     <string name="common__text_yesterday">昨日</string>
 
@@ -47,6 +50,7 @@
     <string name="activity_backup__toast_failed_save">バックアップファイルの作成に失敗しました</string>
     <string name="activity_backup__toast_successfully_restore">データの復元に成功しました</string>
     <string name="activity_backup__toast_failed_restore">データの復元に失敗しました</string>
+    <string name="activity_backup__toast_file_corrupted">バックアップファイルが破損しています</string>
 
     <!-- CreditsActivity -->
     <string name="activity_credits__title">クレジット</string>
@@ -149,7 +153,21 @@
 
     <!-- SleepDurationStatisticsActivity -->
     <string name="activity_sleep_duration_statistics__text_ost">適切な睡眠時間</string>
-    <string name="activity_sleep_duration_statistics__text_ost_format">%d時間%d分 以上</string>
+    <string name="activity_sleep_duration_statistics__text_ost_format">%d時間%02d分 以上</string>
+    <string name="activity_sleep_duration_statistics__text_mstr">最低限必要な睡眠時間</string>
+    <string name="activity_sleep_duration_statistics__text_mstr_format">%d時間%02d分 以上</string>
+    <string name="activity_sleep_duration_statistics__text_ast">平均睡眠時間</string>
+    <string name="activity_sleep_duration_statistics__text_ast_format">%d時間%02d分</string>
+    <string name="activity_sleep_duration_statistics__text_sr">睡眠スコア</string>
+    <string name="activity_sleep_duration_statistics__text_sr_format">%,d ポイント</string>
+
+    <string name="activity_sleep_duration_statistics__tip_sr">
+        スコアが高いほど良い睡眠を意味します。
+        このスコアは平均睡眠時間やユーザーの睡眠評価に基づいて計算されます。
+        平均睡眠時間が適切な時間や最低限必要な時間を下回ると、睡眠スコアは大幅に減少します。
+    </string>
+
+    <string name="activity_sleep_duration_statistics__error">記録されている睡眠データが少ないため、この機能を利用することができません</string>
 
     <!-- WakeupActivity -->
     <string name="activity_wakeup__btn_stop">ストップ</string>
@@ -162,6 +180,9 @@
     <!-- WhatsNewActivity -->
     <string name="activity_whats_new__title">新機能</string>
     <string name="activity_whats_new__pre_versions">過去のバージョン</string>
+    <string name="activity_whats_new__text_changes">変更</string>
+    <string name="activity_whats_new__text_features">新機能</string>
+    <string name="activity_whats_new__text_fixed">修正</string>
 
     <!-- AlarmFragment -->
     <string name="fragment_main_alarm__fab_dtext_alarm">アラーム</string>
