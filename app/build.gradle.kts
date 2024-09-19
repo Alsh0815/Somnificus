@@ -14,7 +14,7 @@ android {
         minSdk = 27
         targetSdk = 34
         versionCode = 10
-        versionName = "1.2.0.4.R"
+        versionName = "1.2.0.20.R"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
@@ -41,13 +41,13 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("com.google.firebase:firebase-analytics:22.1.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.firebase:firebase-crashlytics:19.0.3")
+    implementation("com.google.firebase:firebase-crashlytics:19.1.0")
     implementation("com.google.firebase:firebase-perf:21.0.1")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("androidx.navigation:navigation-fragment:2.7.7")
-    implementation("androidx.navigation:navigation-ui:2.7.7")
+    implementation("androidx.navigation:navigation-fragment:2.8.1")
+    implementation("androidx.navigation:navigation-ui:2.8.1")
     implementation("com.android.billingclient:billing:7.0.0")
     implementation("com.fasterxml.uuid:java-uuid-generator:4.3.0")
     implementation("com.google.android.gms:play-services-ads:23.3.0")

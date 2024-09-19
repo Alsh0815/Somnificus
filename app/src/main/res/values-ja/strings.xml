@@ -9,6 +9,21 @@
     <string name="common__text_close">閉じる</string>
     <string name="common__text_tip">ヒント</string>
 
+    <string name="common__text_dow_sun_short">日</string>
+    <string name="common__text_dow_mon_short">月</string>
+    <string name="common__text_dow_tue_short">火</string>
+    <string name="common__text_dow_wed_short">水</string>
+    <string name="common__text_dow_thu_short">木</string>
+    <string name="common__text_dow_fri_short">金</string>
+    <string name="common__text_dow_sat_short">土</string>
+    <string name="common__text_dow_sun">日曜日</string>
+    <string name="common__text_dow_mon">月曜日</string>
+    <string name="common__text_dow_tue">火曜日</string>
+    <string name="common__text_dow_wed">水曜日</string>
+    <string name="common__text_dow_thu">木曜日</string>
+    <string name="common__text_dow_fri">金曜日</string>
+    <string name="common__text_dow_sat">土曜日</string>
+
     <string name="common__text_yesterday">昨日</string>
 
     <string name="common__text_date_format">yyyy/MM/dd</string>
@@ -51,6 +66,11 @@
     <string name="activity_backup__toast_successfully_restore">データの復元に成功しました</string>
     <string name="activity_backup__toast_failed_restore">データの復元に失敗しました</string>
     <string name="activity_backup__toast_file_corrupted">バックアップファイルが破損しています</string>
+
+    <!-- BedTimeActivity -->
+    <string name="activity_bed_time__text_enable_bedtime">就寝時間のリマインダーを有効にする</string>
+    <string name="activity_bed_time__text_remind">リマインド</string>
+    <string name="activity_bed_time__text_remind_format">%d分前</string>
 
     <!-- CreditsActivity -->
     <string name="activity_credits__title">クレジット</string>

@@ -40,6 +40,9 @@
         android:theme="@style/Theme.Somnificus"
         tools:targetApi="31">
         <activity
+            android:name=".activity.BedTimeActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.sda.SleepDurationStatisticsActivity"
             android:exported="false" />
         <activity

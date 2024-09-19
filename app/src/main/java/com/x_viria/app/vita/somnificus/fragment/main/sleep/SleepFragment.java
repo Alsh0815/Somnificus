@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.activity.BedTimeActivity;
 import com.x_viria.app.vita.somnificus.activity.SetSleepDurationActivity;
 import com.x_viria.app.vita.somnificus.activity.sda.SleepDurationActivity;
 import com.x_viria.app.vita.somnificus.activity.sda.SleepDurationStatisticsActivity;
@@ -50,7 +51,8 @@ public class SleepFragment extends Fragment {
     private void refreshUI() {
         LinearLayout LL_BedTime = ROOT.findViewById(R.id.SleepFragment__Bed_Time);
         LL_BedTime.setOnClickListener(v -> {
-            // P
+            Intent intent = new Intent(requireContext(), BedTimeActivity.class);
+            startActivity(intent);
         });
 
         LinearLayout LL_WakeUpTime = ROOT.findViewById(R.id.SleepFragment__WakeUp_Time);

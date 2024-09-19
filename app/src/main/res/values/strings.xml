@@ -10,6 +10,21 @@
     <string name="common__text_back">Back</string>
     <string name="common__text_close">Close</string>
     <string name="common__text_tip">Tip</string>
+    
+    <string name="common__text_dow_sun_short">Sun</string>
+    <string name="common__text_dow_mon_short">Mon</string>
+    <string name="common__text_dow_tue_short">Tue</string>
+    <string name="common__text_dow_wed_short">Wed</string>
+    <string name="common__text_dow_thu_short">Thu</string>
+    <string name="common__text_dow_fri_short">Fri</string>
+    <string name="common__text_dow_sat_short">Sat</string>
+    <string name="common__text_dow_sun">Sunday</string>
+    <string name="common__text_dow_mon">Monday</string>
+    <string name="common__text_dow_tue">Tuesday</string>
+    <string name="common__text_dow_wed">Wednesday</string>
+    <string name="common__text_dow_thu">Thursday</string>
+    <string name="common__text_dow_fri">Friday</string>
+    <string name="common__text_dow_sat">Saturday</string>
 
     <string name="common__text_yesterday">Yesterday</string>
 
@@ -54,6 +69,11 @@
     <string name="activity_backup__toast_successfully_restore">Successfully restored the data.</string>
     <string name="activity_backup__toast_failed_restore">Failed to restore the data.</string>
     <string name="activity_backup__toast_file_corrupted">The backup file is corrupted.</string>
+
+    <!-- BedTimeActivity -->
+    <string name="activity_bed_time__text_enable_bedtime">Enable bedtime reminders.</string>
+    <string name="activity_bed_time__text_remind">Remind</string>
+    <string name="activity_bed_time__text_remind_format">%d min</string>
 
     <!-- CreditsActivity -->
     <string name="activity_credits__title">Credits</string>
