@@ -64,6 +64,35 @@ public class BedTimeManager {
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 
+    public long getEventToday() {
+        SPStorage sps = new SPStorage(CONTEXT);
+        int flag_dow = sps.getInt(Config.KEY__SETTINGS_BED_TIME_DOW, SPDefault.SETTINGS_BED_TIME_DOW);
+        Calendar calendar = Calendar.getInstance();
+        int today = calendar.get(Calendar.DAY_OF_WEEK);
+
+        int todayFlag = 1 << (today - 1);
+
+        if ((flag_dow & todayFlag) != 0) {
+            switch (today) {
+                case Calendar.SUNDAY:
+                    return sps.getLong(Config.KEY__SETTINGS_BED_TIME_D_SUN, SPDefault.SETTINGS_BED_TIME_D_MILLI);
+                case Calendar.MONDAY:
+                    return sps.getLong(Config.KEY__SETTINGS_BED_TIME_D_MON, SPDefault.SETTINGS_BED_TIME_D_MILLI);
+                case Calendar.TUESDAY:
+                    return sps.getLong(Config.KEY__SETTINGS_BED_TIME_D_TUE, SPDefault.SETTINGS_BED_TIME_D_MILLI);
+                case Calendar.WEDNESDAY:
+                    return sps.getLong(Config.KEY__SETTINGS_BED_TIME_D_WED, SPDefault.SETTINGS_BED_TIME_D_MILLI);
+                case Calendar.THURSDAY:
+                    return sps.getLong(Config.KEY__SETTINGS_BED_TIME_D_THU, SPDefault.SETTINGS_BED_TIME_D_MILLI);
+                case Calendar.FRIDAY:
+                    return sps.getLong(Config.KEY__SETTINGS_BED_TIME_D_FRI, SPDefault.SETTINGS_BED_TIME_D_MILLI);
+                case Calendar.SATURDAY:
+                    return sps.getLong(Config.KEY__SETTINGS_BED_TIME_D_SAT, SPDefault.SETTINGS_BED_TIME_D_MILLI);
+            }
+        }
+        return -1;
+    }
+
     public void sync() {
         SPStorage sps = new SPStorage(CONTEXT);
 

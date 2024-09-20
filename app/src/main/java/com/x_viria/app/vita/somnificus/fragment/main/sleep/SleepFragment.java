@@ -24,11 +24,14 @@ import com.x_viria.app.vita.somnificus.activity.BedTimeActivity;
 import com.x_viria.app.vita.somnificus.activity.SetSleepDurationActivity;
 import com.x_viria.app.vita.somnificus.activity.sda.SleepDurationActivity;
 import com.x_viria.app.vita.somnificus.activity.sda.SleepDurationStatisticsActivity;
+import com.x_viria.app.vita.somnificus.core.BedTimeManager;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
 import com.x_viria.app.vita.somnificus.core.sda.SleepDurationInfo;
 import com.x_viria.app.vita.somnificus.core.sda.SleepDurationManager;
 import com.x_viria.app.vita.somnificus.core.ui.sdview.SDL7DGraphView;
+import com.x_viria.app.vita.somnificus.util.Unit;
+import com.x_viria.app.vita.somnificus.util.format.TimeFormat;
 
 import org.json.JSONException;
 
@@ -70,6 +73,19 @@ public class SleepFragment extends Fragment {
                 ).show();
             }
         });
+
+        long bedtime = new BedTimeManager(requireContext()).getEventToday();
+        if (-1 < bedtime) {
+            TimeFormat timeFormat = Unit.Time.toTime(bedtime);
+            TextView T1 = ROOT.findViewById(R.id.SleepFragment__Schedule_Bed_Time_T1);
+            T1.setTextColor(requireContext().getColor(R.color.white));
+            TextView T2 = ROOT.findViewById(R.id.SleepFragment__Schedule_Bed_Time_T2);
+            T2.setText(String.format(
+                    "%02d:%02d",
+                    timeFormat.HOUR, timeFormat.MINUTE
+            ));
+            T2.setTextColor(requireContext().getColor(R.color.white));
+        }
 
         try {
             AlarmSchedule alarmSchedule = new AlarmSchedule(requireContext());
