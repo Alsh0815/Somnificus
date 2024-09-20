@@ -73,8 +73,8 @@ public class SleepDurationActivity extends AppCompatActivity {
             Calendar cal = Calendar.getInstance();
             cal.setTimeInMillis(info.getWakeupTime());
 
-            int padding1 = Unit.dp2px(this, 12.0f);
-            int padding2 = Unit.dp2px(this, 12.0f);
+            int padding1 = Unit.Pixel.dp2px(this, 12.0f);
+            int padding2 = Unit.Pixel.dp2px(this, 12.0f);
 
             long duration = info.getWakeupTime() - info.getBedTime();
             long sec = duration / 1000;
@@ -99,8 +99,8 @@ public class SleepDurationActivity extends AppCompatActivity {
                 icon.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_sleep));
                 icon.setImageTintList(ColorStateList.valueOf(getColor(R.color.secondaryTextColor)));
                 icon.setLayoutParams(new LinearLayout.LayoutParams(
-                        Unit.dp2px(this, 14),
-                        Unit.dp2px(this, 14)
+                        Unit.Pixel.dp2px(this, 14),
+                        Unit.Pixel.dp2px(this, 14)
                 ));
 
                 d_to = new Date();
@@ -164,15 +164,15 @@ public class SleepDurationActivity extends AppCompatActivity {
             body.addView(body_right);
 
             if (duration < 3 * 60 * 60 * 1000 && !info.FLAG__NAP) {
-                int iv_padding = Unit.dp2px(this, 4);
+                int iv_padding = Unit.Pixel.dp2px(this, 4);
                 ImageView warning_iv = new ImageView(this);
                 warning_iv.setBackgroundResource(rippleEffect.resourceId);
                 warning_iv.setClickable(true);
                 warning_iv.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_error));
                 warning_iv.setImageTintList(ColorStateList.valueOf(iconTintColor));
                 warning_iv.setLayoutParams(new LinearLayout.LayoutParams(
-                        Unit.dp2px(this, 28),
-                        Unit.dp2px(this, 28)
+                        Unit.Pixel.dp2px(this, 28),
+                        Unit.Pixel.dp2px(this, 28)
                 ));
                 warning_iv.setOnClickListener(v -> new AlertDialog.Builder(SleepDurationActivity.this, R.style.SomnificusAlertDialogTheme)
                         .setTitle(R.string.activity_sleep_duration__dialog_advice_title)

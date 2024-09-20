@@ -13,7 +13,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,7 +31,7 @@ import com.x_viria.app.vita.somnificus.fragment.main.etc.EtcFragment;
 import com.x_viria.app.vita.somnificus.fragment.main.sleep.SleepFragment;
 import com.x_viria.app.vita.somnificus.fragment.main.stopwatch.StopwatchFragment;
 import com.x_viria.app.vita.somnificus.fragment.main.timer.TimerFragment;
-import com.x_viria.app.vita.somnificus.receiver.StartupReceiver;
+import com.x_viria.app.vita.somnificus.receiver.BootBroadcastReceiver;
 import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
@@ -61,16 +60,6 @@ public class MainActivity extends AppCompatActivity {
         transaction.commitAllowingStateLoss();
 
         fragmentNowPage = page;
-
-        // Fix the bottom margin of the fragment.
-        /*
-        int bnv_height = bottomNavigationView.getHeight();
-        View fragment_container = findViewById(R.id.fragment_container);
-        ViewGroup.LayoutParams lp = fragment_container.getLayoutParams();
-        ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams)lp;
-        mlp.setMargins(mlp.leftMargin, mlp.topMargin, mlp.rightMargin, bnv_height);
-        fragment_container.setLayoutParams(mlp);
-         */
     }
 
     @Override
@@ -81,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        getApplicationContext().registerReceiver(new StartupReceiver(), new IntentFilter(Intent.ACTION_LOCKED_BOOT_COMPLETED));
+        getApplicationContext().registerReceiver(new BootBroadcastReceiver(), new IntentFilter(Intent.ACTION_LOCKED_BOOT_COMPLETED));
 
         int iA_fragment = getIntent().getIntExtra(PUT_EXTRA__SET_FRAGMENT, 0);
 

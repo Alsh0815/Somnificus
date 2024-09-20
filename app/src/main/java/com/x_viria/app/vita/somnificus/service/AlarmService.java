@@ -54,6 +54,7 @@ public class AlarmService extends Service {
         builder.setContentTitle("Somnificus");
         builder.setContentText(getString(R.string.notification_channel_name__alarm));
         builder.setContentIntent(pendingIntent);
+        builder.setOngoing(true);
         builder.setSmallIcon(R.drawable.ic_menu_alarm);
         Notification notification = builder.build();
 

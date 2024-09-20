@@ -38,7 +38,10 @@
     <string name="notification_channel_name__alarm">アラーム</string>
     <string name="notification_channel_name__timer">タイマー</string>
     <string name="notification_channel_name__remind">リマインド</string>
+    <string name="notification_channel_name__sysnotifi">システム通知</string>
 
+    <string name="notification_remind__bedtime_title">就寝時間のリマインド</string>
+    <string name="notification_remind__bedtime_msg">就寝時間まで残り%d分です\nスマートフォンの使用をやめて寝る準備をしましょう</string>
     <string name="notification_remind__missed_alarm_title">聞き逃したアラームがあります</string>
     <string name="notification_remind__missed_alarm_msg">アラーム: %02d:%02d</string>
     <string name="notification_remind__no_alarm_is_set_title">アラームが設定されていません</string>
@@ -71,6 +74,7 @@
     <string name="activity_bed_time__text_enable_bedtime">就寝時間のリマインダーを有効にする</string>
     <string name="activity_bed_time__text_remind">リマインド</string>
     <string name="activity_bed_time__text_remind_format">%d分前</string>
+    <string name="activity_bed_time__text_time_format">%2d:%02d</string>
 
     <!-- CreditsActivity -->
     <string name="activity_credits__title">クレジット</string>
@@ -260,5 +264,8 @@
     <!-- TutorialFragment Last -->
     <string name="fragment_tutorial_last__text_1">Somnificusを利用する準備が整いました。</string>
     <string name="fragment_tutorial_last__btn_start_mainactivity">始める</string>
+
+    <!-- BootBroadcastReceiver -->
+    <string name="receiver_boot_broadcast__notification_starting">アプリを起動中です...</string>
 
 </resources>

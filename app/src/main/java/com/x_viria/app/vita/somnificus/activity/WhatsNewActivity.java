@@ -78,8 +78,8 @@ public class WhatsNewActivity extends AppCompatActivity {
 
     private TextView _typeTV(@StringRes int resId) {
         ViewGroup.MarginLayoutParams tv_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        tv_lp.setMarginStart(Unit.dp2px(this, 8));
-        tv_lp.topMargin = Unit.dp2px(this, 16);
+        tv_lp.setMarginStart(Unit.Pixel.dp2px(this, 8));
+        tv_lp.topMargin = Unit.Pixel.dp2px(this, 16);
         TextView tv = new TextView(this);
         tv.setLayoutParams(tv_lp);
         tv.setText(resId);
@@ -92,10 +92,10 @@ public class WhatsNewActivity extends AppCompatActivity {
         LinearLayout ll = new LinearLayout(this);
         ll.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         ll.setPaddingRelative(
-                Unit.dp2px(this, 16),
-                Unit.dp2px(this, 8),
+                Unit.Pixel.dp2px(this, 16),
+                Unit.Pixel.dp2px(this, 8),
                 ll.getPaddingEnd(),
-                Unit.dp2px(this, 8)
+                Unit.Pixel.dp2px(this, 8)
         );
 
         String text;
@@ -129,8 +129,8 @@ public class WhatsNewActivity extends AppCompatActivity {
         JSONArray _ver = version.getJSONArray("version");
 
         ViewGroup.MarginLayoutParams tv_version_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        tv_version_lp.setMarginStart(Unit.dp2px(this, 8));
-        tv_version_lp.topMargin = Unit.dp2px(this, 8);
+        tv_version_lp.setMarginStart(Unit.Pixel.dp2px(this, 8));
+        tv_version_lp.topMargin = Unit.Pixel.dp2px(this, 8);
         TextView tv_version = new TextView(this);
         tv_version.setLayoutParams(tv_version_lp);
         tv_version.setText(
@@ -184,7 +184,7 @@ public class WhatsNewActivity extends AppCompatActivity {
         for (int j = 1; j < layout_list.size(); j++) {
             list.addView(layout_list.get(j));
             ViewGroup.MarginLayoutParams v_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
-            v_lp.setMargins(Unit.dp2px(this, 4), Unit.dp2px(this, 4), Unit.dp2px(this, 4), Unit.dp2px(this, 4));
+            v_lp.setMargins(Unit.Pixel.dp2px(this, 4), Unit.Pixel.dp2px(this, 4), Unit.Pixel.dp2px(this, 4), Unit.Pixel.dp2px(this, 4));
             View v = new View(this);
             v.setBackgroundColor(getColor(R.color.primaryHorizontalBar));
             v.setLayoutParams(v_lp);

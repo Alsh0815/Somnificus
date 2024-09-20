@@ -50,10 +50,10 @@ public class PremiumActivity extends AppCompatActivity {
         plan_name.put("P1M", R.string.subs_plan__monthly);
         plan_name.put("P1W", R.string.subs_plan__7days);
 
-        final int dp_2 = Unit.dp2px(this, 2);
-        final int dp_4 = Unit.dp2px(this, 4);
-        final int dp_8 = Unit.dp2px(this, 8);
-        final int dp_24 = Unit.dp2px(this, 24);
+        final int dp_2 = Unit.Pixel.dp2px(this, 2);
+        final int dp_4 = Unit.Pixel.dp2px(this, 4);
+        final int dp_8 = Unit.Pixel.dp2px(this, 8);
+        final int dp_24 = Unit.Pixel.dp2px(this, 24);
 
         LinearLayout list = findViewById(R.id.PremiumActivity__Item);
         list.removeAllViews();
@@ -69,7 +69,7 @@ public class PremiumActivity extends AppCompatActivity {
                 item_lp.setMargins(dp_8, dp_8, dp_8, dp_8);
                 LinearLayout item = new LinearLayout(this);
                 item.setBackground(AppCompatResources.getDrawable(this, R.drawable.bg_offer_card));
-                item.setElevation(Unit.dp2px(this, 4));
+                item.setElevation(Unit.Pixel.dp2px(this, 4));
                 item.setGravity(Gravity.CENTER);
                 item.setLayoutParams(item_lp);
                 item.setOrientation(LinearLayout.VERTICAL);
@@ -111,7 +111,7 @@ public class PremiumActivity extends AppCompatActivity {
                 LinearLayout ll_btn = new LinearLayout(this);
                 ll_btn.setBackground(AppCompatResources.getDrawable(this, R.drawable.bg_offer_card_btn));
                 ll_btn.setClickable(true);
-                ll_btn.setElevation(Unit.dp2px(this, 4));
+                ll_btn.setElevation(Unit.Pixel.dp2px(this, 4));
                 ll_btn.setGravity(Gravity.CENTER);
                 ll_btn.setOnClickListener(v -> billingManager.launchBillingFlow(productDetails, offerDetails));
                 ll_btn.setOrientation(LinearLayout.HORIZONTAL);
@@ -173,9 +173,9 @@ public class PremiumActivity extends AppCompatActivity {
             return;
         }
 
-        final int dp_2 = Unit.dp2px(this, 2);
-        final int dp_4 = Unit.dp2px(this, 4);
-        final int dp_8 = Unit.dp2px(this, 8);
+        final int dp_2 = Unit.Pixel.dp2px(this, 2);
+        final int dp_4 = Unit.Pixel.dp2px(this, 4);
+        final int dp_8 = Unit.Pixel.dp2px(this, 8);
 
         LinearLayout parent = findViewById(R.id.PremiumActivity__Purchased);
         parent.removeAllViews();

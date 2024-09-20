@@ -48,7 +48,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class AlarmFragment extends Fragment {
 
@@ -105,10 +104,10 @@ public class AlarmFragment extends Fragment {
         });
         parent.setOrientation(LinearLayout.HORIZONTAL);
         parent.setPadding(
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8)
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8)
         );
 
         SwitchMaterial sw = new SwitchMaterial(requireContext());
@@ -125,10 +124,10 @@ public class AlarmFragment extends Fragment {
             }
         });
         sw.setPadding(
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8)
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8)
         );
         parent.addView(sw);
 
@@ -139,10 +138,10 @@ public class AlarmFragment extends Fragment {
         ));
         mainView.setOrientation(LinearLayout.VERTICAL);
         mainView.setPadding(
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8)
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8)
         );
 
         if (!objdata.getString("label").equals("")) {
@@ -150,10 +149,10 @@ public class AlarmFragment extends Fragment {
             labelView.setGravity(Gravity.CENTER_VERTICAL);
             labelView.setOrientation(LinearLayout.HORIZONTAL);
             ViewGroup.MarginLayoutParams labelIconLP = new LinearLayout.LayoutParams(
-                    Unit.dp2px(requireContext(), 10),
-                    Unit.dp2px(requireContext(), 10)
+                    Unit.Pixel.dp2px(requireContext(), 10),
+                    Unit.Pixel.dp2px(requireContext(), 10)
             );
-            labelIconLP.setMargins(0, 0, Unit.dp2px(requireContext(), 4), 0);
+            labelIconLP.setMargins(0, 0, Unit.Pixel.dp2px(requireContext(), 4), 0);
             ImageView labelIcon = new ImageView(getContext());
             labelIcon.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_label));
             labelIcon.setImageTintList(ColorStateList.valueOf(iconTintColor));
@@ -192,14 +191,14 @@ public class AlarmFragment extends Fragment {
             icon_mute.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_volume_off));
             icon_mute.setImageTintList(ColorStateList.valueOf(iconTintColor));
             icon_mute.setLayoutParams(new LinearLayout.LayoutParams(
-                    Unit.dp2px(requireContext(), 24),
-                    Unit.dp2px(requireContext(), 24)
+                    Unit.Pixel.dp2px(requireContext(), 24),
+                    Unit.Pixel.dp2px(requireContext(), 24)
             ));
             icon_mute.setPadding(
-                    Unit.dp2px(requireContext(), 2),
-                    Unit.dp2px(requireContext(), 2),
-                    Unit.dp2px(requireContext(), 2),
-                    Unit.dp2px(requireContext(), 2)
+                    Unit.Pixel.dp2px(requireContext(), 2),
+                    Unit.Pixel.dp2px(requireContext(), 2),
+                    Unit.Pixel.dp2px(requireContext(), 2),
+                    Unit.Pixel.dp2px(requireContext(), 2)
             );
             rightView.addView(icon_mute);
         }
@@ -210,8 +209,8 @@ public class AlarmFragment extends Fragment {
         deleteBtn.setImageDrawable(AppCompatResources.getDrawable(requireContext(),R.drawable.ic_delete));
         deleteBtn.setImageTintList(ColorStateList.valueOf(iconTintColor));
         deleteBtn.setLayoutParams(new LinearLayout.LayoutParams(
-                Unit.dp2px(requireContext(), 48),
-                Unit.dp2px(requireContext(), 48)
+                Unit.Pixel.dp2px(requireContext(), 48),
+                Unit.Pixel.dp2px(requireContext(), 48)
         ));
         deleteBtn.setOnClickListener(v -> {
             new AlertDialog.Builder(requireContext(), R.style.SomnificusAlertDialogTheme)
@@ -233,10 +232,10 @@ public class AlarmFragment extends Fragment {
                     .show();
         });
         deleteBtn.setPadding(
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8)
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8)
         );
         rightView.addView(deleteBtn);
 
@@ -293,14 +292,14 @@ public class AlarmFragment extends Fragment {
         });
         parent.setOrientation(LinearLayout.VERTICAL);
         parent.setPadding(
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8)
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8)
         );
         ViewGroup.LayoutParams lp = parent.getLayoutParams();
         ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams)lp;
-        mlp.setMargins(mlp.leftMargin, Unit.dp2px(requireContext(), 8), mlp.rightMargin, Unit.dp2px(requireContext(), 8));
+        mlp.setMargins(mlp.leftMargin, Unit.Pixel.dp2px(requireContext(), 8), mlp.rightMargin, Unit.Pixel.dp2px(requireContext(), 8));
         parent.setLayoutParams(mlp);
 
         TextView text_time = new TextView(requireContext());
@@ -315,10 +314,10 @@ public class AlarmFragment extends Fragment {
         LinearLayout child_mainpanel = new LinearLayout(requireContext());
         child_mainpanel.setOrientation(LinearLayout.HORIZONTAL);
         child_mainpanel.setPadding(
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8)
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8)
         );
 
         LinearLayout child_schedule = new LinearLayout(requireContext());
@@ -335,14 +334,14 @@ public class AlarmFragment extends Fragment {
             icon_mute.setImageDrawable(AppCompatResources.getDrawable(requireContext(),R.drawable.ic_volume_off));
             icon_mute.setImageTintList(ColorStateList.valueOf(iconTintColor));
             icon_mute.setLayoutParams(new LinearLayout.LayoutParams(
-                    Unit.dp2px(requireContext(), 24),
-                    Unit.dp2px(requireContext(), 24)
+                    Unit.Pixel.dp2px(requireContext(), 24),
+                    Unit.Pixel.dp2px(requireContext(), 24)
             ));
             icon_mute.setPadding(
-                    Unit.dp2px(requireContext(), 2),
-                    Unit.dp2px(requireContext(), 2),
-                    Unit.dp2px(requireContext(), 2),
-                    Unit.dp2px(requireContext(), 2)
+                    Unit.Pixel.dp2px(requireContext(), 2),
+                    Unit.Pixel.dp2px(requireContext(), 2),
+                    Unit.Pixel.dp2px(requireContext(), 2),
+                    Unit.Pixel.dp2px(requireContext(), 2)
             );
             rightView.addView(icon_mute);
         }
@@ -352,14 +351,14 @@ public class AlarmFragment extends Fragment {
         deleteBtn.setImageDrawable(AppCompatResources.getDrawable(requireContext(),R.drawable.ic_delete));
         deleteBtn.setImageTintList(ColorStateList.valueOf(iconTintColor));
         deleteBtn.setLayoutParams(new LinearLayout.LayoutParams(
-                Unit.dp2px(requireContext(), 48),
-                Unit.dp2px(requireContext(), 48)
+                Unit.Pixel.dp2px(requireContext(), 48),
+                Unit.Pixel.dp2px(requireContext(), 48)
         ));
         deleteBtn.setPadding(
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8),
-                Unit.dp2px(requireContext(), 8)
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8)
         );
         rightView.addView(deleteBtn);
 

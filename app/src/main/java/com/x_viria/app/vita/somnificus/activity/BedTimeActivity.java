@@ -13,20 +13,24 @@ import android.widget.TextView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.core.BedTimeManager;
 import com.x_viria.app.vita.somnificus.core.ui.overlay.PopupNumPicker;
+import com.x_viria.app.vita.somnificus.core.ui.overlay.PopupTimePicker;
+import com.x_viria.app.vita.somnificus.util.Unit;
+import com.x_viria.app.vita.somnificus.util.format.TimeFormat;
 import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
 public class BedTimeActivity extends AppCompatActivity {
 
-    private static final int FLAG_SUN = 1;
-    private static final int FLAG_MON = 1 << 1;
-    private static final int FLAG_TUE = 1 << 2;
-    private static final int FLAG_WED = 1 << 3;
-    private static final int FLAG_THU = 1 << 4;
-    private static final int FLAG_FRI = 1 << 5;
-    private static final int FLAG_SAT = 1 << 6;
+    public static final int FLAG_SUN = 1;
+    public static final int FLAG_MON = 1 << 1;
+    public static final int FLAG_TUE = 1 << 2;
+    public static final int FLAG_WED = 1 << 3;
+    public static final int FLAG_THU = 1 << 4;
+    public static final int FLAG_FRI = 1 << 5;
+    public static final int FLAG_SAT = 1 << 6;
 
     private CheckBox ChkBox_Sun;
     private CheckBox ChkBox_Mon;
@@ -35,6 +39,13 @@ public class BedTimeActivity extends AppCompatActivity {
     private CheckBox ChkBox_Thu;
     private CheckBox ChkBox_Fri;
     private CheckBox ChkBox_Sat;
+    private TextView TextView_Sun;
+    private TextView TextView_Mon;
+    private TextView TextView_Tue;
+    private TextView TextView_Wed;
+    private TextView TextView_Thu;
+    private TextView TextView_Fri;
+    private TextView TextView_Sat;
 
     private void revealView(View view) {
         view.setVisibility(View.VISIBLE);
@@ -70,8 +81,23 @@ public class BedTimeActivity extends AppCompatActivity {
         animator.start();
     }
 
+    private void setDText(String key, TextView view) {
+        SPStorage sps = new SPStorage(this);
+        long milli = sps.getLong(key, SPDefault.SETTINGS_BED_TIME_D_MILLI);
+        TimeFormat timeFormat = Unit.Time.toTime(milli);
+        view.setText(
+                String.format(
+                        getString(R.string.activity_bed_time__text_time_format),
+                        timeFormat.HOUR,
+                        timeFormat.MINUTE
+                )
+        );
+    }
+
     private void refresh() {
         SPStorage sps = new SPStorage(this);
+
+        new BedTimeManager(this).sync();
 
         ((TextView) findViewById(R.id.BedTimeActivity__Remind_M)).setText(
                 String.format(
@@ -96,6 +122,14 @@ public class BedTimeActivity extends AppCompatActivity {
         } if ((flag_dow & FLAG_SAT) == FLAG_SAT) {
             ChkBox_Sat.setChecked(true);
         }
+
+        setDText(Config.KEY__SETTINGS_BED_TIME_D_SUN, TextView_Sun);
+        setDText(Config.KEY__SETTINGS_BED_TIME_D_MON, TextView_Mon);
+        setDText(Config.KEY__SETTINGS_BED_TIME_D_TUE, TextView_Tue);
+        setDText(Config.KEY__SETTINGS_BED_TIME_D_WED, TextView_Wed);
+        setDText(Config.KEY__SETTINGS_BED_TIME_D_THU, TextView_Thu);
+        setDText(Config.KEY__SETTINGS_BED_TIME_D_FRI, TextView_Fri);
+        setDText(Config.KEY__SETTINGS_BED_TIME_D_SAT, TextView_Sat);
     }
 
     @Override
@@ -110,6 +144,13 @@ public class BedTimeActivity extends AppCompatActivity {
         ChkBox_Thu = findViewById(R.id.BedTimeActivity__Time_Thu_CheckBox);
         ChkBox_Fri = findViewById(R.id.BedTimeActivity__Time_Fri_CheckBox);
         ChkBox_Sat = findViewById(R.id.BedTimeActivity__Time_Sat_CheckBox);
+        TextView_Sun = findViewById(R.id.BedTimeActivity__Time_Sun_TextView);
+        TextView_Mon = findViewById(R.id.BedTimeActivity__Time_Mon_TextView);
+        TextView_Tue = findViewById(R.id.BedTimeActivity__Time_Tue_TextView);
+        TextView_Wed = findViewById(R.id.BedTimeActivity__Time_Wed_TextView);
+        TextView_Thu = findViewById(R.id.BedTimeActivity__Time_Thu_TextView);
+        TextView_Fri = findViewById(R.id.BedTimeActivity__Time_Fri_TextView);
+        TextView_Sat = findViewById(R.id.BedTimeActivity__Time_Sat_TextView);
 
         SPStorage sps = new SPStorage(this);
         boolean enable_remind = sps.getBool(Config.KEY__SETTINGS_ENABLE_BED_TIME_REMIND, SPDefault.SETTINGS_ENABLE_BED_TIME_REMIND);
@@ -148,6 +189,7 @@ public class BedTimeActivity extends AppCompatActivity {
             } else {
                 revealView(LL_Remind);
             }
+            refresh();
         });
 
         ChkBox_Sun.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -159,6 +201,7 @@ public class BedTimeActivity extends AppCompatActivity {
                 flag &= ~mask;
             }
             sps.setInt(Config.KEY__SETTINGS_BED_TIME_DOW, flag);
+            refresh();
         });
         ChkBox_Mon.setOnCheckedChangeListener((buttonView, isChecked) -> {
             int flag = sps.getInt(Config.KEY__SETTINGS_BED_TIME_DOW, SPDefault.SETTINGS_BED_TIME_DOW);
@@ -169,6 +212,7 @@ public class BedTimeActivity extends AppCompatActivity {
                 flag &= ~mask;
             }
             sps.setInt(Config.KEY__SETTINGS_BED_TIME_DOW, flag);
+            refresh();
         });
         ChkBox_Tue.setOnCheckedChangeListener((buttonView, isChecked) -> {
             int flag = sps.getInt(Config.KEY__SETTINGS_BED_TIME_DOW, SPDefault.SETTINGS_BED_TIME_DOW);
@@ -179,6 +223,7 @@ public class BedTimeActivity extends AppCompatActivity {
                 flag &= ~mask;
             }
             sps.setInt(Config.KEY__SETTINGS_BED_TIME_DOW, flag);
+            refresh();
         });
         ChkBox_Wed.setOnCheckedChangeListener((buttonView, isChecked) -> {
             int flag = sps.getInt(Config.KEY__SETTINGS_BED_TIME_DOW, SPDefault.SETTINGS_BED_TIME_DOW);
@@ -189,6 +234,7 @@ public class BedTimeActivity extends AppCompatActivity {
                 flag &= ~mask;
             }
             sps.setInt(Config.KEY__SETTINGS_BED_TIME_DOW, flag);
+            refresh();
         });
         ChkBox_Thu.setOnCheckedChangeListener((buttonView, isChecked) -> {
             int flag = sps.getInt(Config.KEY__SETTINGS_BED_TIME_DOW, SPDefault.SETTINGS_BED_TIME_DOW);
@@ -199,6 +245,7 @@ public class BedTimeActivity extends AppCompatActivity {
                 flag &= ~mask;
             }
             sps.setInt(Config.KEY__SETTINGS_BED_TIME_DOW, flag);
+            refresh();
         });
         ChkBox_Fri.setOnCheckedChangeListener((buttonView, isChecked) -> {
             int flag = sps.getInt(Config.KEY__SETTINGS_BED_TIME_DOW, SPDefault.SETTINGS_BED_TIME_DOW);
@@ -209,6 +256,7 @@ public class BedTimeActivity extends AppCompatActivity {
                 flag &= ~mask;
             }
             sps.setInt(Config.KEY__SETTINGS_BED_TIME_DOW, flag);
+            refresh();
         });
         ChkBox_Sat.setOnCheckedChangeListener((buttonView, isChecked) -> {
             int flag = sps.getInt(Config.KEY__SETTINGS_BED_TIME_DOW, SPDefault.SETTINGS_BED_TIME_DOW);
@@ -219,6 +267,113 @@ public class BedTimeActivity extends AppCompatActivity {
                 flag &= ~mask;
             }
             sps.setInt(Config.KEY__SETTINGS_BED_TIME_DOW, flag);
+            refresh();
+        });
+
+        findViewById(R.id.BedTimeActivity__Time_Sun).setOnClickListener(v -> {
+            PopupTimePicker timePicker = new PopupTimePicker(BedTimeActivity.this);
+            timePicker.setPositiveButton(new PopupTimePicker.OnClickListener() {
+                @Override
+                public void onClick(int milliseconds) {
+                    super.onClick(milliseconds);
+                    sps.setLong(Config.KEY__SETTINGS_BED_TIME_D_SUN, milliseconds);
+                    TimeFormat timeFormat = Unit.Time.toTime(milliseconds);
+                    String f = String.format(getString(R.string.activity_bed_time__text_time_format), timeFormat.HOUR, timeFormat.MINUTE);
+                    TextView_Sun.setText(f);
+                    refresh();
+                }
+            });
+            timePicker.show(v);
+        });
+        findViewById(R.id.BedTimeActivity__Time_Mon).setOnClickListener(v -> {
+            PopupTimePicker timePicker = new PopupTimePicker(BedTimeActivity.this);
+            timePicker.setPositiveButton(new PopupTimePicker.OnClickListener() {
+                @Override
+                public void onClick(int milliseconds) {
+                    super.onClick(milliseconds);
+                    sps.setLong(Config.KEY__SETTINGS_BED_TIME_D_MON, milliseconds);
+                    TimeFormat timeFormat = Unit.Time.toTime(milliseconds);
+                    String f = String.format(getString(R.string.activity_bed_time__text_time_format), timeFormat.HOUR, timeFormat.MINUTE);
+                    TextView_Mon.setText(f);
+                    refresh();
+                }
+            });
+            timePicker.show(v);
+        });
+        findViewById(R.id.BedTimeActivity__Time_Tue).setOnClickListener(v -> {
+            PopupTimePicker timePicker = new PopupTimePicker(BedTimeActivity.this);
+            timePicker.setPositiveButton(new PopupTimePicker.OnClickListener() {
+                @Override
+                public void onClick(int milliseconds) {
+                    super.onClick(milliseconds);
+                    sps.setLong(Config.KEY__SETTINGS_BED_TIME_D_TUE, milliseconds);
+                    TimeFormat timeFormat = Unit.Time.toTime(milliseconds);
+                    String f = String.format(getString(R.string.activity_bed_time__text_time_format), timeFormat.HOUR, timeFormat.MINUTE);
+                    TextView_Tue.setText(f);
+                    refresh();
+                }
+            });
+            timePicker.show(v);
+        });
+        findViewById(R.id.BedTimeActivity__Time_Wed).setOnClickListener(v -> {
+            PopupTimePicker timePicker = new PopupTimePicker(BedTimeActivity.this);
+            timePicker.setPositiveButton(new PopupTimePicker.OnClickListener() {
+                @Override
+                public void onClick(int milliseconds) {
+                    super.onClick(milliseconds);
+                    sps.setLong(Config.KEY__SETTINGS_BED_TIME_D_WED, milliseconds);
+                    TimeFormat timeFormat = Unit.Time.toTime(milliseconds);
+                    String f = String.format(getString(R.string.activity_bed_time__text_time_format), timeFormat.HOUR, timeFormat.MINUTE);
+                    TextView_Wed.setText(f);
+                    refresh();
+                }
+            });
+            timePicker.show(v);
+        });
+        findViewById(R.id.BedTimeActivity__Time_Thu).setOnClickListener(v -> {
+            PopupTimePicker timePicker = new PopupTimePicker(BedTimeActivity.this);
+            timePicker.setPositiveButton(new PopupTimePicker.OnClickListener() {
+                @Override
+                public void onClick(int milliseconds) {
+                    super.onClick(milliseconds);
+                    sps.setLong(Config.KEY__SETTINGS_BED_TIME_D_THU, milliseconds);
+                    TimeFormat timeFormat = Unit.Time.toTime(milliseconds);
+                    String f = String.format(getString(R.string.activity_bed_time__text_time_format), timeFormat.HOUR, timeFormat.MINUTE);
+                    TextView_Thu.setText(f);
+                    refresh();
+                }
+            });
+            timePicker.show(v);
+        });
+        findViewById(R.id.BedTimeActivity__Time_Fri).setOnClickListener(v -> {
+            PopupTimePicker timePicker = new PopupTimePicker(BedTimeActivity.this);
+            timePicker.setPositiveButton(new PopupTimePicker.OnClickListener() {
+                @Override
+                public void onClick(int milliseconds) {
+                    super.onClick(milliseconds);
+                    sps.setLong(Config.KEY__SETTINGS_BED_TIME_D_FRI, milliseconds);
+                    TimeFormat timeFormat = Unit.Time.toTime(milliseconds);
+                    String f = String.format(getString(R.string.activity_bed_time__text_time_format), timeFormat.HOUR, timeFormat.MINUTE);
+                    TextView_Fri.setText(f);
+                    refresh();
+                }
+            });
+            timePicker.show(v);
+        });
+        findViewById(R.id.BedTimeActivity__Time_Sat).setOnClickListener(v -> {
+            PopupTimePicker timePicker = new PopupTimePicker(BedTimeActivity.this);
+            timePicker.setPositiveButton(new PopupTimePicker.OnClickListener() {
+                @Override
+                public void onClick(int milliseconds) {
+                    super.onClick(milliseconds);
+                    sps.setLong(Config.KEY__SETTINGS_BED_TIME_D_SAT, milliseconds);
+                    TimeFormat timeFormat = Unit.Time.toTime(milliseconds);
+                    String f = String.format(getString(R.string.activity_bed_time__text_time_format), timeFormat.HOUR, timeFormat.MINUTE);
+                    TextView_Sat.setText(f);
+                    refresh();
+                }
+            });
+            timePicker.show(v);
         });
 
         refresh();

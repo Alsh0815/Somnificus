@@ -1,13 +1,11 @@
 package com.x_viria.app.vita.somnificus.core.ui.sdview;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.icu.util.Calendar;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -15,9 +13,6 @@ import androidx.annotation.NonNull;
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.util.ArrayUtils;
 import com.x_viria.app.vita.somnificus.util.Unit;
-
-import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 public class SDL7DGraphView extends View {
 
@@ -81,9 +76,9 @@ public class SDL7DGraphView extends View {
         for (int index = 0; index < DATA.length; index++) {
             if (DATA[index] == 0) continue;
 
-            final int bar_left = getBarCenterX(index) - (Unit.dp2px(CONTEXT, CONST__BAR_WIDTH) / 2);
-            final int bar_right = getBarCenterX(index) + (Unit.dp2px(CONTEXT, CONST__BAR_WIDTH) / 2);
-            final float bar_radius = Unit.dp2px(CONTEXT, 4);
+            final int bar_left = getBarCenterX(index) - (Unit.Pixel.dp2px(CONTEXT, CONST__BAR_WIDTH) / 2);
+            final int bar_right = getBarCenterX(index) + (Unit.Pixel.dp2px(CONTEXT, CONST__BAR_WIDTH) / 2);
+            final float bar_radius = Unit.Pixel.dp2px(CONTEXT, 4);
             final float bar_max_height = CANVAS_HEIGHT - 88 - bar_radius - 4;
             final double p = ((double) DATA[index]) / ((double) Y_VAL_MAX);
 
@@ -171,16 +166,16 @@ public class SDL7DGraphView extends View {
 
         Paint paint = new Paint();
         paint.setColor(CONTEXT.getColor(R.color.secondaryTextColor));
-        paint.setTextSize(Unit.dp2px(CONTEXT, 12));
+        paint.setTextSize(Unit.Pixel.dp2px(CONTEXT, 12));
         Paint paint_ac = new Paint();
         paint_ac.setColor(CONTEXT.getColor(R.color.secondaryActiveColor));
-        paint_ac.setTextSize(Unit.dp2px(CONTEXT, 12));
+        paint_ac.setTextSize(Unit.Pixel.dp2px(CONTEXT, 12));
         for (int i = 0; i < X_AXIS_LABEL.length; i++) {
             int bar_center = getBarCenterX(i);
             if (i < X_AXIS_LABEL.length - 1) {
-                canvas.drawText(X_AXIS_LABEL[i], bar_center - Unit.dp2px(CONTEXT, 6), canvas.getHeight() - 50, paint);
+                canvas.drawText(X_AXIS_LABEL[i], bar_center - Unit.Pixel.dp2px(CONTEXT, 6), canvas.getHeight() - 50, paint);
             } else {
-                canvas.drawText(X_AXIS_LABEL[i], bar_center - Unit.dp2px(CONTEXT, 6), canvas.getHeight() - 50, paint_ac);
+                canvas.drawText(X_AXIS_LABEL[i], bar_center - Unit.Pixel.dp2px(CONTEXT, 6), canvas.getHeight() - 50, paint_ac);
             }
         }
     }

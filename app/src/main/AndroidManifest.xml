@@ -39,6 +39,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Somnificus"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.backup.api_key"
+            android:value="unused" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6133161179615824~4591600015" />
+        <meta-data
+            android:name="firebase_performance_logcat_enabled"
+            android:value="true" />
+
         <activity
             android:name=".activity.BedTimeActivity"
             android:exported="false" />
@@ -51,17 +61,6 @@
         <activity
             android:name=".activity.sda.SleepDurationDetailsActivity"
             android:exported="false" />
-
-        <meta-data
-            android:name="com.google.android.backup.api_key"
-            android:value="unused" />
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-6133161179615824~4591600015" />
-        <meta-data
-            android:name="firebase_performance_logcat_enabled"
-            android:value="true" />
-
         <activity
             android:name=".activity.BackupActivity"
             android:exported="false" />
@@ -117,14 +116,24 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".receiver.StartupReceiver"
-            android:enabled="true"
-            android:exported="false"
-            android:process="">
+            android:name=".receiver.BedTimeBroadcastReceiver"
+            android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
-
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android:intent.action.SCHEDULE_EXACT_ALARM" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.BootBroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.UpdateBroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
         </receiver>
 

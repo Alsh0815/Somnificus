@@ -3,13 +3,15 @@ package com.x_viria.app.vita.somnificus.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
 
-public class StartupReceiver extends BroadcastReceiver {
+import com.x_viria.app.vita.somnificus.core.BootEvent;
+
+public class BootBroadcastReceiver extends BroadcastReceiver {
+
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, "Booted.", Toast.LENGTH_SHORT).show();
-        Log.d("StartupReceiver", "Booted.");
+        if (!Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) return;
+        BootEvent.boot(context);
     }
+
 }
