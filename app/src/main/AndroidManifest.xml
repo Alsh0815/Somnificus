@@ -119,7 +119,7 @@
             android:name=".receiver.BedTimeBroadcastReceiver"
             android:exported="false">
             <intent-filter>
-                <action android:name="android:intent.action.SCHEDULE_EXACT_ALARM" />
+                <action android:name="android.intent.action.SCHEDULE_EXACT_ALARM" />
             </intent-filter>
         </receiver>
         <receiver
@@ -127,6 +127,12 @@
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".receiver.RemindBroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.SCHEDULE_EXACT_ALARM" />
             </intent-filter>
         </receiver>
         <receiver

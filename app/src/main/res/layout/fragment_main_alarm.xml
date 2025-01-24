@@ -6,31 +6,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.main.alarm.AlarmFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/AlarmFragment__ScrollView"
-        android:visibility="gone">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/AlarmFragment__Schedule_View"
-            android:padding="8dp"
-            android:orientation="vertical">
-
-        </LinearLayout>
-    </ScrollView>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/AlarmFragment__NoAlarmSet"
-        android:gravity="center"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_main_alarm__text_no_alarm_set" />
+            android:layout_margin="8dp"
+            android:id="@+id/AlarmFragment__DebugMsg"
+            android:background="@drawable/bg_sleep_advice_card_caution"
+            android:elevation="4dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_error"
+                app:tint="@color/primaryTextColorRev" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/debug_msg"
+                android:textColor="@color/primaryTextColorRev"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/AlarmFragment__ScrollView"
+            android:visibility="gone">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/AlarmFragment__Schedule_View"
+                android:padding="8dp"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/AlarmFragment__NoAlarmSet"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_main_alarm__text_no_alarm_set" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

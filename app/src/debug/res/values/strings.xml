@@ -1,0 +1,8 @@
+<resources>
+    <string name="build_type" translatable="false">DEBUG</string>
+
+    <string name="ads_id_ll_banner" translatable="false">ca-app-pub-3940256099942544/9214589741</string>
+    <string name="ads_id_native" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+
+    <string name="debug_msg" translatable="false">This app is built for debugging purposes. Please download the release version of the app from the official store if you are not a tester.</string>
+</resources>

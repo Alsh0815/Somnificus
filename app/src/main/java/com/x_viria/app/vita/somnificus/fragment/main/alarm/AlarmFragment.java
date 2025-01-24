@@ -370,9 +370,18 @@ public class AlarmFragment extends Fragment {
     }
 
     private void refreshAlarmList() {
+        refreshAlarmList(false);
+    }
+
+    private void refreshAlarmList(boolean checked_license) {
         LinearLayout scheduleView = ROOT.findViewById(R.id.AlarmFragment__Schedule_View);
         scheduleView.removeAllViews();
+
         try {
+            if (getString(R.string.build_type).equals("DEBUG")) {
+                ROOT.findViewById(R.id.AlarmFragment__DebugMsg).setVisibility(View.VISIBLE);
+            }
+
             List<JSONObject> alarmList = new ArrayList<>();
             AlarmSchedule alarmSchedule = new AlarmSchedule(getContext());
 
@@ -417,11 +426,11 @@ public class AlarmFragment extends Fragment {
                     num_of_alarm++;
                     LinearLayout view = createAlarmView(object);
                     scheduleView.addView(view);
-                    if (!IS_PREMIUM && num_of_alarm % 10 == 1) {
+                    if (checked_license && !IS_PREMIUM && num_of_alarm % 10 == 1) {
                         AdRequest adRequest = new AdRequest.Builder().build();
                         AdView adView = new AdView(requireContext());
                         adView.setAdSize(AdSize.BANNER);
-                        adView.setAdUnitId("ca-app-pub-6133161179615824/4921675029");
+                        adView.setAdUnitId(getString(R.string.ads_id_ll_banner));
                         adView.loadAd(adRequest);
                         scheduleView.addView(adView);
                     }
@@ -430,7 +439,7 @@ public class AlarmFragment extends Fragment {
             alarmSchedule.sync();
         } catch (JSONException | IOException e) {
             Toast.makeText(requireContext(), R.string.fragment_main_alarm__toast_failed_get_alarm, Toast.LENGTH_SHORT).show();
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | IllegalStateException e) {
             Log.w("AlarmFragment", e.toString());
         }
     }
@@ -492,7 +501,7 @@ public class AlarmFragment extends Fragment {
         }).start();
 
         initUI();
-        new Handler().postDelayed(this::refreshAlarmList, 1000);
+        new Handler().postDelayed(() -> refreshAlarmList(true), 1000);
 
         return ROOT;
     }

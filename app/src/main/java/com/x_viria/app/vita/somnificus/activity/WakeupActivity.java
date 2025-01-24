@@ -99,7 +99,7 @@ public class WakeupActivity extends AppCompatActivity {
 
             if (!IS_PREMIUM) {
                 NativeAds nativeAds = new NativeAds(this);
-                nativeAds.load(findViewById(R.id.WakeupActivity__NativeAd_Container), "ca-app-pub-6133161179615824/9422697167");
+                nativeAds.load(findViewById(R.id.WakeupActivity__NativeAd_Container), getString(R.string.ads_id_native));
             }
 
             ((LinearLayout) findViewById(R.id.WakeupActivity__Wakeup_Action_View)).setVisibility(View.GONE);

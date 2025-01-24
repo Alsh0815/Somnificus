@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name" translatable="false">Somnificus</string>
+    <string name="build_type" translatable="false">RELEASE</string>
+
+    <string name="ads_id_ll_banner" translatable="false">ca-app-pub-6133161179615824/4921675029</string>
+    <string name="ads_id_native" translatable="false">ca-app-pub-6133161179615824/9422697167</string>
+
+    <string name="debug_msg" translatable="false"></string>
 
     <string name="common__text_yes">Yes</string>
     <string name="common__text_no">No</string>
@@ -50,6 +56,8 @@
     <string name="notification_remind__no_alarm_is_set_msg">Tap this notification to set your alarm.</string>
     <string name="notification_remind__save_sd_title">Let\'s log your sleep time</string>
     <string name="notification_remind__save_sd_msg">Did you sleep well? Let\'s record your sleep time and check the quality of your sleep.</string>
+    <string name="notification_remind__set_alarm_title">Reminder</string>
+    <string name="notification_remind__set_alarm_msg">Alarm is not set. Set the alarm before you go to bed.</string>
 
     <!-- BackupActivity -->
     <string name="activity_backup__title">Backup</string>
@@ -156,6 +164,8 @@
     <string name="activity_setting__item_remind">Remind</string>
     <string name="activity_setting__text_remind_savesd">Reminder to record sleep data</string>
     <string name="activity_setting__text_remind_savesd_description">Reminds you to record your sleep when you wake up.</string>
+    <string name="activity_setting__text_remind_set_alarm">Reminder to set an alarm</string>
+    <string name="activity_setting__text_remind_set_alarm_description">Notifies you at 9 PM if no alarms are set.</string>
     <string name="activity_setting__item_others">Others</string>
     <string name="activity_setting__text_version">Version</string>
 

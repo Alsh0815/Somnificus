@@ -48,6 +48,8 @@
     <string name="notification_remind__no_alarm_is_set_msg">通知をタップしてアラームを設定してください</string>
     <string name="notification_remind__save_sd_title">睡眠時間を記録しましょう</string>
     <string name="notification_remind__save_sd_msg">よく眠れましたか?\n睡眠時間を記録して睡眠の質をチェックしましょう</string>
+    <string name="notification_remind__set_alarm_title">リマインド</string>
+    <string name="notification_remind__set_alarm_msg">アラームがセットされていません。就寝前にアラームをセットしましょう。</string>
 
     <!-- BackupActivity -->
     <string name="activity_backup__title">バックアップ</string>
@@ -144,6 +146,8 @@
     <string name="activity_setting__item_remind">リマインド</string>
     <string name="activity_setting__text_remind_savesd">睡眠データの記録リマインド</string>
     <string name="activity_setting__text_remind_savesd_description">起床時に睡眠時間の記録をするようリマインドします</string>
+    <string name="activity_setting__text_remind_set_alarm">アラームセットリマインダー</string>
+    <string name="activity_setting__text_remind_set_alarm_description">アラームがセットされていない場合にリマインドします</string>
     <string name="activity_setting__item_others">その他</string>
     <string name="activity_setting__text_version">バージョン</string>
 

@@ -54,6 +54,12 @@ public class SettingActivity extends AppCompatActivity {
         RemindSaveSD_SW.setChecked(sps.getBool(Config.KEY__SETTINGS_REMIND_SAVESD, SPDefault.SETTINGS_REMIND_SAVESD));
         RemindSaveSD_SW.setOnCheckedChangeListener((buttonView, isChecked) -> sps.setBool(Config.KEY__SETTINGS_REMIND_SAVESD, isChecked));
 
+        LinearLayout RemindSetAlarm_L = findViewById(R.id.SettingActivity__Remind_SetAlarm_L);
+        SwitchMaterial RemindSetAlarm_SW = findViewById(R.id.SettingActivity__Remind_SetAlarm_SW);
+        RemindSetAlarm_L.setOnClickListener(v -> RemindSetAlarm_SW.setChecked(!RemindSetAlarm_SW.isChecked()));
+        RemindSetAlarm_SW.setChecked(sps.getBool(Config.KEY__SETTINGS_REMIND_SET_ALARM, SPDefault.SETTINGS_REMIND_SET_ALARM));
+        RemindSetAlarm_SW.setOnCheckedChangeListener((buttonView, isChecked) -> sps.setBool(Config.KEY__SETTINGS_REMIND_SET_ALARM, isChecked));
+
         LinearLayout Version_L = findViewById(R.id.SettingActivity__Version_L);
         Version_L.setOnClickListener(v -> {
             try {

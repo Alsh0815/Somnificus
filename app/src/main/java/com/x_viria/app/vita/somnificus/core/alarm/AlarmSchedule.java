@@ -9,7 +9,11 @@ import android.util.Log;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.receiver.AlarmBroadcastReceiver;
+import com.x_viria.app.vita.somnificus.receiver.BedTimeBroadcastReceiver;
+import com.x_viria.app.vita.somnificus.receiver.RemindBroadcastReceiver;
+import com.x_viria.app.vita.somnificus.util.RequestCode;
 import com.x_viria.app.vita.somnificus.util.storage.Config;
+import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
 import org.json.JSONArray;
@@ -300,12 +304,13 @@ public class AlarmSchedule {
     }
 
     public void sync() throws JSONException {
+        boolean isAlarmSet = false;
         JSONArray list = getSchedule();
         Log.d("AlarmSchedule", list.toString(4));
+        AlarmManager alarmManager = (AlarmManager) CONTEXT.getSystemService(Context.ALARM_SERVICE);
         for (int i = 0; i < list.length(); i++) {
             JSONObject object = list.getJSONObject(i);
             int schedule_id = object.getInt("schedule_id");
-            AlarmManager alarmManager = (AlarmManager) CONTEXT.getSystemService(Context.ALARM_SERVICE);
             Intent intent = new Intent(CONTEXT.getApplicationContext(), AlarmBroadcastReceiver.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("id", schedule_id);
@@ -329,6 +334,7 @@ public class AlarmSchedule {
 
                 if (objdata.getBoolean("enable")) {
                     alarmManager.setAlarmClock(acInfo, pending);
+                    isAlarmSet = true;
                 } else {
                     pending.cancel();
                     alarmManager.cancel(pending);
@@ -342,6 +348,28 @@ public class AlarmSchedule {
                 AlarmManager.AlarmClockInfo acInfo = new AlarmManager.AlarmClockInfo(alarmInfo.getCalendar().getTimeInMillis(), null);
                 alarmManager.setAlarmClock(acInfo, pending);
             }
+        }
+
+        Intent intent = new Intent(CONTEXT, RemindBroadcastReceiver.class);
+        intent.putExtra("type", RemindBroadcastReceiver.RemindType.SET_ALARM);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                CONTEXT,
+                RequestCode.SET_ALARM_REMINDER,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+        boolean remind_set_alarm = new SPStorage(CONTEXT).getBool(Config.KEY__SETTINGS_REMIND_SET_ALARM, SPDefault.SETTINGS_REMIND_SET_ALARM);
+        if (!isAlarmSet && remind_set_alarm) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 21);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            Calendar calendar_now = Calendar.getInstance();
+            if (calendar.after(calendar_now)) {
+                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            }
+        } else {
+            alarmManager.cancel(pendingIntent);
         }
     }
 

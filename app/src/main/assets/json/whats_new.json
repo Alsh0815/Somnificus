@@ -1,6 +1,30 @@
 {
   "whats_new": [
     {
+      "version": [1, 2, 2],
+      "content": [
+        {
+          "type": "fx",
+          "text": {
+            "en": "Fixed a problem that could cause the app to crash when switching fragments.",
+            "ja": "フラグメントを切り替えた際にアプリがクラッシュする場合がある問題を修正しました"
+          }
+        }
+      ]
+    },
+    {
+      "version": [1, 2, 1],
+      "content": [
+        {
+          "type": "ft",
+          "text": {
+            "en": "A reminder to prevent forgetting to set alarms has been implemented.",
+            "ja": "アラームのセットし忘れ防止リマインダーを実装しました"
+          }
+        }
+      ]
+    },
+    {
       "version": [1, 2, 0],
       "content": [
         {
