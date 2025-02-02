@@ -29,6 +29,11 @@
     <string name="common__text_date_format">yyyy/MM/dd</string>
     <string name="common__text_date_format__full">yyyy/MM/dd EEEE</string>
 
+    <string name="common__text_unit_hour">時間</string>
+    <string name="common__text_unit_min">分</string>
+    <string name="common__text_unit_hour_full">時間</string>
+    <string name="common__text_unit_min_full">分</string>
+
     <!-- Subscription Plan Name -->
     <string name="subs_plan__yearly">1年</string>
     <string name="subs_plan__monthly">1ヶ月</string>
@@ -148,6 +153,8 @@
     <string name="activity_setting__text_remind_savesd_description">起床時に睡眠時間の記録をするようリマインドします</string>
     <string name="activity_setting__text_remind_set_alarm">アラームセットリマインダー</string>
     <string name="activity_setting__text_remind_set_alarm_description">アラームがセットされていない場合にリマインドします</string>
+    <string name="activity_setting__item_theme">テーマ</string>
+    <string name="activity_setting__text_app_theme">アプリのテーマ</string>
     <string name="activity_setting__item_others">その他</string>
     <string name="activity_setting__text_version">バージョン</string>
 
@@ -180,14 +187,14 @@
     <string name="activity_sleep_duration_details__msg_succeeded_to_del_data">睡眠データを削除しました</string>
 
     <!-- SleepDurationStatisticsActivity -->
-    <string name="activity_sleep_duration_statistics__text_ost">適切な睡眠時間</string>
-    <string name="activity_sleep_duration_statistics__text_ost_format">%d時間%02d分 以上</string>
-    <string name="activity_sleep_duration_statistics__text_mstr">最低限必要な睡眠時間</string>
-    <string name="activity_sleep_duration_statistics__text_mstr_format">%d時間%02d分 以上</string>
-    <string name="activity_sleep_duration_statistics__text_ast">平均睡眠時間</string>
-    <string name="activity_sleep_duration_statistics__text_ast_format">%d時間%02d分</string>
-    <string name="activity_sleep_duration_statistics__text_sr">睡眠スコア</string>
-    <string name="activity_sleep_duration_statistics__text_sr_format">%,d ポイント</string>
+    <string name="activity_sleep_duration_statistics__text_last_7_days">直近7日間</string>
+    <string name="activity_sleep_duration_statistics__text_monthly_report">月間レポート</string>
+    <string name="activity_sleep_duration_statistics__text_mom">前月比</string>
+    <string name="activity_sleep_duration_statistics__text_tst_tst">合計睡眠時間</string>
+    <string name="activity_sleep_duration_statistics__text_tst_score">睡眠スコア</string>
+    <string name="activity_sleep_duration_statistics__text_avg_sleep_time">平均睡眠時間</string>
+    <string name="activity_sleep_duration_statistics__text_total_sessions">合計セッション数</string>
+    <string name="activity_sleep_duration_statistics__text_bad_sessions">評価の低いセッション</string>
 
     <string name="activity_sleep_duration_statistics__tip_sr">
         スコアが高いほど良い睡眠を意味します。

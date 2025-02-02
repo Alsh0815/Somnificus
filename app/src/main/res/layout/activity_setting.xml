@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryBackgroundColor"
+    android:background="?attr/primaryBackgroundColor"
     tools:context=".activity.SettingActivity">
 
     <ScrollView
@@ -61,7 +61,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/primaryHorizontalBar" />
+                android:background="?attr/primaryHorizontalBar" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/primaryHorizontalBar" />
+                android:background="?attr/primaryHorizontalBar" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/activity_setting__text_remind_savesd_description"
-                        android:textColor="@color/secondaryTextColor"
+                        android:textColor="?attr/secondaryTextColor"
                         android:textSize="@dimen/text_setting_item_msg_small" />
                 </LinearLayout>
                 <LinearLayout
@@ -192,7 +192,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/activity_setting__text_remind_set_alarm_description"
-                        android:textColor="@color/secondaryTextColor"
+                        android:textColor="?attr/secondaryTextColor"
                         android:textSize="@dimen/text_setting_item_msg_small" />
                 </LinearLayout>
                 <LinearLayout
@@ -209,7 +209,54 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/primaryHorizontalBar" />
+                android:background="?attr/primaryHorizontalBar" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/activity_setting__item_theme"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center_vertical"
+                android:id="@+id/SettingActivity__Theme_Select_L"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="4dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_setting__text_app_theme"
+                        android:textSize="@dimen/text_setting_item_msg" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end">
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:gravity="end"
+                        android:id="@+id/SettingActivity__Theme_Select_Spinner" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?attr/primaryHorizontalBar" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -15,6 +15,7 @@ import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmTime;
+import com.x_viria.app.vita.somnificus.util.Theme;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,64 +59,64 @@ public class SetAlarmActivity extends AppCompatActivity {
         TextView textView1 = findViewById(R.id.SetAlarmActivity__Check_DofW_Sun_Text);
         if (OPTION__D_OF_W[0]) {
             check_DofW_Sun.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week_selected));
-            textView1.setTextColor(getColor(R.color.secondaryBackgroundColor));
+            textView1.setTextColor(Theme.getColor(this, R.attr.secondaryBackgroundColor));
         } else {
             check_DofW_Sun.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week));
-            textView1.setTextColor(getColor(R.color.primaryTextColor));
+            textView1.setTextColor(Theme.getColor(this, R.attr.primaryTextColor));
         }
         LinearLayout check_DofW_Mon = findViewById(R.id.SetAlarmActivity__Check_DofW_Mon);
         TextView textView2 = findViewById(R.id.SetAlarmActivity__Check_DofW_Mon_Text);
         if (OPTION__D_OF_W[1]) {
             check_DofW_Mon.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week_selected));
-            textView2.setTextColor(getColor(R.color.secondaryBackgroundColor));
+            textView2.setTextColor(Theme.getColor(this, R.attr.secondaryBackgroundColor));
         } else {
             check_DofW_Mon.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week));
-            textView2.setTextColor(getColor(R.color.primaryTextColor));
+            textView2.setTextColor(Theme.getColor(this, R.attr.primaryTextColor));
         }
         LinearLayout check_DofW_Tue = findViewById(R.id.SetAlarmActivity__Check_DofW_Tue);
         TextView textView3 = findViewById(R.id.SetAlarmActivity__Check_DofW_Tue_Text);
         if (OPTION__D_OF_W[2]) {
             check_DofW_Tue.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week_selected));
-            textView3.setTextColor(getColor(R.color.secondaryBackgroundColor));
+            textView3.setTextColor(Theme.getColor(this, R.attr.secondaryBackgroundColor));
         } else {
             check_DofW_Tue.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week));
-            textView3.setTextColor(getColor(R.color.primaryTextColor));
+            textView3.setTextColor(Theme.getColor(this, R.attr.primaryTextColor));
         }
         LinearLayout check_DofW_Wed = findViewById(R.id.SetAlarmActivity__Check_DofW_Wed);
         TextView textView4 = findViewById(R.id.SetAlarmActivity__Check_DofW_Wed_Text);
         if (OPTION__D_OF_W[3]) {
             check_DofW_Wed.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week_selected));
-            textView4.setTextColor(getColor(R.color.secondaryBackgroundColor));
+            textView4.setTextColor(Theme.getColor(this, R.attr.secondaryBackgroundColor));
         } else {
             check_DofW_Wed.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week));
-            textView4.setTextColor(getColor(R.color.primaryTextColor));
+            textView4.setTextColor(Theme.getColor(this, R.attr.primaryTextColor));
         }
         LinearLayout check_DofW_Thu = findViewById(R.id.SetAlarmActivity__Check_DofW_Thu);
         TextView textView5 = findViewById(R.id.SetAlarmActivity__Check_DofW_Thu_Text);
         if (OPTION__D_OF_W[4]) {
             check_DofW_Thu.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week_selected));
-            textView5.setTextColor(getColor(R.color.secondaryBackgroundColor));
+            textView5.setTextColor(Theme.getColor(this, R.attr.secondaryBackgroundColor));
         } else {
             check_DofW_Thu.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week));
-            textView5.setTextColor(getColor(R.color.primaryTextColor));
+            textView5.setTextColor(Theme.getColor(this, R.attr.primaryTextColor));
         }
         LinearLayout check_DofW_Fri = findViewById(R.id.SetAlarmActivity__Check_DofW_Fri);
         TextView textView6 = findViewById(R.id.SetAlarmActivity__Check_DofW_Fri_Text);
         if (OPTION__D_OF_W[5]) {
             check_DofW_Fri.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week_selected));
-            textView6.setTextColor(getColor(R.color.secondaryBackgroundColor));
+            textView6.setTextColor(Theme.getColor(this, R.attr.secondaryBackgroundColor));
         } else {
             check_DofW_Fri.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week));
-            textView6.setTextColor(getColor(R.color.primaryTextColor));
+            textView6.setTextColor(Theme.getColor(this, R.attr.primaryTextColor));
         }
         LinearLayout check_DofW_Sat = findViewById(R.id.SetAlarmActivity__Check_DofW_Sat);
         TextView textView7 = findViewById(R.id.SetAlarmActivity__Check_DofW_Sat_Text);
         if (OPTION__D_OF_W[6]) {
             check_DofW_Sat.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week_selected));
-            textView7.setTextColor(getColor(R.color.secondaryBackgroundColor));
+            textView7.setTextColor(Theme.getColor(this, R.attr.secondaryBackgroundColor));
         } else {
             check_DofW_Sat.setBackground(getDrawable(R.drawable.bg_set_alarm_day_of_week));
-            textView7.setTextColor(getColor(R.color.primaryTextColor));
+            textView7.setTextColor(Theme.getColor(this, R.attr.primaryTextColor));
         }
 
         refreshNearest();
@@ -145,6 +146,7 @@ public class SetAlarmActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Theme.apply(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_alarm);
 

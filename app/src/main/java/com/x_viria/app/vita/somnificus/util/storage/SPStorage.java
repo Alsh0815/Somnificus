@@ -55,4 +55,25 @@ public class SPStorage {
         editor.apply();
     }
 
+    public static class Tutorial {
+
+        private static final String KEY_NAME = "SP_KEY__TUTORIAL_COMPLETED__00";
+
+        public static boolean isCompleted(Context context) {
+            return context.getSharedPreferences("X-VIRIA_SOMNIFICUS_TUTORIAL_SP", Context.MODE_PRIVATE)
+                    .getBoolean(KEY_NAME, false);
+        }
+
+        public static void setCompletedFlag(Context context) {
+            context.getSharedPreferences("X-VIRIA_SOMNIFICUS_TUTORIAL_SP", Context.MODE_PRIVATE)
+                    .edit().putBoolean(KEY_NAME, true).apply();
+        }
+
+        public static void reset(Context context) {
+            context.getSharedPreferences("X-VIRIA_SOMNIFICUS_TUTORIAL_SP", Context.MODE_PRIVATE)
+                    .edit().clear().apply();
+        }
+
+    }
+
 }

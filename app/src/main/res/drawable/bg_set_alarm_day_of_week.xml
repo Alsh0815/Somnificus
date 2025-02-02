@@ -7,6 +7,6 @@
         android:bottomLeftRadius="5000dp"
         android:topLeftRadius="5000dp"
         />
-    <solid android:color="@color/secondaryBackgroundColor"/>
-    <stroke android:width="1dp" android:color="@color/primaryTextColor" />
+    <solid android:color="?attr/secondaryBackgroundColor"/>
+    <stroke android:width="1dp" android:color="?attr/primaryTextColor" />
 </shape>

@@ -11,7 +11,7 @@
                 android:topLeftRadius="8dp"
                 />
             <solid
-                android:color="@color/secondaryBackgroundColor"
+                android:color="?attr/secondaryBackgroundColor"
                 />
         </shape>
     </item>

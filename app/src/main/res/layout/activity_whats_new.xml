@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryBackgroundColor"
+    android:background="?attr/primaryBackgroundColor"
     tools:context=".activity.WhatsNewActivity">
 
     <ScrollView
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="16dp"
-                android:background="@color/primaryHorizontalBar" />
+                android:background="?attr/primaryHorizontalBar" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                     android:layout_margin="4dp"
                     android:padding="4dp"
                     android:src="@drawable/ic_keyboard_arrow_down"
-                    app:tint="@color/primaryTextColor" />
+                    app:tint="?attr/primaryTextColor" />
 
                 <TextView
                     android:layout_width="wrap_content"

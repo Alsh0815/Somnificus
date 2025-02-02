@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryBackgroundColor"
+        android:background="?attr/primaryBackgroundColor"
         android:orientation="vertical">
 
         <LinearLayout
@@ -25,7 +25,7 @@
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:src="@drawable/ic_close"
-                app:tint="@color/primaryTextColor" />
+                app:tint="?attr/primaryTextColor" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,7 +50,7 @@
             android:id="@+id/divider1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/primaryHorizontalBar" />
+            android:background="?attr/primaryHorizontalBar" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                         android:layout_weight="1"
                         android:gravity="center_horizontal|center_vertical"
                         android:background="@drawable/bg_set_alarm_card"
-                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:backgroundTint="?attr/secondaryBackgroundColor"
                         android:layout_margin="8dp"
                         android:padding="16dp"
                         android:elevation="5dp"
@@ -109,7 +109,7 @@
                             android:id="@+id/SetNapActivity__View_Opt_GIV"
                             android:gravity="center_vertical"
                             android:background="@drawable/bg_set_alarm_card"
-                            android:backgroundTint="@color/secondaryBackgroundColor"
+                            android:backgroundTint="?attr/secondaryBackgroundColor"
                             android:clickable="true"
                             android:layout_margin="8dp"
                             android:padding="16dp"
@@ -139,7 +139,7 @@
                             android:id="@+id/SetNapActivity__View_Opt_Mute"
                             android:gravity="center_vertical"
                             android:background="@drawable/bg_set_alarm_card"
-                            android:backgroundTint="@color/secondaryBackgroundColor"
+                            android:backgroundTint="?attr/secondaryBackgroundColor"
                             android:clickable="true"
                             android:layout_margin="8dp"
                             android:padding="16dp"

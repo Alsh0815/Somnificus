@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryBackgroundColor"
+    android:background="?attr/primaryBackgroundColor"
     tools:context=".fragment.main.etc.EtcFragment">
 
     <ScrollView
@@ -30,7 +30,7 @@
                     android:layout_height="28dp"
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/ic_menu_fire"
-                    app:tint="@color/primaryTextColor" />
+                    app:tint="?attr/primaryTextColor" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                     android:layout_height="28dp"
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/ic_crown"
-                    app:tint="@color/primaryTextColor" />
+                    app:tint="?attr/primaryTextColor" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                     android:layout_height="28dp"
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/ic_menu_settings"
-                    app:tint="@color/primaryTextColor" />
+                    app:tint="?attr/primaryTextColor" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                     android:layout_height="28dp"
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/ic_backup"
-                    app:tint="@color/primaryTextColor" />
+                    app:tint="?attr/primaryTextColor" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
                     android:layout_height="28dp"
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/ic_feather"
-                    app:tint="@color/primaryTextColor" />
+                    app:tint="?attr/primaryTextColor" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

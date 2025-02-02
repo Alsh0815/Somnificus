@@ -14,6 +14,7 @@ import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmTime;
+import com.x_viria.app.vita.somnificus.util.Theme;
 
 import org.json.JSONException;
 
@@ -42,6 +43,7 @@ public class SetNapActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Theme.apply(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_nap);
 

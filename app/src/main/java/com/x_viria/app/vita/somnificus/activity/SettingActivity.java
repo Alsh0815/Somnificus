@@ -5,12 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.util.Theme;
 import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
 import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
@@ -25,6 +30,7 @@ public class SettingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Theme.apply(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
@@ -59,6 +65,28 @@ public class SettingActivity extends AppCompatActivity {
         RemindSetAlarm_L.setOnClickListener(v -> RemindSetAlarm_SW.setChecked(!RemindSetAlarm_SW.isChecked()));
         RemindSetAlarm_SW.setChecked(sps.getBool(Config.KEY__SETTINGS_REMIND_SET_ALARM, SPDefault.SETTINGS_REMIND_SET_ALARM));
         RemindSetAlarm_SW.setOnCheckedChangeListener((buttonView, isChecked) -> sps.setBool(Config.KEY__SETTINGS_REMIND_SET_ALARM, isChecked));
+
+        final boolean[] isFirst = {true};
+        Spinner SelectTheme_Spinner = findViewById(R.id.SettingActivity__Theme_Select_Spinner);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, Config.Theme.LABELS);
+        SelectTheme_Spinner.setAdapter(arrayAdapter);
+        SelectTheme_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (isFirst[0]) {
+                    isFirst[0] = false;
+                    return;
+                }
+                int style_id = Config.Theme.VALUES[position];
+                new SPStorage(SettingActivity.this).setInt(Config.KEY__SETTINGS_APP_THEME, style_id);
+                setTheme(style_id);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         LinearLayout Version_L = findViewById(R.id.SettingActivity__Version_L);
         Version_L.setOnClickListener(v -> {

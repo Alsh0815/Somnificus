@@ -11,7 +11,7 @@
                 android:topLeftRadius="16dp"
                 />
             <solid
-                android:color="@color/wakeupActionBtn"
+                android:color="@color/white_A80"
                 />
         </shape>
     </item>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.SetSleepDurationActivity"
-    android:background="@color/primaryBackgroundColor">
+    android:background="?attr/primaryBackgroundColor">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     android:padding="@dimen/activity_header_close_btn_padding"
                     android:src="@drawable/ic_close"
-                    app:tint="@color/primaryTextColor" />
+                    app:tint="?attr/primaryTextColor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                         android:foreground="?android:attr/selectableItemBackground"
                         android:padding="4dp"
                         android:text="@string/common__text_save"
-                        android:textColor="@color/textButtonColor"
+                        android:textColor="?attr/primaryTextColor"
                         android:textSize="@dimen/activity_header_text_btn" />
                 </LinearLayout>
 
@@ -55,13 +55,13 @@
                 android:layout_height="wrap_content"
                 android:padding="12dp"
                 android:text="@string/activity_set_sleep_duration__title"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="?attr/primaryTextColor"
                 android:textSize="@dimen/activity_title_size" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/primaryHorizontalBar"
+                android:background="?attr/primaryHorizontalBar"
                 android:layout_marginBottom="8dp"/>
 
             <LinearLayout
@@ -159,7 +159,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/primaryHorizontalBar"
+                android:background="?attr/primaryHorizontalBar"
                 android:layout_marginTop="8dp"/>
 
             <TextView
@@ -195,7 +195,7 @@
                         android:layout_height="48dp"
                         android:id="@+id/SetSDActivity__Bad_Icon"
                         android:src="@drawable/ic_bad"
-                        app:tint="@color/primaryInactiveColor" />
+                        app:tint="?attr/primaryInactiveColor" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -220,7 +220,7 @@
                         android:layout_height="48dp"
                         android:id="@+id/SetSDActivity__Good_Icon"
                         android:src="@drawable/ic_good"
-                        app:tint="@color/primaryInactiveColor" />
+                        app:tint="?attr/primaryInactiveColor" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.android.billingclient.api.BillingClient;
 import com.x_viria.app.vita.somnificus.R;
-import com.x_viria.app.vita.somnificus.core.NativeAds;
+import com.x_viria.app.vita.somnificus.core.ads.NativeAds;
 import com.x_viria.app.vita.somnificus.core.Remind;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
@@ -24,12 +24,12 @@ import com.x_viria.app.vita.somnificus.core.alarm.AlarmTime;
 import com.x_viria.app.vita.somnificus.core.bill.BillingManager;
 import com.x_viria.app.vita.somnificus.service.AlarmService;
 import com.x_viria.app.vita.somnificus.service.PlaySoundService;
+import com.x_viria.app.vita.somnificus.util.Theme;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -41,6 +41,7 @@ public class WakeupActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Theme.apply(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wakeup);
 
@@ -99,7 +100,7 @@ public class WakeupActivity extends AppCompatActivity {
 
             if (!IS_PREMIUM) {
                 NativeAds nativeAds = new NativeAds(this);
-                nativeAds.load(findViewById(R.id.WakeupActivity__NativeAd_Container), getString(R.string.ads_id_native));
+                nativeAds.load(findViewById(R.id.WakeupActivity__NativeAd_Container), getString(R.string.ads_id_native_wakeup_1));
             }
 
             ((LinearLayout) findViewById(R.id.WakeupActivity__Wakeup_Action_View)).setVisibility(View.GONE);

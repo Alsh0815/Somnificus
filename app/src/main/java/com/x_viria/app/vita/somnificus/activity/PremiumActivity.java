@@ -22,6 +22,7 @@ import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.Purchase;
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.core.bill.BillingManager;
+import com.x_viria.app.vita.somnificus.util.Theme;
 import com.x_viria.app.vita.somnificus.util.Unit;
 
 import java.text.SimpleDateFormat;
@@ -89,7 +90,7 @@ public class PremiumActivity extends AppCompatActivity {
                         ViewGroup.LayoutParams.WRAP_CONTENT
                 ));
                 tv_price_max.setPadding(dp_2, dp_2, dp_2, dp_2);
-                tv_price_max.setTextColor(getColor(R.color.secondaryTextColor));
+                tv_price_max.setTextColor(Theme.getColor(this, R.attr.secondaryTextColor));
                 tv_price_max.setTextSize(16);
                 tv_price_max.setVisibility(View.INVISIBLE);
                 TextPaint tp_price_max = tv_price_max.getPaint();
@@ -106,7 +107,7 @@ public class PremiumActivity extends AppCompatActivity {
                 tv_price_f.setTextSize(18);
                 item.addView(tv_price_f);
 
-                int iconTintColor = ContextCompat.getColor(this, R.color.primaryBackgroundColor);
+                int iconTintColor = Theme.getColor(this, R.attr.primaryBackgroundColor);
 
                 LinearLayout ll_btn = new LinearLayout(this);
                 ll_btn.setBackground(AppCompatResources.getDrawable(this, R.drawable.bg_offer_card_btn));
@@ -131,7 +132,7 @@ public class PremiumActivity extends AppCompatActivity {
                         ViewGroup.LayoutParams.WRAP_CONTENT
                 ));
                 tv_btn_text.setText(R.string.activity_premium__text_subscribe);
-                tv_btn_text.setTextColor(getColor(R.color.primaryBackgroundColor));
+                tv_btn_text.setTextColor(Theme.getColor(this, R.attr.primaryBackgroundColor));
                 tv_btn_text.setTextSize(16);
                 ll_btn.addView(tv_btn_text);
                 item.addView(ll_btn);
@@ -265,6 +266,7 @@ public class PremiumActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Theme.apply(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_premium);
 

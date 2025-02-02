@@ -11,7 +11,7 @@
                 android:topLeftRadius="4dp"
                 />
             <solid
-                android:color="@color/primaryActiveColor"
+                android:color="?attr/primaryActiveColor"
                 />
         </shape>
     </item>

@@ -8,32 +8,79 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="controlHighlightColor">#40FFFFFF</color>
-
-    <color name="primaryColor">#A542FF</color>
-    <color name="secondaryColorDark">#FF701AFF</color>
-    <color name="secondaryColorLight">#FFB580FF</color>
-
-    <color name="primaryActiveColor">#FFDDDDDD</color>
-    <color name="secondaryActiveColor">#FFF0E2F2</color>
-    <color name="primaryInactiveColor">#FF808080</color>
-    <color name="secondaryInactiveColor">#FFD5C9D8</color>
-    <color name="primaryBackgroundColor">#FF0F1010</color>
-    <color name="secondaryBackgroundColor">#FF181818</color>
-    <color name="tertiaryBackgroundColor">#FF282828</color>
-    <color name="primaryTextColor">#FFB0B0B0</color>
-    <color name="secondaryTextColor">#FF909090</color>
-    <color name="primaryTextColorRev">#FF353535</color>
-
-    <color name="primaryHorizontalBar">@color/tertiaryBackgroundColor</color>
-
-    <color name="wakeupActionBtn">#D0F0E2F2</color>
-
-    <color name="textButtonColor">#8BB5FF</color>
-
-    <color name="selectedColorOrange">#FFFF9030</color>
-    <color name="selectedColorAqua">#FF50B5FF</color>
-
-    <color name="cautionCardBackgroundColor">#D0FFB540</color>
-    <color name="warningCardBackgroundColor">#D0FF4040</color>
+    <color name="red_L50">#FF0000</color>
+    <color name="red_L60">#FF3232</color>
+    <color name="red_L70">#FF6565</color>
+    <color name="pink_L50">#FF0080</color>
+    <color name="pink_L60">#FF329C</color>
+    <color name="fuchsia_L50">#FF00FF</color>
+    <color name="fuchsia_L60">#FF32FF</color>
+    <color name="purple_L40">#6600CC</color>
+    <color name="purple_L50">#8000FF</color>
+    <color name="purple_L60">#9932FF</color>
+    <color name="purple_L70">#B265FF</color>
+    <color name="purple_L80">#CC99FF</color>
+    <color name="purple_L90">#E5CCFF</color>
+    <color name="purple_L95">#F2E5FF</color>
+    <color name="blue_L50">#0000FF</color>
+    <color name="blue_L60">#3232FF</color>
+    <color name="blue_L70">#6565FF</color>
+    <color name="blue_L80">#9999FF</color>
+    <color name="blue_L90">#CCCCFF</color>
+    <color name="blue_L95">#E5E5FF</color>
+    <color name="skyblue_L50">#0080FF</color>
+    <color name="skyblue_L60">#329CFF</color>
+    <color name="skyblue_L70">#65B5FF</color>
+    <color name="skyblue_L80">#99CDFF</color>
+    <color name="skyblue_L90">#CCE6FF</color>
+    <color name="skyblue_L95">#E5F2FF</color>
+    <color name="aqua_L50">#00FFFF</color>
+    <color name="aqua_L60">#32FFFF</color>
+    <color name="aqua_L70">#65FFFF</color>
+    <color name="aqua_L80">#99FFFF</color>
+    <color name="aqua_L90">#CCFFFF</color>
+    <color name="aqua_L95">#E5FFFF</color>
+    <color name="springgreen_L50">#00FF80</color>
+    <color name="springgreen_L60">#32FF99</color>
+    <color name="springgreen_L70">#65FFB2</color>
+    <color name="springgreen_L80">#99FFCC</color>
+    <color name="springgreen_L90">#CCFFE5</color>
+    <color name="springgreen_L95">#E5FFF2</color>
+    <color name="green_L50">#00FF00</color>
+    <color name="green_L60">#32FF32</color>
+    <color name="green_L70">#65FF65</color>
+    <color name="green_L80">#99FF99</color>
+    <color name="chartreuse_L50">#80FF00</color>
+    <color name="yellow_L50">#FFFF00</color>
+    <color name="yellow_L60">#FFFF32</color>
+    <color name="yellow_L70">#FFFF65</color>
+    <color name="yellow_L80">#FFFF99</color>
+    <color name="yellow_L90">#FFFFCC</color>
+    <color name="yellow_L95">#FFFFE5</color>
+    <color name="orange_L50">#FF8000</color>
+    <color name="orange_L60">#FF9932</color>
+    <color name="orange_L70">#FFB265</color>
+    <color name="orange_L80">#FFCC99</color>
+    <color name="orange_L90">#FFE5CC</color>
+    <color name="orange_L95">#FFF2E5</color>
+    <color name="gray_L5">#0C0C0C</color>
+    <color name="gray_L10">#191919</color>
+    <color name="gray_L20">#333333</color>
+    <color name="gray_L30">#4C4C4C</color>
+    <color name="gray_L40">#666666</color>
+    <color name="gray_L50">#808080</color>
+    <color name="gray_L60">#999999</color>
+    <color name="gray_L70">#B2B2B2</color>
+    <color name="gray_L80">#CCCCCC</color>
+    <color name="gray_L90">#E5E5E5</color>
+    <color name="gray_L95">#F2F2F2</color>
+    <color name="white_A90">#E6FFFFFF</color>
+    <color name="white_A80">#CCFFFFFF</color>
+    <color name="white_A70">#B3FFFFFF</color>
+    <color name="white_A60">#99FFFFFF</color>
+    <color name="white_A50">#80FFFFFF</color>
+    <color name="white_A40">#66FFFFFF</color>
+    <color name="white_A30">#4DFFFFFF</color>
+    <color name="white_A20">#33FFFFFF</color>
+    <color name="white_A10">#1AFFFFFF</color>
 </resources>

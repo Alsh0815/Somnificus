@@ -28,7 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fragment_main_sleep__text_schedule"
-                    android:textColor="@color/primaryActiveColor"
+                    android:textColor="?attr/primaryActiveColor"
                     android:textSize="16sp"/>
 
                 <LinearLayout
@@ -51,13 +51,13 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/SleepFragment__Schedule_Bed_Time_T1"
                             android:text="@string/fragment_main_sleep__text_bed_time"
-                            android:textColor="@color/primaryInactiveColor" />
+                            android:textColor="?attr/primaryInactiveColor" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/SleepFragment__Schedule_Bed_Time_T2"
                             android:text="--:--"
-                            android:textColor="@color/primaryInactiveColor"
+                            android:textColor="?attr/primaryInactiveColor"
                             android:textSize="32sp" />
                     </LinearLayout>
                     <LinearLayout
@@ -75,13 +75,13 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/SleepFragment__Schedule_WakeUp_Time_T1"
                             android:text="@string/fragment_main_sleep__text_wakeup_time"
-                            android:textColor="@color/primaryInactiveColor" />
+                            android:textColor="?attr/primaryInactiveColor" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/SleepFragment__Schedule_WakeUp_Time_T2"
                             android:text="--:--"
-                            android:textColor="@color/primaryInactiveColor"
+                            android:textColor="?attr/primaryInactiveColor"
                             android:textSize="32sp" />
                     </LinearLayout>
 
@@ -111,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_main_sleep__text_activity"
-                        android:textColor="@color/primaryActiveColor"
+                        android:textColor="?attr/primaryActiveColor"
                         android:textSize="16sp"/>
 
                     <LinearLayout
@@ -126,7 +126,7 @@
                             android:clickable="true"
                             android:foreground="?android:attr/selectableItemBackground"
                             android:src="@drawable/ic_add"
-                            app:tint="@color/primaryTextColor" />
+                            app:tint="?attr/primaryTextColor" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -196,7 +196,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_main_sleep__text_statistics"
-                        android:textColor="@color/primaryActiveColor"
+                        android:textColor="?attr/primaryActiveColor"
                         android:textSize="16sp"/>
 
                     <LinearLayout
@@ -208,7 +208,7 @@
                             android:layout_height="40dp"
                             android:padding="8dp"
                             android:src="@drawable/ic_keyboard_arrow_right"
-                            app:tint="@color/primaryTextColor" />
+                            app:tint="?attr/primaryTextColor" />
                     </LinearLayout>
 
                 </LinearLayout>

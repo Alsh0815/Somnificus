@@ -16,6 +16,7 @@ import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.core.BedTimeManager;
 import com.x_viria.app.vita.somnificus.core.ui.overlay.PopupNumPicker;
 import com.x_viria.app.vita.somnificus.core.ui.overlay.PopupTimePicker;
+import com.x_viria.app.vita.somnificus.util.Theme;
 import com.x_viria.app.vita.somnificus.util.Unit;
 import com.x_viria.app.vita.somnificus.util.format.TimeFormat;
 import com.x_viria.app.vita.somnificus.util.storage.Config;
@@ -134,6 +135,7 @@ public class BedTimeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Theme.apply(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bed_time);
 

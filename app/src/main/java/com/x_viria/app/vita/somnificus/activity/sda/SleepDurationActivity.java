@@ -24,6 +24,7 @@ import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.SetSleepDurationActivity;
 import com.x_viria.app.vita.somnificus.core.sda.SleepDurationInfo;
 import com.x_viria.app.vita.somnificus.core.sda.SleepDurationManager;
+import com.x_viria.app.vita.somnificus.util.Theme;
 import com.x_viria.app.vita.somnificus.util.Unit;
 
 import org.json.JSONException;
@@ -47,7 +48,7 @@ public class SleepDurationActivity extends AppCompatActivity {
         TypedValue rippleEffect = new TypedValue();
         getTheme().resolveAttribute(android.R.attr.selectableItemBackground, rippleEffect, true);
 
-        int iconTintColor = ContextCompat.getColor(this, R.color.primaryTextColor);
+        int iconTintColor = Theme.getColor(this, R.attr.primaryTextColor);
 
         SleepDurationManager sdm = new SleepDurationManager(this);
         List<SleepDurationInfo> list = sdm.get(period, index);
@@ -97,7 +98,7 @@ public class SleepDurationActivity extends AppCompatActivity {
 
                 ImageView icon = new ImageView(this);
                 icon.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_sleep));
-                icon.setImageTintList(ColorStateList.valueOf(getColor(R.color.secondaryTextColor)));
+                icon.setImageTintList(ColorStateList.valueOf(Theme.getColor(this, R.attr.secondaryTextColor)));
                 icon.setLayoutParams(new LinearLayout.LayoutParams(
                         Unit.Pixel.dp2px(this, 14),
                         Unit.Pixel.dp2px(this, 14)
@@ -109,7 +110,7 @@ public class SleepDurationActivity extends AppCompatActivity {
                 pre_header = new TextView(this);
                 pre_header.setPadding(padding2, padding2, padding2, padding2);
                 pre_header.setText(String.format("%s - " + getString(R.string.activity_sleep_duration__time_format), f.format(d_to), hour, min));
-                pre_header.setTextColor(getColor(R.color.secondaryTextColor));
+                pre_header.setTextColor(Theme.getColor(this, R.attr.secondaryTextColor));
                 pre_header.setTextSize(COMPLEX_UNIT_DIP, 14);
 
                 head.addView(icon);
@@ -148,7 +149,7 @@ public class SleepDurationActivity extends AppCompatActivity {
             TextView duration_text = new TextView(this);
             duration_text.setPadding(padding2, padding2, padding2, padding2);
             duration_text.setText(String.format(getString(R.string.fragment_main_sleep__text_sd_time), hour, min));
-            duration_text.setTextColor(getColor(R.color.primaryTextColor));
+            duration_text.setTextColor(Theme.getColor(this, R.attr.primaryTextColor));
             duration_text.setTextSize(COMPLEX_UNIT_DIP, 18);
             body.addView(duration_text);
 
@@ -237,8 +238,8 @@ public class SleepDurationActivity extends AppCompatActivity {
             end.add(Calendar.WEEK_OF_YEAR, -1 * SD_INDEX);
             end.set(Calendar.DAY_OF_WEEK, 7);
         }
-        int primaryTintColor = ContextCompat.getColor(this, R.color.primaryTextColor);
-        int secondaryTintColor = ContextCompat.getColor(this, R.color.primaryInactiveColor);
+        int primaryTintColor = Theme.getColor(this, R.attr.primaryTextColor);
+        int secondaryTintColor = Theme.getColor(this, R.attr.primaryInactiveColor);
         TextView TV_SD_Period = findViewById(R.id.SleepDurationActivity__SD_Period_Text);
         ImageView IV_Btn__Next = findViewById(R.id.SleepDurationActivity__Next_Btn);
         if (SD_INDEX == 0) {
@@ -274,6 +275,7 @@ public class SleepDurationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Theme.apply(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep_duration);
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.sda.SleepDurationDetailsActivity"
-    android:background="@color/primaryBackgroundColor">
+    android:background="?attr/primaryBackgroundColor">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     android:padding="@dimen/activity_header_close_btn_padding"
                     android:src="@drawable/ic_close"
-                    app:tint="@color/primaryTextColor" />
+                    app:tint="?attr/primaryTextColor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                         android:foreground="?android:attr/selectableItemBackground"
                         android:padding="@dimen/activity_header_close_btn_padding"
                         android:src="@drawable/ic_delete"
-                        app:tint="@color/primaryTextColor" />
+                        app:tint="?attr/primaryTextColor" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -52,7 +52,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/primaryHorizontalBar" />
+                android:background="?attr/primaryHorizontalBar" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                         android:layout_height="24dp"
                         android:layout_margin="8dp"
                         android:src="@drawable/ic_sleep"
-                        app:tint="@color/secondaryTextColor" />
+                        app:tint="?attr/secondaryTextColor" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -123,7 +123,7 @@
                         android:layout_height="24dp"
                         android:layout_margin="8dp"
                         android:src="@drawable/ic_menu_bed"
-                        app:tint="@color/secondaryTextColor" />
+                        app:tint="?attr/secondaryTextColor" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
                         android:layout_height="24dp"
                         android:layout_margin="8dp"
                         android:src="@drawable/ic_menu_alarm"
-                        app:tint="@color/secondaryTextColor" />
+                        app:tint="?attr/secondaryTextColor" />
 
                     <TextView
                         android:layout_width="wrap_content"

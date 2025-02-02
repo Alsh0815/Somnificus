@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.core.sda.SleepDurationInfo;
 import com.x_viria.app.vita.somnificus.core.sda.SleepDurationManager;
+import com.x_viria.app.vita.somnificus.util.Theme;
 
 import org.json.JSONException;
 
@@ -20,6 +21,7 @@ public class SleepDurationDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Theme.apply(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep_duration_details);
 

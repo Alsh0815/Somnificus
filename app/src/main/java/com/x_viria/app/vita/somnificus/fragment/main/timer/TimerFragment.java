@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.service.TimerService;
+import com.x_viria.app.vita.somnificus.util.Theme;
 import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
@@ -133,12 +134,12 @@ public class TimerFragment extends Fragment {
         TextView timer_3 = ROOT.findViewById(R.id.TimerFragment__Timer_3);
         TextView timer_s = ROOT.findViewById(R.id.TimerFragment__Timer_S);
 
-        timer_1.setTextColor(getResources().getColor(R.color.secondaryTextColor));
-        timer_h.setTextColor(getResources().getColor(R.color.secondaryTextColor));
-        timer_2.setTextColor(getResources().getColor(R.color.secondaryTextColor));
-        timer_m.setTextColor(getResources().getColor(R.color.secondaryTextColor));
-        timer_3.setTextColor(getResources().getColor(R.color.secondaryTextColor));
-        timer_s.setTextColor(getResources().getColor(R.color.secondaryTextColor));
+        timer_1.setTextColor(Theme.getColor(requireContext(), R.attr.secondaryTextColor));
+        timer_h.setTextColor(Theme.getColor(requireContext(), R.attr.secondaryTextColor));
+        timer_2.setTextColor(Theme.getColor(requireContext(), R.attr.secondaryTextColor));
+        timer_m.setTextColor(Theme.getColor(requireContext(), R.attr.secondaryTextColor));
+        timer_3.setTextColor(Theme.getColor(requireContext(), R.attr.secondaryTextColor));
+        timer_s.setTextColor(Theme.getColor(requireContext(), R.attr.secondaryTextColor));
 
         if (!isRunning()) {
             timer_1.setText(String.format("%d%d", disp[0], disp[1]));
@@ -146,14 +147,14 @@ public class TimerFragment extends Fragment {
             timer_3.setText(String.format("%d%d", disp[4], disp[5]));
 
             if (TIMER_DISP.size() > 0) {
-                timer_3.setTextColor(getResources().getColor(R.color.primaryActiveColor));
-                timer_s.setTextColor(getResources().getColor(R.color.primaryActiveColor));
+                timer_3.setTextColor(Theme.getColor(requireContext(), R.attr.primaryActiveColor));
+                timer_s.setTextColor(Theme.getColor(requireContext(), R.attr.primaryActiveColor));
             } if (TIMER_DISP.size() > 2) {
-                timer_2.setTextColor(getResources().getColor(R.color.primaryActiveColor));
-                timer_m.setTextColor(getResources().getColor(R.color.primaryActiveColor));
+                timer_2.setTextColor(Theme.getColor(requireContext(), R.attr.primaryActiveColor));
+                timer_m.setTextColor(Theme.getColor(requireContext(), R.attr.primaryActiveColor));
             } if (TIMER_DISP.size() > 4) {
-                timer_1.setTextColor(getResources().getColor(R.color.primaryActiveColor));
-                timer_h.setTextColor(getResources().getColor(R.color.primaryActiveColor));
+                timer_1.setTextColor(Theme.getColor(requireContext(), R.attr.primaryActiveColor));
+                timer_h.setTextColor(Theme.getColor(requireContext(), R.attr.primaryActiveColor));
             }
         } else {
             long target_ms = (new SPStorage(requireContext()).getLong(Config.TMP__TIMER_VAL, 0));
@@ -165,12 +166,12 @@ public class TimerFragment extends Fragment {
             timer_1.setText(String.format("%02d", hour));
             timer_2.setText(String.format("%02d", min));
             timer_3.setText(String.format("%02d", sec));
-            timer_3.setTextColor(getResources().getColor(R.color.primaryActiveColor));
-            timer_s.setTextColor(getResources().getColor(R.color.primaryActiveColor));
-            timer_2.setTextColor(getResources().getColor(R.color.primaryActiveColor));
-            timer_m.setTextColor(getResources().getColor(R.color.primaryActiveColor));
-            timer_1.setTextColor(getResources().getColor(R.color.primaryActiveColor));
-            timer_h.setTextColor(getResources().getColor(R.color.primaryActiveColor));
+            timer_3.setTextColor(Theme.getColor(requireContext(), R.attr.primaryActiveColor));
+            timer_s.setTextColor(Theme.getColor(requireContext(), R.attr.primaryActiveColor));
+            timer_2.setTextColor(Theme.getColor(requireContext(), R.attr.primaryActiveColor));
+            timer_m.setTextColor(Theme.getColor(requireContext(), R.attr.primaryActiveColor));
+            timer_1.setTextColor(Theme.getColor(requireContext(), R.attr.primaryActiveColor));
+            timer_h.setTextColor(Theme.getColor(requireContext(), R.attr.primaryActiveColor));
         }
     }
 

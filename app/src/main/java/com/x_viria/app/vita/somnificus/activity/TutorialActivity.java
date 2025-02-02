@@ -20,6 +20,7 @@ import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.fragment.tutorial.Tutorial1Fragment;
 import com.x_viria.app.vita.somnificus.fragment.tutorial.Tutorial2Fragment;
 import com.x_viria.app.vita.somnificus.fragment.tutorial.TutorialLastFragment;
+import com.x_viria.app.vita.somnificus.util.Theme;
 
 public class TutorialActivity extends AppCompatActivity {
 
@@ -31,8 +32,8 @@ public class TutorialActivity extends AppCompatActivity {
     private int CURRENT_PAGE = 1;
 
     private void refreshControllPanel() {
-        int iconTintColor = ContextCompat.getColor(this, R.color.primaryBackgroundColor);
-        int iconTintColorReverse = ContextCompat.getColor(this, R.color.primaryActiveColor);
+        int iconTintColor = Theme.getColor(this, R.attr.primaryBackgroundColor);
+        int iconTintColorReverse = Theme.getColor(this, R.attr.primaryActiveColor);
         TextView tv_page = findViewById(R.id.TutorialActivity__CP_Text_Page);
         tv_page.setText(String.format("%d / %d", CURRENT_PAGE, FRAGMENT.length));
 
@@ -81,6 +82,7 @@ public class TutorialActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Theme.apply(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
 

@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-thin"
                     android:text="@string/activity_wakeup__btn_stop"
-                    android:textColor="@color/primaryBackgroundColor"
+                    android:textColor="?attr/primaryBackgroundColor"
                     android:textSize="32sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-thin"
                     android:text="@string/activity_wakeup__btn_snooze"
-                    android:textColor="@color/primaryBackgroundColor"
+                    android:textColor="?attr/primaryBackgroundColor"
                     android:textSize="32sp"
                     android:textStyle="bold" />
             </LinearLayout>

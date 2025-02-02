@@ -36,7 +36,7 @@ public class TutorialLastFragment extends Fragment {
 
         Button start_btn = root.findViewById(R.id.TutorialLastFragment__Btn_Start_MainActivity);
         start_btn.setOnClickListener(v -> {
-            (new SPStorage(requireContext())).setBool(Config.KEY__TUTORIAL_COMPLETED, true);
+            SPStorage.Tutorial.setCompletedFlag(requireContext());
             requireActivity().finish();
         });
 

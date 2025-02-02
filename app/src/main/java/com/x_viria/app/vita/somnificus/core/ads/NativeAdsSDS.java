@@ -1,10 +1,11 @@
-package com.x_viria.app.vita.somnificus.core;
+package com.x_viria.app.vita.somnificus.core.ads;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -15,11 +16,11 @@ import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdView;
 import com.x_viria.app.vita.somnificus.R;
 
-public class NativeAds {
+public class NativeAdsSDS {
 
     private final Context CONTEXT;
 
-    public NativeAds(Context context) {
+    public NativeAdsSDS(Context context) {
         this.CONTEXT = context;
     }
 
@@ -29,7 +30,8 @@ public class NativeAds {
     ) {
         AdLoader.Builder builder = new AdLoader.Builder(CONTEXT, adUnitId);
         builder.forNativeAd(nativeAd -> {
-            View view = LayoutInflater.from(CONTEXT).inflate(R.layout.nativead_view, null);
+            View view = LayoutInflater.from(CONTEXT).inflate(R.layout.nativead_view_sdscard, null);
+            LinearLayout click_view = view.findViewById(R.id.ad_click);
 
             ((TextView) view.findViewById(R.id.nativead_headline)).setText(nativeAd.getHeadline());
             ((TextView) view.findViewById(R.id.nativead_body)).setText(nativeAd.getBody());
@@ -41,20 +43,6 @@ public class NativeAds {
                 iconView.setVisibility(View.INVISIBLE);
             } else {
                 iconView.setImageDrawable(icon.getDrawable());
-            }
-
-            TextView priceView = view.findViewById(R.id.nativead_price);
-            if (nativeAd.getPrice() == null) {
-                priceView.setVisibility(View.INVISIBLE);
-            } else {
-                priceView.setText(nativeAd.getPrice());
-            }
-
-            TextView storeView = view.findViewById(R.id.nativead_store);
-            if (nativeAd.getStore() == null) {
-                storeView.setVisibility(View.INVISIBLE);
-            } else {
-                storeView.setText(nativeAd.getStore());
             }
 
             RatingBar ratingView = view.findViewById(R.id.nativead_stars);
@@ -71,15 +59,14 @@ public class NativeAds {
                 advView.setText(nativeAd.getAdvertiser());
             }
 
-            MediaView mediaView = view.findViewById(R.id.nativead_media);
-            if (nativeAd.getMediaContent() == null) {
-                mediaView.setVisibility(View.INVISIBLE);
-            } else {
-                mediaView.setMediaContent(nativeAd.getMediaContent());
-            }
-
             NativeAdView adview = (NativeAdView) view;
             adview.setNativeAd(nativeAd);
+            adview.setHeadlineView(view.findViewById(R.id.nativead_headline));
+            adview.setBodyView(view.findViewById(R.id.nativead_body));
+            adview.setCallToActionView(view.findViewById(R.id.ad_click));
+            adview.setIconView(view.findViewById(R.id.nativead_icon));
+            adview.setStarRatingView(view.findViewById(R.id.nativead_stars));
+            adview.setAdvertiserView(view.findViewById(R.id.nativead_advertiser));
 
             container.removeAllViews();
             container.addView(view);

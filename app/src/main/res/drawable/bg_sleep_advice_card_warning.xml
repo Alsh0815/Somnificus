@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/controlHighlightColor">
+    android:color="?attr/controlHighlightColor">
     <item>
         <shape android:shape="rectangle">
             <corners
@@ -11,7 +11,7 @@
                 android:topLeftRadius="8dp"
                 />
             <solid
-                android:color="@color/warningCardBackgroundColor"
+                android:color="@color/red_L70"
                 />
         </shape>
     </item>

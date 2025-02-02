@@ -9,7 +9,7 @@
                 android:topLeftRadius="8dp"
                 />
             <solid
-                android:color="@color/tertiaryBackgroundColor"
+                android:color="?attr/tertiaryBackgroundColor"
                 />
         </shape>
     </item>

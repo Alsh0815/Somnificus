@@ -85,14 +85,14 @@
                         android:layout_margin="4dp"
                         android:id="@+id/TimerFragment__Num_1"
                         android:background="@drawable/btn_timer_circle_reverse"
-                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:backgroundTint="?attr/secondaryBackgroundColor"
                         android:clickable="true"
                         android:elevation="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1"
-                            android:textColor="@color/primaryActiveColor"
+                            android:textColor="?attr/primaryActiveColor"
                             android:textSize="24sp" />
                     </LinearLayout>
                     <LinearLayout
@@ -102,14 +102,14 @@
                         android:layout_margin="4dp"
                         android:id="@+id/TimerFragment__Num_2"
                         android:background="@drawable/btn_timer_circle_reverse"
-                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:backgroundTint="?attr/secondaryBackgroundColor"
                         android:clickable="true"
                         android:elevation="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2"
-                            android:textColor="@color/primaryActiveColor"
+                            android:textColor="?attr/primaryActiveColor"
                             android:textSize="24sp" />
                     </LinearLayout>
                     <LinearLayout
@@ -119,14 +119,14 @@
                         android:layout_margin="4dp"
                         android:id="@+id/TimerFragment__Num_3"
                         android:background="@drawable/btn_timer_circle_reverse"
-                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:backgroundTint="?attr/secondaryBackgroundColor"
                         android:clickable="true"
                         android:elevation="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="3"
-                            android:textColor="@color/primaryActiveColor"
+                            android:textColor="?attr/primaryActiveColor"
                             android:textSize="24sp" />
                     </LinearLayout>
 
@@ -144,14 +144,14 @@
                         android:layout_margin="4dp"
                         android:id="@+id/TimerFragment__Num_4"
                         android:background="@drawable/btn_timer_circle_reverse"
-                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:backgroundTint="?attr/secondaryBackgroundColor"
                         android:clickable="true"
                         android:elevation="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="4"
-                            android:textColor="@color/primaryActiveColor"
+                            android:textColor="?attr/primaryActiveColor"
                             android:textSize="24sp" />
                     </LinearLayout>
                     <LinearLayout
@@ -161,14 +161,14 @@
                         android:layout_margin="4dp"
                         android:id="@+id/TimerFragment__Num_5"
                         android:background="@drawable/btn_timer_circle_reverse"
-                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:backgroundTint="?attr/secondaryBackgroundColor"
                         android:clickable="true"
                         android:elevation="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="5"
-                            android:textColor="@color/primaryActiveColor"
+                            android:textColor="?attr/primaryActiveColor"
                             android:textSize="24sp" />
                     </LinearLayout>
                     <LinearLayout
@@ -178,14 +178,14 @@
                         android:layout_margin="4dp"
                         android:id="@+id/TimerFragment__Num_6"
                         android:background="@drawable/btn_timer_circle_reverse"
-                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:backgroundTint="?attr/secondaryBackgroundColor"
                         android:clickable="true"
                         android:elevation="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="6"
-                            android:textColor="@color/primaryActiveColor"
+                            android:textColor="?attr/primaryActiveColor"
                             android:textSize="24sp" />
                     </LinearLayout>
 
@@ -203,14 +203,14 @@
                         android:layout_margin="4dp"
                         android:id="@+id/TimerFragment__Num_7"
                         android:background="@drawable/btn_timer_circle_reverse"
-                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:backgroundTint="?attr/secondaryBackgroundColor"
                         android:clickable="true"
                         android:elevation="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="7"
-                            android:textColor="@color/primaryActiveColor"
+                            android:textColor="?attr/primaryActiveColor"
                             android:textSize="24sp" />
                     </LinearLayout>
                     <LinearLayout
@@ -220,14 +220,14 @@
                         android:layout_margin="4dp"
                         android:id="@+id/TimerFragment__Num_8"
                         android:background="@drawable/btn_timer_circle_reverse"
-                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:backgroundTint="?attr/secondaryBackgroundColor"
                         android:clickable="true"
                         android:elevation="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="8"
-                            android:textColor="@color/primaryActiveColor"
+                            android:textColor="?attr/primaryActiveColor"
                             android:textSize="24sp" />
                     </LinearLayout>
                     <LinearLayout
@@ -237,14 +237,14 @@
                         android:layout_margin="4dp"
                         android:id="@+id/TimerFragment__Num_9"
                         android:background="@drawable/btn_timer_circle_reverse"
-                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:backgroundTint="?attr/secondaryBackgroundColor"
                         android:clickable="true"
                         android:elevation="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="9"
-                            android:textColor="@color/primaryActiveColor"
+                            android:textColor="?attr/primaryActiveColor"
                             android:textSize="24sp" />
                     </LinearLayout>
 
@@ -262,14 +262,14 @@
                         android:layout_margin="4dp"
                         android:id="@+id/TimerFragment__Num_00"
                         android:background="@drawable/btn_timer_circle_reverse"
-                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:backgroundTint="?attr/secondaryBackgroundColor"
                         android:clickable="true"
                         android:elevation="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="00"
-                            android:textColor="@color/primaryActiveColor"
+                            android:textColor="?attr/primaryActiveColor"
                             android:textSize="24sp" />
                     </LinearLayout>
                     <LinearLayout
@@ -279,14 +279,14 @@
                         android:layout_margin="4dp"
                         android:id="@+id/TimerFragment__Num_0"
                         android:background="@drawable/btn_timer_circle_reverse"
-                        android:backgroundTint="@color/secondaryBackgroundColor"
+                        android:backgroundTint="?attr/secondaryBackgroundColor"
                         android:clickable="true"
                         android:elevation="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
-                            android:textColor="@color/primaryActiveColor"
+                            android:textColor="?attr/primaryActiveColor"
                             android:textSize="24sp" />
                     </LinearLayout>
                     <LinearLayout
@@ -296,14 +296,14 @@
                         android:layout_margin="4dp"
                         android:id="@+id/TimerFragment__Num_BS"
                         android:background="@drawable/btn_timer_circle_reverse"
-                        android:backgroundTint="@color/tertiaryBackgroundColor"
+                        android:backgroundTint="?attr/tertiaryBackgroundColor"
                         android:clickable="true"
                         android:elevation="5dp">
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_backspace"
-                            app:tint="@color/primaryActiveColor" />
+                            app:tint="?attr/primaryActiveColor" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -325,7 +325,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_timer_circle"
-                android:backgroundTint="@color/secondaryActiveColor"
+                android:backgroundTint="?attr/secondaryActiveColor"
                 android:id="@+id/TimerFragment__CP_Btn_StartPause"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
@@ -337,7 +337,7 @@
                     android:layout_height="@dimen/btn_timer_icon_size"
                     android:id="@+id/TimerFragment__CP_Btn_Start_Icon"
                     android:src="@drawable/ic_timer_start"
-                    app:tint="@color/primaryBackgroundColor" />
+                    app:tint="?attr/primaryBackgroundColor" />
             </LinearLayout>
 
         </LinearLayout>

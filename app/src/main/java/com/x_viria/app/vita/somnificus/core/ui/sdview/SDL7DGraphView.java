@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.util.ArrayUtils;
+import com.x_viria.app.vita.somnificus.util.Theme;
 import com.x_viria.app.vita.somnificus.util.Unit;
 
 public class SDL7DGraphView extends View {
@@ -140,8 +141,8 @@ public class SDL7DGraphView extends View {
             }
 
             Paint paint = new Paint();
-            paint.setColor(CONTEXT.getColor(R.color.primaryInactiveColor));
-            if (index == 6) paint.setColor(CONTEXT.getColor(R.color.primaryActiveColor));
+            paint.setColor(Theme.getColor(CONTEXT, R.attr.primaryInactiveColor));
+            if (index == 6) paint.setColor(Theme.getColor(CONTEXT, R.attr.primaryActiveColor));
             paint.setStyle(Paint.Style.FILL);
             invalidate();
             canvas.drawPath(path, paint);
@@ -165,10 +166,10 @@ public class SDL7DGraphView extends View {
         }
 
         Paint paint = new Paint();
-        paint.setColor(CONTEXT.getColor(R.color.secondaryTextColor));
+        paint.setColor(Theme.getColor(CONTEXT, R.attr.secondaryTextColor));
         paint.setTextSize(Unit.Pixel.dp2px(CONTEXT, 12));
         Paint paint_ac = new Paint();
-        paint_ac.setColor(CONTEXT.getColor(R.color.secondaryActiveColor));
+        paint_ac.setColor(Theme.getColor(CONTEXT, R.attr.secondaryActiveColor));
         paint_ac.setTextSize(Unit.Pixel.dp2px(CONTEXT, 12));
         for (int i = 0; i < X_AXIS_LABEL.length; i++) {
             int bar_center = getBarCenterX(i);

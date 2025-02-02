@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="primaryAccentColor" format="color" />
+    <attr name="secondaryAccentColor" format="color" />
+    <attr name="tertiaryAccentColor" format="color" />
+
+    <attr name="primaryActiveColor" format="color" />
+    <attr name="secondaryActiveColor" format="color" />
+    <attr name="primaryInactiveColor" format="color" />
+    <attr name="secondaryInactiveColor" format="color" />
+
+    <attr name="primaryBackgroundColor" format="color" />
+    <attr name="secondaryBackgroundColor" format="color" />
+    <attr name="tertiaryBackgroundColor" format="color" />
+
+    <attr name="primaryTextColor" format="color" />
+    <attr name="secondaryTextColor" format="color" />
+
+    <attr name="primaryHorizontalBar" format="color" />
+    <attr name="controlHighlightColor" format="color" />
+    
+    <attr name="comparePositive" format="color" />
+    <attr name="compareNegative" format="color" />
+
+    <attr name="buttonPositive" format="color" />
+    <attr name="buttonNegative" format="color" />
+
+    <declare-styleable name="CircularScoreGraphView">
+        <attr name="textColor" format="color" />
+        <attr name="color" format="color" />
+        <attr name="score" format="integer" />
+        <attr name="enableGradient" format="boolean" />
+    </declare-styleable>
+</resources>

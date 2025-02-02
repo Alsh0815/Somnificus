@@ -1,6 +1,7 @@
 package com.x_viria.app.vita.somnificus.fragment.main.alarm;
 
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -20,6 +21,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -35,10 +37,12 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.activity.SetAlarmActivity;
 import com.x_viria.app.vita.somnificus.activity.SetNapActivity;
+import com.x_viria.app.vita.somnificus.core.ads.NativeAdsAF;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmInfo;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmSchedule;
 import com.x_viria.app.vita.somnificus.core.alarm.AlarmTime;
 import com.x_viria.app.vita.somnificus.core.bill.BillingManager;
+import com.x_viria.app.vita.somnificus.util.Theme;
 import com.x_viria.app.vita.somnificus.util.Unit;
 
 import org.json.JSONArray;
@@ -48,6 +52,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AlarmFragment extends Fragment {
 
@@ -57,6 +62,7 @@ public class AlarmFragment extends Fragment {
     private boolean IS_FAB_CLICKED = false;
 
     private boolean IS_PREMIUM = false;
+    private boolean CHECKED_LICENSE = false;
     private BillingManager billingManager;
 
     public static AlarmFragment newInstance() {
@@ -64,7 +70,7 @@ public class AlarmFragment extends Fragment {
     }
 
     private LinearLayout createAlarmView(JSONObject object) throws JSONException, IOException {
-        int iconTintColor = ContextCompat.getColor(requireContext(), R.color.primaryTextColor);
+        int iconTintColor = Theme.getColor(requireContext(), R.attr.primaryTextColor);
         int iconTintColorWhite = ContextCompat.getColor(requireContext(), R.color.white);
 
         JSONObject objdata = object.getJSONObject("data");
@@ -118,7 +124,7 @@ public class AlarmFragment extends Fragment {
                     alarmInfo.showNextTime(getContext());
                 }
                 alarmSchedule.sync();
-                refreshAlarmList();
+                refreshAlarmList(CHECKED_LICENSE);
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
@@ -221,7 +227,7 @@ public class AlarmFragment extends Fragment {
                     .setPositiveButton(R.string.common__text_yes, (dialog, which) -> {
                         try {
                             if (alarmSchedule.removeSchedule(id)) {
-                                refreshAlarmList();
+                                refreshAlarmList(CHECKED_LICENSE);
                             } else {
                                 Toast.makeText(getContext(), getString(R.string.fragment_main_alarm__msg_failed_to_del_alarm), Toast.LENGTH_SHORT).show();
                             }
@@ -245,7 +251,7 @@ public class AlarmFragment extends Fragment {
     }
 
     private LinearLayout createNapView(JSONObject object) throws JSONException, IOException {
-        int iconTintColor = ContextCompat.getColor(requireContext(), R.color.primaryTextColor);
+        int iconTintColor = Theme.getColor(requireContext(), R.attr.primaryTextColor);
         TypedValue rippleEffect = new TypedValue();
         requireContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, rippleEffect, true);
 
@@ -264,7 +270,7 @@ public class AlarmFragment extends Fragment {
         Runnable delNap = () -> {
             try {
                 if (alarmSchedule.removeSchedule(id)) {
-                    refreshAlarmList();
+                    refreshAlarmList(CHECKED_LICENSE);
                 } else {
                     Toast.makeText(getContext(), getString(R.string.fragment_main_alarm__msg_failed_to_del_alarm), Toast.LENGTH_SHORT).show();
                 }
@@ -369,8 +375,32 @@ public class AlarmFragment extends Fragment {
         return parent;
     }
 
-    private void refreshAlarmList() {
-        refreshAlarmList(false);
+    private CardView createNativeAdView() {
+        CardView view = new CardView(requireContext());
+        view.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+        view.setRadius(Unit.Pixel.dp2px(requireContext(), 16));
+        view.setBackgroundColor(Theme.getColor(requireContext(), R.attr.secondaryBackgroundColor));
+        view.setPadding(
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8),
+                Unit.Pixel.dp2px(requireContext(), 8)
+        );
+        view.setUseCompatPadding(true);
+
+        FrameLayout frameLayout = new FrameLayout(requireContext());
+        frameLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+        NativeAdsAF nativeAdsAF = new NativeAdsAF(requireContext());
+        nativeAdsAF.load(frameLayout, getString(R.string.ads_id_native_alarmF_1));
+        view.addView(frameLayout);
+
+        return view;
     }
 
     private void refreshAlarmList(boolean checked_license) {
@@ -427,11 +457,7 @@ public class AlarmFragment extends Fragment {
                     LinearLayout view = createAlarmView(object);
                     scheduleView.addView(view);
                     if (checked_license && !IS_PREMIUM && num_of_alarm % 10 == 1) {
-                        AdRequest adRequest = new AdRequest.Builder().build();
-                        AdView adView = new AdView(requireContext());
-                        adView.setAdSize(AdSize.BANNER);
-                        adView.setAdUnitId(getString(R.string.ads_id_ll_banner));
-                        adView.loadAd(adRequest);
+                        CardView adView = createNativeAdView();
                         scheduleView.addView(adView);
                     }
                 }
@@ -501,7 +527,10 @@ public class AlarmFragment extends Fragment {
         }).start();
 
         initUI();
-        new Handler().postDelayed(() -> refreshAlarmList(true), 1000);
+        new Handler().postDelayed(() -> {
+            CHECKED_LICENSE = true;
+            refreshAlarmList(CHECKED_LICENSE);
+        }, 1000);
 
         return ROOT;
     }
@@ -510,7 +539,7 @@ public class AlarmFragment extends Fragment {
     public void onResume() {
         super.onResume();
         initUI();
-        refreshAlarmList();
+        refreshAlarmList(CHECKED_LICENSE);
     }
 
     @Override

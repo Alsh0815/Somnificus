@@ -32,6 +32,7 @@ import com.x_viria.app.vita.somnificus.fragment.main.sleep.SleepFragment;
 import com.x_viria.app.vita.somnificus.fragment.main.stopwatch.StopwatchFragment;
 import com.x_viria.app.vita.somnificus.fragment.main.timer.TimerFragment;
 import com.x_viria.app.vita.somnificus.receiver.BootBroadcastReceiver;
+import com.x_viria.app.vita.somnificus.util.Theme;
 import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
 
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Theme.apply(this);
         super.onCreate(savedInstanceState);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        if (!new SPStorage(this).getBool(Config.KEY__TUTORIAL_COMPLETED, false)) {
+        if (!SPStorage.Tutorial.isCompleted(this)) {
             Intent intent = new Intent(this, TutorialActivity.class);
             startActivity(intent);
         } else {
@@ -156,5 +158,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+        Theme.apply(this);
+        super.onResume();
     }
 }

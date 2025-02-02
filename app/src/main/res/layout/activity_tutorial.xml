@@ -9,7 +9,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryBackgroundColor">
+        android:background="?attr/primaryBackgroundColor">
 
         <FrameLayout
             android:id="@+id/TutorialActivity__FragmentContainer"
@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_timer_circle"
-                android:backgroundTint="@color/primaryActiveColor"
+                android:backgroundTint="?attr/primaryActiveColor"
                 android:id="@+id/TutorialActivity__CP_Btn_Back"
                 android:layout_marginStart="24dp"
                 android:layout_alignParentStart="true"
@@ -40,7 +40,7 @@
                     android:layout_width="@dimen/btn_tutorial_icon_size"
                     android:layout_height="@dimen/btn_tutorial_icon_size"
                     android:src="@drawable/ic_arrow_left"
-                    app:tint="@color/primaryBackgroundColor" />
+                    app:tint="?attr/primaryBackgroundColor" />
             </LinearLayout>
 
             <TextView
@@ -50,13 +50,13 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="0 / 0"
-                android:textColor="@color/primaryActiveColor" />
+                android:textColor="?attr/primaryActiveColor" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_timer_circle"
-                android:backgroundTint="@color/primaryActiveColor"
+                android:backgroundTint="?attr/primaryActiveColor"
                 android:id="@+id/TutorialActivity__CP_Btn_Next"
                 android:layout_marginEnd="24dp"
                 android:layout_alignParentEnd="true"
@@ -68,7 +68,7 @@
                     android:layout_height="@dimen/btn_tutorial_icon_size"
                     android:id="@+id/TutorialActivity__CP_Btn_Next_Icon"
                     android:src="@drawable/ic_arrow_right"
-                    app:tint="@color/primaryBackgroundColor" />
+                    app:tint="?attr/primaryBackgroundColor" />
             </LinearLayout>
 
         </RelativeLayout>

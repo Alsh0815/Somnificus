@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.sda.SleepDurationStatisticsActivity"
-    android:background="@color/primaryBackgroundColor">
+    android:background="?attr/primaryBackgroundColor">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,14 +31,14 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     android:padding="@dimen/activity_header_close_btn_padding"
                     android:src="@drawable/ic_close"
-                    app:tint="@color/primaryTextColor" />
+                    app:tint="?attr/primaryTextColor" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/primaryHorizontalBar" />
+                android:background="?attr/primaryHorizontalBar" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,13 +55,13 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_error"
-                    app:tint="@color/primaryTextColorRev" />
+                    app:tint="?attr/primaryBackgroundColor" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:text="@string/activity_sleep_duration_statistics__error"
-                    android:textColor="@color/primaryTextColorRev"
+                    android:textColor="?attr/primaryBackgroundColor"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -72,160 +72,339 @@
                 android:padding="8dp"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/activity_sleep_duration_statistics__text_ost" />
+                    android:elevation="4dp"
+                    app:cardBackgroundColor="?attr/secondaryBackgroundColor"
+                    app:cardCornerRadius="4dp"
+                    app:cardUseCompatPadding="true">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical|end">
+                        android:padding="16dp"
+                        android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/SleepDurationStatisticsActivity__Stat_OST_Text"
-                            android:padding="4dp"
-                            android:text="" />
-                        <ProgressBar
-                            android:layout_width="wrap_content"
+                            android:text="@string/activity_sleep_duration_statistics__text_last_7_days" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/SleepDurationStatisticsActivity__Stat_OST_Progress"
-                            style="@style/Widget.AppCompat.ProgressBar" />
-                        <ImageView
-                            android:layout_width="@dimen/activity_sleep_duration_statistics__icon_info_size"
-                            android:layout_height="@dimen/activity_sleep_duration_statistics__icon_info_size"
-                            android:id="@+id/SleepDurationStatisticsActivity__Stat_OST_Info"
-                            android:clickable="true"
-                            android:contentDescription="@string/common__text_tip"
-                            android:foreground="?android:attr/selectableItemBackground"
-                            android:padding="@dimen/default_icon_padding"
-                            android:src="@drawable/ic_info"
-                            android:visibility="invisible"
-                            app:tint="@color/primaryTextColor" />
+                            android:gravity="center_vertical"
+                            android:paddingTop="16dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical">
+                                <com.x_viria.app.vita.somnificus.core.ui.view.CircularScoreGraphView
+                                    android:layout_width="128dp"
+                                    android:layout_height="128dp"
+                                    android:id="@+id/SleepDurationStatisticsActivity__7D_CSGV"
+                                    app:color="?attr/secondaryAccentColor"
+                                    app:enableGradient="true"
+                                    app:score="0"
+                                    app:textColor="?attr/primaryTextColor"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:orientation="vertical">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="6dp"
+                                    android:layout_marginTop="6dp"
+                                    android:layout_marginBottom="6dp"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="6dp"
+                                        android:text="@string/activity_sleep_duration_statistics__text_tst_tst"
+                                        android:textSize="13sp" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/SleepDurationStatisticsActivity__ScoreCard_TST_H"
+                                        android:layout_marginEnd="6dp"
+                                        android:text="0"
+                                        android:textSize="18sp" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="6dp"
+                                        android:text="@string/common__text_unit_hour"
+                                        android:textSize="13sp" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/SleepDurationStatisticsActivity__ScoreCard_TST_M"
+                                        android:layout_marginEnd="6dp"
+                                        android:text="0"
+                                        android:textSize="18sp" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/common__text_unit_min"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="6dp"
+                                    android:layout_marginTop="6dp"
+                                    android:layout_marginBottom="6dp"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="6dp"
+                                        android:text="@string/activity_sleep_duration_statistics__text_tst_score"
+                                        android:textSize="13sp" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/SleepDurationStatisticsActivity__ScoreCard_TST_Score"
+                                        android:layout_marginEnd="6dp"
+                                        android:text="0"
+                                        android:textSize="18sp" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="pts"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/activity_sleep_duration_statistics__text_mstr" />
+                    android:elevation="4dp"
+                    app:cardBackgroundColor="?attr/secondaryBackgroundColor"
+                    app:cardCornerRadius="4dp"
+                    app:cardUseCompatPadding="true">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical|end">
+                        android:padding="16dp"
+                        android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/SleepDurationStatisticsActivity__Stat_MSTR_Text"
-                            android:padding="4dp"
-                            android:text="" />
-                        <ProgressBar
-                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="@string/activity_sleep_duration_statistics__text_last_7_days" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/SleepDurationStatisticsActivity__Stat_MSTR_Progress"
-                            style="@style/Widget.AppCompat.ProgressBar" />
-                        <ImageView
-                            android:layout_width="@dimen/activity_sleep_duration_statistics__icon_info_size"
-                            android:layout_height="@dimen/activity_sleep_duration_statistics__icon_info_size"
-                            android:id="@+id/SleepDurationStatisticsActivity__Stat_MSTR_Info"
-                            android:clickable="true"
-                            android:contentDescription="@string/common__text_tip"
-                            android:foreground="?android:attr/selectableItemBackground"
-                            android:padding="@dimen/default_icon_padding"
-                            android:src="@drawable/ic_info"
-                            android:visibility="invisible"
-                            app:tint="@color/primaryTextColor" />
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/activity_sleep_duration_statistics__text_avg_sleep_time"
+                                android:textSize="15sp" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/SleepDurationStatisticsActivity__7D_AST"
+                                    android:text=""
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/activity_sleep_duration_statistics__text_total_sessions"
+                                android:textSize="15sp" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/SleepDurationStatisticsActivity__7D_Total_Sessions"
+                                    android:text=""
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/activity_sleep_duration_statistics__text_ast" />
-                    <LinearLayout
+                    android:id="@+id/SleepDurationStatisticsActivity__NativeAd_1"
+                    android:elevation="4dp"
+                    app:cardBackgroundColor="?attr/secondaryBackgroundColor"
+                    app:cardCornerRadius="4dp"
+                    app:cardUseCompatPadding="true">
+                    <FrameLayout
+                        android:id="@+id/SleepDurationStatisticsActivity__NativeAd_Container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical|end">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/SleepDurationStatisticsActivity__Stat_AST_Text"
-                            android:padding="4dp"
-                            android:text="" />
-                        <ProgressBar
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/SleepDurationStatisticsActivity__Stat_AST_Progress"
-                            style="@style/Widget.AppCompat.ProgressBar" />
-                        <ImageView
-                            android:layout_width="@dimen/activity_sleep_duration_statistics__icon_info_size"
-                            android:layout_height="@dimen/activity_sleep_duration_statistics__icon_info_size"
-                            android:id="@+id/SleepDurationStatisticsActivity__Stat_AST_Info"
-                            android:clickable="true"
-                            android:contentDescription="@string/common__text_tip"
-                            android:foreground="?android:attr/selectableItemBackground"
-                            android:padding="@dimen/default_icon_padding"
-                            android:src="@drawable/ic_info"
-                            android:visibility="invisible"
-                            app:tint="@color/primaryTextColor" />
-                    </LinearLayout>
-                </LinearLayout>
+                        android:padding="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.cardview.widget.CardView>
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/activity_sleep_duration_statistics__text_sr" />
+                    android:elevation="4dp"
+                    app:cardBackgroundColor="?attr/secondaryBackgroundColor"
+                    app:cardCornerRadius="4dp"
+                    app:cardUseCompatPadding="true">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical|end">
+                        android:padding="16dp"
+                        android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/SleepDurationStatisticsActivity__Stat_SR_Text"
-                            android:padding="4dp"
-                            android:text="" />
-                        <ProgressBar
-                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="@string/activity_sleep_duration_statistics__text_monthly_report" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/SleepDurationStatisticsActivity__Stat_SR_Progress"
-                            style="@style/Widget.AppCompat.ProgressBar" />
-                        <ImageView
-                            android:layout_width="@dimen/activity_sleep_duration_statistics__icon_info_size"
-                            android:layout_height="@dimen/activity_sleep_duration_statistics__icon_info_size"
-                            android:id="@+id/SleepDurationStatisticsActivity__Stat_SR_Info"
-                            android:clickable="true"
-                            android:contentDescription="@string/common__text_tip"
-                            android:foreground="?android:attr/selectableItemBackground"
-                            android:padding="@dimen/default_icon_padding"
-                            android:src="@drawable/ic_info"
-                            app:tint="@color/primaryTextColor" />
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:textSize="12sp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:text="@string/activity_sleep_duration_statistics__text_tst_score"
+                                    android:textSize="15sp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:text="@string/activity_sleep_duration_statistics__text_avg_sleep_time"
+                                    android:textSize="15sp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:text="@string/activity_sleep_duration_statistics__text_bad_sessions"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:textSize="12sp" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/SleepDurationStatisticsActivity__MR_Score"
+                                    android:gravity="end"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:text=""
+                                    android:textSize="15sp" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/SleepDurationStatisticsActivity__MR_AST"
+                                    android:gravity="end"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:text=""
+                                    android:textSize="15sp" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/SleepDurationStatisticsActivity__MR_LRS"
+                                    android:gravity="end"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:text=""
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="6dp"
+                                android:gravity="center"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:text="@string/activity_sleep_duration_statistics__text_mom"
+                                    android:textSize="12sp" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/SleepDurationStatisticsActivity__MR_Score_MoM"
+                                    android:gravity="center"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:text=""
+                                    android:textSize="15sp" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/SleepDurationStatisticsActivity__MR_AST_MoM"
+                                    android:gravity="center"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:text=""
+                                    android:textSize="15sp" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/SleepDurationStatisticsActivity__MR_LRS_MoM"
+                                    android:gravity="center"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:text=""
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 

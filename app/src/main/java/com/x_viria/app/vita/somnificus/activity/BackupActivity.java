@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.core.SecureBackup;
+import com.x_viria.app.vita.somnificus.util.Theme;
 import com.x_viria.app.vita.somnificus.util.storage.Config;
 import com.x_viria.app.vita.somnificus.util.storage.SPDefault;
 import com.x_viria.app.vita.somnificus.util.storage.SPStorage;
@@ -37,6 +38,7 @@ public class BackupActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Theme.apply(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_backup);
 

@@ -25,6 +25,7 @@ import android.widget.TimePicker;
 import com.x_viria.app.vita.somnificus.R;
 import com.x_viria.app.vita.somnificus.core.sda.SleepDurationInfo;
 import com.x_viria.app.vita.somnificus.core.sda.SleepDurationManager;
+import com.x_viria.app.vita.somnificus.util.Theme;
 
 import org.json.JSONException;
 
@@ -41,6 +42,7 @@ public class SetSleepDurationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Theme.apply(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_sleep_duration);
 
@@ -134,17 +136,17 @@ public class SetSleepDurationActivity extends AppCompatActivity {
         ImageView IV_Bad_Icon = findViewById(R.id.SetSDActivity__Bad_Icon);
         TextView TV_Bad_Text = findViewById(R.id.SetSDActivity__Bad_Text);
         LLBtn_Good.setOnClickListener(v -> {
-            IV_Good_Icon.setImageTintList(ColorStateList.valueOf(getColor(R.color.selectedColorOrange)));
-            TV_Good_Text.setTextColor(getColor(R.color.selectedColorOrange));
-            IV_Bad_Icon.setImageTintList(ColorStateList.valueOf(getColor(R.color.primaryInactiveColor)));
-            TV_Bad_Text.setTextColor(getColor(R.color.primaryInactiveColor));
+            IV_Good_Icon.setImageTintList(ColorStateList.valueOf(Theme.getColor(this, R.attr.buttonPositive)));
+            TV_Good_Text.setTextColor(Theme.getColor(this, R.attr.buttonPositive));
+            IV_Bad_Icon.setImageTintList(ColorStateList.valueOf(Theme.getColor(this, R.attr.primaryInactiveColor)));
+            TV_Bad_Text.setTextColor(Theme.getColor(this, R.attr.primaryInactiveColor));
             EVAL_GOOD_OR_BAD = SleepDurationInfo.Eval.GOOD;
         });
         LLBtn_Bad.setOnClickListener(v -> {
-            IV_Good_Icon.setImageTintList(ColorStateList.valueOf(getColor(R.color.primaryInactiveColor)));
-            TV_Good_Text.setTextColor(getColor(R.color.primaryInactiveColor));
-            IV_Bad_Icon.setImageTintList(ColorStateList.valueOf(getColor(R.color.selectedColorAqua)));
-            TV_Bad_Text.setTextColor(getColor(R.color.selectedColorAqua));
+            IV_Good_Icon.setImageTintList(ColorStateList.valueOf(Theme.getColor(this, R.attr.primaryInactiveColor)));
+            TV_Good_Text.setTextColor(Theme.getColor(this, R.attr.primaryInactiveColor));
+            IV_Bad_Icon.setImageTintList(ColorStateList.valueOf(Theme.getColor(this, R.attr.buttonNegative)));
+            TV_Bad_Text.setTextColor(Theme.getColor(this, R.attr.buttonNegative));
             EVAL_GOOD_OR_BAD = SleepDurationInfo.Eval.BAD;
         });
     }

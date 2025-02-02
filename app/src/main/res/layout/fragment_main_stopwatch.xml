@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_timer_circle"
-                android:backgroundTint="@color/secondaryInactiveColor"
+                android:backgroundTint="?attr/secondaryInactiveColor"
                 android:id="@+id/StopwatchFragment__CP_Btn_Reset"
                 android:layout_marginEnd="16dp"
                 android:padding="@dimen/btn_timer_icon_size"
@@ -78,14 +78,14 @@
                     android:layout_width="@dimen/btn_timer_icon_size"
                     android:layout_height="@dimen/btn_timer_icon_size"
                     android:src="@drawable/ic_timer_reset"
-                    app:tint="@color/primaryBackgroundColor" />
+                    app:tint="?attr/primaryBackgroundColor" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_timer_circle"
-                android:backgroundTint="@color/secondaryActiveColor"
+                android:backgroundTint="?attr/secondaryActiveColor"
                 android:id="@+id/StopwatchFragment__CP_Btn_StartPause"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
@@ -97,14 +97,14 @@
                     android:layout_height="@dimen/btn_timer_icon_size"
                     android:id="@+id/StopwatchFragment__CP_Btn_StartPause_Icon"
                     android:src="@drawable/ic_timer_start"
-                    app:tint="@color/primaryBackgroundColor" />
+                    app:tint="?attr/primaryBackgroundColor" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_timer_circle"
-                android:backgroundTint="@color/secondaryInactiveColor"
+                android:backgroundTint="?attr/secondaryInactiveColor"
                 android:id="@+id/StopwatchFragment__CP_Btn_Lap"
                 android:layout_marginStart="16dp"
                 android:padding="@dimen/btn_timer_icon_size"
@@ -115,7 +115,7 @@
                     android:layout_width="@dimen/btn_timer_icon_size"
                     android:layout_height="@dimen/btn_timer_icon_size"
                     android:src="@drawable/ic_menu_stopwatch"
-                    app:tint="@color/primaryBackgroundColor" />
+                    app:tint="?attr/primaryBackgroundColor" />
             </LinearLayout>
 
         </LinearLayout>

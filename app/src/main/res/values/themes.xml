@@ -1,42 +1,80 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Somnificus" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorControlHighlight">@color/controlHighlightColor</item>
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryVariant">@color/secondaryColorDark</item>
-        <item name="colorOnPrimary">@color/primaryBackgroundColor</item>
+        <item name="colorPrimary">@color/purple_L60</item>
+        <item name="colorPrimaryVariant">@color/purple_L50</item>
+        <item name="colorOnPrimary">@color/gray_L5</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondaryColorLight</item>
-        <item name="colorSecondaryVariant">@color/secondaryColorDark</item>
+        <item name="colorSecondary">@color/purple_L70</item>
+        <item name="colorSecondaryVariant">@color/purple_L50</item>
         <item name="colorOnSecondary">@color/black</item>
-        <item name="android:statusBarColor">@color/primaryBackgroundColor</item>
-        <item name="android:colorAccent">@color/secondaryActiveColor</item>
-        <item name="android:navigationBarColor">@color/primaryBackgroundColor</item>
-        <item name="android:textColor">@color/primaryTextColor</item>
-        <item name="android:textColorPrimary">@color/secondaryActiveColor</item>
+        <item name="android:statusBarColor">@color/gray_L5</item>
+        <item name="android:colorAccent">@color/purple_L95</item>
+        <item name="android:navigationBarColor">@color/gray_L5</item>
+        <item name="android:textColor">@color/gray_L95</item>
+        <item name="android:textColorPrimary">@color/gray_L95</item>
+
+        <item name="primaryAccentColor">@color/purple_L50</item>
+        <item name="secondaryAccentColor">@color/skyblue_L50</item>
+
+        <item name="primaryActiveColor">@color/gray_L95</item>
+        <item name="secondaryActiveColor">@color/gray_L80</item>
+        <item name="primaryInactiveColor">@color/gray_L70</item>
+        <item name="secondaryInactiveColor">@color/gray_L60</item>
+
+        <item name="primaryBackgroundColor">@color/gray_L5</item>
+        <item name="secondaryBackgroundColor">@color/gray_L10</item>
+        <item name="tertiaryBackgroundColor">@color/gray_L20</item>
+        <item name="primaryTextColor">@color/gray_L90</item>
+        <item name="secondaryTextColor">@color/gray_L70</item>
+
+        <item name="primaryHorizontalBar">?attr/tertiaryBackgroundColor</item>
+        <item name="controlHighlightColor">@color/white_A20</item>
+
+        <item name="comparePositive">@color/green_L70</item>
+        <item name="compareNegative">@color/red_L70</item>
+
+        <item name="buttonPositive">@color/orange_L60</item>
+        <item name="buttonNegative">@color/skyblue_L70</item>
+    </style>
+    
+    <style name="SomnificusVivid" parent="Theme.Somnificus">
+        <item name="colorPrimary">@color/springgreen_L70</item>
+        <item name="colorPrimaryVariant">@color/springgreen_L60</item>
+        <item name="colorSecondary">@color/springgreen_L70</item>
+        <item name="colorSecondaryVariant">@color/springgreen_L50</item>
+
+        <item name="primaryAccentColor">@color/springgreen_L50</item>
+        <item name="secondaryAccentColor">@color/aqua_L50</item>
+
+        <item name="comparePositive">@color/aqua_L70</item>
+        <item name="compareNegative">@color/pink_L60</item>
+
+        <item name="buttonPositive">@color/orange_L50</item>
+        <item name="buttonNegative">@color/skyblue_L60</item>
     </style>
 
     <style name="SomnificusAlertDialogTheme" parent="ThemeOverlay.AppCompat.Dialog.Alert">
-        <item name="android:background">@color/secondaryBackgroundColor</item>
-        <item name="android:textColor">@color/primaryTextColor</item>
-        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:background">@color/gray_L5</item>
+        <item name="android:textColor">@color/gray_L70</item>
+        <item name="android:textColorPrimary">@color/gray_L90</item>
     </style>
 
     <style name="SomnificusDatePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
-        <item name="android:background">@color/secondaryBackgroundColor</item>
-        <item name="android:textColor">@color/primaryTextColor</item>
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorSecondary">@color/primaryTextColor</item>
-        <item name="colorPrimary">@color/primaryTextColor</item>
+        <item name="android:background">@color/gray_L5</item>
+        <item name="android:textColor">@color/gray_L70</item>
+        <item name="android:textColorPrimary">@color/gray_L90</item>
+        <item name="android:textColorSecondary">@color/gray_L70</item>
+        <item name="colorPrimary">@color/gray_L70</item>
     </style>
 
     <style name="SomnificusTimePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.TimePicker">
-        <item name="colorSurface">@color/secondaryBackgroundColor</item>
-        <item name="android:textColorPrimary">@color/black</item>
-        <item name="android:textColorSecondary">@color/tertiaryBackgroundColor</item>
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorControlActivated">@color/primaryColor</item>
+        <item name="colorSurface">@color/gray_L10</item>
+        <item name="android:textColorPrimary">@color/gray_L5</item>
+        <item name="android:textColorSecondary">@color/gray_L20</item>
+        <item name="colorPrimary">@color/purple_L60</item>
+        <item name="colorControlActivated">@color/purple_L60</item>
     </style>
 
 </resources>

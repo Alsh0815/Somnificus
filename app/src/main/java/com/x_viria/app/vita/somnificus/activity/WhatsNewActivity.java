@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.x_viria.app.vita.somnificus.R;
+import com.x_viria.app.vita.somnificus.util.Theme;
 import com.x_viria.app.vita.somnificus.util.Unit;
 
 import org.json.JSONArray;
@@ -186,7 +187,7 @@ public class WhatsNewActivity extends AppCompatActivity {
             ViewGroup.MarginLayoutParams v_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
             v_lp.setMargins(Unit.Pixel.dp2px(this, 4), Unit.Pixel.dp2px(this, 4), Unit.Pixel.dp2px(this, 4), Unit.Pixel.dp2px(this, 4));
             View v = new View(this);
-            v.setBackgroundColor(getColor(R.color.primaryHorizontalBar));
+            v.setBackgroundColor(Theme.getColor(this, R.attr.primaryHorizontalBar));
             v.setLayoutParams(v_lp);
             list.addView(v);
         }
@@ -194,6 +195,7 @@ public class WhatsNewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Theme.apply(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_whats_new);
 

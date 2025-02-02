@@ -25,13 +25,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_error"
-                app:tint="@color/primaryTextColorRev" />
+                app:tint="?attr/primaryBackgroundColor" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/debug_msg"
-                android:textColor="@color/primaryTextColorRev"
+                android:textColor="?attr/primaryBackgroundColor"
                 android:textSize="15sp" />
         </LinearLayout>
 
@@ -86,7 +86,7 @@
             android:layout_marginEnd="8dp"
             app:fabCustomSize="48dp"
             app:srcCompat="@drawable/ic_menu_alarm"
-            app:backgroundTint="@color/secondaryActiveColor" />
+            app:backgroundTint="?attr/secondaryActiveColor" />
     </LinearLayout>
 
     <LinearLayout
@@ -112,7 +112,7 @@
             android:layout_marginEnd="8dp"
             app:fabCustomSize="48dp"
             app:srcCompat="@drawable/ic_menu_bed"
-            app:backgroundTint="@color/secondaryActiveColor" />
+            app:backgroundTint="?attr/secondaryActiveColor" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -123,7 +123,7 @@
         android:layout_gravity="bottom|end"
         app:fabCustomSize="56dp"
         app:srcCompat="@drawable/ic_add"
-        app:backgroundTint="@color/secondaryActiveColor" />
+        app:backgroundTint="?attr/secondaryActiveColor" />
 
 
 </FrameLayout>
